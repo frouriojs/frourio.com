@@ -1,57 +1,61 @@
 ---
 id: doc1
-title: Style Guide
-sidebar_label: Style Guide
+title: Introduction
+sidebar_label: Introduction
 ---
 
-You can write content using [GitHub-flavored Markdown syntax](https://github.github.com/gfm/).
+## Why frourio?
 
-## Markdown Syntax
+Even if you write both the front and server in TypeScript, you can't statically type-check the API's sparsity.
 
-To serve as an example page when styling markdown based Docusaurus sites.
+We are always forced to write "Two TypeScript".  
+We waste a lot of time on dynamic testing using the browser and Docker.
 
-## Headers
+Frourio is a framework for developing web apps quickly and safely in "One TypeScript".
 
-# H1 - Create the best documentation
+![Why frourio?](https://frouriojs.github.io/frourio/assets/images/problem.png 'Why frourio?')
 
-## H2 - Create the best documentation
+## Architecture
 
-### H3 - Create the best documentation
+In order to develop in "One TypeScript", `frourio` and `aspida` need to cooperate with each other.  
+You can use `create-frourio-app` to make sure you don't fail in building your environment.
 
-#### H4 - Create the best documentation
+You can choose between Next.js or Nuxt.js for the front framework.  
+Frourio is based on Express.js, so it's not difficult.
 
-##### H5 - Create the best documentation
+TypeORM setup is also completed automatically, so there is no failure in connecting to the DB.
 
-###### H6 - Create the best documentation
+Once the REST API endpoint interface is defined, the server controller implementation is examined by the type.  
+The front is checked by the type to see if it is making an API request as defined in the interface.
 
----
+[aspida: TypeScript friendly HTTP client wrapper for the browser and node.js.](https://github.com/aspidajs/aspida)
 
-## Emphasis
+![Architecture](https://frouriojs.github.io/frourio/assets/images/architecture.png 'Architecture')
 
-Emphasis, aka italics, with *asterisks* or _underscores_.
+## Installation
 
-Strong emphasis, aka bold, with **asterisks** or __underscores__.
+Make sure you have [npx](https://www.npmjs.com/package/npx) installed (`npx` is shipped by default since [npm](https://www.npmjs.com/get-npm) `5.2.0`)
 
-Combined emphasis with **asterisks and _underscores_**.
+```bash
+npx create-frourio-app <my-project>
+```
 
-Strikethrough uses two tildes. ~~Scratch this.~~
+Or starting with npm v6.1 you can do:
 
----
+```bash
+npm init frourio-app <my-project>
+```
 
-## Lists
+Or with [yarn](https://yarnpkg.com/en/):
 
-1. First ordered list item
-1. Another item
-   - Unordered sub-list.
-1. Actual numbers don't matter, just that it's a number
-   1. Ordered sub-list
-1. And another item.
+```bash
+yarn create frourio-app <my-project>
+```
 
-* Unordered list can use asterisks
+## Environment
 
-- Or minuses
-
-+ Or pluses
+Frourio requires TypeScript 3.9 or higher.  
+If the TypeScript version of VSCode is low, an error is displayed during development.
 
 ---
 
