@@ -1,11 +1,11 @@
 module.exports = {
   title: 'Frourio',
   tagline: 'Perfectly type-checkable REST framework for TypeScript',
-  url: 'https://your-docusaurus-test-site.com',
+  url: 'https://frouriojs.github.io',
   baseUrl: '/',
   favicon: 'img/favicon.ico',
-  organizationName: 'facebook', // Usually your GitHub org/user name.
-  projectName: 'docusaurus', // Usually your repo name.
+  organizationName: 'frouriojs', // Usually your GitHub org/user name.
+  projectName: 'frourio.io', // Usually your repo name.
   themeConfig: {
     navbar: {
       title: 'Frourio',
