@@ -3,7 +3,7 @@ module.exports = {
   tagline: 'Perfectly type-checkable REST framework for TypeScript',
   url: 'https://frouriojs.github.io',
   baseUrl: '/',
-  favicon: 'img/favicon.ico',
+  favicon: 'img/favicon.png',
   organizationName: 'frouriojs', // Usually your GitHub org/user name.
   projectName: 'frourio.io', // Usually your repo name.
   themeConfig: {
@@ -22,7 +22,7 @@ module.exports = {
         },
         {to: 'blog', label: 'Blog', position: 'left'},
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/frouriojs/frourio',
           label: 'GitHub',
           position: 'right',
         },

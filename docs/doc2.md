@@ -1,6 +1,18 @@
 ---
 id: doc2
-title: Document Number 2
+title: Type Definition
 ---
 
-This is a link to [another document.](doc3.md) This is a link to an [external page.](http://www.example.com/)
+```typescript
+export type Task = {
+  id: number
+  label: string
+  done: boolean
+}
+
+export type Methods = {
+  get: {
+    resBody: Task[]
+  }
+}
+```
