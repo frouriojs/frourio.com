@@ -1,19 +1,24 @@
 module.exports = {
-  title: 'Frourio',
-  tagline: 'Perfectly type-checkable REST framework for TypeScript',
-  url: 'https://frouriojs.github.io',
+  title: 'frourio',
+  tagline: 'Fast and comfortable full stack framework, for TypeScript',
+  url: 'https://frourio.io',
   baseUrl: '/',
+  onBrokenLinks: 'throw',
   favicon: 'img/favicon.png',
   organizationName: 'frouriojs', // Usually your GitHub org/user name.
   projectName: 'frourio.io', // Usually your repo name.
   themeConfig: {
+    colorMode: {
+      defaultMode: 'light',
+      disableSwitch: true,
+    },
     navbar: {
-      title: 'Frourio',
+      title: 'frourio',
       logo: {
-        alt: 'My Site Logo',
+        alt: 'frourio Logo',
         src: 'img/logo.svg',
       },
-      links: [
+      items: [
         {
           to: 'docs/',
           activeBasePath: 'docs',
@@ -48,10 +53,6 @@ module.exports = {
           title: 'Community',
           items: [
             {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
               label: 'Discord',
               href: 'https://discordapp.com/invite/docusaurus',
             },
@@ -70,12 +71,12 @@ module.exports = {
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
+              href: 'https://github.com/frouriojs/frourio',
             },
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Solufa.`,
     },
   },
   presets: [
@@ -83,8 +84,6 @@ module.exports = {
       '@docusaurus/preset-classic',
       {
         docs: {
-          // It is recommended to set document id as docs home page (`docs/` path).
-          homePageId: 'doc1',
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
           editUrl:
