@@ -4,15 +4,16 @@ import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useBaseUrl from '@docusaurus/useBaseUrl';
-import Chart from 'react-apexcharts'
 import GitHubButton from 'react-github-btn'
 import styles from './styles.module.css';
+
+const Chart = 'window' in global ? require('react-apexcharts').default : null
 
 const chartSeries = [{
   data: [64872.8, 64456.8, 57303.2, 12127.8, 11972.4, 10025.0]
 }]
 
-const colors = ['#1A73E8', '#f00', '#1A73E8', '#1A73E8', '#1A73E8', '#1A73E8']
+const colors = ['#008FFB', '#FF4560', '#008FFB', '#008FFB', '#008FFB', '#008FFB']
 
 const chartOptions = {
   chart: {
@@ -24,11 +25,11 @@ const chartOptions = {
   plotOptions: {
     bar: {
       horizontal: true,
-      distributed: true
+      distributed: true,
+      dataLabels: {
+        position: 'top',
+      },
     }
-  },
-  dataLabels: {
-    enabled: false
   },
   colors,
   legend: {
@@ -48,6 +49,14 @@ const chartOptions = {
       lines: {
         show: true
       }
+    }
+  },
+  dataLabels: {
+    enabled: true,
+    offsetX: -8,
+    style: {
+      fontSize: '12px',
+      colors: ['#fff']
     }
   },
   yaxis: {
@@ -94,7 +103,7 @@ function Home() {
           <div className="container">
             <div className={clsx('text--center', styles.feature)}>
               <h3>High Performance</h3>
-              <Chart options={chartOptions} series={chartSeries} type="bar" height={280} />
+              {Chart && <Chart options={chartOptions} series={chartSeries} type="bar" height={280} />}
             </div>
             <div className={clsx('text--center', styles.feature)}>
               <h3>Full stack with One command</h3>

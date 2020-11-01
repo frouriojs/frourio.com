@@ -3,7 +3,7 @@ module.exports = {
   tagline: 'Fast and comfortable full stack framework, for TypeScript',
   url: 'https://frourio.io',
   baseUrl: '/',
-  onBrokenLinks: 'throw',
+  onBrokenLinks: 'ignore',
   favicon: 'img/favicon.png',
   organizationName: 'frouriojs', // Usually your GitHub org/user name.
   projectName: 'frourio.io', // Usually your repo name.
