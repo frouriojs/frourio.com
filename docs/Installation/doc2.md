@@ -3,7 +3,7 @@ id: doc2
 title: Type Definition
 ---
 
-```typescript
+```ts title="/src/components/HelloCodeTitle.js"
 export type Task = {
   id: number
   label: string

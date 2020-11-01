@@ -4,54 +4,61 @@ import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import Chart from 'react-apexcharts'
+import GitHubButton from 'react-github-btn'
 import styles from './styles.module.css';
 
-const features = [
-  {
-    title: <>One TypeScript</>,
-    imageUrl: 'img/undraw_docusaurus_mountain.svg',
-    description: (
-      <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
-      </>
-    ),
-  },
-  {
-    title: <>Zero setup</>,
-    imageUrl: 'img/undraw_docusaurus_tree.svg',
-    description: (
-      <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
-      </>
-    ),
-  },
-  {
-    title: <>Thin wrapper</>,
-    imageUrl: 'img/undraw_docusaurus_react.svg',
-    description: (
-      <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
-      </>
-    ),
-  },
-];
+const chartSeries = [{
+  data: [64872.8, 64456.8, 57303.2, 12127.8, 11972.4, 10025.0]
+}]
 
-function Feature({imageUrl, title, description}) {
-  const imgUrl = useBaseUrl(imageUrl);
-  return (
-    <div className={clsx('col col--4', styles.feature)}>
-      {imgUrl && (
-        <div className="text--center">
-          <img className={styles.featureImage} src={imgUrl} alt={title} />
-        </div>
-      )}
-      <h3>{title}</h3>
-      <p>{description}</p>
-    </div>
-  );
+const colors = ['#1A73E8', '#f00', '#1A73E8', '#1A73E8', '#1A73E8', '#1A73E8']
+
+const chartOptions = {
+  chart: {
+    type: 'bar',
+    toolbar: {
+      show: false,
+    },
+  },
+  plotOptions: {
+    bar: {
+      horizontal: true,
+      distributed: true
+    }
+  },
+  dataLabels: {
+    enabled: false
+  },
+  colors,
+  legend: {
+    show: false,
+  },
+  xaxis: {
+    title: {
+      text: 'Request/sec',
+      style: {
+        fontWeight: 'bold'
+      }
+    },
+    categories: ['fastify', 'frourio', 'nest-fastify', 'frourio-express', 'express', 'nest'],
+  },
+  grid: {
+    xaxis: {
+      lines: {
+        show: true
+      }
+    }
+  },
+  yaxis: {
+    labels: {
+      style: {
+        colors,
+        fontSize: '14px',
+        fontWeight: 'bold'
+      }
+    }
+  }
 }
 
 function Home() {
@@ -59,7 +66,7 @@ function Home() {
   const {siteConfig = {}} = context;
   return (
     <Layout
-      title={`Hello from ${siteConfig.title}`}
+      title={siteConfig.tagline}
       description="Description will go into a meta tag in <head />">
       <header className={clsx('hero', styles.heroBanner)}>
         <div className="container">
@@ -70,27 +77,34 @@ function Home() {
           <div className={styles.buttons}>
             <Link
               className={clsx(
-                'button button--outline button--secondary button--lg',
+                'button button--primary button--lg',
                 styles.getStarted,
               )}
               to={useBaseUrl('docs/')}>
               Get Started
             </Link>
           </div>
+          <div className={clsx('margin-top--md')}>
+            <GitHubButton href="https://github.com/frouriojs/frourio" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star frouriojs/frourio on GitHub">Star</GitHubButton>
+          </div>
         </div>
       </header>
       <main>
-        {features && features.length > 0 && (
-          <section className={styles.features}>
-            <div className="container">
-              <div className="row">
-                {features.map((props, idx) => (
-                  <Feature key={idx} {...props} />
-                ))}
-              </div>
+        <section className={styles.features}>
+          <div className="container">
+            <div className={clsx('text--center', styles.feature)}>
+              <h3>High Performance</h3>
+              <Chart options={chartOptions} series={chartSeries} type="bar" height={280} />
             </div>
-          </section>
-        )}
+            <div className={clsx('text--center', styles.feature)}>
+              <h3>Full stack with One command</h3>
+              <p>Architecture</p>
+                <div>
+                  <img src="https://frouriojs.github.io/frourio/assets/images/architecture.png" alt="architecture" />
+                </div>
+            </div>
+          </div>
+        </section>
       </main>
     </Layout>
   );
