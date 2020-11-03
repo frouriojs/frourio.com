@@ -1,0 +1,89 @@
+---
+id: cui
+title: Setup with CUI
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="npx"
+  values={[
+    { label: 'npx', value: 'npx', },
+    { label: 'npm', value: 'npm', },
+    { label: 'yarn', value: 'yarn', },
+  ]
+}>
+<TabItem value="npx">
+
+```sh
+npx create-frourio-app --answers '{"dir":"my-project"}'
+```
+
+</TabItem>
+<TabItem value="npm">
+
+```sh
+npm init frourio-app --answers '{"dir":"my-project"}'
+```
+
+</TabItem>
+<TabItem value="yarn">
+
+```sh
+yarn create frourio-app --answers '{"dir":"my-project"}'
+```
+
+</TabItem>
+</Tabs>
+
+<br />
+
+**answers JSON parameters**
+
+| Name     | Type      | Default     | Description | When |
+| -------- | --------- | ---------- | ---------- | ---------- |
+| dir | string |  | Directory name (create new) |  |
+| server | "fastify" \| "express" | "fastify" | Core framework of frourio |  |
+| front | "next" \| "nuxt" | "next" | Frontend framework |  |
+| building | "basic" \| "static" | "basic" | Building mode | front === "next" |
+| mode | "universal" \| "spa" | "universal" | Rendering mode | front === "nuxt" |
+| target | "server" \| "static" | "server" | Deployment target | front === "nuxt" |
+| aspida | "axios" \| "fetch" | "axios" | HTTP client of aspida |  |
+| pm | "yarn" \| "npm" | "yarn" | Package manager |  |
+| daemon | "none" \| "pm2" | "none" | Daemon process manager |  |
+| orm | "prisma" \| "typeorm" \| "none" | "prisma" | O/R mapping tool |  |
+| prismaDB | "mysql" \| "postgresql" \| "sqlite" | "mysql" | DB type of Prisma | orm === "prisma" |
+| typeormDB | "mysql" \| "postgres" \| "mongodb" \| "mssql" \| "mariadb" \| "cockroachdb" | "mysql" | DB type of TypeORM | orm === "typeorm" |
+| dbHost | string | "localhost" | HOST of DB | orm !== "none" && prismaDB !== "sqlite" |
+| dbPort | number | Default port of DB type | PORT of DB | orm !== "none" && prismaDB !== "sqlite" |
+| dbUser | string |  | USER of DB | orm !== "none" && prismaDB !== "sqlite" |
+| dbPass | string |  | PASS of DB | orm !== "none" && prismaDB !== "sqlite" |
+| dbName | string |  | NAME of DB | orm !== "none" && prismaDB !== "sqlite" |
+| dbFile | string | "./dev.db" | DB file path of SQLite | orm === "prisma" && prismaDB === "sqlite" |
+| testing | "none" \| "jest" | "none" | Testing framework |  |
+
+<br />
+
+Once the above command is installed, the browser will automatically open at [http://localhost:3000](http://localhost:3000)
+
+import BrowserWindow from '@site/src/components/BrowserWindow';
+
+<Tabs
+  defaultValue="next"
+  values={[
+    { label: 'Next.js', value: 'next', },
+    { label: 'Nuxt.js', value: 'nuxt', },
+  ]
+}>
+<TabItem value="next">
+  <BrowserWindow url="http://localhost:3000">
+    <img src="/img/nextjs.png" />
+  </BrowserWindow>
+</TabItem>
+<TabItem value="nuxt">
+  <BrowserWindow url="http://localhost:3000">
+    <img src="/img/nuxtjs.png" />
+  </BrowserWindow>
+</TabItem>
+</Tabs>

@@ -102,15 +102,26 @@ function Home() {
         <section className={styles.features}>
           <div className="container">
             <div className={clsx('text--center', styles.feature)}>
-              <h3>High Performance</h3>
+              <h2>High Performance</h2>
               {Chart && <Chart options={chartOptions} series={chartSeries} type="bar" height={280} />}
             </div>
+
             <div className={clsx('text--center', styles.feature)}>
-              <h3>Full stack with One command</h3>
-              <p>Architecture</p>
-                <div>
-                  <img src="https://frouriojs.github.io/frourio/assets/images/architecture.png" alt="architecture" />
-                </div>
+              <h2>Architecture</h2>
+              <div>
+                <img src="https://frouriojs.github.io/frourio/assets/images/architecture.png" alt="architecture" />
+              </div>
+            </div>
+
+            <div className={clsx('text--center', styles.feature)}>
+              <Link
+                className={clsx(
+                  'button button--primary button--lg',
+                  styles.getStarted,
+                )}
+                to={useBaseUrl('docs/')}>
+                Get Started
+              </Link>
             </div>
           </div>
         </section>
