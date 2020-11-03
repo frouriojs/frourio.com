@@ -49,7 +49,7 @@ module.exports = {
             },
             {
               label: 'Installation',
-              to: 'docs/Installation/gui',
+              to: 'docs/installation/gui',
             },
           ],
         },
