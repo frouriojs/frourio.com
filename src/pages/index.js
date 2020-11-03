@@ -93,7 +93,7 @@ function Home() {
               Get Started
             </Link>
           </div>
-          <div className={clsx('margin-top--md')}>
+          <div className="margin-top--md">
             <GitHubButton href="https://github.com/frouriojs/frourio" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star frouriojs/frourio on GitHub">Star</GitHubButton>
           </div>
         </div>
@@ -109,7 +109,7 @@ function Home() {
             <div className={clsx('text--center', styles.feature)}>
               <h2>Architecture</h2>
               <div>
-                <img src="https://frouriojs.github.io/frourio/assets/images/architecture.png" alt="architecture" />
+                <img src="/img/architecture.png" alt="architecture" />
               </div>
             </div>
 
@@ -122,6 +122,9 @@ function Home() {
                 to={useBaseUrl('docs/')}>
                 Get Started
               </Link>
+            </div>
+            <div className="margin-top--md text--center">
+              <GitHubButton href="https://github.com/frouriojs/frourio" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star frouriojs/frourio on GitHub">Star</GitHubButton>
             </div>
           </div>
         </section>

@@ -1,6 +1,6 @@
 module.exports = {
   title: 'frourio',
-  tagline: 'Fast and comfortable full stack framework, for TypeScript',
+  tagline: 'Fast and type-safe full stack framework, for TypeScript',
   url: 'https://frourio.io',
   baseUrl: '/',
   onBrokenLinks: 'ignore',
@@ -8,6 +8,8 @@ module.exports = {
   organizationName: 'frouriojs', // Usually your GitHub org/user name.
   projectName: 'frourio.io', // Usually your repo name.
   themeConfig: {
+    image: 'img/ogp.png',
+    metadatas: [{name: 'twitter:card', content: 'summary'}],
     colorMode: {
       defaultMode: 'light',
       disableSwitch: true,
@@ -42,7 +44,7 @@ module.exports = {
           title: 'Docs',
           items: [
             {
-              label: 'Introduction',
+              label: 'Why frourio?',
               to: 'docs/',
             },
             {
