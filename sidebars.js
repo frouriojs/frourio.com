@@ -10,6 +10,7 @@ module.exports = {
       'O/R mapping tool': ['orm/prisma', 'orm/typeorm'],
     },
     'deployment',
+    'dependency-injection',
     {
       Advanced: ['advanced/error-handling', 'advanced/cors-helmet', 'advanced/performance']
     }
