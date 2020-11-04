@@ -13,7 +13,7 @@ const chartSeries = [{
   data: [64872.8, 64456.8, 57303.2, 12127.8, 11972.4, 10025.0]
 }]
 
-const colors = ['#008FFB', '#FF4560', '#008FFB', '#008FFB', '#008FFB', '#008FFB']
+const colors = ['#999', '#008FFB', '#999', '#999', '#999', '#999']
 
 const chartOptions = {
   chart: {
