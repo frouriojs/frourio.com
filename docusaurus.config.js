@@ -9,7 +9,11 @@ module.exports = {
   projectName: 'frourio.io', // Usually your repo name.
   themeConfig: {
     image: 'img/ogp.png',
-    metadatas: [{name: 'twitter:card', content: 'summary'}],
+    metadatas: [
+      {name: 'twitter:card', content: 'summary_large_image'},
+      {name: 'description', content: 'Frourio is the full stack framework for TypeScript.'},
+      {property: 'og:description', content: 'Frourio is the full stack framework for TypeScript.'},
+    ],
     colorMode: {
       defaultMode: 'light',
       disableSwitch: true,
