@@ -1,14 +1,15 @@
 ---
 id: deployment
-title: Deployment
+title: CI/CD
 ---
 
 Frourio is complete in one directory, but not monolithic.  
-Frontend and server are just statically connected by a type and are separate projects.  
+Client and server are just statically connected by a type and are separate projects.  
 So they can be deployed in different environments.
 
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+
 
 <Tabs
   defaultValue="npm"
@@ -19,25 +20,35 @@ import TabItem from '@theme/TabItem';
 }>
 <TabItem value="npm">
 
-**Frontend**
+<br />
+
+**Continuous Integration**
 
 ```sh
 npm install
-npm run build:front
-npm run start:front
+npm install --prefix server
+npm run lint
+npm run typecheck
+npm test
 ```
 
-**Server**
+<br />
 
-```sh
-npm run install:server
+**Continuous Delivery**
+
+```sh title="client"
+npm install
+npm run build:client
+npm run start:client
+```
+
+```sh title="server"
+npm install --prefix server
 npm run build:server
 npm run start:server
 ```
 
-or
-
-```sh
+```sh title="or"
 cd server
 npm install
 npm run build
@@ -47,25 +58,35 @@ npm run start
 </TabItem>
 <TabItem value="yarn">
 
-**Frontend**
+<br />
+
+**Continuous Integration**
 
 ```sh
 yarn install
-yarn build:front
-yarn start:front
+yarn install --cwd server
+yarn lint
+yarn typecheck
+yarn test
 ```
 
-**Server**
+<br />
 
-```sh
-yarn install:server
+**Continuous Delivery**
+
+```sh title="client"
+yarn install
+yarn build:client
+yarn start:client
+```
+
+```sh title="server"
+yarn install --cwd server
 yarn build:server
 yarn start:server
 ```
 
-or
-
-```sh
+```sh title="or"
 cd server
 yarn install
 yarn build

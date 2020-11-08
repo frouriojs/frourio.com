@@ -16,22 +16,46 @@ import TabItem from '@theme/TabItem';
 }>
 <TabItem value="npx">
 
-```sh
+```sh title="Tarminal"
 npx create-frourio-app --answers '{"dir":"my-project"}'
+```
+
+```sh title="Command prompt"
+npx create-frourio-app --answers "{\\\"dir\\\":\\\"my-project\\\"}"
+```
+
+```powershell title="PowerShell"
+npx create-frourio-app --answers '{\"dir\":\"my-project\"}'
 ```
 
 </TabItem>
 <TabItem value="npm">
 
-```sh
+```sh title="Tarminal"
 npm init frourio-app --answers '{"dir":"my-project"}'
+```
+
+```sh title="Command prompt"
+npm init frourio-app --answers "{\\\"dir\\\":\\\"my-project\\\"}"
+```
+
+```powershell title="PowerShell"
+npm init frourio-app --answers '{\"dir\":\"my-project\"}'
 ```
 
 </TabItem>
 <TabItem value="yarn">
 
-```sh
+```sh title="Tarminal"
 yarn create frourio-app --answers '{"dir":"my-project"}'
+```
+
+```sh title="Command prompt"
+yarn create frourio-app --answers "{\\\"dir\\\":\\\"my-project\\\"}"
+```
+
+```powershell title="PowerShell"
+yarn create frourio-app --answers '{\"dir\":\"my-project\"}'
 ```
 
 </TabItem>
@@ -44,11 +68,11 @@ yarn create frourio-app --answers '{"dir":"my-project"}'
 | Name     | Type      | Default     | Description | When |
 | -------- | --------- | ---------- | ---------- | ---------- |
 | dir | string |  | Directory name (create new) |  |
-| server | "fastify" \| "express" | "fastify" | Core framework of frourio |  |
-| front | "next" \| "nuxt" | "next" | Frontend framework |  |
-| building | "basic" \| "static" | "basic" | Building mode | front === "next" |
-| mode | "universal" \| "spa" | "universal" | Rendering mode | front === "nuxt" |
-| target | "server" \| "static" | "server" | Deployment target | front === "nuxt" |
+| server | "fastify" \| "express" | "fastify" | Server engine |  |
+| client | "next" \| "nuxt" | "next" | Client framework |  |
+| building | "basic" \| "static" | "basic" | Building mode | client === "next" |
+| mode | "universal" \| "spa" | "universal" | Rendering mode | client === "nuxt" |
+| target | "server" \| "static" | "server" | Deployment target | client === "nuxt" |
 | aspida | "axios" \| "fetch" | "axios" | HTTP client of aspida |  |
 | pm | "yarn" \| "npm" | "yarn" | Package manager |  |
 | daemon | "none" \| "pm2" | "none" | Daemon process manager |  |
