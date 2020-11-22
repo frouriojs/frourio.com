@@ -1,7 +1,19 @@
 ---
 id: lifecycle
-title: Lifecycle of hooks
+title: Hooks types and lifecycle
 ---
+
+Fastify-like Hooks are redefined in frourio for both Fastify and Express.
+
+- `onRequest`
+- `preParsing`
+- `preValidation`
+- `preHandler`
+
+They will be hooked along the following lifecycle.
+
+Proceed by calling `done` (Fastify) / `next` (Express), which can be taken as the third argument.  
+\* Except Fastify when using async / await
 
 ```text
 Incoming Request
