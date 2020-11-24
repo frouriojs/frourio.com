@@ -3,9 +3,14 @@ id: path-parameter
 title: Path parameter
 ---
 
-Path parameter can be specified as string or number type after `@`.  
-(Default is string)  
-Path parameter of number is automatically validated.
+As a path parameter validation, the path parameter can be specified with `@string` or `@number` after them.  
+If it is `@number`, it will be automatically validated.
+
+If it is not specified, the path variable is **`string`**.
+
+:::caution
+The default type of path parameter in **aspida** is `number | string`, but in **frourio** it is `string`.
+:::
 
 ```ts title="server/api/tasks/_taskId@number/index.ts"
 import { Task } from '$/types'
@@ -45,3 +50,14 @@ HTTP/1.1 404 Not Found
 $ curl http://localhost:8080/api/tasks/abc -i
 HTTP/1.1 400 Bad Request
 ```
+
+### Why string ?
+
+Since everything comes as `string` to the server, it is only in `string` to prevent information degradation.
+
+| aspida  | -> string ->  | frourio         |
+| :-:     | :-:           | :-:             |
+| `'a'`   | -> `'a'` ->   | `'a'`           |
+| `'1'`   | -> `'1'` ->   | `1` ? `'1'` ?   |
+| `1`     | -> `'1'` ->   | `1` ? `'1'` ?   |
+| `'1.0'` | -> `'1.0'` -> | `1` ? `'1.0'` ? |
