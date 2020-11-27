@@ -53,3 +53,45 @@ HTTP/1.1 400 Bad Request
 $ curl -X POST -H "Content-Type: application/json" -d '{"id":"incorrectId","pass":"incorrectPass"}' http://localhost:8080/api/token -i
 HTTP/1.1 401 Unauthorized
 ```
+
+Passing options (>= v0.20.0)
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="fastify"
+  values={[
+    { label: 'fastify', value: 'fastify' },
+    { label: 'express', value: 'express' },
+  ]
+}>
+<TabItem value="fastify">
+
+```ts title="server/index.ts"
+import Fastify from 'fastify'
+import server from './$server'
+
+const fastify = Fastify()
+
+server(fastify, { basePath: '/api/v1', validator: { whitelist: true } })
+fastify.listen(3000)
+```
+
+</TabItem>
+<TabItem value="express">
+
+```ts title="server/index.ts"
+import express from 'express'
+import server from './$server'
+
+const app = express()
+
+server(app, { basePath: '/api/v1', validator: { whitelist: true } })
+app.listen(3000)
+```
+
+</TabItem>
+</Tabs>
+
+[class-validator options](https://github.com/typestack/class-validator#passing-options)
