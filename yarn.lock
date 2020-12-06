@@ -1681,6 +1681,17 @@
     fs-extra "^8.1.0"
     sitemap "^3.2.2"
 
+"@docusaurus/plugin-sitemap@^2.0.0-alpha.69":
+  version "2.0.0-alpha.69"
+  resolved "https://registry.yarnpkg.com/@docusaurus/plugin-sitemap/-/plugin-sitemap-2.0.0-alpha.69.tgz#ffda02b4be468b3dfeed8fde3c2f2971ee839078"
+  integrity sha512-DqrXm1PiWWNN5wbY1iVg0sdkCL3KZEj7uyjmZfXIfMQaEF2ErqJDY07QAwANrl27huPQmmc9tYwW3FqgKbVlbA==
+  dependencies:
+    "@docusaurus/core" "2.0.0-alpha.69"
+    "@docusaurus/types" "2.0.0-alpha.69"
+    fs-extra "^9.0.1"
+    joi "^17.2.1"
+    sitemap "^3.2.2"
+
 "@docusaurus/preset-classic@2.0.0-alpha.66":
   version "2.0.0-alpha.66"
   resolved "https://registry.yarnpkg.com/@docusaurus/preset-classic/-/preset-classic-2.0.0-alpha.66.tgz#02db88bd1faea52ebc4cd56dd85c5249bd90bab8"

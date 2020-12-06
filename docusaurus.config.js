@@ -7,7 +7,18 @@ module.exports = {
   favicon: 'img/favicon.png',
   organizationName: 'frouriojs', // Usually your GitHub org/user name.
   projectName: 'frourio.io', // Usually your repo name.
-  plugins: ['@docusaurus/plugin-google-gtag'],
+  plugins: [
+    '@docusaurus/plugin-google-gtag',
+    [
+      '@docusaurus/plugin-sitemap',
+      {
+        cacheTime: 600 * 1000, // 600 sec - cache purge period
+        changefreq: 'weekly',
+        priority: 0.5,
+        trailingSlash: false,
+      },
+    ]
+  ],
   themeConfig: {
     image: 'img/ogp.png',
     metadatas: [
