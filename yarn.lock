@@ -1524,14 +1524,14 @@
   dependencies:
     "@docusaurus/core" "2.0.0-alpha.69"
 
-"@docusaurus/plugin-google-gtag@2.0.0-alpha.69", "@docusaurus/plugin-google-gtag@^2.0.0-alpha.69":
+"@docusaurus/plugin-google-gtag@2.0.0-alpha.69":
   version "2.0.0-alpha.69"
   resolved "https://registry.yarnpkg.com/@docusaurus/plugin-google-gtag/-/plugin-google-gtag-2.0.0-alpha.69.tgz#b6d9c77e99f60dbffe2622f0567fce589bc420b3"
   integrity sha512-mDAKBRkB3UJMuAUPqC43mNr8PPu3QuUbCLisJIvg7VMp9XoAcOImNZWmY2Smd+Law2tJkW3cBFPvm3fcVvJ1vA==
   dependencies:
     "@docusaurus/core" "2.0.0-alpha.69"
 
-"@docusaurus/plugin-sitemap@2.0.0-alpha.69", "@docusaurus/plugin-sitemap@^2.0.0-alpha.69":
+"@docusaurus/plugin-sitemap@2.0.0-alpha.69":
   version "2.0.0-alpha.69"
   resolved "https://registry.yarnpkg.com/@docusaurus/plugin-sitemap/-/plugin-sitemap-2.0.0-alpha.69.tgz#ffda02b4be468b3dfeed8fde3c2f2971ee839078"
   integrity sha512-DqrXm1PiWWNN5wbY1iVg0sdkCL3KZEj7uyjmZfXIfMQaEF2ErqJDY07QAwANrl27huPQmmc9tYwW3FqgKbVlbA==
