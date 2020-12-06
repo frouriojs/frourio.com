@@ -7,6 +7,7 @@ module.exports = {
   favicon: 'img/favicon.png',
   organizationName: 'frouriojs', // Usually your GitHub org/user name.
   projectName: 'frourio.io', // Usually your repo name.
+  plugins: ['@docusaurus/plugin-google-gtag'],
   themeConfig: {
     image: 'img/ogp.png',
     metadatas: [
@@ -14,6 +15,9 @@ module.exports = {
       {name: 'description', content: 'Frourio is the full stack framework for TypeScript.'},
       {property: 'og:description', content: 'Frourio is the full stack framework for TypeScript.'},
     ],
+    gtag: {
+      trackingID: process.env.TRACKING_ID,
+    },
     colorMode: {
       defaultMode: 'light',
       disableSwitch: true,
