@@ -27,7 +27,7 @@ module.exports = {
       {property: 'og:description', content: 'Frourio is the full stack framework for TypeScript.'},
     ],
     gtag: {
-      trackingID: process.env.TRACKING_ID,
+      trackingID: process.env.TRACKING_ID || 'G-XXXXXX',
     },
     colorMode: {
       defaultMode: 'light',
