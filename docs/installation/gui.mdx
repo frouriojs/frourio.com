@@ -49,13 +49,14 @@ import BrowserWindow from '@site/src/components/BrowserWindow';
 
 <br />
 
-Fill in the blanks and press the Create button at the bottom to start installation again and change your browser to Next.js or Nuxt.js.
+Fill in the blanks and press the Create button at the bottom to start installation again and change your browser to Next.js, Nuxt.js or Sapper.
 
 <Tabs
   defaultValue="next"
   values={[
     { label: 'Next.js', value: 'next' },
     { label: 'Nuxt.js', value: 'nuxt' },
+    { label: 'Sapper', value: 'sapper' },
   ]
 }>
 <TabItem value="next">
@@ -66,6 +67,11 @@ Fill in the blanks and press the Create button at the bottom to start installati
 <TabItem value="nuxt">
   <BrowserWindow url="http://localhost:3000">
     <img src="/img/nuxtjs.png" />
+  </BrowserWindow>
+</TabItem>
+<TabItem value="sapper">
+  <BrowserWindow url="http://localhost:3000">
+    <img src="/img/sapper.png" />
   </BrowserWindow>
 </TabItem>
 </Tabs>
