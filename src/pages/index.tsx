@@ -94,7 +94,7 @@ function Home() {
             </Link>
           </div>
           <div className="margin-top--md">
-            <GitHubButton href="https://github.com/frouriojs/frourio" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star frouriojs/frourio on GitHub">Star</GitHubButton>
+            <GitHubButton href="https://github.com/frouriojs/frourio" data-icon="octicon-star" data-size="large" data-show-count={true} aria-label="Star frouriojs/frourio on GitHub">Star</GitHubButton>
           </div>
         </div>
       </header>
@@ -124,7 +124,7 @@ function Home() {
               </Link>
             </div>
             <div className="margin-top--md text--center">
-              <GitHubButton href="https://github.com/frouriojs/frourio" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star frouriojs/frourio on GitHub">Star</GitHubButton>
+              <GitHubButton href="https://github.com/frouriojs/frourio" data-icon="octicon-star" data-size="large" data-show-count={true} aria-label="Star frouriojs/frourio on GitHub">Star</GitHubButton>
             </div>
           </div>
         </section>
