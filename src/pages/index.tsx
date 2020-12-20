@@ -23,6 +23,7 @@ const chartOptions = {
     toolbar: {
       show: false,
     },
+    fontFamily: "inherit",
   },
   plotOptions: {
     bar: {
