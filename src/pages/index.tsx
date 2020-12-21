@@ -112,7 +112,7 @@ function Home() {
             <div className={clsx('text--center', styles.feature)}>
               <h2>Architecture</h2>
               <div>
-                <img src="/img/architecture.png" alt="architecture" />
+                <img src="/img/architecture.svg" alt="architecture" />
               </div>
             </div>
 
