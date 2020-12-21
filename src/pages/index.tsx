@@ -10,10 +10,12 @@ import styles from './styles.module.css';
 const Chart = 'window' in global ? require('react-apexcharts').default : null
 
 const chartSeries = [{
-  data: [64872.8, 64456.8, 57303.2, 12127.8, 11972.4, 10025.0]
+  name: "2020-12-06",
+  data: [63219.2, 61095.2, 53943.2, 11555.8, 11430.6, 9705.2]
 }]
 
 const colors = ['#999', '#08c6d6', '#999', '#999', '#999', '#999']
+const categories = ['fastify', 'frourio', 'nest-fastify', 'frourio-express', 'express', 'nest']
 
 const chartOptions = {
   chart: {
@@ -21,6 +23,7 @@ const chartOptions = {
     toolbar: {
       show: false,
     },
+    fontFamily: "inherit",
   },
   plotOptions: {
     bar: {
@@ -42,7 +45,7 @@ const chartOptions = {
         fontWeight: 'bold'
       }
     },
-    categories: ['fastify', 'frourio', 'nest-fastify', 'frourio-express', 'express', 'nest'],
+    categories
   },
   grid: {
     xaxis: {
