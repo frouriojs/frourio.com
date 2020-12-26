@@ -9,13 +9,18 @@ import styles from './styles.module.css';
 
 const Chart = 'window' in global ? require('react-apexcharts').default : null
 
+const filterByWindowWidth = (array: (number | string)[]) => {
+  if ('window' in global && window.innerWidth >= 600) return array;
+  return array.slice(0, 3);
+}
+
 const chartSeries = [{
   name: "2020-12-06",
-  data: [63219.2, 61095.2, 53943.2, 11555.8, 11430.6, 9705.2]
+  data: filterByWindowWidth([63219.2, 61095.2, 53943.2, 11555.8, 11430.6, 9705.2])
 }]
 
-const colors = ['#999', '#08c6d6', '#999', '#999', '#999', '#999']
-const categories = ['fastify', 'frourio', 'nest-fastify', 'frourio-express', 'express', 'nest']
+const colors = filterByWindowWidth(['#999', '#08c6d6', '#999', '#999', '#999', '#999'])
+const categories = filterByWindowWidth(['fastify', 'frourio', 'nest-fastify', 'frourio-express', 'express', 'nest'])
 
 const chartOptions = {
   chart: {
