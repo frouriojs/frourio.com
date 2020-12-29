@@ -54,13 +54,12 @@ export default defineController(
 
 ```ts title="server/test/server.test.ts"
 import controller from '$/api/tasks/controller'
-import { getTasks } from '$/service/tasks'
 
 test('dependency injection into controller', async () => {
   let printedMessage = ''
 
-  const injectedController = controller.inject({
-    getTasks: getTasks.inject({
+  const injectedController = controller.inject((deps) => ({
+    getTasks: deps.getTasks.inject({
       prisma: {
         task: {
           findMany: () =>
@@ -77,7 +76,7 @@ test('dependency injection into controller', async () => {
     print: (text: string) => {
       printedMessage = text
     }
-  })()
+  }))()
 
   const limit = 3
   const message = 'test message'
