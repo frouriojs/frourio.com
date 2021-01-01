@@ -14,13 +14,46 @@ const filterByWindowWidth = (array: (number | string)[]) => {
   return array.slice(0, 3);
 }
 
+const benchmarks: { category: string, data: number, color: string }[] = [
+  {
+    category: 'frourio',
+    data: 61554.0,
+    color: '#08c6d6'
+  },
+  {
+    category: 'fastify',
+    data: 59092.8,
+    color: '#999'
+  },
+  {
+    category: 'nest-fastify',
+    data: 54034.4,
+    color: '#999'
+  },
+  {
+    category: 'express',
+    data: 11552.4,
+    color: '#999'
+  },
+  {
+    category: 'frourio-express',
+    data: 11446.4,
+    color: '#999'
+  },
+  {
+    category: 'nest',
+    data: 9816.6,
+    color: '#999'
+  }
+]
+
 const chartSeries = [{
-  name: "2020-12-06",
-  data: filterByWindowWidth([63219.2, 61095.2, 53943.2, 11555.8, 11430.6, 9705.2])
+  name: "2020-01-01",
+  data: filterByWindowWidth(benchmarks.map(val => val.data))
 }]
 
-const colors = filterByWindowWidth(['#999', '#08c6d6', '#999', '#999', '#999', '#999'])
-const categories = filterByWindowWidth(['fastify', 'frourio', 'nest-fastify', 'frourio-express', 'express', 'nest'])
+const colors = filterByWindowWidth(benchmarks.map(val => val.color))
+const categories = filterByWindowWidth(benchmarks.map(val => val.category))
 
 const chartOptions = {
   chart: {
