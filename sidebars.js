@@ -15,7 +15,8 @@ module.exports = {
     'deployment',
     'dependency-injection',
     {
-      Advanced: ['advanced/error-handling', 'advanced/cors-helmet', 'advanced/performance']
+      Advanced: ['advanced/error-handling', 'advanced/cors-helmet', 'advanced/performance'],
+      'Typed pages path': ['pathpida/with-nextjs', 'pathpida/with-nuxtjs']
     }
   ],
 };
