@@ -25,13 +25,13 @@ import GitHubButton from 'react-github-btn'
 - Using [npm](https://www.npmjs.com/):
 
   ```sh
-  $ npm install pathpida npm-run-all --save-dev
+  $ npm install pathpida --save-dev
   ```
 
 - Using [Yarn](https://yarnpkg.com/):
 
   ```sh
-  $ yarn add pathpida npm-run-all --dev
+  $ yarn add pathpida --dev
   ```
 
 ## Setup
@@ -41,10 +41,9 @@ import GitHubButton from 'react-github-btn'
 ```json
 {
   "scripts": {
-    "dev": "run-p dev:*",
-    "dev:next": "next dev",
-    "dev:path": "pathpida --watch",
-    "build": "pathpida && next build"
+    "dev:pathpida": "pathpida --watch",
+    "build:client": "pathpida && aspida && next build",
+    "build:types": "pathpida && aspida && npm run build:frourio --prefix server"
   }
 }
 ```
@@ -57,25 +56,14 @@ pages/post/create.tsx
 pages/post/[pid].tsx
 pages/post/[...slug].tsx
 
-lib/$path.ts or utils/$path.ts // Generated automatically by pathpida
-```
-
-or
-
-```
-src/pages/index.tsx
-src/pages/post/create.tsx
-src/pages/post/[pid].tsx
-src/pages/post/[...slug].tsx
-
-src/lib/$path.ts or src/utils/$path.ts // Generated automatically by pathpida
+utils/$path.ts // Generated automatically by pathpida
 ```
 
 `pages/index.tsx`
 
 ```tsx
 import Link from 'next/link'
-import { pagesPath } from '../lib/$path'
+import { pagesPath } from '~/utils/$path'
 
 console.log(pagesPath.post.create.$url()) // { pathname: '/post/create' }
 console.log(pagesPath.post._pid(1).$url()) // { pathname: '/post/[pid]', query: { pid: 1 }}
@@ -121,7 +109,7 @@ export default () => <div />
 
 ```tsx
 import Link from 'next/link'
-import { pagesPath } from '../lib/$path'
+import { pagesPath } from '~/utils/$path'
 
 console.log(pagesPath.post.create.$url({ query: { userId: 1 }})) // { pathname: '/post/create', query: { userId: 1 }}
 console.log(pagesPath.post.create.$url()) // type error
@@ -147,10 +135,9 @@ export default () => {
 ```json
 {
   "scripts": {
-    "dev": "run-p dev:*",
-    "dev:next": "next dev",
-    "dev:path": "pathpida --enableStatic --watch",
-    "build": "pathpida --enableStatic && next build"
+    "dev:pathpida": "pathpida --enableStatic --watch",
+    "build:client": "pathpida --enableStatic && aspida && next build",
+    "build:types": "pathpida --enableStatic && aspida && npm run build:frourio --prefix server"
   }
 }
 ```
@@ -164,28 +151,14 @@ pages/post/[...slug].tsx
 public/aa.json
 public/bb/cc.png
 
-lib/$path.ts or utils/$path.ts // Generated automatically by pathpida
-```
-
-or
-
-```
-src/pages/index.tsx
-src/pages/post/create.tsx
-src/pages/post/[pid].tsx
-src/pages/post/[...slug].tsx
-
-public/aa.json
-public/bb/cc.png
-
-src/lib/$path.ts or src/utils/$path.ts // Generated automatically by pathpida
+utils/$path.ts // Generated automatically by pathpida
 ```
 
 `pages/index.tsx`
 
 ```tsx
 import Link from 'next/link'
-import { pagesPath, staticPath } from '../lib/$path'
+import { pagesPath, staticPath } from '~/utils/$path'
 
 console.log(staticPath.aa_json) // /aa.json
 
