@@ -102,15 +102,15 @@ function Home() {
         <section className={styles.features}>
           <div className="container">
             <div className={clsx('text--center', styles.feature)}>
-              <h2>High Performance</h2>
-              {Chart && <Chart options={chartOptions} series={chartSeries} type="bar" height={280} />}
-            </div>
-
-            <div className={clsx('text--center', styles.feature)}>
               <h2>Architecture</h2>
               <div>
                 <img src="/img/architecture.png" alt="architecture" />
               </div>
+            </div>
+
+            <div className={clsx('text--center', styles.feature)}>
+              <h2>The fastest TypeScript framework</h2>
+              {Chart && <Chart options={chartOptions} series={chartSeries} type="bar" height={280} />}
             </div>
 
             <div className={clsx('text--center', styles.feature)}>
