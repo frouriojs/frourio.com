@@ -1,6 +1,6 @@
 module.exports = {
   title: 'frourio',
-  tagline: 'Fast and type-safe full stack framework, for TypeScript',
+  tagline: 'From installation to deployment in one command. All you need is TypeScript',
   url: 'https://frourio.io',
   baseUrl: '/',
   onBrokenLinks: 'ignore',

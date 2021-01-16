@@ -6,11 +6,90 @@
  */
 
 .heroBanner {
+  height: 550px;
   padding: 4rem 0;
-  text-align: center;
+  text-align: left;
   position: relative;
   overflow: hidden;
-  background: url(/img/wall.png) center/cover;
+  background: url(/img/keyvisual.jpg) center/cover;
+}
+
+.heroBanner::before{
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: grey;
+  opacity: 0.2;
+  display: block;
+}
+
+.container {
+  z-index: 1;
+}
+
+.heroTitle {
+  font-size: 3rem;
+  line-height: 3.5rem;
+  color: white;
+  margin: 0;
+}
+
+.heroTitleBold{
+  font-weight: 700;
+  margin: 10px 0 30px 0;
+}
+
+/* setup */
+.setupWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.setupHeadline {
+  width: 260px;
+  color: #08C6D6;
+  text-align: left;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 30px;
+  margin-right: 40px;
+}
+
+/* step */
+.stepContainer {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.stepText {
+  text-align: left;
+}
+
+.stepNumber {
+  height: 30px;
+  font-size: 17px;
+  font-weight: 500;
+  margin-right: 15px;
+  padding: 0px 15px;
+  background: #08C6D6;
+  color: white;
+  border-radius: 15px;
+}
+
+.stepIconsWrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.stepIcon {
+  height: 50px;
+  margin: 0 20px 20px 0;
 }
 
 @media screen and (max-width: 966px) {
@@ -22,7 +101,6 @@
 .buttons {
   display: flex;
   align-items: center;
-  justify-content: center;
 }
 
 .features {
