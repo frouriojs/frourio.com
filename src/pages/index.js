@@ -6,6 +6,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import GitHubButton from 'react-github-btn'
 import styles from './styles.module.css';
+import HowtoSetup from './HowtoSetup';
 
 const Chart = 'window' in global ? require('react-apexcharts').default : null
 
@@ -79,10 +80,9 @@ function Home() {
       description="Description will go into a meta tag in <head />">
       <header className={clsx('hero', styles.heroBanner)}>
         <div className="container">
-          <h1 className="hero__title">
-            <img src="img/logo_main.svg" alt={siteConfig.title} width="400" />
-          </h1>
-          <p className="hero__subtitle">{siteConfig.tagline}</p>
+          <p className={clsx('', styles.heroTitle)}>From installation to deployment</p>
+          <p className={clsx('', styles.heroTitle)}>in one command</p>
+          <p className={clsx('', styles.heroTitle, styles.heroTitleBold)}>All you need is TypeScript</p>
           <div className={styles.buttons}>
             <Link
               className={clsx(
@@ -102,9 +102,10 @@ function Home() {
         <section className={styles.features}>
           <div className="container">
             <div className={clsx('text--center', styles.feature)}>
-              <h2>Architecture</h2>
-              <div>
-                <img src="/img/architecture.png" alt="architecture" />
+              <h2>How to setup</h2>
+              <div className={clsx('', styles.setupWrapper)}>
+                <p className={clsx('', styles.setupHeadline)}>GUIで設定完了できるので、すぐに開発できる</p>
+                <HowtoSetup />
               </div>
             </div>
 
