@@ -8,13 +8,13 @@ Even if you write both the frontend and backend in TypeScript, you can't statica
 We are always forced to write "Two TypeScript".  
 We waste a lot of time on dynamic testing using the browser and server.
 
-![Why frourio?](/img/problem.png 'Why frourio?')
+![Why frourio?](/img/TwoTS.svg 'Why frourio?')
 
 <br />
 
 Frourio is a framework for developing web apps quickly and safely in **"One TypeScript"**.
 
-![Architecture](/img/architecture.png 'Architecture')
+![Architecture](/img/OneTS.svg 'Architecture')
 
 <br />
 

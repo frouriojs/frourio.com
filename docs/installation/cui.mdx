@@ -69,15 +69,14 @@ yarn create frourio-app --answers '{\"dir\":\"my-project\"}'
 | -------- | --------- | ---------- | ---------- | ---------- |
 | dir | string |  | Directory name (create new) |  |
 | server | "fastify" \| "express" | "fastify" | Server engine |  |
-| client | "next" \| "nuxt" | "next" | Client framework |  |
-| building | "basic" \| "static" | "basic" | Building mode | client === "next" |
-| mode | "universal" \| "spa" | "universal" | Rendering mode | client === "nuxt" |
-| target | "server" \| "static" | "server" | Deployment target | client === "nuxt" |
+| client | "next" \| "nuxt" \| "sapper" | "next" | Client framework |  |
+| building | "static" \| "basic" | "static" | Building mode | client === "next" \|\| client === 'sapper' |
+| mode | "spa" \| "universal" | "spa" | Rendering mode | client === "nuxt" |
+| target | "static" \| "server" | "static" | Deployment target | client === "nuxt" |
 | aspida | "axios" \| "fetch" | "axios" | HTTP client of aspida |  |
-| pm | "yarn" \| "npm" | "yarn" | Package manager |  |
 | daemon | "none" \| "pm2" | "none" | Daemon process manager |  |
 | orm | "prisma" \| "typeorm" \| "none" | "prisma" | O/R mapping tool |  |
-| prismaDB | "mysql" \| "postgresql" \| "sqlite" | "mysql" | DB type of Prisma | orm === "prisma" |
+| prismaDB | "sqlite" \| "mysql" \| "postgresql" | "sqlite" | DB type of Prisma | orm === "prisma" |
 | typeormDB | "mysql" \| "postgres" \| "mongodb" \| "mssql" \| "mariadb" \| "cockroachdb" | "mysql" | DB type of TypeORM | orm === "typeorm" |
 | dbHost | string | "localhost" | HOST of DB | orm !== "none" && prismaDB !== "sqlite" |
 | dbPort | number | Default port of DB type | PORT of DB | orm !== "none" && prismaDB !== "sqlite" |
@@ -85,7 +84,9 @@ yarn create frourio-app --answers '{\"dir\":\"my-project\"}'
 | dbPass | string |  | PASS of DB | orm !== "none" && prismaDB !== "sqlite" |
 | dbName | string |  | NAME of DB | orm !== "none" && prismaDB !== "sqlite" |
 | dbFile | string | "./dev.db" | DB file path of SQLite | orm === "prisma" && prismaDB === "sqlite" |
-| testing | "none" \| "jest" | "none" | Testing framework |  |
+| testing | "jest" \| "node" | "jest" | Testing framework |  |
+| pm | "yarn" \| "npm" | "yarn" | Package manager |  |
+| ci | "actions" \| "none" | "actions" | CI config |  |
 
 <br />
 
@@ -98,6 +99,7 @@ import BrowserWindow from '@site/src/components/BrowserWindow';
   values={[
     { label: 'Next.js', value: 'next' },
     { label: 'Nuxt.js', value: 'nuxt' },
+    { label: 'Sapper', value: 'sapper' },
   ]
 }>
 <TabItem value="next">
@@ -108,6 +110,11 @@ import BrowserWindow from '@site/src/components/BrowserWindow';
 <TabItem value="nuxt">
   <BrowserWindow url="http://localhost:3000">
     <img src="/img/nuxtjs.png" />
+  </BrowserWindow>
+</TabItem>
+<TabItem value="sapper">
+  <BrowserWindow url="http://localhost:3000">
+    <img src="/img/sapper.png" />
   </BrowserWindow>
 </TabItem>
 </Tabs>

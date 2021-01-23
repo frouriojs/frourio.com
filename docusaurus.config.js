@@ -14,6 +14,9 @@ module.exports = {
       {name: 'description', content: 'Frourio is the full stack framework for TypeScript.'},
       {property: 'og:description', content: 'Frourio is the full stack framework for TypeScript.'},
     ],
+    gtag: {
+      trackingID: process.env.TRACKING_ID || 'G-XXXXXX',
+    },
     colorMode: {
       defaultMode: 'light',
       disableSwitch: true,
@@ -32,7 +35,7 @@ module.exports = {
           to: 'docs/',
           activeBasePath: 'docs',
           label: 'Docs',
-          position: 'left',
+          position: 'right',
         },
         {
           href: 'https://github.com/frouriojs/frourio',
@@ -101,6 +104,12 @@ module.exports = {
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
+        },
+        sitemap: {
+          cacheTime: 600 * 1000, // 600 sec - cache purge period
+          changefreq: 'weekly',
+          priority: 0.5,
+          trailingSlash: false,
         },
       },
     ],

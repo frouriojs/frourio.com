@@ -1,0 +1,221 @@
+---
+id: with-nuxtjs
+title: Pathpida with Nuxt.js
+---
+
+<br />
+<br />
+<img src="https://aspida.github.io/pathpida/logos/png/logo.png" alt="pathpida" title="pathpida" />
+<p align="center">TypeScript friendly internal link client for Nuxt.js.</p>
+
+import GitHubButton from 'react-github-btn'
+
+<div align="center">
+  <GitHubButton href="https://github.com/aspida/pathpida" data-icon="octicon-star" data-size="large" data-show-count={true} aria-label="Star aspida/pathpida on GitHub">Star</GitHubButton>
+</div>
+
+## Features
+
+- **Type safety**. Automatically generate type definition files for manipulating internal links in Nuxt.js.
+- **Zero configration**. No configuration required, can be used immediately after installation.
+- **Zero runtime**. Lightweight because runtime code is not included in the bundle.
+
+## Install
+
+- Using [npm](https://www.npmjs.com/):
+
+  ```sh
+  $ npm install pathpida npm-run-all --save-dev
+  ```
+
+- Using [Yarn](https://yarnpkg.com/):
+
+  ```sh
+  $ yarn add pathpida npm-run-all --dev
+  ```
+
+## Setup
+
+`package.json`
+
+```json
+{
+  "scripts": {
+    "dev:pathpida": "pathpida --watch",
+    "build:client": "pathpida && aspida && nuxt-ts",
+    "build:types": "pathpida && aspida && npm run build:frourio --prefix server"
+  }
+}
+```
+
+`nuxt.config.js` or `nuxt.config.ts`
+
+```js
+{
+  plugins: ['~/plugins/$path'],
+  srcDir: 'client', // optional
+  router: {
+    trailingSlash: true // optional
+  }
+}
+```
+
+## Usage
+
+```
+pages/index.vue
+pages/post/create.vue
+pages/post/_pid.tsx
+
+plugins/$path.ts // Generated automatically by pathpida
+```
+
+`pages/index.vue`
+
+```vue
+<template>
+  <div>
+    <nuxt-link :to="$pagesPath.post._pid(1).$url()" />
+    <div @click="onclick" />
+  </div>
+</template>
+
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
+  methods: {
+    onclick() {
+      this.$router.push(this.$pagesPath.post._pid(1).$url())
+    }
+  }
+})
+</script>
+```
+
+## Define query
+
+`pages/post/create.vue`
+
+```vue
+<script lang="ts">
+import Vue from 'vue'
+
+export type Query = {
+  userId: number
+  name?: string
+}
+
+export default Vue.extend({
+})
+</script>
+```
+
+`pages/post/_pid.vue`
+
+```vue
+<script lang="ts">
+import Vue from 'vue'
+
+export type OptionalQuery = {
+  limit: number
+  label?: string
+}
+
+export default Vue.extend({
+})
+</script>
+```
+
+`pages/index.vue`
+
+```vue
+<template>
+  <div>
+    <nuxt-link :to="$pagesPath.post.create.$url({ query: { userId: 1 }})" />
+    <div @click="onclick" />
+  </div>
+</template>
+
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({
+  methods: {
+    onclick() {
+      this.$router.push(this.$pagesPath.post._pid(1).$url())
+      this.$router.push(this.$pagesPath.post._pid(1).$url({ query: { limit: 10 }, hash: 'sample' }))
+    }
+  }
+})
+</script>
+```
+
+:warning: Query/OptionalQuery type must not contain any reference types.
+
+This is because due to typescript restrictions, types exported from `.vue` files cannot be imported in `plugins/$path.ts`.  
+If you want to import types from other files, please use [import types](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-9.html#import-types) with absolute paths.
+
+`types/users.ts`
+
+```ts
+export type UserId = number
+```
+
+`pages/post/create.vue`
+
+```vue
+<script lang="ts">
+import Vue from 'vue'
+
+export type Query = {
+  userId: import('~/types/users').UserId
+  name?: string
+}
+
+export default Vue.extend({
+})
+</script>
+```
+
+## Generate static files path
+
+`package.json`
+
+```json
+{
+  "scripts": {
+    "dev:pathpida": "pathpida --enableStatic --watch",
+    "build:client": "pathpida --enableStatic && aspida && nuxt-ts",
+    "build:types": "pathpida --enableStatic && aspida && npm run build:frourio --prefix server"
+  }
+}
+```
+
+```
+pages/index.vue
+pages/post/create.vue
+pages/post/_pid.vue
+
+static/aa.json
+static/bb/cc.png
+
+plugins/$path.ts // Generated automatically by pathpida
+```
+
+`pages/index.vue`
+
+```vue
+<template>
+  <div>
+    <nuxt-link :to="$pagesPath.post.create.$url({ query: { userId: 1 }})" />
+    <img :src="$staticPath.bb.cc_png" />
+  </div>
+</template>
+
+<script lang="ts">
+import Vue from 'vue'
+
+export default Vue.extend({})
+</script>
+```
