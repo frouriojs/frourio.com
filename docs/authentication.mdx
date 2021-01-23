@@ -1,0 +1,244 @@
+---
+id: authentication
+title: Authentication
+---
+
+If you add properties to the req object by Hooks, you can use AdditionalRequest to extend the type of the controller.
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="fastify-jwt"
+  values={[
+    { label: 'fastify-jwt', value: 'fastify-jwt' },
+    { label: 'fastify-auth', value: 'fastify-auth' },
+    { label: 'express-jwt', value: 'express-jwt' },
+    { label: 'express-passport', value: 'express-passport' },
+  ]
+}>
+<TabItem value="fastify-jwt">
+
+```sh
+cd server
+npm install fastify-jwt
+```
+
+```ts title="server/index.ts"
+import Fastify from 'fastify'
+import fastifyJwt from 'fastify-jwt'
+import server from './$server'
+
+const fastify = Fastify()
+
+fastify.register(fastifyJwt, { secret: process.env.JWT_SECRET })
+
+server(fastify, { basePath: '/api/v1' })
+
+fastify.listen(3000)
+```
+
+```ts title="server/api/token/controller.ts"
+import { defineController } from './$relay'
+import { validateUser } from '$/service/user'
+
+export default defineController((fastify) => ({
+  post: ({ body }) =>
+    validateUser(body.id, body.pass)
+      ? { status: 201, body: { token: fastify.jwt.sign({ id: body.id }) } }
+      : { status: 401 }
+}))
+```
+
+```ts title="server/api/user/hooks.ts"
+import { defineHooks } from './$relay'
+
+export type AdditionalRequest = {
+  user: {
+    id: string
+  }
+}
+
+export default defineHooks(() => ({
+  onRequest: (request, reply) =>
+    request.jwtVerify().catch((err) => reply.send(err))
+}))
+```
+
+```ts title="server/api/user/controller.ts"
+import { defineController } from './$relay'
+import { getUserNameById } from '$/service/user'
+
+export default defineController(() => ({
+  // user was added by AdditionalRequest of ./hooks.ts
+  get: async ({ user }) => ({ status: 200, body: await getUserNameById(user.id) })
+}))
+```
+
+[fastify-jwt](https://github.com/fastify/fastify-jwt)
+
+</TabItem>
+<TabItem value="fastify-auth">
+
+```sh
+cd server
+npm install fastify-auth
+```
+
+```ts title="server/index.ts"
+import Fastify from 'fastify'
+import fastifyAuth from 'fastify-auth'
+import server from './$server'
+
+const fastify = Fastify()
+
+fastify.register(fastifyAuth).after(() => {
+  server(fastify, { basePath: '/api/v1' })
+})
+fastify.listen(3000)
+```
+
+```ts title="server/api/user/hooks.ts"
+import { defineHooks } from './$relay'
+import { getUserIdByToken } from '$/service/user'
+
+export type AdditionalRequest = {
+  user: {
+    id: string
+  }
+}
+
+export default defineHooks((fastify) => ({
+  preHandler: fastify.auth([
+    (req, _, done) => {
+      const user =
+        typeof req.headers.token === 'string' &&
+        getUserIdByToken(req.headers.token)
+
+      if (user) {
+        // eslint-disable-next-line
+        // @ts-expect-error
+        req.user = user
+        done()
+      } else {
+        done(new Error('Unauthorized'))
+      }
+    }
+  ])
+}))
+```
+
+```ts title="server/api/user/controller.ts"
+import { defineController } from './$relay'
+import { getUserNameById } from '$/service/user'
+
+export default defineController(() => ({
+  // user was added by AdditionalRequest of ./hooks.ts
+  get: async ({ user }) => ({ status: 200, body: await getUserNameById(user.id) })
+}))
+```
+
+[fastify-auth](https://github.com/fastify/fastify-auth)
+
+</TabItem>
+<TabItem value="express-jwt">
+
+```sh
+cd server
+npm install express-jwt
+npm install @types/express-jwt @types/jsonwebtoken --save-dev
+```
+
+```ts title="server/api/token/controller.ts"
+import jwt from 'jsonwebtoken'
+import { defineController } from './$relay'
+import { validateUser } from '$/service/user'
+
+export default defineController(() => ({
+  post: ({ body }) =>
+    validateUser(body.id, body.pass)
+      ? { status: 201, body: { token: jwt.sign({ id: body.id }, process.env.JWT_SECRET) } }
+      : { status: 401 }
+}))
+```
+
+```ts title="server/api/user/hooks.ts"
+import jwt from 'express-jwt'
+import { defineHooks } from './$relay'
+
+export type AdditionalRequest = {
+  user: {
+    id: string
+  }
+}
+
+export default defineHooks(() => ({
+  onRequest: jwt({ secret: process.env.JWT_SECRET, algorithms: ['HS256'] })
+}))
+```
+
+```ts title="server/api/user/controller.ts"
+import { defineController } from './$relay'
+import { getUserNameById } from '$/service/user'
+
+export default defineController(() => ({
+  // user was added by AdditionalRequest of ./hooks.ts
+  get: async ({ user }) => ({ status: 200, body: await getUserNameById(user.id) })
+}))
+```
+
+[express-jwt](https://github.com/auth0/express-jwt)
+
+</TabItem>
+<TabItem value="express-passport">
+
+```sh
+cd server
+npm install passport passport-trusted-header
+npm install @types/passport --save-dev
+```
+
+```ts title="server/api/user/hooks.ts"
+import passport from 'passport'
+import { defineHooks } from './$relay'
+import { getUserIdByToken } from '$/service/user'
+
+export type AdditionalRequest = {
+  user: {
+    id: string
+  }
+}
+
+passport.use(
+  // eslint-disable-next-line
+  new (require('passport-trusted-header').Strategy)(
+    { headers: ['token'] },
+    // eslint-disable-next-line
+    (headers: { token: string }, done: Function) => {
+      done(null, getUserIdByToken(headers.token))
+    }
+  )
+)
+
+export default defineHooks(() => ({
+  onRequest: [
+    passport.initialize(),
+    passport.authenticate('trusted-header', { session: false })
+  ]
+}))
+```
+
+```ts title="server/api/user/controller.ts"
+import { defineController } from './$relay'
+import { getUserNameById } from '$/service/user'
+
+export default defineController(() => ({
+  // user was added by AdditionalRequest of ./hooks.ts
+  get: async ({ user }) => ({ status: 200, body: await getUserNameById(user.id) })
+}))
+```
+
+[passport-trusted-header](http://www.passportjs.org/packages/passport-trusted-header/)
+
+</TabItem>
+</Tabs>

@@ -10,11 +10,51 @@ import HowtoSetup from './HowtoSetup';
 
 const Chart = 'window' in global ? require('react-apexcharts').default : null
 
+const filterByWindowWidth = (array: (number | string)[]) => {
+  if ('window' in global && window.innerWidth >= 600) return array;
+  return array.slice(0, 3);
+}
+
+const benchmarks: { category: string, data: number, color: string }[] = [
+  {
+    category: 'frourio',
+    data: 61554.0,
+    color: '#08c6d6'
+  },
+  {
+    category: 'fastify',
+    data: 59092.8,
+    color: '#999'
+  },
+  {
+    category: 'nest-fastify',
+    data: 54034.4,
+    color: '#999'
+  },
+  {
+    category: 'express',
+    data: 11552.4,
+    color: '#999'
+  },
+  {
+    category: 'frourio-express',
+    data: 11446.4,
+    color: '#999'
+  },
+  {
+    category: 'nest',
+    data: 9816.6,
+    color: '#999'
+  }
+]
+
 const chartSeries = [{
-  data: [64872.8, 64456.8, 57303.2, 12127.8, 11972.4, 10025.0]
+  name: "2020-01-01",
+  data: filterByWindowWidth(benchmarks.map(val => val.data))
 }]
 
-const colors = ['#999', '#008FFB', '#999', '#999', '#999', '#999']
+const colors = filterByWindowWidth(benchmarks.map(val => val.color))
+const categories = filterByWindowWidth(benchmarks.map(val => val.category))
 
 const chartOptions = {
   chart: {
@@ -22,6 +62,7 @@ const chartOptions = {
     toolbar: {
       show: false,
     },
+    fontFamily: "inherit",
   },
   plotOptions: {
     bar: {
@@ -43,7 +84,7 @@ const chartOptions = {
         fontWeight: 'bold'
       }
     },
-    categories: ['fastify', 'frourio', 'nest-fastify', 'frourio-express', 'express', 'nest'],
+    categories
   },
   grid: {
     xaxis: {
@@ -94,7 +135,7 @@ function Home() {
             </Link>
           </div>
           <div className="margin-top--md">
-            <GitHubButton href="https://github.com/frouriojs/frourio" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star frouriojs/frourio on GitHub">Star</GitHubButton>
+            <GitHubButton href="https://github.com/frouriojs/frourio" data-icon="octicon-star" data-size="large" data-show-count={true} aria-label="Star frouriojs/frourio on GitHub">Star</GitHubButton>
           </div>
         </div>
       </header>
@@ -125,7 +166,7 @@ function Home() {
               </Link>
             </div>
             <div className="margin-top--md text--center">
-              <GitHubButton href="https://github.com/frouriojs/frourio" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star frouriojs/frourio on GitHub">Star</GitHubButton>
+              <GitHubButton href="https://github.com/frouriojs/frourio" data-icon="octicon-star" data-size="large" data-show-count={true} aria-label="Star frouriojs/frourio on GitHub">Star</GitHubButton>
             </div>
           </div>
         </section>
