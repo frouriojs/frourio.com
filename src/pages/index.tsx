@@ -7,6 +7,7 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import GitHubButton from 'react-github-btn'
 import styles from './styles.module.css';
 import HowtoSetup from './HowtoSetup';
+import CodeBlocks from './CodeBlocks';
 
 const Chart = 'window' in global ? require('react-apexcharts').default : null
 
@@ -145,8 +146,36 @@ function Home() {
             <div className={clsx('text--center', styles.feature)}>
               <h2>How to setup</h2>
               <div className={styles.setupWrapper}>
-                <p className={styles.setupHeadline}>GUIで設定完了できるので、すぐに開発できる</p>
+                <p className={styles.setupHeadline}>It can be easily set up by GUI.</p>
                 <HowtoSetup />
+              </div>
+            </div>
+
+            <div className={clsx('text--center', styles.feature)}>
+              <h2>Type-Driven Development</h2>
+              <div>
+                <CodeBlocks />
+                <div className={styles.rightTriangle}></div>
+                <p className={styles.highlightTextGreen}>TypeScript check entire application statically.</p>
+
+                <div className={styles.typeDevDescription}>
+                  <img
+                    className={styles.typeDevDescriptionIcon}
+                    src='img/communication.jpg'
+                  />
+                  <p className={styles.highlightTextBlk}>
+                    Since API type definition force the type of controller and http request, the test code for communication is not necessary.
+                  </p>
+                </div>
+                <div className={styles.typeDevDescription}>
+                  <img
+                    className={styles.typeDevDescriptionIcon}
+                    src='img/speed.png'
+                  />
+                  <p className={styles.highlightTextBlk}>
+                    Set up full-stack develop environment is simple, so product can be completed more quickly and safely.
+                  </p>
+                </div>
               </div>
             </div>
 

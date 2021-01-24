@@ -14,18 +14,6 @@
   background: url(/img/keyvisual.jpg) center/cover;
 }
 
-.heroBanner::before{
-  content: '';
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: grey;
-  opacity: 0.2;
-  display: block;
-}
-
 .container {
   z-index: 1;
 }
@@ -42,7 +30,7 @@
   margin: 10px 0 30px 0;
 }
 
-/* setup */
+/* How to setup */
 .setupWrapper {
   display: flex;
   align-items: center;
@@ -51,10 +39,10 @@
 }
 
 .setupHeadline {
-  width: 260px;
+  width: 210px;
   color: #08C6D6;
   text-align: left;
-  font-size: 20px;
+  font-size: 22px;
   font-weight: 700;
   line-height: 30px;
   margin-right: 40px;
@@ -63,7 +51,9 @@
 /* step */
 .stepContainer {
   display: flex;
-  margin-bottom: 20px;
+  margin: 0;
+  padding-bottom: 20px;
+  position: relative;
 }
 
 .stepText {
@@ -81,6 +71,26 @@
   border-radius: 15px;
 }
 
+/* 下矢印 */
+.downTriangle{
+  position: absolute;
+  left: 30px;
+  height: calc(100% - 30px);
+  top: 30px;
+  width: 3px;
+  background: #08C6D6;
+}
+
+.downTriangle:last-of-type:after{
+  content: '';
+  position: absolute;
+  left: -14px;
+  bottom: -5px;
+  border-top: 25px solid #08C6D6;
+  border-right: 15px solid transparent;
+  border-left: 15px solid transparent;
+}
+
 .stepIconsWrapper {
   display: flex;
   align-items: center;
@@ -90,6 +100,70 @@
 .stepIcon {
   height: 50px;
   margin: 0 20px 20px 0;
+}
+
+/* Type-Driven Development */
+.codeBlockWrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.codeBlock {
+  width: 30%;
+  height: auto;
+  text-align: left;
+  margin-top: 20px;
+}
+
+.typeDevDescription {
+  display: flex;
+  align-items: center;
+  width: 55%;
+  margin: 30px auto;
+}
+
+.typeDevDescriptionIcon {
+  height: 60px;
+  margin-right: 30px;
+}
+
+/* 右矢印 */
+.rightTriangle{
+  width: 100%;
+  height: 4px;
+  background: #08C6D6;
+  margin: 20px auto;
+  position: relative;
+}
+
+.rightTriangle:after{
+  content: '';
+  position: absolute;
+  right: -5px;
+  top: -13px;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-left: 25px solid #08C6D6;
+}
+
+.highlightTextGreen {
+  color: #08C6D6;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 30px;
+  margin: 0 0 50px 0;
+}
+
+.highlightTextBlk {
+  color: black;
+  text-align: left;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 27px;
+  margin: 0;
 }
 
 @media screen and (max-width: 966px) {
