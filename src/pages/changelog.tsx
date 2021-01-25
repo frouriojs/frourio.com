@@ -24,6 +24,28 @@ interface Release {
   published_at: string;
 }
 
+interface ReleaseProps {
+  release: Release;
+}
+
+const Release: React.FC<ReleaseProps> = (props) => {
+  return (
+    <article className={styles.release}>
+      <div className={styles.leftBox}>
+        <h2 className={styles.version}>
+          <Link href={props.release.html_url}>
+            {props.release.name}
+          </Link>
+        </h2>
+        <span className={styles.date}>
+          {moment(props.release.created_at).format("YYYY.MM.DD")}
+        </span>
+      </div>
+      <ReactMarkdown className={styles.rightBox} children={props.release.body} />
+    </article>
+  )
+}
+
 const Changelog = () => {
   const [ frourioReleases, setFrourioReleases ] = useState<Release[]>([])
   const [ cfaReleases, setCfaReleases ] = useState<Release[]>([])
@@ -63,40 +85,12 @@ const Changelog = () => {
         }>
           <TabItem value="frourio">
             {frourioReleases.map(item => (
-              <>
-              <article className={styles.release}>
-                <div className={styles.leftBox}>
-                  <h2 className={styles.version}>
-                    <Link href={item.html_url}>
-                      {item.name}
-                    </Link>
-                  </h2>
-                  <span className={styles.date}>
-                    {moment(item.created_at).format("YYYY.MM.DD")}
-                  </span>
-                </div>
-                <ReactMarkdown className={styles.rightBox} children={item.body} />
-              </article>
-              </>
+              <Release release={item} />
             ))}
           </TabItem>
           <TabItem value="create-frourio-app">
             {cfaReleases.map(item => (
-              <>
-              <article className={styles.release}>
-                <div className={styles.leftBox}>
-                  <h2 className={styles.version}>
-                    <Link href={item.html_url}>
-                      {item.name}
-                    </Link>
-                  </h2>
-                  <span className={styles.date}>
-                    {moment(item.created_at).format("YYYY.MM.DD")}
-                  </span>
-                </div>
-                <ReactMarkdown className={styles.rightBox} children={item.body} />
-              </article>
-              </>
+              <Release release={item} />
             ))}
           </TabItem>
         </Tabs>
