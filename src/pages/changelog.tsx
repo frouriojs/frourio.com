@@ -76,6 +76,11 @@ const Changelog = () => {
         <p>
           Release list of frourio and create-frourio-app.
         </p>
+        <p>
+          See all releases on GitHub:{" "}
+          <Link href="https://github.com/frouriojs/frourio/releases">frouriojs/frourio</Link>{" • "}
+          <Link href="https://github.com/frouriojs/create-frourio-app/releases">frouriojs/create-frourio-app</Link>
+        </p>
         <Tabs
           defaultValue="frourio"
           values={[
