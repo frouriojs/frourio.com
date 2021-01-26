@@ -6,8 +6,8 @@ import TabItem from '@theme/TabItem'
 import Link from '@docusaurus/Link'
 import styles from './changelog.module.css'
 import axios from 'axios'
-import ReactMarkdown from 'react-markdown'
 import moment from 'moment'
+import Markdown from '../libs/markdown'
 
 interface Release {
   url: string
@@ -39,9 +39,11 @@ const Release: React.FC<ReleaseProps> = (props) => {
           {moment(props.release.created_at).format('YYYY.MM.DD')}
         </span>
       </div>
-      <ReactMarkdown className={styles.rightBox}>
-        {props.release.body}
-      </ReactMarkdown>
+      <div
+        dangerouslySetInnerHTML={{
+          __html: Markdown.render(props.release.body)
+        }}
+      />
     </article>
   )
 }
