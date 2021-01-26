@@ -60,7 +60,7 @@ const Changelog = () => {
   
   useEffect(() => {
     const _f = async () => {
-      const res = await axios.get<Release[]>("https://api.github.com/repos/frouriojs/create-frourio-app/releases");
+      const res = await axios.get<Release[]>("https://api.github.com/repos/frouriojs/create-frourio-app/releases?per_page=100");
       setCfaReleases(res.data)
     }
     _f()
