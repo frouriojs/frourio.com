@@ -1,20 +1,21 @@
-import React from 'react';
-import clsx from 'clsx';
-import Layout from '@theme/Layout';
-import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import useBaseUrl from '@docusaurus/useBaseUrl';
+import React from 'react'
+import clsx from 'clsx'
+import Layout from '@theme/Layout'
+import Link from '@docusaurus/Link'
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
+import useBaseUrl from '@docusaurus/useBaseUrl'
 import GitHubButton from 'react-github-btn'
-import styles from './styles.module.css';
+import styles from './styles.module.css'
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const Chart = 'window' in global ? require('react-apexcharts').default : null
 
 const filterByWindowWidth = (array: (number | string)[]) => {
-  if ('window' in global && window.innerWidth >= 600) return array;
-  return array.slice(0, 3);
+  if ('window' in global && window.innerWidth >= 600) return array
+  return array.slice(0, 3)
 }
 
-const benchmarks: { category: string, data: number, color: string }[] = [
+const benchmarks: { category: string; data: number; color: string }[] = [
   {
     category: 'frourio',
     data: 61554.0,
@@ -47,34 +48,36 @@ const benchmarks: { category: string, data: number, color: string }[] = [
   }
 ]
 
-const chartSeries = [{
-  name: "2020-01-01",
-  data: filterByWindowWidth(benchmarks.map(val => val.data))
-}]
+const chartSeries = [
+  {
+    name: '2020-01-01',
+    data: filterByWindowWidth(benchmarks.map((val) => val.data))
+  }
+]
 
-const colors = filterByWindowWidth(benchmarks.map(val => val.color))
-const categories = filterByWindowWidth(benchmarks.map(val => val.category))
+const colors = filterByWindowWidth(benchmarks.map((val) => val.color))
+const categories = filterByWindowWidth(benchmarks.map((val) => val.category))
 
 const chartOptions = {
   chart: {
     type: 'bar',
     toolbar: {
-      show: false,
+      show: false
     },
-    fontFamily: "inherit",
+    fontFamily: 'inherit'
   },
   plotOptions: {
     bar: {
       horizontal: true,
       distributed: true,
       dataLabels: {
-        position: 'top',
-      },
+        position: 'top'
+      }
     }
   },
   colors,
   legend: {
-    show: false,
+    show: false
   },
   xaxis: {
     title: {
@@ -112,12 +115,13 @@ const chartOptions = {
 }
 
 function Home() {
-  const context = useDocusaurusContext();
-  const {siteConfig = {}} = context;
+  const context = useDocusaurusContext()
+  const { siteConfig = {} } = context
   return (
     <Layout
       title={siteConfig.tagline}
-      description="Description will go into a meta tag in <head />">
+      description="Description will go into a meta tag in <head />"
+    >
       <header className={clsx('hero', styles.heroBanner)}>
         <div className="container">
           <h1 className="hero__title">
@@ -128,14 +132,23 @@ function Home() {
             <Link
               className={clsx(
                 'button button--primary button--lg',
-                styles.getStarted,
+                styles.getStarted
               )}
-              to={useBaseUrl('docs/')}>
+              to={useBaseUrl('docs/')}
+            >
               Get Started
             </Link>
           </div>
           <div className="margin-top--md">
-            <GitHubButton href="https://github.com/frouriojs/frourio" data-icon="octicon-star" data-size="large" data-show-count={true} aria-label="Star frouriojs/frourio on GitHub">Star</GitHubButton>
+            <GitHubButton
+              href="https://github.com/frouriojs/frourio"
+              data-icon="octicon-star"
+              data-size="large"
+              data-show-count={true}
+              aria-label="Star frouriojs/frourio on GitHub"
+            >
+              Star
+            </GitHubButton>
           </div>
         </div>
       </header>
@@ -144,7 +157,14 @@ function Home() {
           <div className="container">
             <div className={clsx('text--center', styles.feature)}>
               <h2>High Performance</h2>
-              {Chart && <Chart options={chartOptions} series={chartSeries} type="bar" height={280} />}
+              {Chart && (
+                <Chart
+                  options={chartOptions}
+                  series={chartSeries}
+                  type="bar"
+                  height={280}
+                />
+              )}
             </div>
 
             <div className={clsx('text--center', styles.feature)}>
@@ -158,20 +178,29 @@ function Home() {
               <Link
                 className={clsx(
                   'button button--primary button--lg',
-                  styles.getStarted,
+                  styles.getStarted
                 )}
-                to={useBaseUrl('docs/')}>
+                to={useBaseUrl('docs/')}
+              >
                 Get Started
               </Link>
             </div>
             <div className="margin-top--md text--center">
-              <GitHubButton href="https://github.com/frouriojs/frourio" data-icon="octicon-star" data-size="large" data-show-count={true} aria-label="Star frouriojs/frourio on GitHub">Star</GitHubButton>
+              <GitHubButton
+                href="https://github.com/frouriojs/frourio"
+                data-icon="octicon-star"
+                data-size="large"
+                data-show-count={true}
+                aria-label="Star frouriojs/frourio on GitHub"
+              >
+                Star
+              </GitHubButton>
             </div>
           </div>
         </section>
       </main>
     </Layout>
-  );
+  )
 }
 
-export default Home;
+export default Home
