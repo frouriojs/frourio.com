@@ -44,6 +44,12 @@ module.exports = {
           position: 'right'
         },
         {
+          to: 'changelog',
+          activeBasePath: 'changelog',
+          label: 'Changelog',
+          position: 'right'
+        },
+        {
           href: 'https://github.com/frouriojs/frourio',
           label: 'GitHub',
           position: 'right'
@@ -82,6 +88,10 @@ module.exports = {
         {
           title: 'More',
           items: [
+            {
+              label: 'Changelog',
+              to: 'changelog'
+            },
             {
               label: 'GitHub',
               href: 'https://github.com/frouriojs/frourio'
