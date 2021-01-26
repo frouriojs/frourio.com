@@ -96,12 +96,12 @@ const Changelog = () => {
         }>
           <TabItem value="frourio">
             {frourioReleases.map(item => (
-              <Release release={item} />
+              <Release release={item} key={item.id} />
             ))}
           </TabItem>
           <TabItem value="create-frourio-app">
             {cfaReleases.map(item => (
-              <Release release={item} />
+              <Release release={item} key={item.id} />
             ))}
           </TabItem>
         </Tabs>
