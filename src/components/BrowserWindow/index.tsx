@@ -5,18 +5,18 @@
  * LICENSE file in the root directory of this source tree.
  */
 
-import React from 'react';
+import React from 'react'
 
-import styles from './styles.module.css';
+import styles from './styles.module.css'
 
-function BrowserWindow({children, minHeight, maxHeight, url}) {
+function BrowserWindow({ children, minHeight, maxHeight, url }) {
   return (
-    <div className={styles.browserWindow} style={{minHeight}}>
+    <div className={styles.browserWindow} style={{ minHeight }}>
       <div className={styles.browserWindowHeader}>
         <div className={styles.buttons}>
-          <span className={styles.dot} style={{background: '#f25f58'}} />
-          <span className={styles.dot} style={{background: '#fbbe3c'}} />
-          <span className={styles.dot} style={{background: '#58cb42'}} />
+          <span className={styles.dot} style={{ background: '#f25f58' }} />
+          <span className={styles.dot} style={{ background: '#fbbe3c' }} />
+          <span className={styles.dot} style={{ background: '#58cb42' }} />
         </div>
         <div className={styles.browserWindowAddressBar}>{url}</div>
         <div className={styles.browserWindowMenuIcon}>
@@ -28,9 +28,11 @@ function BrowserWindow({children, minHeight, maxHeight, url}) {
         </div>
       </div>
 
-      <div className={styles.browserWindowBody} style={{maxHeight}}>{children}</div>
+      <div className={styles.browserWindowBody} style={{ maxHeight }}>
+        {children}
+      </div>
     </div>
-  );
+  )
 }
 
-export default BrowserWindow;
+export default BrowserWindow
