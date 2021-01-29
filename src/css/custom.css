@@ -17,6 +17,17 @@
   --ifm-color-primary-lighter: #36f1e4;
   --ifm-color-primary-lightest: #5af3e9;
   --ifm-code-font-size: 95%;
+
+  --ifm-font-family-base:
+    -apple-system,
+    "BlinkMacSystemFont",
+    "Helvetica Neue",
+    "Hiragino Kaku Gothic ProN",
+    "Hiragino Sans",
+    "Segoe UI",
+    "Meiryo",
+    sans-serif,
+    "Segoe UI Emoji";
 }
 
 .docusaurus-highlight-code-line {
