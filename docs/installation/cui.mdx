@@ -74,10 +74,11 @@ yarn create frourio-app --answers '{\"dir\":\"my-project\"}'
 | mode | "spa" \| "universal" | "spa" | Rendering mode | client === "nuxt" |
 | target | "static" \| "server" | "static" | Deployment target | client === "nuxt" |
 | aspida | "axios" \| "fetch" | "axios" | HTTP client of aspida |  |
+| reactHooks | "swr" \| "query" \| "none" | "swr" | React Hooks for data fetching |  |
 | daemon | "none" \| "pm2" | "none" | Daemon process manager |  |
 | orm | "prisma" \| "typeorm" \| "none" | "prisma" | O/R mapping tool |  |
 | prismaDB | "sqlite" \| "mysql" \| "postgresql" | "sqlite" | DB type of Prisma | orm === "prisma" |
-| typeormDB | "mysql" \| "postgres" \| "mongodb" \| "mssql" \| "mariadb" \| "cockroachdb" | "mysql" | DB type of TypeORM | orm === "typeorm" |
+| typeormDB | "mysql" \| "postgres" | "mysql" | DB type of TypeORM | orm === "typeorm" |
 | dbHost | string | "localhost" | HOST of DB | orm !== "none" && prismaDB !== "sqlite" |
 | dbPort | number | Default port of DB type | PORT of DB | orm !== "none" && prismaDB !== "sqlite" |
 | dbUser | string |  | USER of DB | orm !== "none" && prismaDB !== "sqlite" |
