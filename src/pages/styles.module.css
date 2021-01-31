@@ -6,11 +6,13 @@
  */
 
 .heroBanner {
+  /* height: 550px; */
+  height: calc(100vh - 60px);
   padding: 4rem 0;
-  text-align: center;
+  text-align: left;
   position: relative;
   overflow: hidden;
-  background: url(/img/wall.png) center/cover;
+  background: url(/img/keyvisual.jpg) center/cover;
 }
 
 @media screen and (max-width: 966px) {
@@ -19,10 +21,167 @@
   }
 }
 
-.buttons {
+.container {
+  z-index: 1;
+}
+
+.heroTitle {
+  font-size: 50px;
+  line-height: 55px;
+  color: white;
+  margin: 0;
+}
+
+.heroTitleBold{
+  font-weight: 700;
+  margin: 10px 0 30px 0;
+}
+
+/* How to setup */
+.setupWrapper {
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 30px;
+}
+
+.setupHeadline {
+  width: 210px;
+  color: #08C6D6;
+  text-align: left;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 30px;
+  margin-right: 40px;
+}
+
+/* step */
+.stepContainer {
+  display: flex;
+  margin: 0;
+  padding-bottom: 20px;
+  position: relative;
+}
+
+.stepText {
+  text-align: left;
+}
+
+.stepNumber {
+  height: 30px;
+  font-size: 17px;
+  font-weight: 500;
+  margin-right: 15px;
+  padding: 0px 15px;
+  background: #08C6D6;
+  color: white;
+  border-radius: 15px;
+}
+
+/* 下矢印 */
+.downTriangle{
+  position: absolute;
+  left: 30px;
+  height: calc(100% - 30px);
+  top: 30px;
+  width: 3px;
+  background: #08C6D6;
+}
+
+.downTriangle:last-of-type:after{
+  content: '';
+  position: absolute;
+  left: -14px;
+  bottom: -5px;
+  border-top: 25px solid #08C6D6;
+  border-right: 15px solid transparent;
+  border-left: 15px solid transparent;
+}
+
+.stepIconsWrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  width: auto;
+}
+
+.stepIcon {
+  height: 50px;
+  margin: 0 20px 20px 0;
+}
+
+/* Type-Driven Development */
+.codeBlockWrapper {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.codeBlock {
+  width: 30%;
+  height: auto;
+  text-align: left;
+  margin-top: 20px;
+}
+
+.codeBlockTitle {
+  font-size: 15px;
+  margin: 10px 0;
+}
+
+.typeDevDescription {
+  display: flex;
+  align-items: center;
+  width: 55%;
+  margin: 30px auto;
+}
+
+.typeDevDescriptionIcon {
+  height: 60px;
+  margin-right: 30px;
+}
+
+/* 右矢印 */
+.rightTriangle{
+  width: 100%;
+  height: 4px;
+  background: #08C6D6;
+  margin: 20px auto;
+  position: relative;
+}
+
+.rightTriangle:after{
+  content: '';
+  position: absolute;
+  right: -5px;
+  top: -13px;
+  border-top: 15px solid transparent;
+  border-bottom: 15px solid transparent;
+  border-left: 25px solid #08C6D6;
+}
+
+.highlightTextGreen {
+  color: #08C6D6;
+  text-align: center;
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 30px;
+  margin: 0 0 50px 0;
+}
+
+.highlightTextBlk {
+  color: black;
+  text-align: left;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 27px;
+  margin: 0;
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
 }
 
 .features {
@@ -39,4 +198,66 @@
 .featureImage {
   height: 200px;
   width: 200px;
+}
+
+@media screen and (max-width: 480px) {
+  .heroTitle {
+    font-size: 35px;
+    line-height: 40px;
+  }
+
+  .heroBanner {
+    padding: 10px;
+    height: 50vh;
+  }
+
+  /* How to setup */
+  .setupWrapper {
+    display: block;
+  }
+
+  .setupHeadline {
+    width: 100%;
+    font-size: 20px;
+    margin: 0 auto 10px;
+  }
+
+
+  /* step */
+  .stepNumber {
+    height: 30px;
+    font-size: 15px;
+    margin-right: 10px;
+  }
+
+  .stepIconsWrapper {
+    width: 220px;
+  }
+
+  /* Type-Driven Development */
+  .codeBlockWrapper {
+    display: block;
+  }
+
+  .codeBlock {
+    width: 100%;
+  }
+
+  .rightTriangle{
+    display: none;
+  }
+
+  .typeDevDescription {
+    width: 95%;
+    margin: 20px auto;
+  }
+  
+  .typeDevDescriptionIcon {
+    height: 45px;
+    margin-right: 15px;
+  }
+
+  .highlightTextGreen {
+    font-size: 18px;
+  }
 }

@@ -6,6 +6,8 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
 import useBaseUrl from '@docusaurus/useBaseUrl'
 import GitHubButton from 'react-github-btn'
 import styles from './styles.module.css'
+import HowtoSetup from './HowtoSetup'
+import CodeBlocks from './CodeBlocks'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const Chart = 'window' in global ? require('react-apexcharts').default : null
@@ -124,10 +126,9 @@ function Home() {
     >
       <header className={clsx('hero', styles.heroBanner)}>
         <div className="container">
-          <h1 className="hero__title">
-            <img src="img/logo_main.svg" alt={siteConfig.title} width="400" />
-          </h1>
-          <p className="hero__subtitle">{siteConfig.tagline}</p>
+          <p className={styles.heroTitle}>From installation to deployment</p>
+          <p className={styles.heroTitle}>in one command</p>
+          <p className={clsx(styles.heroTitle, styles.heroTitleBold)}>All you need is TypeScript</p>
           <div className={styles.buttons}>
             <Link
               className={clsx(
@@ -156,7 +157,43 @@ function Home() {
         <section className={styles.features}>
           <div className="container">
             <div className={clsx('text--center', styles.feature)}>
-              <h2>High Performance</h2>
+              <h2>How to setup</h2>
+              <div className={styles.setupWrapper}>
+                <p className={styles.setupHeadline}>It can be easily set up by GUI.</p>
+                <HowtoSetup />
+              </div>
+            </div>
+
+            <div className={clsx('text--center', styles.feature)}>
+              <h2>Type-Driven Development</h2>
+              <div>
+                <CodeBlocks />
+                <div className={styles.rightTriangle}></div>
+                <p className={styles.highlightTextGreen}>TypeScript check entire application statically.</p>
+
+                <div className={styles.typeDevDescription}>
+                  <img
+                    className={styles.typeDevDescriptionIcon}
+                    src='img/communication.jpg'
+                  />
+                  <p className={styles.highlightTextBlk}>
+                    Since API type definition force the type of controller and http request, the test code for communication is not necessary.
+                  </p>
+                </div>
+                <div className={styles.typeDevDescription}>
+                  <img
+                    className={styles.typeDevDescriptionIcon}
+                    src='img/speed.png'
+                  />
+                  <p className={styles.highlightTextBlk}>
+                    Set up full-stack develop environment is simple, so product can be completed more quickly and safely.
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <div className={clsx('text--center', styles.feature)}>
+              <h2>The fastest TypeScript framework</h2>
               {Chart && (
                 <Chart
                   options={chartOptions}
@@ -165,13 +202,6 @@ function Home() {
                   height={280}
                 />
               )}
-            </div>
-
-            <div className={clsx('text--center', styles.feature)}>
-              <h2>Architecture</h2>
-              <div>
-                <img src="/img/architecture.svg" alt="architecture" />
-              </div>
             </div>
 
             <div className={clsx('text--center', styles.feature)}>
