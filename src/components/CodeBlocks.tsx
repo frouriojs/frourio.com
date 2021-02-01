@@ -1,7 +1,7 @@
 import React from 'react'
 import Highlight, { defaultProps } from 'prism-react-renderer'
 import styles from '../pages/styles.module.css'
-// import theme from "prism-react-renderer/themes/nightOwl";
+// import theme from "prism-react-renderer/themes/nightOwl"
 
 const apiTypeDefinition = `
   (function sampleCode() {
@@ -34,9 +34,9 @@ const CodeBlocks = () => (
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre className={className} style={style}>
             {tokens.map((line, i) => (
-              <div {...getLineProps({ line, key: i })}>
+              <div key={i} {...getLineProps({ line, key: i })}>
                 {line.map((token, key) => (
-                  <span {...getTokenProps({ token, key })} />
+                  <span key={key} {...getTokenProps({ token, key })} />
                 ))}
               </div>
             ))}
@@ -53,9 +53,9 @@ const CodeBlocks = () => (
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre className={className} style={style}>
             {tokens.map((line, i) => (
-              <div {...getLineProps({ line, key: i })}>
+              <div key={i} {...getLineProps({ line, key: i })}>
                 {line.map((token, key) => (
-                  <span {...getTokenProps({ token, key })} />
+                  <span key={key} {...getTokenProps({ token, key })} />
                 ))}
               </div>
             ))}
@@ -72,9 +72,9 @@ const CodeBlocks = () => (
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre className={className} style={style}>
             {tokens.map((line, i) => (
-              <div {...getLineProps({ line, key: i })}>
+              <div key={i} {...getLineProps({ line, key: i })}>
                 {line.map((token, key) => (
-                  <span {...getTokenProps({ token, key })} />
+                  <span key={key} {...getTokenProps({ token, key })} />
                 ))}
               </div>
             ))}
