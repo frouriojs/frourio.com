@@ -128,7 +128,9 @@ function Home() {
         <div className="container">
           <p className={styles.heroTitle}>From installation to deployment</p>
           <p className={styles.heroTitle}>in one command</p>
-          <p className={clsx(styles.heroTitle, styles.heroTitleBold)}>All you need is TypeScript</p>
+          <p className={clsx(styles.heroTitle, styles.heroTitleBold)}>
+            All you need is TypeScript
+          </p>
           <div className={styles.buttons}>
             <Link
               className={clsx(
@@ -159,7 +161,9 @@ function Home() {
             <div className={clsx('text--center', styles.feature)}>
               <h2>How to setup</h2>
               <div className={styles.setupWrapper}>
-                <p className={styles.setupHeadline}>It can be easily set up by GUI.</p>
+                <p className={styles.setupHeadline}>
+                  It can be easily set up by GUI.
+                </p>
                 <HowtoSetup />
               </div>
             </div>
@@ -169,24 +173,29 @@ function Home() {
               <div>
                 <CodeBlocks />
                 <div className={styles.rightTriangle}></div>
-                <p className={styles.highlightTextGreen}>TypeScript check entire application statically.</p>
+                <p className={styles.highlightTextGreen}>
+                  TypeScript check entire application statically.
+                </p>
 
                 <div className={styles.typeDevDescription}>
                   <img
                     className={styles.typeDevDescriptionIcon}
-                    src='img/communication.jpg'
+                    src="img/communication.jpg"
                   />
                   <p className={styles.highlightTextBlk}>
-                    Since API type definition force the type of controller and http request, the test code for communication is not necessary.
+                    Since API type definition force the type of controller and
+                    http request, the test code for communication is not
+                    necessary.
                   </p>
                 </div>
                 <div className={styles.typeDevDescription}>
                   <img
                     className={styles.typeDevDescriptionIcon}
-                    src='img/speed.png'
+                    src="img/speed.png"
                   />
                   <p className={styles.highlightTextBlk}>
-                    Set up full-stack develop environment is simple, so product can be completed more quickly and safely.
+                    Set up full-stack develop environment is simple, so product
+                    can be completed more quickly and safely.
                   </p>
                 </div>
               </div>

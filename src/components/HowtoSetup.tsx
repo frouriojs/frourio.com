@@ -25,7 +25,7 @@ const setupSteps = [
   {
     text: 'Select Deploy Server',
     icons: ['vercel', 'netlify']
-  },
+  }
 ]
 
 function HowtoSetup() {
@@ -50,7 +50,7 @@ function HowtoSetup() {
         </div>
       ))}
     </div>
-  );
+  )
 }
 
 export default HowtoSetup
