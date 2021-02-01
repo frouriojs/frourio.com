@@ -1,5 +1,5 @@
-import React from "react"
-import Highlight, { defaultProps } from "prism-react-renderer"
+import React from 'react'
+import Highlight, { defaultProps } from 'prism-react-renderer'
 import styles from '../pages/styles.module.css'
 // import theme from "prism-react-renderer/themes/nightOwl";
 
@@ -8,26 +8,28 @@ const apiTypeDefinition = `
     coming soon
   })();
   return () => <Sample />;
-`.trim();
+`.trim()
 
 const backend = `
   (function sampleCode() {
     coming soon
   })();
   return () => <Sample />;
-`.trim();
+`.trim()
 
 const frontend = `
   (function sampleCode() {
     coming soon
   })();
   return () => <Sample />;
-`.trim();
+`.trim()
 
 const CodeBlocks = () => (
   <div className={styles.codeBlockWrapper}>
     <div className={styles.codeBlock}>
-      <p className={styles.codeBlockTitle}>API type definition on hoge/index.ts</p>
+      <p className={styles.codeBlockTitle}>
+        API type definition on hoge/index.ts
+      </p>
       <Highlight {...defaultProps} code={apiTypeDefinition} language="jsx">
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre className={className} style={style}>
@@ -44,7 +46,9 @@ const CodeBlocks = () => (
     </div>
 
     <div className={styles.codeBlock}>
-      <p className={styles.codeBlockTitle}>Backend: fix type error on hoge/controller.ts</p>
+      <p className={styles.codeBlockTitle}>
+        Backend: fix type error on hoge/controller.ts
+      </p>
       <Highlight {...defaultProps} code={backend} language="jsx">
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre className={className} style={style}>
@@ -61,7 +65,9 @@ const CodeBlocks = () => (
     </div>
 
     <div className={styles.codeBlock}>
-      <p className={styles.codeBlockTitle}>Frontend: request from pages/index.tsx</p>
+      <p className={styles.codeBlockTitle}>
+        Frontend: request from pages/index.tsx
+      </p>
       <Highlight {...defaultProps} code={frontend} language="jsx">
         {({ className, style, tokens, getLineProps, getTokenProps }) => (
           <pre className={className} style={style}>
@@ -77,7 +83,6 @@ const CodeBlocks = () => (
       </Highlight>
     </div>
   </div>
-
-);
+)
 
 export default CodeBlocks
