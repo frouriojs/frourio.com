@@ -1,30 +1,27 @@
 import React from "react"
 import Highlight, { defaultProps } from "prism-react-renderer"
-import styles from './styles.module.css'
+import styles from '../pages/styles.module.css'
 // import theme from "prism-react-renderer/themes/nightOwl";
 
 const apiTypeDefinition = `
-  (function someDemo() {
-    var test = "Hello World!";
-    console.log(test);
+  (function sampleCode() {
+    coming soon
   })();
-  return () => <App />;
+  return () => <Sample />;
 `.trim();
 
 const backend = `
-  (function someDemo() {
-    var test = "Hello World!";
-    console.log(test);
+  (function sampleCode() {
+    coming soon
   })();
-  return () => <Backend code />;
+  return () => <Sample />;
 `.trim();
 
 const frontend = `
-  (function someDemo() {
-    var test = "Hello World!";
-    console.log(test);
+  (function sampleCode() {
+    coming soon
   })();
-  return () => <Frontend />;
+  return () => <Sample />;
 `.trim();
 
 const CodeBlocks = () => (

@@ -6,8 +6,8 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
 import useBaseUrl from '@docusaurus/useBaseUrl'
 import GitHubButton from 'react-github-btn'
 import styles from './styles.module.css'
-import HowtoSetup from './HowtoSetup'
-import CodeBlocks from './CodeBlocks'
+import HowtoSetup from '../components/HowtoSetup'
+import CodeBlocks from '../components/CodeBlocks'
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const Chart = 'window' in global ? require('react-apexcharts').default : null
