@@ -30,11 +30,11 @@ const setupSteps = [
 
 function HowtoSetup() {
   return (
-    <div>
+    <div className={styles.allStepContainer}>
+      <div className={styles.downArrow}></div>
       {setupSteps.map((step, index) => (
         <div className={styles.stepContainer} key={index}>
           <div className={styles.stepNumber}>Step {index + 1}</div>
-          {/* <div className={styles.downTriangle}></div> */}
           <div>
             <p className={styles.stepText}>{step.text}</p>
             <div className={styles.stepIconsWrapper}>
