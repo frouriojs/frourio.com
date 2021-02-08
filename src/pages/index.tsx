@@ -170,7 +170,7 @@ function Home() {
 
             <div className={clsx('text--center', styles.feature)}>
               <h2>Type-Driven Development</h2>
-              <div>
+              <div className={styles.typeDevWrapper}>
                 <CodeBlocks />
                 <div className={styles.rightTriangle}></div>
                 <p className={styles.highlightTextGreen}>
