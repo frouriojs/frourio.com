@@ -23,7 +23,7 @@ const setupSteps = [
     icons: ['jest', 'githubactions']
   },
   {
-    text: 'Select Deploy Server',
+    text: 'Select Deploy Server (coming soon)',
     icons: ['vercel', 'netlify']
   }
 ]

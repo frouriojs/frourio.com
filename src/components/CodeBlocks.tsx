@@ -3,85 +3,60 @@ import Highlight, { defaultProps } from 'prism-react-renderer'
 import styles from '../pages/styles.module.css'
 // import theme from "prism-react-renderer/themes/nightOwl"
 
-const apiTypeDefinition = `
-  (function sampleCode() {
-    coming soon
-  })();
-  return () => <Sample />;
-`.trim()
-
-const backend = `
-  (function sampleCode() {
-    coming soon
-  })();
-  return () => <Sample />;
-`.trim()
-
-const frontend = `
-  (function sampleCode() {
-    coming soon
-  })();
-  return () => <Sample />;
-`.trim()
+const codeDataList = [
+  {
+    language: 'typescript' as const,
+    title: 'API type definition on hoge/index.ts',
+    code: `
+(function sampleCode() {
+  coming soon
+})();
+return () => <Sample />;`
+  },
+  {
+    language: 'tsx' as const,
+    title: 'Backend: fix type error on hoge/controller.ts',
+    code: `
+(function sampleCode() {
+  coming soon
+})();
+return () => <Sample />;`
+  },
+  {
+    language: 'tsx' as const,
+    title: 'Frontend: request from pages/index.tsx',
+    code: `
+(function sampleCode() {
+  coming soon
+})();
+return () => <Sample />;`
+  }
+]
 
 const CodeBlocks = () => (
   <div className={styles.codeBlockWrapper}>
-    <div className={styles.codeBlock}>
-      <p className={styles.codeBlockTitle}>
-        API type definition on hoge/index.ts
-      </p>
-      <Highlight {...defaultProps} code={apiTypeDefinition} language="jsx">
-        {({ className, style, tokens, getLineProps, getTokenProps }) => (
-          <pre className={className} style={style}>
-            {tokens.map((line, i) => (
-              <div key={i} {...getLineProps({ line, key: i })}>
-                {line.map((token, key) => (
-                  <span key={key} {...getTokenProps({ token, key })} />
-                ))}
-              </div>
-            ))}
-          </pre>
-        )}
-      </Highlight>
-    </div>
-
-    <div className={styles.codeBlock}>
-      <p className={styles.codeBlockTitle}>
-        Backend: fix type error on hoge/controller.ts
-      </p>
-      <Highlight {...defaultProps} code={backend} language="jsx">
-        {({ className, style, tokens, getLineProps, getTokenProps }) => (
-          <pre className={className} style={style}>
-            {tokens.map((line, i) => (
-              <div key={i} {...getLineProps({ line, key: i })}>
-                {line.map((token, key) => (
-                  <span key={key} {...getTokenProps({ token, key })} />
-                ))}
-              </div>
-            ))}
-          </pre>
-        )}
-      </Highlight>
-    </div>
-
-    <div className={styles.codeBlock}>
-      <p className={styles.codeBlockTitle}>
-        Frontend: request from pages/index.tsx
-      </p>
-      <Highlight {...defaultProps} code={frontend} language="jsx">
-        {({ className, style, tokens, getLineProps, getTokenProps }) => (
-          <pre className={className} style={style}>
-            {tokens.map((line, i) => (
-              <div key={i} {...getLineProps({ line, key: i })}>
-                {line.map((token, key) => (
-                  <span key={key} {...getTokenProps({ token, key })} />
-                ))}
-              </div>
-            ))}
-          </pre>
-        )}
-      </Highlight>
-    </div>
+    {codeDataList.map((data) => (
+      <div key={data.title} className={styles.codeBlock}>
+        <p className={styles.codeBlockTitle}>{data.title}</p>
+        <Highlight
+          {...defaultProps}
+          code={data.code.trim()}
+          language={data.language}
+        >
+          {({ className, style, tokens, getLineProps, getTokenProps }) => (
+            <pre className={className} style={style}>
+              {tokens.map((line, i) => (
+                <div key={i} {...getLineProps({ line, key: i })}>
+                  {line.map((token, key) => (
+                    <span key={key} {...getTokenProps({ token, key })} />
+                  ))}
+                </div>
+              ))}
+            </pre>
+          )}
+        </Highlight>
+      </div>
+    ))}
   </div>
 )
 
