@@ -183,7 +183,9 @@ function Home() {
                     src="img/communication.jpg"
                   />
                   <p className={styles.highlightTextBlk}>
-                    Since API type definition forces the controller type and http request, the test code is not necessary for communication.
+                    Since API type definition forces the controller type and 
+                    http request, the test code is not necessary for 
+                    communication.
                   </p>
                 </div>
                 <div className={styles.typeDevDescription}>
@@ -192,7 +194,8 @@ function Home() {
                     src="img/speed.png"
                   />
                   <p className={styles.highlightTextBlk}>
-                    Setting up a full-stack development environment is simple, so the product can be completed quickly and safely.
+                    Setting up a full-stack development environment is simple, 
+                    so the product can be completed quickly and safely.
                   </p>
                 </div>
               </div>
