@@ -159,10 +159,10 @@ function Home() {
         <section className={styles.features}>
           <div className="container">
             <div className={clsx('text--center', styles.feature)}>
-              <h2>How to setup</h2>
+              <h2>Setup procedure</h2>
               <div className={styles.setupWrapper}>
                 <p className={styles.setupHeadline}>
-                  It can be easily set up by GUI.
+                  It can be easily set up via GUI.
                 </p>
                 <HowtoSetup />
               </div>
@@ -174,7 +174,7 @@ function Home() {
                 <CodeBlocks />
                 <div className={styles.rightTriangle}></div>
                 <p className={styles.highlightTextGreen}>
-                  TypeScript check entire application statically.
+                  TypeScript checks the entire application statically.
                 </p>
 
                 <div className={styles.typeDevDescription}>
@@ -183,9 +183,8 @@ function Home() {
                     src="img/communication.jpg"
                   />
                   <p className={styles.highlightTextBlk}>
-                    Since API type definition force the type of controller and
-                    http request, the test code for communication is not
-                    necessary.
+                    Since API type definition forces the controller type and
+                    http request, the test code is not necessary for communication.
                   </p>
                 </div>
                 <div className={styles.typeDevDescription}>
@@ -194,8 +193,8 @@ function Home() {
                     src="img/speed.png"
                   />
                   <p className={styles.highlightTextBlk}>
-                    Set up full-stack develop environment is simple, so product
-                    can be completed more quickly and safely.
+                    Setting up a full-stack development environment is simple, so the product can be
+                    completed quickly and safely.
                   </p>
                 </div>
               </div>
