@@ -3,39 +3,52 @@ import Highlight, { defaultProps } from 'prism-react-renderer'
 import styles from '../pages/styles.module.css'
 // import theme from "prism-react-renderer/themes/nightOwl"
 
-const codeDataList = [
+const codeList = [
   {
     language: 'typescript' as const,
-    title: 'API type definition on hoge/index.ts',
+    title: 'API type definition on server/api/users/index.ts',
     code: `
-(function sampleCode() {
-  coming soon
-})();
-return () => <Sample />;`
+export type Methods = {
+  get: {
+    resBody: {
+      id: number
+      name: string
+    }
+  }
+}`
   },
   {
-    language: 'tsx' as const,
-    title: 'Backend: fix type error on hoge/controller.ts',
+    language: 'typescript' as const,
+    title: 'Backend: fix type error on server/api/users/controller.ts',
     code: `
-(function sampleCode() {
-  coming soon
-})();
-return () => <Sample />;`
+import { defineController } from './$relay'
+
+export default defineController(() => ({
+  get: () => ({
+    status: 200,
+    body: { id: 0, name: 'mario' }
+  })
+}))`
   },
   {
     language: 'tsx' as const,
     title: 'Frontend: request from pages/index.tsx',
     code: `
-(function sampleCode() {
-  coming soon
-})();
-return () => <Sample />;`
+import useAspidaSWR from '@aspida/swr'
+import { apiClient } from '~/utils/apiClient'
+
+const Home = () => {
+  const { data: user } = useAspidaSWR(apiClient.users)
+  return <div>{user.name}</div>
+}
+
+export default Home`
   }
 ]
 
 const CodeBlocks = () => (
   <div className={styles.codeBlockWrapper}>
-    {codeDataList.map((data) => (
+    {codeList.map((data) => (
       <div key={data.title} className={styles.codeBlock}>
         <p className={styles.codeBlockTitle}>{data.title}</p>
         <Highlight
