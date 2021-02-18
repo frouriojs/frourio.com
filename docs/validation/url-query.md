@@ -3,7 +3,7 @@ id: url-query
 title: URL query
 ---
 
-Properties of `number` or `number[]` are automatically validated.
+Properties of `number` `number[]` `boolean` `boolean[]` are automatically validated.
 
 ```ts title="server/api/tasks/index.ts"
 import { Task } from '$/types'
