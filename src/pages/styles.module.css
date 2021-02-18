@@ -6,19 +6,11 @@
  */
 
 .heroBanner {
-  /* height: 550px; */
+  display: flex;
+  align-items: flex-end;
   height: calc(100vh - 60px);
-  padding: 4rem 0;
-  text-align: left;
-  position: relative;
-  overflow: hidden;
+  padding: 3rem 2rem;
   background: url(/img/keyvisual.jpg) center/cover;
-}
-
-@media screen and (max-width: 966px) {
-  .heroBanner {
-    padding: 2rem;
-  }
 }
 
 .container {
@@ -30,6 +22,7 @@
   line-height: 60px;
   color: white;
   margin: 0;
+  text-shadow: -1px 1px #333;
 }
 
 .heroTitleBold{
@@ -223,7 +216,7 @@
 
   .heroBanner {
     padding: 10px;
-    height: 50vh;
+    height: calc(100vh - 160px);
   }
 
   /* How to setup */

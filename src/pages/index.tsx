@@ -124,7 +124,7 @@ function Home() {
       title={siteConfig.tagline}
       description="Description will go into a meta tag in <head />"
     >
-      <header className={clsx('hero', styles.heroBanner)}>
+      <header className={styles.heroBanner}>
         <div className="container">
           <p className={styles.heroTitle}>From installation to deployment</p>
           <p className={styles.heroTitle}>in one command</p>
