@@ -167,41 +167,48 @@ function Home() {
                 <HowtoSetup />
               </div>
             </div>
+          </div>
 
-            <div className={clsx('text--center', styles.feature)}>
-              <h2>Type-Driven Development</h2>
-              <div className={styles.typeDevWrapper}>
+          <div className={styles.typeDevWrapper}>
+            <div className="container">
+              <div className={clsx('text--center')}>
+                <h2>Type-Driven Development</h2>
                 <CodeBlocks />
                 <div className={styles.rightTriangle}></div>
                 <p className={styles.highlightTextGreen}>
                   TypeScript checks the entire application statically.
                 </p>
-
-                <div className={styles.typeDevDescription}>
-                  <img
-                    className={styles.typeDevDescriptionIcon}
-                    src="img/communication.jpg"
-                  />
-                  <p className={styles.highlightTextBlk}>
-                    Since API type definition forces the controller type and
-                    http request, the test code is not necessary for
-                    communication.
-                  </p>
-                </div>
-                <div className={styles.typeDevDescription}>
-                  <img
-                    className={styles.typeDevDescriptionIcon}
-                    src="img/speed.png"
-                  />
-                  <p className={styles.highlightTextBlk}>
-                    Setting up a full-stack development environment is simple,
-                    so the product can be completed quickly and safely.
-                  </p>
-                </div>
               </div>
             </div>
+          </div>
 
-            <div className={clsx('text--center', styles.feature)}>
+          <div className={clsx('text--center', styles.feature)}>
+            <div className="container">
+              <div className={styles.typeDevDescription}>
+                <img
+                  className={styles.typeDevDescriptionIcon}
+                  src="img/communication.jpg"
+                />
+                <p className={styles.highlightTextBlk}>
+                  Since API type definition forces the controller type and http
+                  request, the test code is not necessary for communication.
+                </p>
+              </div>
+              <div className={styles.typeDevDescription}>
+                <img
+                  className={styles.typeDevDescriptionIcon}
+                  src="img/speed.png"
+                />
+                <p className={styles.highlightTextBlk}>
+                  Setting up a full-stack development environment is simple, so
+                  the product can be completed quickly and safely.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className={clsx('text--center', styles.feature)}>
+            <div className="container">
               <h2>The fastest TypeScript framework</h2>
               {Chart && (
                 <Chart
@@ -211,29 +218,29 @@ function Home() {
                   height={280}
                 />
               )}
-            </div>
 
-            <div className={clsx('text--center', styles.feature)}>
-              <Link
-                className={clsx(
-                  'button button--primary button--lg',
-                  styles.getStarted
-                )}
-                to={useBaseUrl('docs/')}
-              >
-                Get Started
-              </Link>
-            </div>
-            <div className="margin-top--md text--center">
-              <GitHubButton
-                href="https://github.com/frouriojs/frourio"
-                data-icon="octicon-star"
-                data-size="large"
-                data-show-count={true}
-                aria-label="Star frouriojs/frourio on GitHub"
-              >
-                Star
-              </GitHubButton>
+              <div className={clsx('text--center', styles.feature)}>
+                <Link
+                  className={clsx(
+                    'button button--primary button--lg',
+                    styles.getStarted
+                  )}
+                  to={useBaseUrl('docs/')}
+                >
+                  Get Started
+                </Link>
+              </div>
+              <div className="margin-top--md text--center">
+                <GitHubButton
+                  href="https://github.com/frouriojs/frourio"
+                  data-icon="octicon-star"
+                  data-size="large"
+                  data-show-count={true}
+                  aria-label="Star frouriojs/frourio on GitHub"
+                >
+                  Star
+                </GitHubButton>
+              </div>
             </div>
           </div>
         </section>
