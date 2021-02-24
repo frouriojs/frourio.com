@@ -68,7 +68,7 @@ import TabItem from '@theme/TabItem';
 }>
 <TabItem value="fastify">
 
-```ts title="server/index.ts"
+```ts title="server/service/app.ts"
 import Fastify from 'fastify'
 import server from './$server'
 
@@ -81,7 +81,7 @@ fastify.listen(3000)
 </TabItem>
 <TabItem value="express">
 
-```ts title="server/index.ts"
+```ts title="server/entrypoints/index.ts"
 import express from 'express'
 import server from './$server'
 
