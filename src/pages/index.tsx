@@ -52,7 +52,7 @@ const benchmarks: { category: string; data: number; color: string }[] = [
 
 const chartSeries = [
   {
-    name: '2020-03-01',
+    name: '2021-03-01',
     data: filterByWindowWidth(benchmarks.map((val) => val.data))
   }
 ]
