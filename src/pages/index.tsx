@@ -48,7 +48,7 @@ const benchmarks: { category: string; data: number; color: string }[] = [
     data: 9276.0,
     color: '#999'
   }
-]
+].sort((a, b) => b.data - a.data)
 
 const chartSeries = [
   {
