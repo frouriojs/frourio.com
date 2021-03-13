@@ -40,7 +40,7 @@
 
 .setupHeadline {
   width: 210px;
-  color: #08C6D6;
+  color: var(--ifm-color-primary);
   text-align: left;
   font-size: 27px;
   font-weight: 700;
@@ -64,7 +64,7 @@
   text-align: left;
   font-size: 17px;
   font-weight: 600;
-  color: #08C6D6;
+  color: var(--ifm-color-primary);
 }
 
 .stepNumber {
@@ -73,7 +73,7 @@
   font-weight: 500;
   margin-right: 15px;
   padding: 0px 15px;
-  background: #08C6D6;
+  background: var(--ifm-color-primary);
   color: white;
   border-radius: 15px;
 }
@@ -85,7 +85,7 @@
   height: 95%;
   top: 30px;
   width: 3px;
-  background: #08C6D6;
+  background: var(--ifm-color-primary);
 }
 
 .downArrow:after {
@@ -93,7 +93,7 @@
   position: absolute;
   left: -10px;
   bottom: -5px;
-  border-top: 15px solid #08C6D6;
+  border-top: 15px solid var(--ifm-color-primary);
   border-right: 12px solid transparent;
   border-left: 12px solid transparent;
 }
@@ -156,7 +156,7 @@
 .rightTriangle {
   width: 100%;
   height: 4px;
-  background: #08C6D6;
+  background: var(--ifm-color-primary);
   margin: 20px auto;
   position: relative;
 }
@@ -168,11 +168,11 @@
   top: -13px;
   border-top: 15px solid transparent;
   border-bottom: 15px solid transparent;
-  border-left: 25px solid #08C6D6;
+  border-left: 25px solid var(--ifm-color-primary);
 }
 
 .highlightTextGreen {
-  color: #08C6D6;
+  color: var(--ifm-color-primary);
   text-align: center;
   font-size: 20px;
   font-weight: 700;
