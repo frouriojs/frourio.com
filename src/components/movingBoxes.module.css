@@ -29,118 +29,73 @@
     top: -28%;
     height: 28%;
     width: auto;
-    animation: conveyor 50s linear infinite, wait 50s
+    animation: conveyor 60s linear infinite
 }
 
 @keyframes conveyor {
-    0% {
-        left: -10%;
-        top: -28%;
-        height: 28%;
+    2% {
+        left: 10%;
+        top: -30%;
+        height: 31%;
+    }
+    3% {
+        left: 10%;
+        top: -10%;
+        height: 30.9%;
     }
     5% {
-        left: 1%;
-        top: -17.9%;
-        height: 29.1%;
+        left: 10%;
+        top: -10%;
+        height: 30.9%;
     }
     10% {
-        left: 1%;
-        top: -17.9%;
-        height: 29.1%;
+        left: 30%;
+        top: 8.6%;
+        height: 32.5%;
     }
     15% {
-        left: 12%;
-        top: -7.8%;
-        height: 30.2%;
+        left: 30%;
+        top: 8.6%;
+        height: 32.5%;
     }
     20% {
-        left: 12%;
-        top: -7.8%;
-        height: 30.2%;
+        left: 50%;
+        top: 27.2%;
+        height: 34.1%;
     }
     25% {
-        left: 23%;
-        top: 2.3%;
-        height: 31.3%;
+        left: 50%;
+        top: 27.2%;
+        height: 34.1%;
     }
     30% {
-        left: 23%;
-        top: 2.3%;
-        height: 31.3%;
+        left: 70%;
+        top: 45.8%;
+        height: 35.7%;
     }
     35% {
-        left: 34%;
-        top: 12.4%;
-        height: 32.4%;
+        left: 70%;
+        top: 45.8%;
+        height: 35.7%;
     }
     40% {
-        left: 34%;
-        top: 12.4%;
-        height: 32.4%;
+        left: 90%;
+        top: 64.4%;
+        height: 37.3%;
     }
     45% {
-        left: 45%;
-        top: 22.5%;
-        height: 33.5%;
+        left: 90%;
+        top: 64.4%;
+        height: 37.3%;
     }
     50% {
-        left: 45%;
-        top: 22.5%;
-        height: 33.5%;
-    }
-    55% {
-        left: 56%;
-        top: 32.6%;
-        height: 34.6%;
-    }
-    60% {
-        left: 56%;
-        top: 32.6%;
-        height: 34.6%;
-    }
-    65% {
-        left: 67%;
-        top: 42.7%;
-        height: 35.7%;
-    }
-    70% {
-        left: 67%;
-        top: 42.7%;
-        height: 35.7%;
-    }
-    75% {
-        left: 78%;
-        top: 52.8%;
-        height: 36.8%;
-    }
-    80% {
-        left: 78%;
-        top: 52.8%;
-        height: 36.8%;
-    }
-    85% {
-        left: 89%;
-        top: 62.9%;
-        height: 37.9%;
-    }
-    90% {
-        left: 89%;
-        top: 62.9%;
-        height: 37.9%;
-    }
-    95% {
-        left: 100%;
-        top: 73%;
-        height: 39%;
+        left: 110%;
+        top: 83.2%;
+        height: 38.9%;
     }
     100% {
-        left: 100%;
-        top: 73%;
-        height: 39%;
+        left: 110%;
+        top: 83.2%;
+        height: 38.9%;
     }
-}
-
-@keyframes wait {
-    0% {}
-    100% {}
 }

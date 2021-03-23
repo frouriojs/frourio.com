@@ -18,7 +18,7 @@ const MovingBoxes: React.FC = () => {
             alt="box"
             className={clsx(classes.box)}
             key={`box${i}`}
-            style={{ animationDelay: `${10 * i}s` }}
+            style={{ animationDelay: `${6 * i}s` }}
           />
         ))}
       </div>
