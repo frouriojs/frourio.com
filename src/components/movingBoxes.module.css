@@ -1,0 +1,146 @@
+.root {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+/* 親要素からはみ出て画像全体の領域を確保 */
+.wrapper {
+    position: absolute;
+    min-width: calc(100vh / 9 * 16);
+    width: 100vw;
+    min-height: 100vh;
+    height: calc(100vw / 16 * 9);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.background {
+    height: 100%;
+    width: 100%;
+    position: absolute;
+}
+
+.box {
+    position: absolute;
+    left: -10%;
+    top: -28%;
+    height: 28%;
+    width: auto;
+    animation: conveyor 50s linear infinite, wait 50s
+}
+
+@keyframes conveyor {
+    0% {
+        left: -10%;
+        top: -28%;
+        height: 28%;
+    }
+    5% {
+        left: 1%;
+        top: -17.9%;
+        height: 29.1%;
+    }
+    10% {
+        left: 1%;
+        top: -17.9%;
+        height: 29.1%;
+    }
+    15% {
+        left: 12%;
+        top: -7.8%;
+        height: 30.2%;
+    }
+    20% {
+        left: 12%;
+        top: -7.8%;
+        height: 30.2%;
+    }
+    25% {
+        left: 23%;
+        top: 2.3%;
+        height: 31.3%;
+    }
+    30% {
+        left: 23%;
+        top: 2.3%;
+        height: 31.3%;
+    }
+    35% {
+        left: 34%;
+        top: 12.4%;
+        height: 32.4%;
+    }
+    40% {
+        left: 34%;
+        top: 12.4%;
+        height: 32.4%;
+    }
+    45% {
+        left: 45%;
+        top: 22.5%;
+        height: 33.5%;
+    }
+    50% {
+        left: 45%;
+        top: 22.5%;
+        height: 33.5%;
+    }
+    55% {
+        left: 56%;
+        top: 32.6%;
+        height: 34.6%;
+    }
+    60% {
+        left: 56%;
+        top: 32.6%;
+        height: 34.6%;
+    }
+    65% {
+        left: 67%;
+        top: 42.7%;
+        height: 35.7%;
+    }
+    70% {
+        left: 67%;
+        top: 42.7%;
+        height: 35.7%;
+    }
+    75% {
+        left: 78%;
+        top: 52.8%;
+        height: 36.8%;
+    }
+    80% {
+        left: 78%;
+        top: 52.8%;
+        height: 36.8%;
+    }
+    85% {
+        left: 89%;
+        top: 62.9%;
+        height: 37.9%;
+    }
+    90% {
+        left: 89%;
+        top: 62.9%;
+        height: 37.9%;
+    }
+    95% {
+        left: 100%;
+        top: 73%;
+        height: 39%;
+    }
+    100% {
+        left: 100%;
+        top: 73%;
+        height: 39%;
+    }
+}
+
+@keyframes wait {
+    0% {}
+    100% {}
+}
