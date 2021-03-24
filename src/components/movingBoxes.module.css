@@ -18,9 +18,9 @@
 }
 
 .background {
+    position: absolute;
     height: 100%;
     width: 100%;
-    position: absolute;
 }
 
 .shadow {
@@ -32,9 +32,9 @@
 
 .box {
     position: absolute;
-    left: -10%;
-    top: -28%;
-    height: 28%;
+    left: 10%;
+    top: -30%;
+    height: 31%;
     width: auto;
     animation: conveyor 60s linear infinite
 }
@@ -47,10 +47,10 @@
     }
     3% {
         left: 10%;
-        top: -9.8%;
+        top: -9.7%;
         height: 30.9%;
     }
-    3.4% {
+    3.6% {
         left: 10%;
         top: -10%;
         height: 30.9%;
