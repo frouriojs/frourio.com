@@ -129,7 +129,7 @@ function Home() {
         <div className={styles.movingBoxes}>
           <MovingBoxes />
         </div>
-        <div className={styles.container}>
+        <div className={clsx(styles.container, 'container')}>
           <p className={styles.heroTitle}>From installation to deployment</p>
           <p className={styles.heroTitle}>in one command</p>
           <p className={clsx(styles.heroTitle, styles.heroTitleBold)}>
