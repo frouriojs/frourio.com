@@ -22,6 +22,7 @@ const MovingBoxes: React.FC = () => {
           />
         ))}
       </div>
+      <div className={classes.shadow} />
     </div>
   )
 }
