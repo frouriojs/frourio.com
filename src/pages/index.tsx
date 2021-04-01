@@ -6,6 +6,7 @@ import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
 import useBaseUrl from '@docusaurus/useBaseUrl'
 import GitHubButton from 'react-github-btn'
 import styles from './styles.module.css'
+import MovingBoxes from '../components/MovingBoxes'
 import HowtoSetup from '../components/HowtoSetup'
 import CodeBlocks from '../components/CodeBlocks'
 
@@ -125,7 +126,10 @@ function Home() {
       description="Description will go into a meta tag in <head />"
     >
       <header className={styles.heroBanner}>
-        <div className="container">
+        <div className={styles.movingBoxes}>
+          <MovingBoxes />
+        </div>
+        <div className={clsx(styles.container, 'container')}>
           <p className={styles.heroTitle}>From installation to deployment</p>
           <p className={styles.heroTitle}>in one command</p>
           <p className={clsx(styles.heroTitle, styles.heroTitleBold)}>
