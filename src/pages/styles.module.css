@@ -7,7 +7,7 @@
 
 .heroBanner {
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   height: calc(100vh - 60px);
   padding: 3rem 2rem;
   position: relative;
@@ -24,14 +24,15 @@
 
 .container {
   z-index: 10;
+  margin-left: 0;
 }
 
 .heroTitle {
   font-size: 52px;
   line-height: 60px;
-  color: white;
+  color: #242628;
   margin: 0;
-  text-shadow: -1px 1px #333;
+  text-shadow: 1px 1px 3px #fff;
 }
 
 .heroTitleBold {
