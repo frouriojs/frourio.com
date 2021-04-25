@@ -13,8 +13,8 @@
     min-height: 100vh;
     height: calc(100vw / 16 * 9);
     top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    left: 0;
+    transform: translate(0%, -50%);
 }
 
 .background {
@@ -27,12 +27,12 @@
     position: absolute;
     height: 100%;
     width: 100%;
-    background: linear-gradient(270deg, rgba(0, 0, 0, 0.0) 50%, rgba(0, 0, 0, 0.3) 100%);
+    background: linear-gradient(90deg, rgba(0, 0, 0, 0.0) 50%, rgba(0, 0, 0, 0.3) 100%);
 }
 
 .box {
     position: absolute;
-    left: 10%;
+    right: 10%;
     top: -30%;
     height: 31%;
     width: auto;
@@ -41,72 +41,72 @@
 
 @keyframes conveyor {
     2% {
-        left: 10%;
+        right: 10%;
         top: -30%;
         height: 31%;
     }
     3% {
-        left: 10%;
+        right: 10%;
         top: -9.7%;
         height: 30.9%;
     }
     3.6% {
-        left: 10%;
+        right: 10%;
         top: -10%;
         height: 30.9%;
     }
     5% {
-        left: 10%;
+        right: 10%;
         top: -10%;
         height: 30.9%;
     }
     10% {
-        left: 30%;
+        right: 30%;
         top: 8.6%;
         height: 32.5%;
     }
     15% {
-        left: 30%;
+        right: 30%;
         top: 8.6%;
         height: 32.5%;
     }
     20% {
-        left: 50%;
+        right: 50%;
         top: 27.2%;
         height: 34.1%;
     }
     25% {
-        left: 50%;
+        right: 50%;
         top: 27.2%;
         height: 34.1%;
     }
     30% {
-        left: 70%;
+        right: 70%;
         top: 45.8%;
         height: 35.7%;
     }
     35% {
-        left: 70%;
+        right: 70%;
         top: 45.8%;
         height: 35.7%;
     }
     40% {
-        left: 90%;
+        right: 90%;
         top: 64.4%;
         height: 37.3%;
     }
     45% {
-        left: 90%;
+        right: 90%;
         top: 64.4%;
         height: 37.3%;
     }
     50% {
-        left: 110%;
+        right: 110%;
         top: 83.2%;
         height: 38.9%;
     }
     100% {
-        left: 110%;
+        right: 110%;
         top: 83.2%;
         height: 38.9%;
     }

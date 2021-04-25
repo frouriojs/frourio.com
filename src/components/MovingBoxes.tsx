@@ -18,11 +18,11 @@ const MovingBoxes: React.FC = () => {
             alt="box"
             className={clsx(classes.box)}
             key={`box${i}`}
-            style={{ animationDelay: `${6 * i}s` }}
+            style={{ animationDelay: `${-6 * i}s` }}
           />
         ))}
+        <div className={classes.shadow} />
       </div>
-      <div className={classes.shadow} />
     </div>
   )
 }
@@ -34,9 +34,9 @@ const boxList = [
   'MySQL',
   'Next',
   'Nuxt',
-  'FrourioChan',
+  'Open',
+  'Prisma',
   'React',
-  'Sapper',
   'Vue'
 ]
 
