@@ -28,7 +28,7 @@ module.exports = {
       ],
       'O/R mapping tool': ['orm/prisma', 'orm/typeorm']
     },
-    'deployment',
+    { 'CI/CD': ['deployments/ci', 'deployments/client', 'deployments/server'] },
     'dependency-injection',
     {
       Advanced: [

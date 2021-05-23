@@ -1,0 +1,154 @@
+---
+id: ci
+title: Continuous Integration
+---
+
+Here are the five commands you need to run for Frourio testing!
+You can run them wherever you like.
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="npm"
+  groupId="package-manager"
+  values={[
+    { label: 'npm', value: 'npm' },
+    { label: 'yarn', value: 'yarn' },
+  ]
+}>
+<TabItem value="npm">
+
+```
+npm install
+npm install --prefix server
+npm run lint
+npm run typecheck
+npm test
+```
+
+</TabItem>
+<TabItem value="yarn">
+
+```sh
+yarn install
+yarn install --cwd server
+yarn lint
+yarn typecheck
+yarn test
+```
+
+</TabItem>
+</Tabs>
+
+## GitHub Actions Workflow
+
+For reference, the following workflow will be generated in `.github/workflows/test.yml` if you select GItHub Actions in CI config when you create a project.
+
+Since the workflow will vary depending on your configuration, we recommend that you use create-frourio-app to generate a workflow that fits your configuration.
+
+<Tabs
+  defaultValue="npm"
+  groupId="package-manager"
+  values={[
+    { label: 'npm', value: 'npm' },
+    { label: 'yarn', value: 'yarn' },
+  ]
+}>
+<TabItem value="npm">
+
+```yml title=".github/workflows/test.yml"
+name: Test
+
+on: push
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    env:
+      API_SERVER_PORT: 8080
+      API_ORIGIN: http://localhost:8080
+      API_BASE_PATH: /api
+    steps:
+      - uses: actions/checkout@v2
+      - name: setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - uses: actions/cache@v2
+        id: client-npm-cache
+        with:
+          path: "node_modules"
+          key: client-npm-${{ hashFiles('package-lock.json') }}
+      - uses: actions/cache@v2
+        id: server-npm-cache
+        with:
+          path: "server/node_modules"
+          key: server-npm-${{ hashFiles('server/package-lock.json') }}
+      - run: npm install
+        if: steps.client-npm-cache.outputs.cache-hit != 'true'
+      - run: npm install --prefix server
+        if: steps.server-npm-cache.outputs.cache-hit != 'true'
+      - run: npm run lint
+      - run: |
+          sudo systemctl start mysql.service
+          echo "DATABASE_URL=mysql://root:root@localhost:3306/test" > server/prisma/.env
+      - run: npm run typecheck
+      - run: |
+          npm run migrate:dev
+          npm test
+        env:
+          API_JWT_SECRET: test_secret
+```
+
+</TabItem>
+<TabItem value="yarn">
+
+```yml title=".github/workflows/test.yml"
+name: Test
+
+on: push
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    env:
+      API_SERVER_PORT: 8080
+      API_ORIGIN: http://localhost:8080
+      API_BASE_PATH: /api
+    steps:
+      - uses: actions/checkout@v2
+      - name: setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - uses: actions/cache@v2
+        id: client-yarn-cache
+        with:
+          path: "node_modules"
+          key: client-yarn-${{ hashFiles('yarn.lock') }}
+      - uses: actions/cache@v2
+        id: server-yarn-cache
+        with:
+          path: "server/node_modules"
+          key: server-yarn-${{ hashFiles('server/yarn.lock') }}
+      - run: yarn install
+        if: steps.client-yarn-cache.outputs.cache-hit != 'true'
+      - run: yarn install --cwd server
+        if: steps.server-yarn-cache.outputs.cache-hit != 'true'
+      - run: yarn run lint
+      - run: |
+          sudo systemctl start mysql.service
+          echo "DATABASE_URL=mysql://root:root@localhost:3306/test" > server/prisma/.env
+      - run: yarn run typecheck
+      - run: |
+          yarn run migrate:dev
+          yarn test
+        env:
+          API_JWT_SECRET: test_secret
+```
+
+</TabItem>
+</Tabs>
