@@ -1,0 +1,249 @@
+---
+id: client
+title: Client Static Hosting
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+It is possible to deploy each client and server separately in Frourio.
+
+<Tabs
+  defaultValue="npm"
+  groupId="package-manager"
+  values={[
+    { label: 'npm', value: 'npm' },
+    { label: 'yarn', value: 'yarn' },
+  ]
+}>
+<TabItem value="npm">
+
+The client is built with the following commands:
+
+```
+npm install
+npm run build:client
+```
+
+It is your choice whether you want to start it with `npm run start:client` or refer to it as `out/`.
+
+</TabItem>
+<TabItem value="yarn">
+
+The client is built with the following commands:
+
+```
+yarn install
+yarn run build:client
+```
+
+It is your choice whether you want to start it with `yarn run start:client` or refer to it as `out/`.
+
+</TabItem>
+</Tabs>
+
+---
+
+Below are some examples of typical static hosting services.
+Of course, you can deploy to services not listed here (including your own server), just give it a try!
+
+## GitHub Pages
+
+### Step 1. add GitHub Actions Workflow
+
+:::info
+
+If you selected **GitHub Pages** as the **Static hosting service** when you created the app, please [SKIP to Step 2](#step-2-add-secrets-to-repository)!
+
+:::
+
+If you did not select **GitHub Pages** when you created the app, please refer to the following workflow to add a deployment workflow.
+
+<details>
+<summary><strong>.github/workflows/deploy-client.yml</strong></summary>
+
+<Tabs
+  defaultValue="npm"
+  groupId="package-manager"
+  values={[
+    { label: 'npm', value: 'npm' },
+    { label: 'yarn', value: 'yarn' },
+  ]
+}>
+<TabItem value="npm">
+
+```yml title=".github/workflows/deploy-client.yml"
+name: Deploy client
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - run: |
+          if test -n '${{ secrets.GH_PAGES_BASE_PATH }}'; then
+            CLIENT_BASE_PATH='${{ secrets.GH_PAGES_BASE_PATH }}'
+          else
+            CLIENT_BASE_PATH="/$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')"
+          fi
+          echo "CLIENT_BASE_PATH=$CLIENT_BASE_PATH" >> $GITHUB_ENV
+      - uses: actions/cache@v2
+        id: client-npm-cache
+        with:
+          path: "node_modules"
+          key: client-npm-${{ hashFiles('package-lock.json') }}
+      - uses: actions/cache@v2
+        id: server-npm-cache
+        with:
+          path: "server/node_modules"
+          key: server-npm-${{ hashFiles('server/package-lock.json') }}
+      - run: npm install
+        if: steps.client-npm-cache.outputs.cache-hit != 'true'
+      - run: npm install --prefix server
+        if: steps.server-npm-cache.outputs.cache-hit != 'true'
+      - run: npm run build:client
+        env:
+          API_ORIGIN: ${{ secrets.API_ORIGIN }}
+          API_BASE_PATH: ${{ secrets.API_BASE_PATH }}
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+```
+
+</TabItem>
+<TabItem value="yarn">
+
+```yml title=".github/workflows/deploy-client.yml"
+name: Deploy client
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 14
+      - run: |
+          if test -n '${{ secrets.GH_PAGES_BASE_PATH }}'; then
+            CLIENT_BASE_PATH='${{ secrets.GH_PAGES_BASE_PATH }}'
+          else
+            CLIENT_BASE_PATH="/$(echo '${{ github.repository }}' | awk -F '/' '{print $2}')"
+          fi
+          echo "CLIENT_BASE_PATH=$CLIENT_BASE_PATH" >> $GITHUB_ENV
+      - uses: actions/cache@v2
+        id: client-yarn-cache
+        with:
+          path: "node_modules"
+          key: client-yarn-${{ hashFiles('yarn.lock') }}
+      - uses: actions/cache@v2
+        id: server-yarn-cache
+        with:
+          path: "server/node_modules"
+          key: server-yarn-${{ hashFiles('server/yarn.lock') }}
+      - run: yarn install
+        if: steps.client-yarn-cache.outputs.cache-hit != 'true'
+      - run: yarn install --cwd server
+        if: steps.server-yarn-cache.outputs.cache-hit != 'true'
+      - run: yarn run build:client
+        env:
+          API_ORIGIN: ${{ secrets.API_ORIGIN }}
+          API_BASE_PATH: ${{ secrets.API_BASE_PATH }}
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+```
+
+</TabItem>
+</Tabs>
+
+</details>
+
+### Step 2. add Secrets to Repository
+
+Add following secrets to your GitHub repository.
+
+- **`API_ORIGIN`**: API origin.  
+  e.g. `https://api.my-frourio-app.example`
+- **`API_BASE_PATH`**: API basepath.  
+  e.g. `/api`
+- **`GH_PAGES_BASE_PATH`** (Optional): Client hosting basepath.
+  - If omitted, GitHub repository name will be used. This is because GitHub hosts Pages at `github-username.github.io/repository-name` with default settings.
+  - You can also use custom domain. When doing so, it is needed to use that basename. Set this `/` to host your client from root routing.
+
+## Vercel
+
+<Tabs
+  defaultValue="npm"
+  groupId="package-manager"
+  values={[
+    { label: 'npm', value: 'npm' },
+    { label: 'yarn', value: 'yarn' },
+  ]
+}>
+<TabItem value="npm">
+
+1. Visit [vercel.com](https://vercel.com) and create new project.
+2. Set **`BUILD COMMAND`** to `npm run build:client`.
+3. Add environment variables **`API_BASE_PATH`** and **`API_ORIGIN`**.
+
+</TabItem>
+<TabItem value="yarn">
+
+1. Visit [vercel.com](https://vercel.com) and create new project.
+2. Set **`BUILD COMMAND`** to `yarn run build:client`.
+3. Add environment variables **`API_BASE_PATH`** and **`API_ORIGIN`**.
+
+</TabItem>
+</Tabs>
+
+## Netlify
+
+<Tabs
+  defaultValue="npm"
+  groupId="package-manager"
+  values={[
+    { label: 'npm', value: 'npm' },
+    { label: 'yarn', value: 'yarn' },
+  ]
+}>
+<TabItem value="npm">
+
+1. Visit [app.netlify.com](https://app.netlify.com) and create new project.
+2. Go to **Site Settings** > **Build & Deploy**  
+  a. Set **Repository** to your remote repository  
+  b. Set **Build command** to `npm run build:client`  
+  c. Set **Publish directory** to `out/`
+3. Go to **Site Settings** > **Build & Deploy** > **Environment**  
+  Add environment variables **`API_ORIGIN`** and **`API_BASE_PATH`**
+
+</TabItem>
+<TabItem value="yarn">
+
+1. Visit [app.netlify.com](https://app.netlify.com) and create new project.
+2. Go to **Site Settings** > **Build & Deploy**  
+  a. Set **Repository** to your remote repository  
+  b. Set **Build command** to `yarn run build:client`  
+  c. Set **Publish directory** to `out/`
+3. Go to **Site Settings** > **Build & Deploy** > **Environment**  
+  Add environment variables **`API_ORIGIN`** and **`API_BASE_PATH`**
+
+</TabItem>
+</Tabs>

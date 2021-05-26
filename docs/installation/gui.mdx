@@ -49,7 +49,9 @@ import BrowserWindow from '@site/src/components/BrowserWindow';
 
 <br />
 
-Fill in the blanks and press the Create button at the bottom to start installation again and change your browser to Next.js, Nuxt.js or Sapper.
+Fill in the blanks and press the Create button at the bottom to start installation again and open Next.js, Nuxt.js or Sapper at [http://localhost:8000](http://localhost:8000) in a new tab.
+
+If it does not open automatically after installation, close the modal and press "Open http://localhost:8000".
 
 <Tabs
   defaultValue="next"
@@ -60,17 +62,17 @@ Fill in the blanks and press the Create button at the bottom to start installati
   ]
 }>
 <TabItem value="next">
-  <BrowserWindow url="http://localhost:3000">
+  <BrowserWindow url="http://localhost:8000">
     <img src="/img/nextjs.png" />
   </BrowserWindow>
 </TabItem>
 <TabItem value="nuxt">
-  <BrowserWindow url="http://localhost:3000">
+  <BrowserWindow url="http://localhost:8000">
     <img src="/img/nuxtjs.png" />
   </BrowserWindow>
 </TabItem>
 <TabItem value="sapper">
-  <BrowserWindow url="http://localhost:3000">
+  <BrowserWindow url="http://localhost:8000">
     <img src="/img/sapper.png" />
   </BrowserWindow>
 </TabItem>
