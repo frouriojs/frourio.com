@@ -16,7 +16,7 @@
     "@docusaurus/core": "^2.0.0-beta.0",
     "@docusaurus/preset-classic": "^2.0.0-beta.0",
     "@mdx-js/react": "^1.6.22",
-    "apexcharts": "^3.22.3",
+    "apexcharts": "^3.24.0",
     "clsx": "^1.1.1",
     "markdown-it": "^12.0.4",
     "moment": "^2.29.1",
