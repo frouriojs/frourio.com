@@ -36,7 +36,7 @@ const benchmarks: { category: string; data: number; color: string }[] = [
   },
   {
     category: 'express',
-    data: 7972.3	,
+    data: 7972.3,
     color: '#999'
   },
   {
