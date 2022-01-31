@@ -1,13 +1,13 @@
 module.exports = {
   title: 'frourio',
   tagline: 'Fast and type-safe full stack framework, for TypeScript',
-  url: 'https://frourio.io',
+  url: 'https://frourio.com',
   baseUrl: '/',
   onBrokenLinks: 'ignore',
   favicon: 'img/favicon.png',
   trailingSlash: false,
   organizationName: 'frouriojs', // Usually your GitHub org/user name.
-  projectName: 'frourio.io', // Usually your repo name.
+  projectName: 'frourio.com', // Usually your repo name.
   themeConfig: {
     image: 'img/ogp.png',
     metadata: [
@@ -108,7 +108,7 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl: 'https://github.com/frouriojs/frourio.io/edit/master/',
+          editUrl: 'https://github.com/frouriojs/frourio.com/edit/master/',
         },
         gtag: {
           trackingID: process.env.TRACKING_ID || 'G-XXXXXX',
@@ -116,7 +116,7 @@ module.exports = {
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
-          editUrl: 'https://github.com/frouriojs/frourio.io/edit/master/',
+          editUrl: 'https://github.com/frouriojs/frourio.com/edit/master/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
