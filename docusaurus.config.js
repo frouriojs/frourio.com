@@ -5,6 +5,7 @@ module.exports = {
   baseUrl: '/',
   onBrokenLinks: 'ignore',
   favicon: 'img/favicon.png',
+  trailingSlash: false,
   organizationName: 'frouriojs', // Usually your GitHub org/user name.
   projectName: 'frourio.io', // Usually your repo name.
   themeConfig: {
