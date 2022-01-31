@@ -98,7 +98,7 @@ module.exports = {
           ],
         },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Solufa.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Frourio, Inc.`,
     },
   },
   presets: [
