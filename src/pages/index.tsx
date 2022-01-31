@@ -22,40 +22,40 @@ const benchmarks: { category: string; data: number; color: string }[] = [
   {
     category: 'frourio',
     data: 36282.2,
-    color: '#08c6d6'
+    color: '#08c6d6',
   },
   {
     category: 'fastify',
     data: 32332.6,
-    color: '#999'
+    color: '#999',
   },
   {
     category: 'nest-fastify',
     data: 31348.2,
-    color: '#999'
+    color: '#999',
   },
   {
     category: 'express',
     data: 7972.3,
-    color: '#999'
+    color: '#999',
   },
   {
     category: 'frourio-express',
     data: 8259.9,
-    color: '#999'
+    color: '#999',
   },
   {
     category: 'nest',
     data: 7087.5,
-    color: '#999'
-  }
+    color: '#999',
+  },
 ].sort((a, b) => b.data - a.data)
 
 const chartSeries = [
   {
     name: '2021-06-01',
-    data: filterByWindowWidth(benchmarks.map((val) => val.data))
-  }
+    data: filterByWindowWidth(benchmarks.map((val) => val.data)),
+  },
 ]
 
 const colors = filterByWindowWidth(benchmarks.map((val) => val.color))
@@ -65,61 +65,61 @@ const chartOptions = {
   chart: {
     type: 'bar',
     toolbar: {
-      show: false
+      show: false,
     },
-    fontFamily: 'inherit'
+    fontFamily: 'inherit',
   },
   plotOptions: {
     bar: {
       horizontal: true,
       distributed: true,
       dataLabels: {
-        position: 'top'
-      }
-    }
+        position: 'top',
+      },
+    },
   },
   colors,
   legend: {
-    show: false
+    show: false,
   },
   xaxis: {
     title: {
       text: 'Request/sec',
       style: {
-        fontWeight: 'bold'
-      }
+        fontWeight: 'bold',
+      },
     },
-    categories
+    categories,
   },
   grid: {
     xaxis: {
       lines: {
-        show: true
-      }
-    }
+        show: true,
+      },
+    },
   },
   dataLabels: {
     enabled: true,
     offsetX: -8,
     style: {
       fontSize: '12px',
-      colors: ['#fff']
-    }
+      colors: ['#fff'],
+    },
   },
   yaxis: {
     labels: {
       style: {
         colors,
         fontSize: '14px',
-        fontWeight: 'bold'
-      }
-    }
-  }
+        fontWeight: 'bold',
+      },
+    },
+  },
 }
 
 function Home() {
   const context = useDocusaurusContext()
-  const { siteConfig = {} } = context
+  const { siteConfig } = context
   return (
     <Layout
       title={siteConfig.tagline}
@@ -132,15 +132,10 @@ function Home() {
         <div className={clsx(styles.container, 'container')}>
           <p className={styles.heroTitle}>From installation to deployment</p>
           <p className={styles.heroTitle}>in one command</p>
-          <p className={clsx(styles.heroTitle, styles.heroTitleBold)}>
-            All you need is TypeScript
-          </p>
+          <p className={clsx(styles.heroTitle, styles.heroTitleBold)}>All you need is TypeScript</p>
           <div className={styles.buttons}>
             <Link
-              className={clsx(
-                'button button--primary button--lg',
-                styles.getStarted
-              )}
+              className={clsx('button button--primary button--lg', styles.getStarted)}
               to={useBaseUrl('docs/')}
             >
               Get Started
@@ -165,9 +160,7 @@ function Home() {
             <div className={clsx('text--center', styles.feature)}>
               <h2>Setup procedure</h2>
               <div className={styles.setupWrapper}>
-                <p className={styles.setupHeadline}>
-                  It can be easily set up via GUI.
-                </p>
+                <p className={styles.setupHeadline}>It can be easily set up via GUI.</p>
                 <HowtoSetup />
               </div>
             </div>
@@ -189,23 +182,17 @@ function Home() {
           <div className={clsx('text--center', styles.feature)}>
             <div className="container">
               <div className={styles.typeDevDescription}>
-                <img
-                  className={styles.typeDevDescriptionIcon}
-                  src="img/communication.jpg"
-                />
+                <img className={styles.typeDevDescriptionIcon} src="img/communication.jpg" />
                 <p className={styles.highlightTextBlk}>
-                  Since API type definition forces the controller type and http
-                  request, the test code is not necessary for communication.
+                  Since API type definition forces the controller type and http request, the test
+                  code is not necessary for communication.
                 </p>
               </div>
               <div className={styles.typeDevDescription}>
-                <img
-                  className={styles.typeDevDescriptionIcon}
-                  src="img/speed.png"
-                />
+                <img className={styles.typeDevDescriptionIcon} src="img/speed.png" />
                 <p className={styles.highlightTextBlk}>
-                  Setting up a full-stack development environment is simple, so
-                  the product can be completed quickly and safely.
+                  Setting up a full-stack development environment is simple, so the product can be
+                  completed quickly and safely.
                 </p>
               </div>
             </div>
@@ -215,20 +202,12 @@ function Home() {
             <div className="container">
               <h2>The fastest TypeScript framework</h2>
               {Chart && (
-                <Chart
-                  options={chartOptions}
-                  series={chartSeries}
-                  type="bar"
-                  height={280}
-                />
+                <Chart options={chartOptions} series={chartSeries} type="bar" height={280} />
               )}
 
               <div className={clsx('text--center', styles.feature)}>
                 <Link
-                  className={clsx(
-                    'button button--primary button--lg',
-                    styles.getStarted
-                  )}
+                  className={clsx('button button--primary button--lg', styles.getStarted)}
                   to={useBaseUrl('docs/')}
                 >
                   Get Started

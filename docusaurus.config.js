@@ -9,53 +9,50 @@ module.exports = {
   projectName: 'frourio.io', // Usually your repo name.
   themeConfig: {
     image: 'img/ogp.png',
-    metadatas: [
+    metadata: [
       { name: 'twitter:card', content: 'summary_large_image' },
       {
         name: 'description',
-        content: 'Frourio is the full stack framework for TypeScript.'
+        content: 'Frourio is the full stack framework for TypeScript.',
       },
       {
         property: 'og:description',
-        content: 'Frourio is the full stack framework for TypeScript.'
-      }
+        content: 'Frourio is the full stack framework for TypeScript.',
+      },
     ],
-    gtag: {
-      trackingID: process.env.TRACKING_ID || 'G-XXXXXX'
-    },
     colorMode: {
       defaultMode: 'light',
-      disableSwitch: true
+      disableSwitch: true,
     },
     prism: {
       theme: require('prism-react-renderer/themes/github'),
-      additionalLanguages: ['docker']
+      additionalLanguages: ['docker'],
     },
     navbar: {
       title: 'frourio',
       logo: {
         alt: 'frourio Logo',
-        src: 'img/logo.svg'
+        src: 'img/logo.svg',
       },
       items: [
         {
           to: 'docs/',
           activeBasePath: 'docs',
           label: 'Docs',
-          position: 'right'
+          position: 'right',
         },
         {
           to: 'changelog',
           activeBasePath: 'changelog',
           label: 'Changelog',
-          position: 'right'
+          position: 'right',
         },
         {
           href: 'https://github.com/frouriojs/frourio',
           label: 'GitHub',
-          position: 'right'
-        }
-      ]
+          position: 'right',
+        },
+      ],
     },
     footer: {
       style: 'dark',
@@ -65,43 +62,43 @@ module.exports = {
           items: [
             {
               label: 'Why frourio?',
-              to: 'docs/'
+              to: 'docs/',
             },
             {
               label: 'Installation',
-              to: 'docs/installation/gui'
-            }
-          ]
+              to: 'docs/installation/gui',
+            },
+          ],
         },
         {
           title: 'Community',
           items: [
             {
               label: 'Discord',
-              href: 'https://discord.gg/SARkeDf'
+              href: 'https://discord.gg/SARkeDf',
             },
             {
               label: 'Twitter',
-              href: 'https://twitter.com/solufa2020'
-            }
-          ]
+              href: 'https://twitter.com/solufa2020',
+            },
+          ],
         },
         {
           title: 'More',
           items: [
             {
               label: 'Changelog',
-              to: 'changelog'
+              to: 'changelog',
             },
             {
               label: 'GitHub',
-              href: 'https://github.com/frouriojs/frourio'
-            }
-          ]
-        }
+              href: 'https://github.com/frouriojs/frourio',
+            },
+          ],
+        },
       ],
-      copyright: `Copyright © ${new Date().getFullYear()} Solufa.`
-    }
+      copyright: `Copyright © ${new Date().getFullYear()} Solufa.`,
+    },
   },
   presets: [
     [
@@ -110,22 +107,25 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl: 'https://github.com/frouriojs/frourio.io/edit/master/'
+          editUrl: 'https://github.com/frouriojs/frourio.io/edit/master/',
+        },
+        gtag: {
+          trackingID: process.env.TRACKING_ID || 'G-XXXXXX',
         },
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
-          editUrl: 'https://github.com/frouriojs/frourio.io/edit/master/'
+          editUrl: 'https://github.com/frouriojs/frourio.io/edit/master/',
         },
         theme: {
-          customCss: require.resolve('./src/css/custom.css')
+          customCss: require.resolve('./src/css/custom.css'),
         },
         sitemap: {
           changefreq: 'weekly',
           priority: 0.5,
-          trailingSlash: false
-        }
-      }
-    ]
-  ]
+          trailingSlash: false,
+        },
+      },
+    ],
+  ],
 }

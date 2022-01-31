@@ -9,14 +9,14 @@ module.exports = {
         'controller/get-tasks',
         'controller/get-task-by-id',
         'controller/post-tasks',
-        'controller/posting-formdata'
+        'controller/posting-formdata',
       ],
       Hooks: [
         'hooks/lifecycle',
         'hooks/minimum-hooks',
         'hooks/directory-level-hooks',
-        'hooks/controller-level-hooks'
-      ]
+        'hooks/controller-level-hooks',
+      ],
     },
     'authentication',
     {
@@ -24,19 +24,15 @@ module.exports = {
         'validation/path-parameter',
         'validation/url-query',
         'validation/json-body',
-        'validation/custom-validation'
+        'validation/custom-validation',
       ],
-      'O/R mapping tool': ['orm/prisma', 'orm/typeorm']
+      'O/R mapping tool': ['orm/prisma', 'orm/typeorm'],
     },
     { 'CI/CD': ['deployments/ci', 'deployments/client', 'deployments/server'] },
     'dependency-injection',
     {
-      Advanced: [
-        'advanced/error-handling',
-        'advanced/cors-helmet',
-        'advanced/performance'
-      ],
-      'Typed pages path': ['pathpida/with-nextjs', 'pathpida/with-nuxtjs']
-    }
-  ]
+      Advanced: ['advanced/error-handling', 'advanced/cors-helmet', 'advanced/performance'],
+      'Typed pages path': ['pathpida/with-nextjs', 'pathpida/with-nuxtjs'],
+    },
+  ],
 }

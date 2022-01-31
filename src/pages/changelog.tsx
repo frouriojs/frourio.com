@@ -35,13 +35,11 @@ const Release: React.FC<ReleaseProps> = (props) => {
         <h2 className={styles.version}>
           <Link href={props.release.html_url}>{props.release.name}</Link>
         </h2>
-        <span className={styles.date}>
-          {moment(props.release.created_at).format('YYYY.MM.DD')}
-        </span>
+        <span className={styles.date}>{moment(props.release.created_at).format('YYYY.MM.DD')}</span>
       </div>
       <div
         dangerouslySetInnerHTML={{
-          __html: Markdown.render(props.release.body)
+          __html: Markdown.render(props.release.body),
         }}
       />
     </article>
@@ -73,19 +71,14 @@ const Changelog = () => {
   }, [setCfaReleases])
 
   return (
-    <Layout
-      title="Changelog"
-      description="Changelog of frourio and create-frourio-app"
-    >
+    <Layout title="Changelog" description="Changelog of frourio and create-frourio-app">
       <main className={clsx('container', styles.main)}>
         <h1 className={styles.title}>Changelog</h1>
         <p>Release list of frourio and create-frourio-app.</p>
         <span>See all releases on GitHub:</span>
         <ul>
           <li>
-            <Link href="https://github.com/frouriojs/frourio/releases">
-              frouriojs/frourio
-            </Link>
+            <Link href="https://github.com/frouriojs/frourio/releases">frouriojs/frourio</Link>
           </li>
           <li>
             <Link href="https://github.com/frouriojs/create-frourio-app/releases">
@@ -97,7 +90,7 @@ const Changelog = () => {
           defaultValue="frourio"
           values={[
             { label: 'frourio', value: 'frourio' },
-            { label: 'create-frourio-app', value: 'create-frourio-app' }
+            { label: 'create-frourio-app', value: 'create-frourio-app' },
           ]}
         >
           <TabItem value="frourio">

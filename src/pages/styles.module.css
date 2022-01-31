@@ -239,7 +239,6 @@
     margin: 0 auto 10px;
   }
 
-
   /* step */
   .stepNumber {
     height: 30px;
@@ -269,7 +268,7 @@
     font-size: 13px;
   }
 
-  .rightTriangle{
+  .rightTriangle {
     display: none;
   }
 
@@ -277,7 +276,7 @@
     width: 95%;
     margin: 20px auto;
   }
-  
+
   .typeDevDescriptionIcon {
     height: 45px;
     margin-right: 15px;

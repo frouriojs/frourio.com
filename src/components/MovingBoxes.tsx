@@ -37,7 +37,7 @@ const boxList = [
   'Open',
   'Prisma',
   'React',
-  'Vue'
+  'Vue',
 ]
 
 const getRandomIndexArray = () => {

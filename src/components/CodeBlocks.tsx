@@ -15,7 +15,7 @@ export type Methods = {
       name: string
     }
   }
-}`
+}`,
   },
   {
     language: 'typescript' as const,
@@ -28,7 +28,7 @@ export default defineController(() => ({
     status: 200,
     body: { id: 0, name: 'mario' }
   })
-}))`
+}))`,
   },
   {
     language: 'tsx' as const,
@@ -42,8 +42,8 @@ const Home = () => {
   return <div>{user.name}</div>
 }
 
-export default Home`
-  }
+export default Home`,
+  },
 ]
 
 const CodeBlocks = () => (
@@ -51,11 +51,7 @@ const CodeBlocks = () => (
     {codeList.map((data) => (
       <div key={data.title} className={styles.codeBlock}>
         <p className={styles.codeBlockTitle}>{data.title}</p>
-        <Highlight
-          {...defaultProps}
-          code={data.code.trim()}
-          language={data.language}
-        >
+        <Highlight {...defaultProps} code={data.code.trim()} language={data.language}>
           {({ className, style, tokens, getLineProps, getTokenProps }) => (
             <pre className={className} style={style}>
               {tokens.map((line, i) => (
