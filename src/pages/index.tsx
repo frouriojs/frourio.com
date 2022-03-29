@@ -140,6 +140,12 @@ function Home() {
             >
               Get Started
             </Link>
+            <Link
+              className={clsx('button button--outline button--primary button--lg', styles.getStarted)}
+              to={useBaseUrl('/docs/tutorial/introduction/')}
+            >
+              Start Tutorial
+            </Link>
           </div>
           <div className="margin-top--md">
             <GitHubButton
