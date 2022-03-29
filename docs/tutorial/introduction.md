@@ -1,7 +1,6 @@
 ---
 id: introduction
 title: Why frourio?
-slug: /
 ---
 
 Even if you write both the frontend and backend in TypeScript, you can't statically type-check the API's sparsity.  
