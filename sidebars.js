@@ -8,7 +8,7 @@ module.exports = {
       'O/R mapping tool': ['orm/prisma', 'orm/typeorm'],
     },
     {
-      'CI/CD': ['deployments/ci', 'deployments/client', 'deployments/server']
+      'CI/CD': ['deployments/ci', 'deployments/client', 'deployments/server'],
     },
     'dependency-injection',
     {
@@ -39,5 +39,5 @@ module.exports = {
         'tutorials/validation/custom-validation',
       ],
     },
-  ]
+  ],
 }

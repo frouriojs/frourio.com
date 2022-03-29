@@ -141,7 +141,10 @@ function Home() {
               Get Started
             </Link>
             <Link
-              className={clsx('button button--outline button--primary button--lg', styles.getStarted)}
+              className={clsx(
+                'button button--outline button--primary button--lg',
+                styles.getStarted
+              )}
               to={useBaseUrl('/docs/tutorials/introduction/')}
             >
               Start Tutorial
