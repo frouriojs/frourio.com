@@ -37,9 +37,15 @@ module.exports = {
       },
       items: [
         {
-          to: 'docs/',
-          activeBasePath: 'docs',
+          type: 'docSidebar',
+          sidebarId: 'docs',
           label: 'Docs',
+          position: 'right',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'tutorial',
+          label: 'Tutorial',
           position: 'right',
         },
         {
