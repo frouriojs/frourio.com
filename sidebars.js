@@ -1,21 +1,30 @@
 module.exports = {
   docs: [
     'about',
-    { Installation: ['installation/gui', 'installation/cui'] },
-    'aspida',
-    'controller',
-    'entrypoint',
-    'authentication',
     {
-      'O/R mapping tool': ['orm/prisma', 'orm/typeorm'],
-    },
-    {
-      'CI/CD': ['deployments/ci', 'deployments/client', 'deployments/server'],
-    },
-    'dependency-injection',
-    {
-      Advanced: ['advanced/error-handling', 'advanced/cors-helmet', 'advanced/performance'],
-      'Typed pages path': ['pathpida/with-nextjs', 'pathpida/with-nuxtjs'],
+      Reference: [
+        {
+          'create-frourio-app': ['reference/cfa/gui', 'reference/cfa/cui'],
+        },
+        'reference/aspida',
+        'reference/controller',
+        'reference/hooks',
+      ],
+      Guide: [
+        'guide/entrypoint',
+        'guide/authentication',
+        {
+          'O/R mapping tool': ['guide/orm/prisma', 'guide/orm/typeorm'],
+        },
+        {
+          'CI/CD': ['guide/deployments/ci', 'guide/deployments/client', 'guide/deployments/server'],
+        },
+        'guide/dependency-injection',
+        'guide/error-handling',
+        'guide/cors-helmet',
+        'guide/performance',
+        { 'Typed pages path': ['guide/pathpida/with-nextjs', 'guide/pathpida/with-nuxtjs'] },
+      ],
     },
   ],
   tutorial: [
