@@ -2,6 +2,7 @@ module.exports = {
   docs: [
     'about',
     { Installation: ['installation/gui', 'installation/cui'] },
+    'aspida',
     'entrypoint',
     'authentication',
     {
