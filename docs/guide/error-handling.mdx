@@ -1,6 +1,6 @@
 ---
 id: error-handling
-title: Error handling
+title: 5xx Error handling
 ---
 
 Controller error handler
@@ -18,7 +18,7 @@ export default defineController(() => ({
     } catch (e) {
       return { status: 500, body: 'Something broke!' }
     }
-  }
+  },
 }))
 ```
 
@@ -26,8 +26,8 @@ export default defineController(() => ({
 
 The default error handler
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
 
 <Tabs
   defaultValue="fastify"

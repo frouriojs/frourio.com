@@ -14,16 +14,16 @@ module.exports = {
         'guide/entrypoint',
         'guide/authentication',
         {
-          'O/R mapping tool': ['guide/orm/prisma', 'guide/orm/typeorm'],
+          'Database (ORM)': ['guide/orm/prisma', 'guide/orm/typeorm'],
         },
-        {
-          'CI/CD': ['guide/deployments/ci', 'guide/deployments/client', 'guide/deployments/server'],
-        },
-        'guide/dependency-injection',
-        'guide/error-handling',
         'guide/cors-helmet',
+        'guide/error-handling',
+        'guide/dependency-injection',
+        { 'Typed Pages Path': ['guide/pathpida/with-nextjs', 'guide/pathpida/with-nuxtjs'] },
+        {
+          'Deployments (CI/CD)': ['guide/deployments/ci', 'guide/deployments/client', 'guide/deployments/server'],
+        },
         'guide/performance',
-        { 'Typed pages path': ['guide/pathpida/with-nextjs', 'guide/pathpida/with-nuxtjs'] },
       ],
     },
   ],
