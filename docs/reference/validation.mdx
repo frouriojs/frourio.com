@@ -1,0 +1,226 @@
+---
+id: validation
+title: Validation
+---
+
+There are two types of validation: automatic validation by Frourio and validation using the class-validator.
+
+## Path Parameter
+
+The type can be specified by appending `@string` or `@number` to path parameters.
+Frourio validates only when specified as `number`.
+
+The default type in Frourio is `string`.
+
+:::caution
+**When the type is not specified, There is a difference** in the behavior of Frourio and Aspida.
+
+Frourio interprets the type as `string` as mentioned above, but Aspida interprets it as `string | number`.
+This is due to the information loss that occurs as path parameters are passed through an URL.
+
+Unless there are special circumstances, **you should specify their types**.
+:::
+
+<details>
+<summary>Example</summary>
+
+<h3>API Definition</h3>
+
+```ts title="server/api/tasks/_taskId@number/index.ts"
+import { Task } from '$/types'
+
+export type Methods = {
+  get: {
+    resBody: Task
+  }
+}
+```
+
+<h3>Controller</h3>
+
+```ts title="server/api/tasks/_taskId@number/controller.ts"
+import { defineController } from './$relay'
+import { findTask } from '$/service/tasks'
+
+export default defineController(() => ({
+  get: async ({ params }) => {
+    const task = await findTask(params.taskId)
+
+    return task ? { status: 200, body: task } : { status: 404 }
+  },
+}))
+```
+
+<h3>Results</h3>
+
+```sh
+$ curl http://localhost:8080/api/tasks
+[{"id":0,"label":"sample task","done":false}]
+
+$ curl http://localhost:8080/api/tasks/0
+{"id":0,"label":"sample task","done":false}
+
+$ curl http://localhost:8080/api/tasks/1 -i
+HTTP/1.1 404 Not Found
+
+$ curl http://localhost:8080/api/tasks/abc -i
+HTTP/1.1 400 Bad Request
+```
+
+</details>
+
+## URL Query (without class-validator)
+
+The URL query is validated when specifined as `number`, `number[]`, `boolean` or `boolean`.
+
+<details>
+<summary>Example</summary>
+
+<h3>API Definition</h3>
+
+```ts title="server/api/tasks/index.ts"
+import { Task } from '$/types'
+
+export type Methods = {
+  get: {
+    query?: {
+      limit: number
+    }
+    resBody: Task[]
+  }
+}
+```
+
+<h3>Controller</h3>
+
+```ts title="server/api/tasks/controller.ts"
+import { defineController } from './$relay'
+import { getTasks } from '$/service/tasks'
+
+export default defineController(() => ({
+  get: async ({ query }) => ({
+    status: 200,
+    body: (await getTasks()).slice(0, query?.limit),
+  }),
+}))
+```
+
+<h3>Results</h3>
+
+```sh
+$ curl http://localhost:8080/api/tasks
+[{"id":0,"label":"sample task 0","done":false},{"id":1,"label":"sample task 1","done":false},{"id":1,"label":"sample task 2","done":false}]
+
+$ curl http://localhost:8080/api/tasks?limit=1
+[{"id":0,"label":"sample task 0","done":false}]
+
+$ curl http://localhost:8080/api/tasks?limit=abc -i
+HTTP/1.1 400 Bad Request
+```
+
+</details>
+
+## class-validator
+
+To validate request body, request headers and URL query, specify a class with [class-validator](https://github.com/typestack/class-validator) instead of type for reqBody, reqHeaders and query.
+
+<details>
+<summary>Example</summary>
+
+<h3>Validator</h3>
+
+```ts title="server/validators/index.ts"
+import { MinLength, IsString } from 'class-validator'
+
+export class LoginBody {
+  @MinLength(5)
+  id: string
+
+  @MinLength(8)
+  pass: string
+}
+
+export class TokenHeader {
+  @IsString()
+  @MinLength(10)
+  token: string
+}
+```
+
+<h3>API Definition</h3>
+
+```ts title="server/api/token/index.ts"
+import { LoginBody, TokenHeader } from '$/validators'
+
+export type Methods = {
+  post: {
+    reqBody: LoginBody
+    resBody: {
+      token: string
+    }
+  }
+
+  delete: {
+    reqHeaders: TokenHeader
+  }
+}
+```
+
+<h3>Results</h3>
+
+```sh
+$ curl -X POST -H "Content-Type: application/json" -d '{"id":"correctId","pass":"correctPass"}' http://localhost:8080/api/token
+{"token":"XXXXXXXXXX"}
+
+$ curl -X POST -H "Content-Type: application/json" -d '{"id":"abc","pass":"12345"}' http://localhost:8080/api/token -i
+HTTP/1.1 400 Bad Request
+
+$ curl -X POST -H "Content-Type: application/json" -d '{"id":"incorrectId","pass":"incorrectPass"}' http://localhost:8080/api/token -i
+HTTP/1.1 401 Unauthorized
+```
+
+</details>
+
+### Passing Validator Options
+
+[class-validator options](https://github.com/typestack/class-validator#passing-options)
+
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
+<Tabs
+  defaultValue="fastify"
+  values={[
+    { label: 'Fastify', value: 'fastify' },
+    { label: 'Express', value: 'express' },
+  ]
+}>
+<TabItem value="fastify">
+
+```ts title="server/service/app.ts"
+import Fastify, { FastifyServerFactory } from 'fastify'
+import server from '$/$server'
+
+export const init = (serverFactory?: FastifyServerFactory) => {
+  const app = Fastify({ serverFactory })
+  server(app, { basePath: '/api', validator: { whitelist: true } })
+  return app
+}
+```
+
+</TabItem>
+<TabItem value="express">
+
+```ts title="server/service/app.ts"
+import express from 'express'
+import server from '$/$server'
+
+export const init = () => {
+  const app = express()
+  server(app, { basePath: '/api', validator: { whitelist: true } })
+  return app
+}
+```
+
+</TabItem>
+</Tabs>
