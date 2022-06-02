@@ -1,0 +1,44 @@
+---
+id: hooks
+title: Lifecycle and Hooks
+---
+
+## Lifecycle in Frourio
+
+Both frourio and frourio-express provide hooks that take a form similar to fastify.
+
+The overall lifecycle is shown in the figure below, and hooks such as `onRequest`, `preParsing`, `preValidation`, and `preHandler` can be defined.
+
+<div style={{ textAlign: 'center' }}>
+  <img src="/img/lifecycle.svg" alt='Lifecycle of Frourio' style={{ maxWidth: '300px' }} />
+
+_Ref. [Lifecycle - Fastify](https://www.fastify.io/docs/latest/Reference/Lifecycle/)_
+
+</div>
+
+## Two Types of Hooks
+
+Frourio provides two types of hooks: **controller-level hooks** and **directory-level hooks**.
+
+- **Controller-level Hooks**: called at the current endpoints.
+- **Directory-level Hooks**: called at the current _and subordinate_ endpoints.
+
+If both hooks are to be called, **Directory-level Hooks** is called first.
+
+## Define Hooks
+
+To define hooks, use the function `defineHooks` exported by `./$relay.ts`.
+
+- **Controller-level Hooks**: defined in `controller.ts`.
+- **Directory-level Hooks**: defined in `hooks.ts` at the top of the target directory.
+
+## Function `defineHooks`
+
+### Argument Type
+
+- function `(fastify: FastifyInstance) => Hooks`
+  - `Hooks` : An object having the hooks name as keys and the handler functions (or its array) as values.
+
+## Hook Handler Function
+
+<!-- TODO: 挙動を確かめる(型定義が記憶と違って困った) -->
