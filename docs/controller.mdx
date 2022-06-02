@@ -1,0 +1,60 @@
+---
+id: controller
+title: Controller
+---
+
+To define controllers, use the function `defineMethods` exported by `./$relay.ts`.
+
+The type definition of defineController is automatically generated based on the aspida type definition. It must be imported from `$relay.ts` in the same directory as the controller.
+
+The return value of defineController must be default exported.
+
+If you want to use the fastify instance in the controller, you can take it as an argument.
+
+## Example
+
+```ts
+import { defineController } from './$relay'
+
+export default defineController((fastify) => ({
+  get: () => ({ status: 200, body: 'Hello' }),
+  post: async ({ query: { foo }, params: { bar }, body }) => {
+    const baz = await createBaz(foo, bar, body)
+    if (!baz) return { status: 400 }
+    return { status: 201, body: baz }
+  },
+}))
+```
+
+## Function `defineController`
+
+### Argument Type
+
+- function `(fastify: FastifyInstance) => ControllerMethods`
+  - `FastifyInstance` : [Fastify Reference](https://www.fastify.io/docs/latest/Reference/TypeScript/#fastifyfastifyinstancerawserver-rawrequest-requestgeneric-logger)
+  - `ControllerMethods` : An object having the method name as keys and the controller functions as values.
+
+### Return Type
+
+- object `ControllerMethods`
+
+## value of ControllerMethods
+
+### Argument Type
+
+- object `RequestParams`
+  - `query` : `query`
+  - `headers` : `reqHeaders`
+  - `params` : URL Params
+  - `body` : `reqBody`
+
+### Return Type
+
+- object `ServerResponse` | promise `Promise<ServerResponse>`
+  - `status` : `status`
+  - `body` : `resBody`
+  - `headers` : `resHeaders`
+
+The types of `RequestParams` and `ServerResponse` are determined by API type definitions.
+
+Also, each request handler can be sync or async.
