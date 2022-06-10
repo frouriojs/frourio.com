@@ -29,16 +29,28 @@ If both hooks are to be called, **Directory-level Hooks** is called first.
 
 To define hooks, use the function `defineHooks` exported by `./$relay.ts`.
 
-- **Controller-level Hooks**: defined in `controller.ts`.
-- **Directory-level Hooks**: defined in `hooks.ts` at the top of the target directory.
+- **Controller-level Hooks**: define in `controller.ts`.
+- **Directory-level Hooks**: define in `hooks.ts` at the top of the target directory.
 
-## Function `defineHooks`
+### Function `defineHooks`
 
-### Argument Type
+#### Argument Type
 
 - function `(fastify: FastifyInstance) => Hooks`
   - `Hooks` : An object having the hooks name as keys and the handler functions (or its array) as values.
 
-## Hook Handler Function
+### Hooks Handler
 
-<!-- TODO: 挙動を確かめる(型定義が記憶と違って困った) -->
+#### Argument Type
+
+- `request` : [`FastifyRequest`](https://www.fastify.io/docs/latest/Reference/TypeScript/#request) & `AdditinalRequest`
+- `reply`: [`FastifyReply`](https://www.fastify.io/docs/latest/Reference/TypeScript/#reply)
+- `done` : function `<TError extends Error = FastifyError>(err?: TError) => void`
+
+`done` is the function to continue with the lifecycle.
+
+:::caution
+The `done` callback is not available when using `async`/`await` or returning a `Promise`. If you do invoke a done callback in this situation unexpected behavior may occur, e.g. duplicate invocation of handlers.
+
+_ref. [Hooks - Fastify](https://www.fastify.io/docs/latest/Reference/Hooks/)_
+:::
