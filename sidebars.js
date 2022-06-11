@@ -2,7 +2,10 @@ module.exports = {
   docs: [
     'about',
     {
-      Reference: [
+      type: 'category',
+      label: 'Reference',
+      collapsed: false,
+      items: [
         {
           'create-frourio-app': ['reference/cfa/gui', 'reference/cfa/cui'],
         },
@@ -12,7 +15,12 @@ module.exports = {
         'reference/additionalRequest',
         'reference/validation'
       ],
-      Guide: [
+    },
+    {
+      type: 'category',
+      label: 'Guide',
+      collapsed: false,
+      items: [
         'guide/entrypoint',
         'guide/authentication',
         {
