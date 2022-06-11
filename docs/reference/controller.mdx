@@ -31,7 +31,7 @@ export default defineController((fastify) => ({
 ### Argument Type
 
 - function `(fastify: FastifyInstance) => ControllerMethods`
-  - `FastifyInstance` : [Fastify Reference](https://www.fastify.io/docs/latest/Reference/TypeScript/#fastifyfastifyinstancerawserver-rawrequest-requestgeneric-logger)
+  - [`FastifyInstance`](https://www.fastify.io/docs/latest/Reference/TypeScript/#fastifyfastifyinstancerawserver-rawrequest-requestgeneric-logger)
   - `ControllerMethods` : An object having the method name as keys and the controller functions as values.
 
 ### Return Type
@@ -42,7 +42,7 @@ export default defineController((fastify) => ({
 
 ### Argument Type
 
-- object `RequestParams`
+- object `RequestParams` & [`AdditinalRequest`](/docs/reference/additionalRequest)
   - `query` : `query`
   - `headers` : `reqHeaders`
   - `params` : URL Params

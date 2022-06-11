@@ -9,6 +9,7 @@ module.exports = {
         'reference/aspida',
         'reference/controller',
         'reference/hooks',
+        'reference/additionalRequest',
         'reference/validation'
       ],
       Guide: [
