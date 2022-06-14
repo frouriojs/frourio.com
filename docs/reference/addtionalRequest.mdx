@@ -3,6 +3,14 @@ id: additionalRequest
 title: AdditionalRequest
 ---
 
+:::info
+The examples on this page are written with Fastify, but the same features are valid with Express.
+
+Pull requests to add examples with Express are welcome!
+:::
+
+---
+
 ```ts title='controller.ts / hooks.ts'
 export type AdditionalRequest = Pick<FastifyRequest, 'cookies'> & {
   setCookie: (...args: Parameters<FastifyReply['setCookie']>) => void
@@ -10,7 +18,7 @@ export type AdditionalRequest = Pick<FastifyRequest, 'cookies'> & {
 }
 ```
 
-Frourio extends `FastifyRequest` type with the `AdditionalRequest` type exported from controller.ts and hooks.ts.
+Frourio extends `FastifyRequest` or `Request` type with the `AdditionalRequest` type exported from controller.ts and hooks.ts.
 
 If defined in `controller.ts`, it will be reflected in the current endpoints.  
 If defined in `hook.ts`, it will be reflected in the current _and subordinate_ endpoints.
