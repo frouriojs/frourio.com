@@ -23,10 +23,10 @@ module.exports = {
       items: [
         'guide/entrypoint',
         'guide/authentication',
+        'guide/cors-helmet',
         {
           'Database (ORM)': ['guide/orm/prisma', 'guide/orm/typeorm'],
         },
-        'guide/cors-helmet',
         'guide/error-handling',
         'guide/dependency-injection',
         { 'Typed Pages Path': ['guide/pathpida/with-nextjs', 'guide/pathpida/with-nuxtjs'] },
