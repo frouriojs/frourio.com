@@ -1,11 +1,16 @@
 ---
 id: error-handling
-title: 5xx Error handling
+title: 500 Error Handling
 ---
 
-Controller error handler
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
 
-```ts title="server/api/tasks/controller.ts"
+For handling 500 errors, use the native features of Fastify / Express.
+
+## Example
+
+```ts title="$/api/tasks/controller.ts"
 import { defineController } from './$relay'
 import { createTask } from '$/service/tasks'
 
@@ -13,7 +18,6 @@ export default defineController(() => ({
   post: async ({ body }) => {
     try {
       const task = await createTask(body.label)
-
       return { status: 201, body: task }
     } catch (e) {
       return { status: 500, body: 'Something broke!' }
@@ -22,56 +26,52 @@ export default defineController(() => ({
 }))
 ```
 
-<br />
-
-The default error handler
-
-import Tabs from '@theme/Tabs'
-import TabItem from '@theme/TabItem'
-
 <Tabs
+  groupId='base-framework'
   defaultValue="fastify"
   values={[
-    { label: 'fastify', value: 'fastify' },
-    { label: 'express', value: 'express' },
-  ]
-}>
+    { label: 'Fastify', value: 'fastify' },
+    { label: 'Express', value: 'express' },
+  ]}
+>
 <TabItem value="fastify">
 
-[Fastify onError](https://github.com/fastify/fastify/blob/master/docs/Hooks.md#onerror)
+- [onError Hooks - Fastify](https://www.fastify.io/docs/latest/Reference/Hooks/#onerror)
 
-```ts title="server/service/app.ts"
-import Fastify from 'fastify'
-import server from './$server'
+```ts title="$/service/app.ts"
+import Fastify, { FastifyServerFactory } from 'fastify'
+import { API_BASE_PATH } from '$/service/envValues'
+import server from '$/$server'
 
-const fastify = Fastify()
-
-server(fastify, { basePath: '/api/v1' })
-
-fastify.addHook('onError', (req, reply, err) => {
-  console.error(err.stack)
-})
-fastify.listen(3000)
+export const init = (serverFactory?: FastifyServerFactory) => {
+  const app = Fastify({ serverFactory })
+  app.addHook('onError', (req, reply, err) => {
+    console.error(err.stack)
+  })
+  server(app, { basePath: API_BASE_PATH })
+  return app
+}
 ```
 
 </TabItem>
 <TabItem value="express">
 
-[Express the default error handler](http://expressjs.com/en/guide/error-handling.html#the-default-error-handler)
+- [The default error handler - Express](https://expressjs.com/en/guide/error-handling.html#the-default-error-handler)
 
-```ts title="server/entrypoints/index.ts"
+```ts title="$/service/app.ts"
 import express from 'express'
-import server from './$server'
+import server from '$/$server'
+import { API_BASE_PATH } from '$/service/envValues'
 
-const app = express()
-
-server(app, { basePath: '/api/v1' })
-
-app.use((err, req, res, next) => {
-  console.error(err.stack)
-  res.status(500).send('Something broke!')
-})
-app.listen(3000)
+export const init = () => {
+  const app = express()
+  app.use((err, req, res, next) => {
+    console.error(err.stack)
+    res.status(500).send('Something broke!')
+  })
+  server(app, { basePath: API_BASE_PATH })
+  return app
+}
 ```
 
 </TabItem>
