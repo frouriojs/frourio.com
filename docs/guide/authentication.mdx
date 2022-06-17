@@ -3,42 +3,50 @@ id: authentication
 title: Authentication
 ---
 
-If you add properties to the req object by Hooks, you can use AdditionalRequest to extend the type of the controller.
-
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
+import PackageInstallTabs from '@site/src/components/PackageInstallTabs'
+
+:::note
+Use [AdditionalRequest](/docs/reference/additionalRequest) to share data between hooks and controller.
+:::
+
+## Examples
 
 <Tabs
   defaultValue="fastify-jwt"
   values={[
-    { label: 'fastify-jwt', value: 'fastify-jwt' },
-    { label: 'fastify-auth', value: 'fastify-auth' },
+    { label: '@fastify/jwt', value: 'fastify-jwt' },
+    { label: '@fastify/auth', value: 'fastify-auth' },
     { label: 'express-jwt', value: 'express-jwt' },
     { label: 'express-passport', value: 'express-passport' },
   ]
 }>
 <TabItem value="fastify-jwt">
 
-```sh
-cd server
-npm install fastify-jwt
-```
+- [fastify/fastify\-jwt: JWT utils for Fastify](https://github.com/fastify/fastify-jwt)
 
-```ts title="server/service/app.ts"
-import Fastify from 'fastify'
-import fastifyJwt from 'fastify-jwt'
+<PackageInstallTabs before={['cd server']} deps={['@fastify/jwt']} />
+
+<h3>Register the plugin</h3>
+
+```ts title="$/service/app.ts"
+import Fastify, { FastifyServerFactory } from 'fastify'
+import fastifyJwt from '@fastify/jwt'
+import { API_JWT_SECRET, API_BASE_PATH } from '$/service/envValues'
 import server from './$server'
 
-const fastify = Fastify()
-
-fastify.register(fastifyJwt, { secret: process.env.JWT_SECRET })
-
-server(fastify, { basePath: '/api/v1' })
-
-fastify.listen(3000)
+export const init = (serverFactory?: FastifyServerFactory) => {
+  const app = Fastify({ serverFactory })
+  app.register(fastifyJwt, { secret: API_JWT_SECRET })
+  server(app, { basePath: API_BASE_PATH })
+  return app
+}
 ```
 
-```ts title="server/api/token/controller.ts"
+<h3>Issue tokens</h3>
+
+```ts title="$/api/token/controller.ts"
 import { defineController } from './$relay'
 import { validateUser } from '$/service/user'
 
@@ -50,7 +58,13 @@ export default defineController((fastify) => ({
 }))
 ```
 
-```ts title="server/api/user/hooks.ts"
+<h3>Verify tokens</h3>
+
+Although `@fastify/jwt` extends `FastifyRequest`, it is not reflected to the controller, so you need to prepare it yourself in order to reference it in the controller.
+
+_[Relaying of type extended by plugins](/docs/reference/additionalRequest#relaying-of-type-extended-by-plugins)_
+
+```ts title="$/api/user/hooks.ts"
 import { defineHooks } from './$relay'
 
 export type AdditionalRequest = {
@@ -64,40 +78,42 @@ export default defineHooks(() => ({
 }))
 ```
 
-```ts title="server/api/user/controller.ts"
+```ts title="$/api/user/controller.ts"
 import { defineController } from './$relay'
 import { getUserNameById } from '$/service/user'
 
 export default defineController(() => ({
-  // user was added by AdditionalRequest of ./hooks.ts
   get: async ({ user }) => ({ status: 200, body: await getUserNameById(user.id) }),
+  //            ^^^^ extended by AdditionalRequest
 }))
 ```
-
-[fastify-jwt](https://github.com/fastify/fastify-jwt)
 
 </TabItem>
 <TabItem value="fastify-auth">
 
-```sh
-cd server
-npm install fastify-auth
-```
+- [fastify/fastify\-auth: Run multiple auth functions in Fastify](https://github.com/fastify/fastify-auth)
 
-```ts title="server/service/app.ts"
-import Fastify from 'fastify'
-import fastifyAuth from 'fastify-auth'
+<PackageInstallTabs before={['cd server']} deps={['@fastify/auth']} />
+
+<h3>Register the plugin</h3>
+
+```ts title="$/service/app.ts"
+import Fastify, { FastifyServerFactory } from 'fastify'
+import fastifyAuth from '@fastify/auth'
+import { API_JWT_SECRET, API_BASE_PATH } from '$/service/envValues'
 import server from './$server'
 
-const fastify = Fastify()
-
-fastify.register(fastifyAuth).after(() => {
-  server(fastify, { basePath: '/api/v1' })
-})
-fastify.listen(3000)
+export const init = (serverFactory?: FastifyServerFactory) => {
+  const app = Fastify({ serverFactory })
+  app.register(fastifyAuth)
+  server(app, { basePath: API_BASE_PATH })
+  return app
+}
 ```
 
-```ts title="server/api/user/hooks.ts"
+<h3>Verify tokens</h3>
+
+```ts title="$/api/user/hooks.ts"
 import { defineHooks } from './$relay'
 import { getUserIdByToken } from '$/service/user'
 
@@ -125,7 +141,7 @@ export default defineHooks((fastify) => ({
 }))
 ```
 
-```ts title="server/api/user/controller.ts"
+```ts title="$/api/user/controller.ts"
 import { defineController } from './$relay'
 import { getUserNameById } from '$/service/user'
 
@@ -135,18 +151,20 @@ export default defineController(() => ({
 }))
 ```
 
-[fastify-auth](https://github.com/fastify/fastify-auth)
-
 </TabItem>
 <TabItem value="express-jwt">
 
-```sh
-cd server
-npm install express-jwt
-npm install @types/express-jwt @types/jsonwebtoken --save-dev
-```
+- [auth0/express\-jwt: connect/express middleware that validates a JsonWebToken \(JWT\) and set the req\.user with the attributes](https://github.com/auth0/express-jwt)
 
-```ts title="server/api/token/controller.ts"
+<PackageInstallTabs
+  before={['cd server']}
+  deps={['express-jwt']}
+  devDeps={['@types/express-jwt', '@types/jsonwebtoken']}
+/>
+
+<h3>Issue tokens</h3>
+
+```ts title="$/api/token/controller.ts"
 import jwt from 'jsonwebtoken'
 import { defineController } from './$relay'
 import { validateUser } from '$/service/user'
@@ -159,7 +177,9 @@ export default defineController(() => ({
 }))
 ```
 
-```ts title="server/api/user/hooks.ts"
+<h3>Verify tokens</h3>
+
+```ts title="$/api/user/hooks.ts"
 import jwt from 'express-jwt'
 import { defineHooks } from './$relay'
 
@@ -174,7 +194,7 @@ export default defineHooks(() => ({
 }))
 ```
 
-```ts title="server/api/user/controller.ts"
+```ts title="$/api/user/controller.ts"
 import { defineController } from './$relay'
 import { getUserNameById } from '$/service/user'
 
@@ -184,18 +204,21 @@ export default defineController(() => ({
 }))
 ```
 
-[express-jwt](https://github.com/auth0/express-jwt)
-
 </TabItem>
 <TabItem value="express-passport">
 
-```sh
-cd server
-npm install passport passport-trusted-header
-npm install @types/passport --save-dev
-```
+- [jaredhanson/passport: Simple, unobtrusive authentication for Node\.js\.](https://github.com/jaredhanson/passport)
+- [passport-trusted-header](https://www.passportjs.org/packages/passport-trusted-header/)
 
-```ts title="server/api/user/hooks.ts"
+<PackageInstallTabs
+  before={['cd server']}
+  deps={['passport', 'passport-trusted-header']}
+  devDeps={['@types/passport']}
+/>
+
+<h3>Verify tokens</h3>
+
+```ts title="$/api/user/hooks.ts"
 import passport from 'passport'
 import { defineHooks } from './$relay'
 import { getUserIdByToken } from '$/service/user'
@@ -222,7 +245,7 @@ export default defineHooks(() => ({
 }))
 ```
 
-```ts title="server/api/user/controller.ts"
+```ts title="$/api/user/controller.ts"
 import { defineController } from './$relay'
 import { getUserNameById } from '$/service/user'
 
@@ -231,8 +254,6 @@ export default defineController(() => ({
   get: async ({ user }) => ({ status: 200, body: await getUserNameById(user.id) }),
 }))
 ```
-
-[passport-trusted-header](http://www.passportjs.org/packages/passport-trusted-header/)
 
 </TabItem>
 </Tabs>
