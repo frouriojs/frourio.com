@@ -3,8 +3,11 @@ id: gui
 title: Setup with GUI
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+## 1. Start create-frourio-app GUI
+
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+import BrowserWindow from '@site/src/components/BrowserWindow'
 
 <Tabs
   defaultValue="npx"
@@ -37,21 +40,25 @@ yarn create frourio-app
 </TabItem>
 </Tabs>
 
-<br />
+After executing the command, create-frourio-app starts and [localhost:3000](http://localhost:3000) will be opened in your browser.
 
-Once the above command is installed, the browser will automatically open at [http://localhost:3000](http://localhost:3000)
-
-import BrowserWindow from '@site/src/components/BrowserWindow';
-
-<BrowserWindow url="http://localhost:3000" maxHeight={480}>
-  <img src="/img/gui.png" />
+<BrowserWindow url="http://localhost:3000">
+  <img src="/img/cfa-gui.png" />
 </BrowserWindow>
 
-<br />
+## 2. Generate frourio project
 
-Fill in the blanks and press the Create button at the bottom to start installation again and open Next.js, Nuxt.js or Sapper at [http://localhost:8000](http://localhost:8000) in a new tab.
+After filling in the blanks and selecting the options, press the "Create" button to start generating the frourio project.
 
-If it does not open automatically after installation, close the modal and press "Open http://localhost:8000".
+When generation is complete, [localhost:8000](http://localhost:8000) will be opened in your browser and the client framework you selected will be displayed.
+(If it does not open automatically, open [localhost:8000](http://localhost:8000) manually.)
+
+:::caution
+
+If another application is using port 8000, it will probably fail to start.  
+In that case, the generation is still complete, so quit the application and start frourio again manually, e.g. `npm run dev`.
+
+:::
 
 <Tabs
   defaultValue="next"
@@ -59,27 +66,21 @@ If it does not open automatically after installation, close the modal and press 
     { label: 'Next.js', value: 'next' },
     { label: 'Nuxt.js', value: 'nuxt' },
     { label: 'Sapper', value: 'sapper' },
-  ]
-}>
-<TabItem value="next">
-  <BrowserWindow url="http://localhost:8000">
-    <img src="/img/nextjs.png" />
-  </BrowserWindow>
-</TabItem>
-<TabItem value="nuxt">
-  <BrowserWindow url="http://localhost:8000">
-    <img src="/img/nuxtjs.png" />
-  </BrowserWindow>
-</TabItem>
-<TabItem value="sapper">
-  <BrowserWindow url="http://localhost:8000">
-    <img src="/img/sapper.png" />
-  </BrowserWindow>
-</TabItem>
+  ]}
+>
+  <TabItem value="next">
+    <BrowserWindow url="http://localhost:8000">
+      <img src="/img/cfa-done-next.png" />
+    </BrowserWindow>
+  </TabItem>
+  <TabItem value="nuxt">
+    <BrowserWindow url="http://localhost:8000">
+      <img src="/img/cfa-done-nuxt.png" />
+    </BrowserWindow>
+  </TabItem>
+  <TabItem value="sapper">
+    <BrowserWindow url="http://localhost:8000">
+      <img src="/img/cfa-done-sapper.png" />
+    </BrowserWindow>
+  </TabItem>
 </Tabs>
-
-<br />
-
-:::note
-Setup may fail in some WSL environments. If so, set it up with CUI.
-:::
