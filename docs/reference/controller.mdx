@@ -27,9 +27,9 @@ The return value of defineController must be default exported.
 
 If you want to use the fastify instance in the controller, you can take it as an argument.
 
-## Function `defineController`
+## Function `defineController` {#function-definecontroller}
 
-### Argument Type
+### Argument Type {#definecontoller-argument-type}
 
 <Tabs
   groupId='base-framework'
@@ -55,13 +55,13 @@ If you want to use the fastify instance in the controller, you can take it as an
 </TabItem>
 </Tabs>
 
-### Return Type
+### Return Type {#definecontoller-return-type}
 
 - object `ControllerMethods`
 
-## value of ControllerMethods
+## value of ControllerMethods {#value-of-controllermethods}
 
-### Argument Type
+### Argument Type {#controllermethods-argument-type}
 
 - object `RequestParams` & [`AdditinalRequest`](/docs/reference/additionalRequest)
   - `query` : `query`
@@ -69,7 +69,7 @@ If you want to use the fastify instance in the controller, you can take it as an
   - `params` : URL Params
   - `body` : `reqBody`
 
-### Return Type
+### Return Type {#controllermethods-return-type}
 
 - object `ServerResponse` | promise `Promise<ServerResponse>`
   - `status` : `status`

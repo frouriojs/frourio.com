@@ -3,8 +3,8 @@ id: client
 title: Client Static Hosting
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
 
 It is possible to deploy each client and server separately in Frourio.
 
@@ -47,9 +47,9 @@ It is your choice whether you want to start it with `yarn run start:client` or r
 Below are some examples of typical static hosting services.
 Of course, you can deploy to services not listed here (including your own server), just give it a try!
 
-## GitHub Pages
+## GitHub Pages {#github-pages}
 
-### Step 1. add GitHub Actions Workflow
+### Step 1. add GitHub Actions Workflow {#github-pages-1}
 
 :::info
 
@@ -99,12 +99,12 @@ jobs:
       - uses: actions/cache@v2
         id: client-npm-cache
         with:
-          path: "node_modules"
+          path: 'node_modules'
           key: client-npm-${{ hashFiles('package-lock.json') }}
       - uses: actions/cache@v2
         id: server-npm-cache
         with:
-          path: "server/node_modules"
+          path: 'server/node_modules'
           key: server-npm-${{ hashFiles('server/package-lock.json') }}
       - run: npm install
         if: steps.client-npm-cache.outputs.cache-hit != 'true'
@@ -150,12 +150,12 @@ jobs:
       - uses: actions/cache@v2
         id: client-yarn-cache
         with:
-          path: "node_modules"
+          path: 'node_modules'
           key: client-yarn-${{ hashFiles('yarn.lock') }}
       - uses: actions/cache@v2
         id: server-yarn-cache
         with:
-          path: "server/node_modules"
+          path: 'server/node_modules'
           key: server-yarn-${{ hashFiles('server/yarn.lock') }}
       - run: yarn install
         if: steps.client-yarn-cache.outputs.cache-hit != 'true'
@@ -176,7 +176,7 @@ jobs:
 
 </details>
 
-### Step 2. add Secrets to Repository
+### Step 2. add Secrets to Repository {#github-pages-2}
 
 Add following secrets to your GitHub repository.
 
@@ -188,7 +188,7 @@ Add following secrets to your GitHub repository.
   - If omitted, GitHub repository name will be used. This is because GitHub hosts Pages at `github-username.github.io/repository-name` with default settings.
   - You can also use custom domain. When doing so, it is needed to use that basename. Set this `/` to host your client from root routing.
 
-## Vercel
+## Vercel {#vercel}
 
 <Tabs
   defaultValue="npm"
@@ -214,7 +214,7 @@ Add following secrets to your GitHub repository.
 </TabItem>
 </Tabs>
 
-## Netlify
+## Netlify {#netlify}
 
 <Tabs
   defaultValue="npm"
@@ -228,22 +228,22 @@ Add following secrets to your GitHub repository.
 
 1. Visit [app.netlify.com](https://app.netlify.com) and create new project.
 2. Go to **Site Settings** > **Build & Deploy**  
-  a. Set **Repository** to your remote repository  
-  b. Set **Build command** to `npm run build:client`  
-  c. Set **Publish directory** to `out/`
+   a. Set **Repository** to your remote repository  
+   b. Set **Build command** to `npm run build:client`  
+   c. Set **Publish directory** to `out/`
 3. Go to **Site Settings** > **Build & Deploy** > **Environment**  
-  Add environment variables **`API_ORIGIN`** and **`API_BASE_PATH`**
+   Add environment variables **`API_ORIGIN`** and **`API_BASE_PATH`**
 
 </TabItem>
 <TabItem value="yarn">
 
 1. Visit [app.netlify.com](https://app.netlify.com) and create new project.
 2. Go to **Site Settings** > **Build & Deploy**  
-  a. Set **Repository** to your remote repository  
-  b. Set **Build command** to `yarn run build:client`  
-  c. Set **Publish directory** to `out/`
+   a. Set **Repository** to your remote repository  
+   b. Set **Build command** to `yarn run build:client`  
+   c. Set **Publish directory** to `out/`
 3. Go to **Site Settings** > **Build & Deploy** > **Environment**  
-  Add environment variables **`API_ORIGIN`** and **`API_BASE_PATH`**
+   Add environment variables **`API_ORIGIN`** and **`API_BASE_PATH`**
 
 </TabItem>
 </Tabs>

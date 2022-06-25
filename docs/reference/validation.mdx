@@ -13,7 +13,7 @@ Pull requests to add examples with Express are welcome!
 
 There are two types of validation: automatic validation by Frourio and validation using the class-validator.
 
-## Path Parameter
+## Path Parameter {#path-parameter}
 
 The type can be specified by appending `@string` or `@number` to path parameters.
 Frourio validates only when specified as `number`.
@@ -77,7 +77,7 @@ HTTP/1.1 400 Bad Request
 
 </details>
 
-## URL Query (without class-validator)
+## URL Query (without class-validator) {#url-query}
 
 The URL query is validated when specifined as `number`, `number[]`, `boolean` or `boolean`.
 
@@ -128,7 +128,7 @@ HTTP/1.1 400 Bad Request
 
 </details>
 
-## class-validator
+## class-validator {#class-validator}
 
 To validate request body, request headers and URL query, specify a class with [class-validator](https://github.com/typestack/class-validator) instead of type for reqBody, reqHeaders and query.
 
@@ -189,7 +189,7 @@ HTTP/1.1 401 Unauthorized
 
 </details>
 
-### Passing Validator Options
+### Passing Validator Options {#passing-validator-options}
 
 [class-validator options](https://github.com/typestack/class-validator#passing-options)
 

@@ -23,11 +23,11 @@ Frourio extends `FastifyRequest` or `Request` type with the `AdditionalRequest` 
 If defined in `controller.ts`, it will be reflected in the current endpoints.  
 If defined in `hook.ts`, it will be reflected in the current _and subordinate_ endpoints.
 
-## Bridging Hooks and Controllers
+## Bridging Hooks and Controllers {#bridging-hooks-and-controllers}
 
 To share values between hooks and controllers, extend and set them with `AdditinalRequest`.
 
-### Example
+### Example {#bridging-hooks-and-controllers-example}
 
 ```ts title='controller.ts'
 import { defineController, defineHooks } from './$relay'
@@ -50,13 +50,13 @@ export default defineController(() => ({
 }))
 ```
 
-## Relaying of type extended by plugins
+## Relaying type extended by plugins {#relaying-type-extended-by-plugins}
 
 **The first argument of the Controller method does not reflect extensions by plugins** such as `@fastify/cookie` because it is not a FastifyRequest but created by Frourio.
 
 If you want to access extended content, you must extend it with AdditinalRequest and set the value with hooks.
 
-### Example
+### Example {#relaying-type-extended-by-plugins-example}
 
 ```ts title='controller.ts'
 import { defineController, defineHooks } from './$relay'

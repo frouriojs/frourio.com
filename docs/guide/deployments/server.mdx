@@ -3,8 +3,8 @@ id: server
 title: API Server Hosting
 ---
 
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
 
 It is possible to deploy each client and server separately in Frourio.
 
@@ -45,8 +45,7 @@ yarn run start:server
 Below are some examples.
 Of course, you can deploy in ways not described here, just give it a try!
 
-
-## Dockerfile
+## Dockerfile {#dockerfile}
 
 <Tabs
   defaultValue="npm"
@@ -98,14 +97,14 @@ CMD yarn run build:server && yarn run start:server
 </TabItem>
 </Tabs>
 
-## Dedicated Server (with PM2)
+## Dedicated Server (with PM2) {#dedicated-server}
 
-| question in create-frourio-app | choice               |
+| question in create-frourio-app |        choice        |
 | :----------------------------: | :------------------: |
-| **Daemon process manager**     | **PM2**              |
-| **Serverless service**         | **Dedicated server** |
+|   **Daemon process manager**   |       **PM2**        |
+|     **Serverless service**     | **Dedicated server** |
 
-### Step 1. add GitHub Actions Workflow
+### Step 1. add GitHub Actions Workflow {#dedicated-server-1}
 
 :::info
 
@@ -163,7 +162,7 @@ jobs:
 
 </details>
 
-### Step 2. add Secrets to Repository
+### Step 2. add Secrets to Repository {#dedicated-server-2}
 
 Add following secrets to your GitHub repository.
 
@@ -184,12 +183,12 @@ Add following secrets to your GitHub repository.
   e.g. `/mnt/efs-1/upload`, `/srv/upload`
   - In default sample, it is used to save uploaded icons.
 
-## AWS Lambda (Static Hosting)
+## AWS Lambda (Static Hosting) {#aws-lambda}
 
-| question in create-frourio-app | choice         |
+| question in create-frourio-app |     choice     |
 | :----------------------------: | :------------: |
-| **API server hosting**         | **Serverless** |
-| **Serverless service**         | **AWS Lambda** |
+|     **API server hosting**     | **Serverless** |
+|     **Serverless service**     | **AWS Lambda** |
 
 This is **complicated to configure**, so you should choose the above choices in create-frourio-app to configure it automatically.
 

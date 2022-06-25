@@ -4,13 +4,13 @@ title: About Frourio
 slug: /
 ---
 
-## What is Frourio?
+## What is Frourio? {#what-is-frourio}
 
 Frourio is a CLI tool that allows TypeScript static type checking between client-side and server-side. It generates bridging files and enables type-based development.
 
 For the client side and server side, any combination of the frameworks supported by Frourio can be built.
 
-## Why Frourio?
+## Why Frourio? {#why-frourio}
 
 Even though we were developing the client-side and server-side in TypeScript, it was difficult to statically type-check the API requests between them.
 
