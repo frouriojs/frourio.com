@@ -15,13 +15,12 @@ There are two types of validation: automatic validation by Frourio and validatio
 
 ## Path Parameter {#path-parameter}
 
-The type can be specified by appending `@string` or `@number` to path parameters.
-Frourio validates only when specified as `number`.
+The type can be specified by appending `@string` or `@number` to path parameters, and the default in frourio is `string`.
 
-The default type in Frourio is `string`.
+When the type is specified as `number`, frourio automatically converts string to number and validates that it is not NaN.
 
 :::caution
-**When the type is not specified, There is a difference** in the behavior of Frourio and Aspida.
+**When the type is not specified, there is a difference** in the behavior of Frourio and Aspida.
 
 Frourio interprets the type as `string` as mentioned above, but Aspida interprets it as `string | number`.
 This is due to the information loss that occurs as path parameters are passed through an URL.
@@ -77,9 +76,22 @@ HTTP/1.1 400 Bad Request
 
 </details>
 
-## URL Query (without class-validator) {#url-query}
+## URL Query {#url-query}
 
-The URL query is validated when specifined as `number`, `number[]`, `boolean` or `boolean`.
+When the URL query specified as ...
+
+- required
+  - Frourio automatically validates that it exists.
+  - If it isn't and it is specified as array, frourio sets an empty array `[]`.
+- `number`
+  - Frourio automatically converts string to number and validates that it is not NaN.
+- `boolean`
+  - Frourio automatically converts string (`'true'` or `'false'`) to boolean.
+
+<span class="badge badge--secondary">Depricated</span>
+
+And if its key ends in square brackets (e.g. `foo[]`), frourio automatically removes the brackets (e.g.
+`foo`).
 
 <details>
 <summary>Example</summary>
@@ -127,6 +139,14 @@ HTTP/1.1 400 Bad Request
 ```
 
 </details>
+
+## Request body {#request-body}
+
+When the `reqFormat` is specified as `FormData`, frourio automatically converts and validates it.
+
+1. If it is array, converts it to array (and if it doesn't exists, set an empty array).
+2. Extracts file or value.
+3. If some values are specified as optional and they are empty, remove them.
 
 ## class-validator {#class-validator}
 
