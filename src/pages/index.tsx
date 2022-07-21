@@ -1,22 +1,22 @@
-import React from 'react'
-import clsx from 'clsx'
-import Layout from '@theme/Layout'
-import Link from '@docusaurus/Link'
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
-import useBaseUrl from '@docusaurus/useBaseUrl'
-import GitHubButton from 'react-github-btn'
-import styles from './styles.module.css'
-import MovingBoxes from '../components/MovingBoxes'
-import HowtoSetup from '../components/HowtoSetup'
-import CodeBlocks from '../components/CodeBlocks'
+import React from 'react';
+import clsx from 'clsx';
+import Layout from '@theme/Layout';
+import Link from '@docusaurus/Link';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import GitHubButton from 'react-github-btn';
+import styles from './styles.module.css';
+import MovingBoxes from '../components/MovingBoxes';
+import HowtoSetup from '../components/HowtoSetup';
+import CodeBlocks from '../components/CodeBlocks';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const Chart = 'window' in global ? require('react-apexcharts').default : null
+const Chart = 'window' in global ? require('react-apexcharts').default : null;
 
 const filterByWindowWidth = (array: (number | string)[]) => {
-  if ('window' in global && window.innerWidth >= 600) return array
-  return array.slice(0, 3)
-}
+  if ('window' in global && window.innerWidth >= 600) return array;
+  return array.slice(0, 3);
+};
 
 const benchmarks: { category: string; data: number; color: string }[] = [
   {
@@ -49,17 +49,17 @@ const benchmarks: { category: string; data: number; color: string }[] = [
     data: 7087.5,
     color: '#999',
   },
-].sort((a, b) => b.data - a.data)
+].sort((a, b) => b.data - a.data);
 
 const chartSeries = [
   {
     name: '2021-06-01',
     data: filterByWindowWidth(benchmarks.map((val) => val.data)),
   },
-]
+];
 
-const colors = filterByWindowWidth(benchmarks.map((val) => val.color))
-const categories = filterByWindowWidth(benchmarks.map((val) => val.category))
+const colors = filterByWindowWidth(benchmarks.map((val) => val.color));
+const categories = filterByWindowWidth(benchmarks.map((val) => val.category));
 
 const chartOptions = {
   chart: {
@@ -115,11 +115,11 @@ const chartOptions = {
       },
     },
   },
-}
+};
 
 function Home() {
-  const context = useDocusaurusContext()
-  const { siteConfig } = context
+  const context = useDocusaurusContext();
+  const { siteConfig } = context;
   return (
     <Layout
       title={siteConfig.tagline}
@@ -238,7 +238,7 @@ function Home() {
         </section>
       </main>
     </Layout>
-  )
+  );
 }
 
-export default Home
+export default Home;

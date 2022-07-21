@@ -17,27 +17,11 @@ module.exports = {
     },
   ],
   tutorial: [
-    'tutorials/introduction',
-    {
-      Controller: [
-        'tutorials/controller/create-controller',
-        'tutorials/controller/get-tasks',
-        'tutorials/controller/get-task-by-id',
-        'tutorials/controller/post-tasks',
-        'tutorials/controller/posting-formdata',
-      ],
-      Hooks: [
-        'tutorials/hooks/lifecycle',
-        'tutorials/hooks/minimum-hooks',
-        'tutorials/hooks/directory-level-hooks',
-        'tutorials/hooks/controller-level-hooks',
-      ],
-      Validation: [
-        'tutorials/validation/path-parameter',
-        'tutorials/validation/url-query',
-        'tutorials/validation/json-body',
-        'tutorials/validation/custom-validation',
-      ],
-    },
+    'tutorials/start-tutorial',
+    'tutorials/why-frourio',
+    'tutorials/preparation',
+    'tutorials/aspida',
+    'tutorials/frourio',
+    'tutorials/finish-tutorial',
   ],
-}
+};
