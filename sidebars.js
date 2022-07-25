@@ -17,11 +17,11 @@ module.exports = {
     },
   ],
   tutorial: [
-    'tutorials/start-tutorial',
+    'tutorials/welcome',
     'tutorials/why-frourio',
     'tutorials/preparation',
     'tutorials/aspida',
     'tutorials/frourio',
-    'tutorials/finish-tutorial',
+    'tutorials/all-done',
   ],
 };
