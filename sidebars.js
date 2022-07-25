@@ -13,7 +13,8 @@ module.exports = {
         'reference/controller',
         'reference/hooks',
         'reference/additionalRequest',
-        'reference/validation'
+        'reference/validation',
+        'reference/cli'
       ],
     },
     {
