@@ -1,0 +1,156 @@
+---
+id: frourio
+title: Introduce Frourio
+---
+
+import BrowserWindow from '@site/src/components/BrowserWindow';
+
+We made **the client type-safe** on the previous page.
+
+However, there are still parts of this project that are **not type-safe**. What is it?
+
+It is **the server**.
+
+So, let's install frourio into the server and build a type-safe **'One TypeScript'**.
+
+## 1. Set Up Frourio Server {#set-up-frourio-server}
+
+### 1.1. Move API Specification {#move-api-specification}
+
+In frourio, the server is implemented as an extension of the previous api definition.
+
+Therefore, first, migrate the api specification to the server directory.
+
+```sh title=Terminal
+cd server
+yarn add -D frourio aspida
+mkdir api
+yarn frourio --watch
+```
+
+In another terminal session,
+
+```sh title=Terminal
+mkdir api/hi
+```
+
+Next, copy the API type definitions in src/api to server/api.
+
+```sh title=Terminal
+cp ../src/api/index.ts api
+cp ../src/api/hi/index.ts api/hi
+```
+
+### 1.2. Implement Controllers {#implement-controllers}
+
+By default, body is specified as string, and you can see the type error in `api/controller.ts`.
+
+Then, specify `{ hello: 'world' }` to the body, and the type error should be resolved.
+
+```diff title=server/api/controller.ts
+ import {defineController} from './$relay';
+
+ export default defineController(() => ({
+-  get: () => ({ status: 200, body: 'Hello' }),
++  get: () => ({ status: 200, body: { hello: 'world' } }),
+ }));
+```
+
+Also, the body of `api/hi` should be replaced as `{ hello: 'how are you?' }`.
+
+### 1.3. Start Frourio Server {#start-frourio-server}
+
+You can see $server.ts has been generated in the server directory.
+
+Modify index.ts to start the server using this.
+
+```diff title=server/index.ts
+ import Fastify from 'fastify';
+ import FastifyCors from '@fastify/cors';
++import server from './$server';
+
+ const fastify = Fastify();
+
+ fastify.register(FastifyCors, {});
+
+-fastify.get('/', (req, reply) => {
+-  reply.send({ hello: 'world' });
+-});
+-
+-fastify.get('/hi', (req, reply) => {
+-  reply.send({ hello: 'how are you?' });
+-});
++server(fastify);
+
+ fastify.listen({ port: 8888, host: '0.0.0.0' });
+```
+
+It's time to start the frourio server!
+
+```sh title=Terminal
+yarn ts-node index.ts
+```
+
+Just to be sure, confirm that the server works as well as it did before.
+
+```sh title=Terminal
+curl http://localhost:8888
+curl http://localhost:8888/hi
+```
+
+```js title='Browser Console'
+const response = await fetch('http://localhost:8888');
+await response.json();
+```
+
+### 1.4. Modify Client {#modify-client}
+
+Since the api directory has been moved, the paths referenced by the client should also be changed.
+
+```diff title=aspida.config.js
+ module.exports = {
+-  input: "src/api",
++  input: "server/api",
+   baseURL: "http://localhost:8888",
+ };
+```
+
+```diff title=src/apiClient.ts
+-import $api from "./api/$api";
++import $api from "../server/api/$api";
+```
+
+In addition, regenerate the API definition file.
+
+```sh title='Terminal'
+yarn aspida
+```
+
+### 1.5. Final Result {#final-result}
+
+It looks the same as the previous page.
+
+However, there is a big difference that **'One TypeScript' is realized** inside.
+
+---
+
+_How are you?_
+
+<BrowserWindow url="http://localhost:3000">
+  <img src="/img/tutorial/cra-how-are-you.png" />
+</BrowserWindow>
+
+:::note Can't you get it?
+
+Check the following.
+
+1. Did you started server? (`yarn ts-node index.ts` in `frourio-tutorial/server` directory)
+2. Did you started client? (`yarn start` in `frourio-tutorial` directory)
+3. Did you genearted server file? (`yarn frourio` in `frourio-tutorial/server` directory)
+4. Did you generated api file? (`yarn aspida` in `frourio-tutorial` directory)
+
+:::
+
+## 2. Other Frourio Features {#other-frourio-features}
+
+For more information on frourio features that were not covered in the tutorial, such as Hooks and Validation, please refer to [Docs](/docs).
