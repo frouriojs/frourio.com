@@ -3,8 +3,13 @@ id: cui
 title: Setup with CUI
 ---
 
+import BrowserOnly from '@docusaurus/BrowserOnly'
 import Tabs from '@theme/Tabs'
 import TabItem from '@theme/TabItem'
+import BrowserWindow from '@site/src/components/BrowserWindow'
+import CFA from '@site/src/components/CFA'
+
+## Generate frourio project {#generate-frourio-project}
 
 <Tabs
   defaultValue="npx"
@@ -16,96 +21,53 @@ import TabItem from '@theme/TabItem'
 }>
 <TabItem value="npx">
 
-```sh title="Terminal"
+```sh title='Shell'
 npx create-frourio-app --answers '{"dir":"my-project"}'
 ```
 
-```sh title="Command prompt"
-npx create-frourio-app --answers "{\\\"dir\\\":\\\"my-project\\\"}"
-```
-
-```powershell title="PowerShell"
-npx create-frourio-app --answers '{\"dir\":\"my-project\"}'
+```sh title='Command Prompt'
+npx create-frourio-app --answers ^"{\^"dir\^":\^"my-project\^"}^"
 ```
 
 </TabItem>
 <TabItem value="npm">
 
-```sh title="Terminal"
-# v6
+```sh title='Shell'
 npm init frourio-app --answers '{"dir":"my-project"}'
-
-# v7 over
-npm init frourio-app -- --answers '{"dir":"my-project"}'
 ```
 
-```sh title="Command prompt"
-# v6
-npm init frourio-app --answers "{\\\"dir\\\":\\\"my-project\\\"}"
-
-# v7 over
-npm init frourio-app -- --answers "{\\\"dir\\\":\\\"my-project\\\"}"
-```
-
-```powershell title="PowerShell"
-# v6
-npm init frourio-app --answers '{\"dir\":\"my-project\"}'
-
-# v7 over
-npm init frourio-app -- --answers '{\"dir\":\"my-project\"}'
+```sh title='Command Prompt'
+npm init frourio-app --answers ^"{\^"dir\^":\^"my-project\^"}^"
 ```
 
 </TabItem>
 <TabItem value="yarn">
 
-```sh title="Terminal"
+```sh title='Shell'
 yarn create frourio-app --answers '{"dir":"my-project"}'
 ```
 
-```sh title="Command prompt"
-yarn create frourio-app --answers "{\\\"dir\\\":\\\"my-project\\\"}"
-```
-
-```powershell title="PowerShell"
-yarn create frourio-app --answers '{\"dir\":\"my-project\"}'
+```sh title='Command Prompt'
+yarn create frourio-app --answers ^"{\^"dir\^":\^"my-project\^"}^"
 ```
 
 </TabItem>
 </Tabs>
 
-<br />
+With the `--answers` option, create-frourio-app starts in CUI mode.
 
-**answers JSON parameters**
+The json passed to the answers option can be generated with the following [Command Generator](#command-generator).
+Refer to [the internal code](https://github.com/frouriojs/create-frourio-app/blob/main/server/common/prompts.ts) for json specifications as needed.
 
-| Name       | Type                                | Default                 | Description                   | When                                       |
-| ---------- | ----------------------------------- | ----------------------- | ----------------------------- | ------------------------------------------ |
-| dir        | string                              |                         | Directory name (create new)   |                                            |
-| server     | "fastify" \| "express"              | "fastify"               | Server engine                 |                                            |
-| client     | "next" \| "nuxt" \| "sapper"        | "next"                  | Client framework              |                                            |
-| building   | "static" \| "basic"                 | "static"                | Building mode                 | client === "next" \|\| client === 'sapper' |
-| mode       | "spa" \| "universal"                | "spa"                   | Rendering mode                | client === "nuxt"                          |
-| target     | "static" \| "server"                | "static"                | Deployment target             | client === "nuxt"                          |
-| aspida     | "axios" \| "fetch"                  | "axios"                 | HTTP client of aspida         |                                            |
-| reactHooks | "swr" \| "query" \| "none"          | "swr"                   | React Hooks for data fetching |                                            |
-| daemon     | "none" \| "pm2"                     | "none"                  | Daemon process manager        |                                            |
-| orm        | "prisma" \| "typeorm" \| "none"     | "prisma"                | O/R mapping tool              |                                            |
-| prismaDB   | "sqlite" \| "mysql" \| "postgresql" | "sqlite"                | DB type of Prisma             | orm === "prisma"                           |
-| typeormDB  | "mysql" \| "postgres"               | "mysql"                 | DB type of TypeORM            | orm === "typeorm"                          |
-| dbHost     | string                              | "localhost"             | HOST of DB                    | orm !== "none" && prismaDB !== "sqlite"    |
-| dbPort     | number                              | Default port of DB type | PORT of DB                    | orm !== "none" && prismaDB !== "sqlite"    |
-| dbUser     | string                              |                         | USER of DB                    | orm !== "none" && prismaDB !== "sqlite"    |
-| dbPass     | string                              |                         | PASS of DB                    | orm !== "none" && prismaDB !== "sqlite"    |
-| dbName     | string                              |                         | NAME of DB                    | orm !== "none" && prismaDB !== "sqlite"    |
-| dbFile     | string                              | "./dev.db"              | DB file path of SQLite        | orm === "prisma" && prismaDB === "sqlite"  |
-| testing    | "jest" \| "node"                    | "jest"                  | Testing framework             |                                            |
-| pm         | "yarn" \| "npm"                     | "yarn"                  | Package manager               |                                            |
-| ci         | "actions" \| "none"                 | "actions"               | CI config                     |                                            |
+When generation is complete, [localhost:8000](http://localhost:8000) will be opened in your browser and the client framework you selected will be displayed.
+(If it does not open automatically, open [localhost:8000](http://localhost:8000) manually.)
 
-<br />
+:::caution
 
-Once the above command is installed, the browser will automatically open at [http://localhost:8000](http://localhost:8000)
+If another application is using port 8000, it will probably fail to start.  
+In that case, the generation is still complete, so quit the application and start frourio again manually, e.g. `npm run dev`.
 
-import BrowserWindow from '@site/src/components/BrowserWindow'
+:::
 
 <Tabs
   defaultValue="next"
@@ -117,17 +79,21 @@ import BrowserWindow from '@site/src/components/BrowserWindow'
 >
   <TabItem value="next">
     <BrowserWindow url="http://localhost:8000">
-      <img src="/img/nextjs.png" />
+      <img src="/img/cfa-done-next.png" />
     </BrowserWindow>
   </TabItem>
   <TabItem value="nuxt">
     <BrowserWindow url="http://localhost:8000">
-      <img src="/img/nuxtjs.png" />
+      <img src="/img/cfa-done-nuxt.png" />
     </BrowserWindow>
   </TabItem>
   <TabItem value="sapper">
     <BrowserWindow url="http://localhost:8000">
-      <img src="/img/sapper.png" />
+      <img src="/img/cfa-done-sapper.png" />
     </BrowserWindow>
   </TabItem>
 </Tabs>
+
+## Command Generator {#command-generator}
+
+<CFA />

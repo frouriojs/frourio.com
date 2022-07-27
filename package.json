@@ -21,6 +21,7 @@
     "@mdx-js/react": "^1.6.22",
     "apexcharts": "^3.33.0",
     "clsx": "^1.1.1",
+    "create-frourio-app": "^0.33.1",
     "markdown-it": "^12.3.2",
     "moment": "^2.29.1",
     "react": "^17.0.2",
