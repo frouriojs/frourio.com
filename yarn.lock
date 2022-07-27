@@ -4160,10 +4160,10 @@ cosmiconfig@^7.0.1:
     path-type "^4.0.0"
     yaml "^1.10.0"
 
-create-frourio-app@^0.33.1:
-  version "0.33.1"
-  resolved "https://registry.yarnpkg.com/create-frourio-app/-/create-frourio-app-0.33.1.tgz#056ede89865135f5913b3097eabc53f8b5eba3e6"
-  integrity sha512-3dO4yf1OlPanuMF7QTHbUROJ/phh4MyJ0q/q7EO7hiGJEQN5rlKRN034p0//Lic8sz0CYME7OEsTUxephKVLOw==
+create-frourio-app@^0.33.3:
+  version "0.33.3"
+  resolved "https://registry.yarnpkg.com/create-frourio-app/-/create-frourio-app-0.33.3.tgz#ca0b44e9b2e236239a06928fed59e24199da7972"
+  integrity sha512-aS78cgs9DtCCfPfrIlIMFR3DWGe+vXsDdBB7hBw6X4Kro+I+yndCY7asfzopRxlWxLL7ZoTO8SArwGeyHeWMnA==
   dependencies:
     "@aspida/axios" "^1.10.3"
     "@aspida/swr" "^1.10.3"
@@ -4185,8 +4185,8 @@ create-frourio-app@^0.33.1:
     open "^8.4.0"
     pg "^8.7.3"
     portfinder "^1.0.28"
-    react "^17.0.2"
-    react-dom "^17.0.2"
+    react "^18.2.0"
+    react-dom "^18.2.0"
     react-flip-toolkit "^7.0.13"
     react-markdown "^8.0.0"
     react-query "^3.34.16"
@@ -4363,6 +4363,9 @@ csstype@^3.0.2:
   version "3.0.4"
   resolved "https://registry.yarnpkg.com/csstype/-/csstype-3.0.4.tgz#b156d7be03b84ff425c9a0a4b1e5f4da9c5ca888"
   integrity sha512-xc8DUsCLmjvCfoD7LTGE0ou2MIWLx0K9RCZwSHMOdynqRsP4MtUcLeqh1HcQ2dInwDTqn+3CE0/FZh1et+p4jA==
+
+custom-webpack-config@./plugins/custom-webpack-config:
+  version "0.0.0"
 
 debug@2.6.9, debug@^2.6.0:
   version "2.6.9"
@@ -8836,7 +8839,7 @@ react-dev-utils@^12.0.0:
     strip-ansi "^6.0.1"
     text-table "^0.2.0"
 
-react-dom@^17.0.2:
+react-dom@^17.0.2, react-dom@^18.2.0:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react-dom/-/react-dom-17.0.2.tgz#ecffb6845e3ad8dbfcdc498f0d0a939736502c23"
   integrity sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==
@@ -8992,7 +8995,7 @@ react-textarea-autosize@^8.3.2:
     use-composed-ref "^1.0.0"
     use-latest "^1.0.0"
 
-react@^17.0.2:
+react@^17.0.2, react@^18.2.0:
   version "17.0.2"
   resolved "https://registry.yarnpkg.com/react/-/react-17.0.2.tgz#d0b5cc516d29eb3eee383f75b62864cfb6800037"
   integrity sha512-gnhPt75i/dq/z3/6q/0asP78D0u592D5L1pd7M8P+dck6Fu/jJeL6iVVK23fptSUZj8Vjf++7wXA8UNclGQcbA==
