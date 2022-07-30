@@ -1,0 +1,86 @@
+---
+id: gui
+title: Setup with GUI
+---
+
+## 1. Start create-frourio-app GUI {#start-cfa-gui}
+
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+import BrowserWindow from '@site/src/components/BrowserWindow'
+
+<Tabs
+  defaultValue="npx"
+  values={[
+    { label: 'npx', value: 'npx' },
+    { label: 'npm', value: 'npm' },
+    { label: 'yarn', value: 'yarn' },
+  ]
+}>
+<TabItem value="npx">
+
+```sh
+npx create-frourio-app
+```
+
+</TabItem>
+<TabItem value="npm">
+
+```sh
+npm init frourio-app
+```
+
+</TabItem>
+<TabItem value="yarn">
+
+```sh
+yarn create frourio-app
+```
+
+</TabItem>
+</Tabs>
+
+After executing the command, create-frourio-app starts and [localhost:3000](http://localhost:3000) will be opened in your browser.
+
+<BrowserWindow url="http://localhost:3000">
+  <img src="/img/cfa-gui.png" />
+</BrowserWindow>
+
+## 2. Generate frourio project {#2-generate-frourio-project}
+
+After filling in the blanks and selecting the options, press the "Create" button to start generating the frourio project.
+
+When generation is complete, [localhost:8000](http://localhost:8000) will be opened in your browser and the client framework you selected will be displayed.
+(If it does not open automatically, open [localhost:8000](http://localhost:8000) manually.)
+
+:::caution
+
+If another application is using port 8000, it will probably fail to start.  
+In that case, the generation is still complete, so quit the application and start frourio again manually, e.g. `npm run dev`.
+
+:::
+
+<Tabs
+  defaultValue="next"
+  values={[
+    { label: 'Next.js', value: 'next' },
+    { label: 'Nuxt.js', value: 'nuxt' },
+    { label: 'Sapper', value: 'sapper' },
+  ]}
+>
+  <TabItem value="next">
+    <BrowserWindow url="http://localhost:8000">
+      <img src="/img/cfa-done-next.png" />
+    </BrowserWindow>
+  </TabItem>
+  <TabItem value="nuxt">
+    <BrowserWindow url="http://localhost:8000">
+      <img src="/img/cfa-done-nuxt.png" />
+    </BrowserWindow>
+  </TabItem>
+  <TabItem value="sapper">
+    <BrowserWindow url="http://localhost:8000">
+      <img src="/img/cfa-done-sapper.png" />
+    </BrowserWindow>
+  </TabItem>
+</Tabs>

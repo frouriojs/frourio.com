@@ -11,16 +11,24 @@ title: Pathpida with Next.js
 import GitHubButton from 'react-github-btn'
 
 <div align="center">
-  <GitHubButton href="https://github.com/aspida/pathpida" data-icon="octicon-star" data-size="large" data-show-count={true} aria-label="Star aspida/pathpida on GitHub">Star</GitHubButton>
+  <GitHubButton
+    href="https://github.com/aspida/pathpida"
+    data-icon="octicon-star"
+    data-size="large"
+    data-show-count={true}
+    aria-label="Star aspida/pathpida on GitHub"
+  >
+    Star
+  </GitHubButton>
 </div>
 
-## Features
+## Features {#features}
 
 - **Type safety**. Automatically generate type definition files for manipulating internal links in Next.js.
 - **Zero configration**. No configuration required, can be used immediately after installation.
 - **Zero runtime**. Lightweight because runtime code is not included in the bundle.
 
-## Install
+## Install {#install}
 
 - Using [npm](https://www.npmjs.com/):
 
@@ -34,7 +42,7 @@ import GitHubButton from 'react-github-btn'
   $ yarn add pathpida --dev
   ```
 
-## Setup
+## Setup {#setup}
 
 `package.json`
 
@@ -48,7 +56,7 @@ import GitHubButton from 'react-github-btn'
 }
 ```
 
-## Usage
+## Usage {#usage}
 
 ```
 pages/index.tsx
@@ -74,14 +82,16 @@ export default () => {
     router.push(pagesPath.post._pid(1).$url())
   }, [])
 
-  return <>
-    <Link href={pagesPath.post._slug(['a', 'b', 'c']).$url()} />
-    <div onclick={onclick} />
-  </>
+  return (
+    <>
+      <Link href={pagesPath.post._slug(['a', 'b', 'c']).$url()} />
+      <div onclick={onclick} />
+    </>
+  )
 }
 ```
 
-## Define query
+## Define query {#define-query}
 
 `pages/post/create.tsx`
 
@@ -111,7 +121,7 @@ export default () => <div />
 import Link from 'next/link'
 import { pagesPath } from '~/utils/$path'
 
-console.log(pagesPath.post.create.$url({ query: { userId: 1 }})) // { pathname: '/post/create', query: { userId: 1 }}
+console.log(pagesPath.post.create.$url({ query: { userId: 1 } })) // { pathname: '/post/create', query: { userId: 1 }}
 console.log(pagesPath.post.create.$url()) // type error
 console.log(pagesPath.post._pid(1).$url()) // { pathname: '/post/[pid]', query: { pid: 1 }}
 console.log(pagesPath.post._pid(1).$url({ query: { limit: 10 }, hash: 'sample' })) // { pathname: '/post/[pid]', query: { pid: 1, limit: 10 }, hash: 'sample' }
@@ -121,14 +131,16 @@ export default () => {
     router.push(pagesPath.post._pid(1).$url())
   }, [])
 
-  return <>
-    <Link href={pagesPath.post._slug(['a', 'b', 'c']).$url()} />
-    <div onclick={onclick} />
-  </>
+  return (
+    <>
+      <Link href={pagesPath.post._slug(['a', 'b', 'c']).$url()} />
+      <div onclick={onclick} />
+    </>
+  )
 }
 ```
 
-## Generate static files path
+## Generate static files path {#static-path}
 
 `package.json`
 
@@ -163,9 +175,11 @@ import { pagesPath, staticPath } from '~/utils/$path'
 console.log(staticPath.aa_json) // /aa.json
 
 export default () => {
-  return <>
-    <Link href={pagesPath.post._slug(['a', 'b', 'c']).$url()} />
-    <img src={staticPath.bb.cc_png} />
-  </>
+  return (
+    <>
+      <Link href={pagesPath.post._slug(['a', 'b', 'c']).$url()} />
+      <img src={staticPath.bb.cc_png} />
+    </>
+  )
 }
 ```

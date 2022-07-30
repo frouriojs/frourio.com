@@ -8,6 +8,7 @@ module.exports = {
   trailingSlash: false,
   organizationName: 'frouriojs', // Usually your GitHub org/user name.
   projectName: 'frourio.com', // Usually your repo name.
+  plugins: ['custom-webpack-config'],
   themeConfig: {
     image: 'img/ogp.png',
     metadata: [

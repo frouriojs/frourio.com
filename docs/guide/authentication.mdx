@@ -1,0 +1,259 @@
+---
+id: authentication
+title: Authentication
+---
+
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+import PackageInstallTabs from '@site/src/components/PackageInstallTabs'
+
+:::info
+Use [AdditionalRequest](/docs/reference/additionalRequest) to share data between hooks and controller.
+:::
+
+## Examples {#examples}
+
+<Tabs
+  defaultValue="fastify-jwt"
+  values={[
+    { label: '@fastify/jwt', value: 'fastify-jwt' },
+    { label: '@fastify/auth', value: 'fastify-auth' },
+    { label: 'express-jwt', value: 'express-jwt' },
+    { label: 'express-passport', value: 'express-passport' },
+  ]
+}>
+<TabItem value="fastify-jwt">
+
+- [fastify/fastify\-jwt: JWT utils for Fastify](https://github.com/fastify/fastify-jwt)
+
+<PackageInstallTabs before={['cd server']} deps={['@fastify/jwt']} />
+
+<h3>Register the plugin</h3>
+
+```ts title="$/service/app.ts"
+import Fastify, { FastifyServerFactory } from 'fastify'
+import fastifyJwt from '@fastify/jwt'
+import { API_JWT_SECRET, API_BASE_PATH } from '$/service/envValues'
+import server from './$server'
+
+export const init = (serverFactory?: FastifyServerFactory) => {
+  const app = Fastify({ serverFactory })
+  app.register(fastifyJwt, { secret: API_JWT_SECRET })
+  server(app, { basePath: API_BASE_PATH })
+  return app
+}
+```
+
+<h3>Issue tokens</h3>
+
+```ts title="$/api/token/controller.ts"
+import { defineController } from './$relay'
+import { validateUser } from '$/service/user'
+
+export default defineController((fastify) => ({
+  post: ({ body }) =>
+    validateUser(body.id, body.pass)
+      ? { status: 201, body: { token: fastify.jwt.sign({ id: body.id }) } }
+      : { status: 401 },
+}))
+```
+
+<h3>Verify tokens</h3>
+
+Although `@fastify/jwt` extends `FastifyRequest`, it is not reflected to the controller, so you need to prepare it yourself in order to reference it in the controller.
+
+_[Relaying of type extended by plugins](/docs/reference/additionalRequest#relaying-of-type-extended-by-plugins)_
+
+```ts title="$/api/user/hooks.ts"
+import { defineHooks } from './$relay'
+
+export type AdditionalRequest = {
+  user: {
+    id: string
+  }
+}
+
+export default defineHooks(() => ({
+  onRequest: (request, reply) => request.jwtVerify().catch((err) => reply.send(err)),
+}))
+```
+
+```ts title="$/api/user/controller.ts"
+import { defineController } from './$relay'
+import { getUserNameById } from '$/service/user'
+
+export default defineController(() => ({
+  get: async ({ user }) => ({ status: 200, body: await getUserNameById(user.id) }),
+  //            ^^^^ extended by AdditionalRequest
+}))
+```
+
+</TabItem>
+<TabItem value="fastify-auth">
+
+- [fastify/fastify\-auth: Run multiple auth functions in Fastify](https://github.com/fastify/fastify-auth)
+
+<PackageInstallTabs before={['cd server']} deps={['@fastify/auth']} />
+
+<h3>Register the plugin</h3>
+
+```ts title="$/service/app.ts"
+import Fastify, { FastifyServerFactory } from 'fastify'
+import fastifyAuth from '@fastify/auth'
+import { API_JWT_SECRET, API_BASE_PATH } from '$/service/envValues'
+import server from './$server'
+
+export const init = (serverFactory?: FastifyServerFactory) => {
+  const app = Fastify({ serverFactory })
+  app.register(fastifyAuth)
+  server(app, { basePath: API_BASE_PATH })
+  return app
+}
+```
+
+<h3>Verify tokens</h3>
+
+```ts title="$/api/user/hooks.ts"
+import { defineHooks } from './$relay'
+import { getUserIdByToken } from '$/service/user'
+
+export type AdditionalRequest = {
+  user: {
+    id: string
+  }
+}
+
+export default defineHooks((fastify) => ({
+  preHandler: fastify.auth([
+    (req, _, done) => {
+      const user = typeof req.headers.token === 'string' && getUserIdByToken(req.headers.token)
+
+      if (user) {
+        // eslint-disable-next-line
+        // @ts-expect-error
+        req.user = user
+        done()
+      } else {
+        done(new Error('Unauthorized'))
+      }
+    },
+  ]),
+}))
+```
+
+```ts title="$/api/user/controller.ts"
+import { defineController } from './$relay'
+import { getUserNameById } from '$/service/user'
+
+export default defineController(() => ({
+  // user was added by AdditionalRequest of ./hooks.ts
+  get: async ({ user }) => ({ status: 200, body: await getUserNameById(user.id) }),
+}))
+```
+
+</TabItem>
+<TabItem value="express-jwt">
+
+- [auth0/express\-jwt: connect/express middleware that validates a JsonWebToken \(JWT\) and set the req\.user with the attributes](https://github.com/auth0/express-jwt)
+
+<PackageInstallTabs
+  before={['cd server']}
+  deps={['express-jwt']}
+  devDeps={['@types/express-jwt', '@types/jsonwebtoken']}
+/>
+
+<h3>Issue tokens</h3>
+
+```ts title="$/api/token/controller.ts"
+import jwt from 'jsonwebtoken'
+import { defineController } from './$relay'
+import { validateUser } from '$/service/user'
+
+export default defineController(() => ({
+  post: ({ body }) =>
+    validateUser(body.id, body.pass)
+      ? { status: 201, body: { token: jwt.sign({ id: body.id }, process.env.JWT_SECRET) } }
+      : { status: 401 },
+}))
+```
+
+<h3>Verify tokens</h3>
+
+```ts title="$/api/user/hooks.ts"
+import jwt from 'express-jwt'
+import { defineHooks } from './$relay'
+
+export type AdditionalRequest = {
+  user: {
+    id: string
+  }
+}
+
+export default defineHooks(() => ({
+  onRequest: jwt({ secret: process.env.JWT_SECRET, algorithms: ['HS256'] }),
+}))
+```
+
+```ts title="$/api/user/controller.ts"
+import { defineController } from './$relay'
+import { getUserNameById } from '$/service/user'
+
+export default defineController(() => ({
+  // user was added by AdditionalRequest of ./hooks.ts
+  get: async ({ user }) => ({ status: 200, body: await getUserNameById(user.id) }),
+}))
+```
+
+</TabItem>
+<TabItem value="express-passport">
+
+- [jaredhanson/passport: Simple, unobtrusive authentication for Node\.js\.](https://github.com/jaredhanson/passport)
+- [passport-trusted-header](https://www.passportjs.org/packages/passport-trusted-header/)
+
+<PackageInstallTabs
+  before={['cd server']}
+  deps={['passport', 'passport-trusted-header']}
+  devDeps={['@types/passport']}
+/>
+
+<h3>Verify tokens</h3>
+
+```ts title="$/api/user/hooks.ts"
+import passport from 'passport'
+import { defineHooks } from './$relay'
+import { getUserIdByToken } from '$/service/user'
+
+export type AdditionalRequest = {
+  user: {
+    id: string
+  }
+}
+
+passport.use(
+  // eslint-disable-next-line
+  new (require('passport-trusted-header').Strategy)(
+    { headers: ['token'] },
+    // eslint-disable-next-line
+    (headers: { token: string }, done: Function) => {
+      done(null, getUserIdByToken(headers.token))
+    }
+  )
+)
+
+export default defineHooks(() => ({
+  onRequest: [passport.initialize(), passport.authenticate('trusted-header', { session: false })],
+}))
+```
+
+```ts title="$/api/user/controller.ts"
+import { defineController } from './$relay'
+import { getUserNameById } from '$/service/user'
+
+export default defineController(() => ({
+  // user was added by AdditionalRequest of ./hooks.ts
+  get: async ({ user }) => ({ status: 200, body: await getUserNameById(user.id) }),
+}))
+```
+
+</TabItem>
+</Tabs>
