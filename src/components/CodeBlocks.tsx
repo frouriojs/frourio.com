@@ -1,6 +1,6 @@
-import React from 'react'
-import Highlight, { defaultProps } from 'prism-react-renderer'
-import styles from '../pages/styles.module.css'
+import React from 'react';
+import Highlight, { defaultProps } from 'prism-react-renderer';
+import styles from '../pages/styles.module.css';
 // import theme from "prism-react-renderer/themes/nightOwl"
 
 const codeList = [
@@ -44,7 +44,7 @@ const Home = () => {
 
 export default Home`,
   },
-]
+];
 
 const CodeBlocks = () => (
   <div className={styles.codeBlockWrapper}>
@@ -67,6 +67,6 @@ const CodeBlocks = () => (
       </div>
     ))}
   </div>
-)
+);
 
-export default CodeBlocks
+export default CodeBlocks;

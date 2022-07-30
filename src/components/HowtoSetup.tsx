@@ -1,5 +1,5 @@
-import React from 'react'
-import styles from '../pages/styles.module.css'
+import React from 'react';
+import styles from '../pages/styles.module.css';
 
 const setupSteps = [
   {
@@ -26,7 +26,7 @@ const setupSteps = [
     text: 'Select Deploy Server (coming soon)',
     icons: ['vercel', 'netlify'],
   },
-]
+];
 
 function HowtoSetup() {
   return (
@@ -46,7 +46,7 @@ function HowtoSetup() {
         </div>
       ))}
     </div>
-  )
+  );
 }
 
-export default HowtoSetup
+export default HowtoSetup;

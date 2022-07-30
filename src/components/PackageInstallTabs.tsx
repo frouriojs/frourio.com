@@ -1,14 +1,14 @@
-import React from 'react'
-import Tabs from '@theme/Tabs'
-import TabItem from '@theme/TabItem'
-import CodeBlock from '@theme/CodeBlock'
+import React from 'react';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import CodeBlock from '@theme/CodeBlock';
 
 export type Props = {
-  deps?: string[]
-  devDeps?: string[]
-  before?: string[]
-  after?: string[]
-}
+  deps?: string[];
+  devDeps?: string[];
+  before?: string[];
+  after?: string[];
+};
 
 const PackageInstallTabs: React.VFC<Props> = ({ deps, devDeps, before, after }) => {
   const getCommands = (command: 'npm' | 'yarn'): string[] => [
@@ -16,7 +16,7 @@ const PackageInstallTabs: React.VFC<Props> = ({ deps, devDeps, before, after }) 
     ...(deps ? [`${command} ${getSubCommand(command)} ${deps.join(' ')}`] : []),
     ...(devDeps ? [`${command} ${getSubCommand(command)} -D ${devDeps.join(' ')}`] : []),
     ...(after ?? []),
-  ]
+  ];
 
   return (
     <Tabs
@@ -34,16 +34,16 @@ const PackageInstallTabs: React.VFC<Props> = ({ deps, devDeps, before, after }) 
         <CodeBlock language="sh">{getCommands('yarn').join('\n')}</CodeBlock>
       </TabItem>
     </Tabs>
-  )
-}
+  );
+};
 
-export default PackageInstallTabs
+export default PackageInstallTabs;
 
 const getSubCommand = (command: 'npm' | 'yarn'): string => {
   switch (command) {
     case 'npm':
-      return 'install'
+      return 'install';
     case 'yarn':
-      return 'add'
+      return 'add';
   }
-}
+};
