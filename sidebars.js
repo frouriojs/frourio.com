@@ -14,7 +14,7 @@ module.exports = {
         'reference/hooks',
         'reference/additionalRequest',
         'reference/validation',
-        'reference/cli'
+        'reference/cli',
       ],
     },
     {
@@ -29,7 +29,11 @@ module.exports = {
         'guide/dependency-injection',
         { 'Typed Pages Path': ['guide/pathpida/with-nextjs', 'guide/pathpida/with-nuxtjs'] },
         {
-          'Deployments (CI/CD)': ['guide/deployments/ci', 'guide/deployments/client', 'guide/deployments/server'],
+          'Deployments (CI/CD)': [
+            'guide/deployments/ci',
+            'guide/deployments/client',
+            'guide/deployments/server',
+          ],
         },
         'guide/performance',
       ],

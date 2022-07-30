@@ -2,7 +2,7 @@ const path = require('path');
 
 path.resolve('.');
 
-module.exports = function() {
+module.exports = function () {
   return {
     name: 'custom-webpack-config',
     configureWebpack() {
