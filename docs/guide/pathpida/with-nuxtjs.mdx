@@ -11,16 +11,24 @@ title: Pathpida with Nuxt.js
 import GitHubButton from 'react-github-btn'
 
 <div align="center">
-  <GitHubButton href="https://github.com/aspida/pathpida" data-icon="octicon-star" data-size="large" data-show-count={true} aria-label="Star aspida/pathpida on GitHub">Star</GitHubButton>
+  <GitHubButton
+    href="https://github.com/aspida/pathpida"
+    data-icon="octicon-star"
+    data-size="large"
+    data-show-count={true}
+    aria-label="Star aspida/pathpida on GitHub"
+  >
+    Star
+  </GitHubButton>
 </div>
 
-## Features
+## Features {#features}
 
 - **Type safety**. Automatically generate type definition files for manipulating internal links in Nuxt.js.
 - **Zero configration**. No configuration required, can be used immediately after installation.
 - **Zero runtime**. Lightweight because runtime code is not included in the bundle.
 
-## Install
+## Install {#install}
 
 - Using [npm](https://www.npmjs.com/):
 
@@ -34,7 +42,7 @@ import GitHubButton from 'react-github-btn'
   $ yarn add pathpida npm-run-all --dev
   ```
 
-## Setup
+## Setup {#setup}
 
 `package.json`
 
@@ -60,7 +68,7 @@ import GitHubButton from 'react-github-btn'
 }
 ```
 
-## Usage
+## Usage {#usage}
 
 ```
 pages/index.vue
@@ -87,13 +95,13 @@ export default Vue.extend({
   methods: {
     onclick() {
       this.$router.push(this.$pagesPath.post._pid(1).$url())
-    }
-  }
+    },
+  },
 })
 </script>
 ```
 
-## Define query
+## Define query {#define-query}
 
 `pages/post/create.vue`
 
@@ -106,8 +114,7 @@ export type Query = {
   name?: string
 }
 
-export default Vue.extend({
-})
+export default Vue.extend({})
 </script>
 ```
 
@@ -122,8 +129,7 @@ export type OptionalQuery = {
   label?: string
 }
 
-export default Vue.extend({
-})
+export default Vue.extend({})
 </script>
 ```
 
@@ -132,7 +138,7 @@ export default Vue.extend({
 ```vue
 <template>
   <div>
-    <nuxt-link :to="$pagesPath.post.create.$url({ query: { userId: 1 }})" />
+    <nuxt-link :to="$pagesPath.post.create.$url({ query: { userId: 1 } })" />
     <div @click="onclick" />
   </div>
 </template>
@@ -145,8 +151,8 @@ export default Vue.extend({
     onclick() {
       this.$router.push(this.$pagesPath.post._pid(1).$url())
       this.$router.push(this.$pagesPath.post._pid(1).$url({ query: { limit: 10 }, hash: 'sample' }))
-    }
-  }
+    },
+  },
 })
 </script>
 ```
@@ -173,12 +179,11 @@ export type Query = {
   name?: string
 }
 
-export default Vue.extend({
-})
+export default Vue.extend({})
 </script>
 ```
 
-## Generate static files path
+## Generate static files path {#static-path}
 
 `package.json`
 
@@ -208,7 +213,7 @@ plugins/$path.ts // Generated automatically by pathpida
 ```vue
 <template>
   <div>
-    <nuxt-link :to="$pagesPath.post.create.$url({ query: { userId: 1 }})" />
+    <nuxt-link :to="$pagesPath.post.create.$url({ query: { userId: 1 } })" />
     <img :src="$staticPath.bb.cc_png" />
   </div>
 </template>

@@ -1,0 +1,97 @@
+---
+id: cui
+title: Setup with CUI
+---
+
+import BrowserOnly from '@docusaurus/BrowserOnly'
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+import BrowserWindow from '@site/src/components/BrowserWindow'
+import CFA from '@site/src/components/CFA'
+
+## Generate frourio project {#generate-frourio-project}
+
+<Tabs
+  defaultValue="npx"
+  values={[
+    { label: 'npx', value: 'npx' },
+    { label: 'npm', value: 'npm' },
+    { label: 'yarn', value: 'yarn' },
+  ]
+}>
+<TabItem value="npx">
+
+```sh title='Shell'
+npx create-frourio-app --answers '{"dir":"my-project"}'
+```
+
+```sh title='Command Prompt'
+npx create-frourio-app --answers ^"{\^"dir\^":\^"my-project\^"}^"
+```
+
+</TabItem>
+<TabItem value="npm">
+
+```sh title='Shell'
+npm init frourio-app --answers '{"dir":"my-project"}'
+```
+
+```sh title='Command Prompt'
+npm init frourio-app --answers ^"{\^"dir\^":\^"my-project\^"}^"
+```
+
+</TabItem>
+<TabItem value="yarn">
+
+```sh title='Shell'
+yarn create frourio-app --answers '{"dir":"my-project"}'
+```
+
+```sh title='Command Prompt'
+yarn create frourio-app --answers ^"{\^"dir\^":\^"my-project\^"}^"
+```
+
+</TabItem>
+</Tabs>
+
+With the `--answers` option, create-frourio-app starts in CUI mode.
+
+The json passed to the answers option can be generated with the following [Command Generator](#command-generator).
+Refer to [the internal code](https://github.com/frouriojs/create-frourio-app/blob/main/server/common/prompts.ts) for json specifications as needed.
+
+When generation is complete, [localhost:8000](http://localhost:8000) will be opened in your browser and the client framework you selected will be displayed.
+(If it does not open automatically, open [localhost:8000](http://localhost:8000) manually.)
+
+:::caution
+If another application is using port 8000, it will probably fail to start.  
+In that case, the generation is already completed, so quit the application and start frourio again manually, e.g. `npm run dev`.
+:::
+
+<Tabs
+  defaultValue="next"
+  values={[
+    { label: 'Next.js', value: 'next' },
+    { label: 'Nuxt.js', value: 'nuxt' },
+    { label: 'Sapper', value: 'sapper' },
+  ]}
+>
+  <TabItem value="next">
+    <BrowserWindow url="http://localhost:8000">
+      <img src="/img/cfa-done-next.png" />
+    </BrowserWindow>
+  </TabItem>
+  <TabItem value="nuxt">
+    <BrowserWindow url="http://localhost:8000">
+      <img src="/img/cfa-done-nuxt.png" />
+    </BrowserWindow>
+  </TabItem>
+  <TabItem value="sapper">
+    <BrowserWindow url="http://localhost:8000">
+      <img src="/img/cfa-done-sapper.png" />
+    </BrowserWindow>
+  </TabItem>
+</Tabs>
+
+## Command Generator {#command-generator}
+
+<CFA />

@@ -1,6 +1,6 @@
 ---
 id: performance
-title: Performance
+title: Improve Performance
 ---
 
 When exporting the responseSchema from the controller, [fast-json-stringify](https://github.com/fastify/fast-json-stringify) is enabled and JSON response becomes fast.
@@ -15,17 +15,17 @@ export const responseSchema = defineResponseSchema(() => ({
       type: 'object',
       properties: {
         id: {
-          type: 'number'
+          type: 'number',
         },
         label: {
-          type: 'string'
+          type: 'string',
         },
         done: {
-          type: 'boolean'
-        }
-      }
-    }
-  }
+          type: 'boolean',
+        },
+      },
+    },
+  },
 }))
 
 export default defineController(() => ({
@@ -33,6 +33,6 @@ export default defineController(() => ({
     const task = await findTask(params.taskId)
 
     return task ? { status: 200, body: task } : { status: 404 }
-  }
+  },
 }))
 ```

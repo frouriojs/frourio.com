@@ -1,0 +1,90 @@
+---
+id: hooks
+title: Lifecycle and Hooks
+---
+
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
+## Lifecycle in Frourio {#lifecycle-in-frourio}
+
+Both frourio and frourio-express provide hooks that take a form similar to fastify.
+
+The overall lifecycle is shown in the figure below, and hooks such as `onRequest`, `preParsing`, `preValidation`, and `preHandler` can be defined.
+
+<div style={{ textAlign: 'center' }}>
+  <img src="/img/lifecycle.svg" alt='Lifecycle of Frourio' style={{ maxWidth: '300px' }} />
+
+_Ref. [Lifecycle - Fastify](https://www.fastify.io/docs/latest/Reference/Lifecycle/)_
+
+</div>
+
+## Two Types of Hooks {#two-types-of-hooks}
+
+Frourio provides two types of hooks: **controller-level hooks** and **directory-level hooks**.
+
+- **Controller-level Hooks**: called at the current endpoints.
+- **Directory-level Hooks**: called at the current _and subordinate_ endpoints.
+
+If both hooks are to be called, **Directory-level Hooks** is called first.
+
+## Define Hooks {#define-hooks}
+
+To define hooks, use the function `defineHooks` exported by `./$relay.ts`.
+
+- **Controller-level Hooks**: define in `controller.ts`.
+- **Directory-level Hooks**: define in `hooks.ts` at the top of the target directory.
+
+### Function `defineHooks` {#function-definehooks}
+
+<Tabs
+  groupId='base-framework'
+  defaultValue="fastify"
+  values={[
+    { label: 'Fastify', value: 'fastify' },
+    { label: 'Express', value: 'express' },
+  ]}
+>
+<TabItem value="fastify">
+
+#### Argument Type {#definehooks-argument-type}
+
+- function `(fastify: FastifyInstance) => Hooks`
+  - `Hooks` : An object having the hooks name as keys and the handler functions (or its array) as values.
+
+### Hooks Handler {#hooks-handler}
+
+#### Argument Type {#hooks-handler-argument-type}
+
+- `request` : [`FastifyRequest`](https://www.fastify.io/docs/latest/Reference/TypeScript/#request) & [`AdditinalRequest`](/docs/reference/additionalRequest)
+- `reply` : [`FastifyReply`](https://www.fastify.io/docs/latest/Reference/TypeScript/#reply)
+- `done` : function `<TError extends Error = FastifyError>(err?: TError) => void`
+
+`done` is the function to continue with the lifecycle.
+
+:::caution
+The `done` callback is not available when using `async`/`await` or returning a `Promise`. If you do invoke a done callback in this situation unexpected behavior may occur, e.g. duplicate invocation of handlers.
+
+_ref. [Hooks - Fastify](https://www.fastify.io/docs/latest/Reference/Hooks/)_
+:::
+
+</TabItem>
+<TabItem value="express">
+
+#### Argument Type {#definehooks-argument-type}
+
+- function `(app: Express) => Hooks`
+  - `Hooks` : An object having the hooks name as keys and the handler functions (or its array) as values.
+
+### Hooks Handler {#hooks-handler}
+
+#### Argument Type {#hooks-handler-argument-type}
+
+- `req` : [`Request`](https://expressjs.com/ja/api.html#req) & [`AdditinalRequest`](/docs/reference/additionalRequest)
+- `res` : [`Response`](http://expressjs.com/ja/api.html#res)
+- `next` : function `(err?: any) => void`
+
+`next` is the function to continue with the lifecycle including when using `async`/`await` or returning a `Promise`.
+
+</TabItem>
+</Tabs>
