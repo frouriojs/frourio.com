@@ -8,6 +8,7 @@ module.exports = {
   trailingSlash: false,
   organizationName: 'frouriojs', // Usually your GitHub org/user name.
   projectName: 'frourio.com', // Usually your repo name.
+  plugins: ['custom-webpack-config'],
   themeConfig: {
     image: 'img/ogp.png',
     metadata: [
@@ -37,9 +38,15 @@ module.exports = {
       },
       items: [
         {
-          to: 'docs/',
-          activeBasePath: 'docs',
+          type: 'docSidebar',
+          sidebarId: 'docs',
           label: 'Docs',
+          position: 'right',
+        },
+        {
+          type: 'docSidebar',
+          sidebarId: 'tutorial',
+          label: 'Tutorial',
           position: 'right',
         },
         {
@@ -128,4 +135,4 @@ module.exports = {
       },
     ],
   ],
-}
+};

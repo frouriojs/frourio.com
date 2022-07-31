@@ -1,0 +1,85 @@
+---
+id: preparation
+title: Prepare Client and Server
+---
+
+## 1. Create React App {#create-react-app}
+
+As mentioned before, use create-react-app for the client.
+
+```sh title=Terminal
+yarn create react-app frourio-tutorial --template typescript
+cd frourio-tutorial
+```
+
+## 2. Create Server Directory {#create-server-directory}
+
+Set up the server project so that it is contained within the frourio-tutorial directory.
+
+```sh title=Terminal
+mkdir server
+cd server
+yarn init -y
+yarn add fastify @fastify/cors
+yarn add -D typescript ts-node @types/node
+```
+
+## 3. Create Fastify Server {#create-fastify-server}
+
+Create and edit `server/index.ts` and `server/tsconfig.json` as follows.
+
+```ts title=server/index.ts
+import Fastify from 'fastify';
+import FastifyCors from '@fastify/cors';
+
+const fastify = Fastify();
+
+fastify.register(FastifyCors, {});
+
+fastify.get('/', (req, reply) => {
+  reply.send({ hello: 'world' });
+});
+
+fastify.get('/hi', (req, reply) => {
+  reply.send({ hello: 'how are you?' });
+});
+
+fastify.listen({ port: 8888, host: '0.0.0.0' });
+```
+
+```json title=server/tsconfig.json
+{
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "module": "commonjs"
+  },
+  "exclude": ["node_modules"],
+  "include": ["**/*.ts"]
+}
+```
+
+In another terminal session,
+
+```sh title=Terminal
+yarn ts-node index.ts
+```
+
+Here we have two endpoints, `/` and `/hi`.
+
+Ensure that you can see the json correctly in both the Terminal and the Browser Console.
+
+```sh title=Terminal
+curl http://localhost:8888
+curl http://localhost:8888/hi
+```
+
+```js title='Browser Console'
+const response = await fetch('http://localhost:8888');
+await response.json();
+```
+
+---
+
+Preparation is now all done.
+
+Now it's time to send HTTP requests to the server using aspida!

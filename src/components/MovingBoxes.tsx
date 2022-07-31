@@ -1,7 +1,7 @@
-import React from 'react'
-import classes from './movingBoxes.module.css'
-import useBaseUrl from '@docusaurus/useBaseUrl'
-import clsx from 'clsx'
+import React from 'react';
+import classes from './movingBoxes.module.css';
+import useBaseUrl from '@docusaurus/useBaseUrl';
+import clsx from 'clsx';
 
 const MovingBoxes: React.FC = () => {
   return (
@@ -24,8 +24,8 @@ const MovingBoxes: React.FC = () => {
         <div className={classes.shadow} />
       </div>
     </div>
-  )
-}
+  );
+};
 
 const boxList = [
   'Aspida',
@@ -38,17 +38,17 @@ const boxList = [
   'Prisma',
   'React',
   'Vue',
-]
+];
 
 const getRandomIndexArray = () => {
-  const randoms = []
+  const randoms = [];
 
   for (let i = 0; randoms.length < boxList.length; ++i) {
-    const r = Math.floor(Math.random() * boxList.length)
-    if (!randoms.includes(r)) randoms.push(r)
+    const r = Math.floor(Math.random() * boxList.length);
+    if (!randoms.includes(r)) randoms.push(r);
   }
 
-  return randoms
-}
+  return randoms;
+};
 
-export default MovingBoxes
+export default MovingBoxes;

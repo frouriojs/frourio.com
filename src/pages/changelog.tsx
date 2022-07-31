@@ -1,31 +1,31 @@
-import React, { useState, useEffect } from 'react'
-import clsx from 'clsx'
-import Layout from '@theme/Layout'
-import Tabs from '@theme/Tabs'
-import TabItem from '@theme/TabItem'
-import Link from '@docusaurus/Link'
-import styles from './changelog.module.css'
-import axios from 'axios'
-import moment from 'moment'
-import Markdown from '../libs/markdown'
+import React, { useState, useEffect } from 'react';
+import clsx from 'clsx';
+import Layout from '@theme/Layout';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import Link from '@docusaurus/Link';
+import styles from './changelog.module.css';
+import axios from 'axios';
+import moment from 'moment';
+import Markdown from '../libs/markdown';
 
 interface Release {
-  url: string
-  html_url: string
-  id: string
-  node_id: string
-  tag_name: string
-  target_commitish: string
-  name: string
-  body: string
-  draft: boolean
-  prerelease: boolean
-  created_at: string
-  published_at: string
+  url: string;
+  html_url: string;
+  id: string;
+  node_id: string;
+  tag_name: string;
+  target_commitish: string;
+  name: string;
+  body: string;
+  draft: boolean;
+  prerelease: boolean;
+  created_at: string;
+  published_at: string;
 }
 
 interface ReleaseProps {
-  release: Release
+  release: Release;
 }
 
 const Release: React.FC<ReleaseProps> = (props) => {
@@ -43,32 +43,32 @@ const Release: React.FC<ReleaseProps> = (props) => {
         }}
       />
     </article>
-  )
-}
+  );
+};
 
 const Changelog = () => {
-  const [frourioReleases, setFrourioReleases] = useState<Release[]>([])
-  const [cfaReleases, setCfaReleases] = useState<Release[]>([])
+  const [frourioReleases, setFrourioReleases] = useState<Release[]>([]);
+  const [cfaReleases, setCfaReleases] = useState<Release[]>([]);
 
   useEffect(() => {
     const _f = async () => {
       const res = await axios.get<Release[]>(
         'https://api.github.com/repos/frouriojs/frourio/releases?per_page=100'
-      )
-      setFrourioReleases(res.data)
-    }
-    _f()
-  }, [setFrourioReleases])
+      );
+      setFrourioReleases(res.data);
+    };
+    _f();
+  }, [setFrourioReleases]);
 
   useEffect(() => {
     const _f = async () => {
       const res = await axios.get<Release[]>(
         'https://api.github.com/repos/frouriojs/create-frourio-app/releases?per_page=100'
-      )
-      setCfaReleases(res.data)
-    }
-    _f()
-  }, [setCfaReleases])
+      );
+      setCfaReleases(res.data);
+    };
+    _f();
+  }, [setCfaReleases]);
 
   return (
     <Layout title="Changelog" description="Changelog of frourio and create-frourio-app">
@@ -106,7 +106,7 @@ const Changelog = () => {
         </Tabs>
       </main>
     </Layout>
-  )
-}
+  );
+};
 
-export default Changelog
+export default Changelog;

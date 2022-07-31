@@ -1,0 +1,39 @@
+---
+id: aspida
+title: Aspida
+---
+
+<div style={{ textAlign: 'center', padding: '16px' }}>
+  <img src="https://aspida.github.io/aspida/logos/svg/black.svg" style={{ width: '50%' }} />
+</div>
+
+import GitHubButton from 'react-github-btn'
+
+<div style={{ textAlign: 'center' }}>
+  <p>TypeScript friendly HTTP client wrapper for the browser and node.js.</p>
+  <GitHubButton
+    href="https://github.com/aspida/aspida"
+    data-icon="octicon-star"
+    data-size="large"
+    data-show-count={true}
+    aria-label="Star aspida/aspida on GitHub"
+  >
+    Star
+  </GitHubButton>
+</div>
+
+## Work within the Frourio ecosystem {#work-within-the-frourio-project}
+
+Aspida is a simple library that enables type-safe HTTP communication via TypeScript by wrapping clients such as fetch and axios. It generates a single object from a directory-based API types definition similar to Next.js.
+
+Aspida was originally designed for the client-side, but Frourio expands type safety to the server-side by writing controllers and so on based on Aspida type definitions.
+
+In short, Aspida works on client-side type safety within the Frourio ecosystem.
+
+## Types in Frourio {#types-in-frourio}
+
+Types defined as reqBody, reqHeaders, and query in the API type definition are included in the arguments of controllers, etc. Also, types defined as resBody and resHeaders must be returned from the controller.
+
+## Writing API Definitions {#writing-api-definitions}
+
+Please refer to [aspida's README](https://github.com/aspida/aspida/tree/master/packages/aspida#readme) for how to write API type definitions.

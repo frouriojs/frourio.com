@@ -1,0 +1,81 @@
+---
+id: controller
+title: Controller
+---
+
+import Tabs from '@theme/Tabs'
+import TabItem from '@theme/TabItem'
+
+```ts title='controller.ts'
+import { defineController } from './$relay'
+
+export default defineController(() => ({
+  get: () => ({ status: 200, body: 'Hello' }),
+  post: async ({ query: { foo }, params: { bar }, body }) => {
+    const baz = await createBaz(foo, bar, body)
+    if (!baz) return { status: 400 }
+    return { status: 201, body: baz }
+  },
+}))
+```
+
+To define controllers, use the function `defineMethods` exported by `./$relay.ts`.
+
+The type definition of defineController is automatically generated based on the aspida type definition. It must be imported from `$relay.ts` in the same directory as the controller.
+
+The return value of defineController must be default exported.
+
+If you want to use the fastify instance in the controller, you can take it as an argument.
+
+## Function `defineController` {#function-definecontroller}
+
+### Argument Type {#definecontoller-argument-type}
+
+<Tabs
+  groupId='base-framework'
+  defaultValue="fastify"
+  values={[
+    { label: 'Fastify', value: 'fastify' },
+    { label: 'Express', value: 'express' },
+  ]}
+>
+<TabItem value="fastify">
+
+- function `(fastify: FastifyInstance) => ControllerMethods`
+  - [`FastifyInstance`](https://www.fastify.io/docs/latest/Reference/TypeScript/#fastifyfastifyinstancerawserver-rawrequest-requestgeneric-logger)
+  - `ControllerMethods` : An object having the method name as keys and the controller functions as values.
+
+</TabItem>
+<TabItem value="express">
+
+- function `(app: Express) => ControllerMethods`
+  - [`Express`](https://expressjs.com/en/4x/api.html)
+  - `ControllerMethods` : An object having the method name as keys and the controller functions as values.
+
+</TabItem>
+</Tabs>
+
+### Return Type {#definecontoller-return-type}
+
+- object `ControllerMethods`
+
+## value of ControllerMethods {#value-of-controllermethods}
+
+### Argument Type {#controllermethods-argument-type}
+
+- object `RequestParams` & [`AdditinalRequest`](/docs/reference/additionalRequest)
+  - `query` : `query`
+  - `headers` : `reqHeaders`
+  - `params` : URL Params
+  - `body` : `reqBody`
+
+### Return Type {#controllermethods-return-type}
+
+- object `ServerResponse` | promise `Promise<ServerResponse>`
+  - `status` : `status`
+  - `body` : `resBody`
+  - `headers` : `resHeaders`
+
+The types of `RequestParams` and `ServerResponse` are determined by API type definitions.
+
+Also, each request handler can be sync or async.

@@ -1,0 +1,123 @@
+---
+id: cli
+title: Command Line Interface
+---
+
+## Frourio {#frourio}
+
+<img src="/images/logo.svg" width="144px" height="40px" alt="frourio" />
+
+### Options {#frourio-options}
+
+#### `[--version/-v]` {#frourio-version}
+
+Show frourio version.
+
+#### `[--watch/-w]` {#frourio-watch}
+
+Enable watch mode.
+Regenerate `$server.ts` according to the change of API files.
+
+#### `[--project/-p <project dir>]` {#frourio-project}
+
+Default: `.`
+
+Frourio uses this path to reference **tsconfig**.
+
+## Create Frourio App {#cfa}
+
+### Arguments {#cfa-arguments}
+
+#### `[<dir>]` {#cfa-dir}
+
+Default: `my-frourio-app`
+
+### Options {#cfa-options}
+
+#### `[-v]` {#cfa-version}
+
+Show create-frourio-app version.
+
+#### `[--port/-p <port>]` {#cfa-port}
+
+Default: `3000`
+
+#### `[--host <hostname>]` {#cfa-host}
+
+Default: `localhost`
+
+#### `[--answers <answers json>]` {#cfa-answers}
+
+When this option is specified, cfa starts in CUI mode instead of GUI mode.
+
+JSON Generator: [Setup with CUI](/docs/reference/cfa/cui)
+
+#### `[--help/-h]` {#cfa-help}
+
+Show help.
+
+## Aspida {#aspida}
+
+<img
+  src="https://aspida.github.io/aspida/logos/svg/black.svg"
+  width="152px"
+  height="40px"
+  alt="aspida"
+/>
+
+more information: [aspida/aspida](https://github.com/aspida/aspida/tree/main/packages/aspida#readme)
+
+### Options {#aspida-options}
+
+#### `[--version/-v]` {#aspida-version}
+
+Show aspida version.
+
+#### `[--watch/-w]` {#aspida-watch}
+
+Enable watch mode.
+Regenerate `$api.ts` according to the change of API files.
+
+#### `[--config/-c <config path>]` {#aspida-config}
+
+Default: `aspida.config.js`
+
+## Pathpida {#pathpida}
+
+<img
+  src="https://aspida.github.io/pathpida/logos/svg/black.svg"
+  width="200px"
+  height="40px"
+  alt="pathpida"
+/>
+
+more information: [aspida/pathpida](https://github.com/aspida/pathpida#CLI-options)
+
+### Options {#pathpida-options}
+
+#### `[--version/-v]` {#pathpida-version}
+
+Show pathpida version.
+
+#### `[--watch/-w]` {#pathpida-watch}
+
+Enable watch mode.
+Regenerate `$path.ts` according to the change of pages and static files.
+
+#### `[--enableStatic/-s]` {#pathpida-enable-static}
+
+Generate static files path in `$path.ts`.
+
+#### `[--ignorePath/-p <ignore pattern>]` {#pathpida-ignore-path}
+
+Specify the ignore pattern file path.
+
+#### `[--output/-o <output dir>]` {#pathpida-output}
+
+Default:
+
+- Next.js: `utils` / `lib`
+- Nuxt.js: `plugins`
+- Other: `node_modules`
+
+Specify the output directory for `$path.ts`.

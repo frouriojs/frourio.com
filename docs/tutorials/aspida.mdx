@@ -1,0 +1,162 @@
+---
+id: aspida
+title: Introduce Aspida
+---
+
+import BrowserWindow from '@site/src/components/BrowserWindow';
+
+Let's try sending HTTP requests from the client to the Fastify server we have set up on the previous page.
+
+By the way, if you use common HTTP clients such as fetch or axios, the response type will be `any`, and you will not be able to achieve 'One TypeScript'.
+
+Therefore, we use [aspida](https://github.com/aspida/aspida), a TypeScript-friendly HTTP client wrapper.
+
+<div style={{ textAlign: 'center', padding: '16px' }}>
+  <img src="https://aspida.github.io/aspida/logos/svg/black.svg" style={{ width: 300 }} />
+</div>
+
+## 1. Specify API Type Definition {#specify-api-type-definition}
+
+### 1.1. Create API Definition Files {#create-api-definition-files}
+
+Back to `frourio-tutorial` directory, and prepare api type definitions.
+
+```sh title=Terminal
+mkdir -p src/api/hi
+yarn add aspida
+```
+
+Create and edit `src/api/index.ts` and `src/api/hi/index.ts` as follows.
+
+```ts title='src/api/index.ts, src/api/hi/index.ts'
+import { DefineMethods } from 'aspida';
+
+export type Methods = DefineMethods<{
+  get: {
+    resBody: {
+      hello: string;
+    };
+  };
+}>;
+```
+
+:::tip
+We recommend to use `DefineMethods` **with semicolon** in order to get proper editor support.
+:::
+
+### 1.2. Prepare Aspida Config File {#prepare-aspida-config-file}
+
+Create and edit `aspida.config.js` as follows.
+
+```js title=aspida.config.js
+module.exports = {
+  input: 'src/api',
+  baseURL: 'http://localhost:8888',
+};
+```
+
+### 1.3. Generate Object with Aspida {#generate-object-with-aspida}
+
+Next, generate api definition with aspida.
+
+Aspida, a CLI tool, converts api definition files corresponding to each path into **a single object**.
+
+```sh title=Terminal
+yarn aspida
+```
+
+Aspida generates `api/$api.ts`.
+This file contains information about endpoints and type definitions of each HTTP method for them as the object hierarchy.
+
+### 1.4. Read `$api.ts` File (Optional) {#read-api-file}
+
+:::info
+If you already know about aspida, you can skip this section.
+:::
+
+Let's take a look at `api/$api.ts`.
+
+In this file, there is a function named `api`. This function returns an object with information about endpoints.
+
+Since all this information is fully typed, we can call the endpoints type-safe.
+
+## 2. Send API Requests {#send-api-requests}
+
+### 2.1. Create API Client {#create-api-client}
+
+To send api requests, use an HTTP client wrapper such as `@aspida/fetch` or `@aspida/axios`.
+
+In this tutorial, we use `@aspida/fetch`.
+
+```sh title=Terminal
+yarn add @aspida/fetch
+```
+
+Next, create and edit `src/apiClient.ts` as follows.
+
+```ts title=src/apiClient.ts
+import api from './api/$api';
+import aspida from '@aspida/fetch';
+
+const apiClient = api(
+  aspida(undefined, {
+    baseURL: 'http://localhost:8888',
+  })
+);
+
+export default apiClient;
+```
+
+### 2.2. Fetch from Server {#fetch-from-server}
+
+Then, edit `src/App.tsx` as follows.
+
+```diff title=src/App.tsx
+-import React from 'react';
++import React, { useEffect, useState } from "react";
++import api from "./apiClient";
+
+ function App() {
++  const [greeting, setGreeting] = useState("loading...");
++
++  useEffect(() => {
++    api.hi.$get().then((res) => {
++      setGreeting(res.hello);
++    });
++  }, []);
+```
+
+Here we have api response in `greeting`.
+
+### 2.3. Display Greeting {#display-greeting}
+
+All that remains is to display it.
+
+```diff title=src/App.tsx
+         <p>
+           Edit <code>src/App.tsx</code> and save to reload.
+         </p>
++        <p>{greeting}</p>
+```
+
+```sh title=Terminal
+yarn start
+```
+
+---
+
+_How are you?_
+
+<BrowserWindow url="http://localhost:3000">
+  <img src="/img/tutorial/cra-how-are-you.png" />
+</BrowserWindow>
+
+:::note Can't you get it?
+
+Check the following.
+
+1. Did you start the back-end server? (`yarn ts-node index.ts` in `frourio-tutorial/server` directory)
+2. Did you start the front-end server? (`yarn start` in `frourio-tutorial` directory)
+3. Did you generate the API file? (`yarn aspida` in `frourio-tutorial` directory)
+
+:::
