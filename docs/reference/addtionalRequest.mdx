@@ -21,7 +21,7 @@ export type AdditionalRequest = Pick<FastifyRequest, 'cookies'> & {
 Frourio extends `FastifyRequest` or `Request` type with the `AdditionalRequest` type exported from controller.ts and hooks.ts.
 
 If defined in `controller.ts`, it will be reflected in the current endpoints.  
-If defined in `hook.ts`, it will be reflected in the current _and subordinate_ endpoints.
+If defined in `hooks.ts`, it will be reflected in the current _and subordinate_ endpoints.
 
 ## Bridging Hooks and Controllers {#bridging-hooks-and-controllers}
 
