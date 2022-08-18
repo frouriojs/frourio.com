@@ -130,15 +130,15 @@ function Home() {
           <MovingBoxes />
         </div>
         <div className={clsx(styles.container, 'container')}>
-          <p className={styles.heroTitle}>From installation to deployment</p>
-          <p className={styles.heroTitle}>in one command</p>
-          <p className={clsx(styles.heroTitle, styles.heroTitleBold)}>All you need is TypeScript</p>
+          <p className={styles.heroTitle}>フルスタック開発環境を</p>
+          <p className={styles.heroTitle}>コマンド一発で</p>
+          <p className={clsx(styles.heroTitle, styles.heroTitleBold)}>必要なのは TypeScript だけ</p>
           <div className={styles.buttons}>
             <Link
               className={clsx('button button--primary button--lg', styles.getStarted)}
               to={useBaseUrl('docs/')}
             >
-              Get Started
+              はじめる
             </Link>
             <Link
               className={clsx(
@@ -147,7 +147,7 @@ function Home() {
               )}
               to={useBaseUrl('/docs/tutorials/welcome')}
             >
-              Start Tutorial
+              チュートリアル
             </Link>
           </div>
           <div className="margin-top--md">
@@ -167,9 +167,9 @@ function Home() {
         <section className={styles.features}>
           <div className="container">
             <div className={clsx('text--center', styles.feature)}>
-              <h2>Setup procedure</h2>
+              <h2>セットアップ手順</h2>
               <div className={styles.setupWrapper}>
-                <p className={styles.setupHeadline}>It can be easily set up via GUI.</p>
+                <p className={styles.setupHeadline}>GUI で環境構築を簡単に</p>
                 <HowtoSetup />
               </div>
             </div>
@@ -178,11 +178,11 @@ function Home() {
           <div className={styles.typeDevWrapper}>
             <div className="container">
               <div className={clsx('text--center')}>
-                <h2>Type-Driven Development</h2>
+                <h2>型駆動開発</h2>
                 <CodeBlocks />
                 <div className={styles.rightTriangle}></div>
                 <p className={styles.highlightTextGreen}>
-                  TypeScript checks the entire application statically.
+                  TypeScript を用いてプロジェクト全体を静的型検査できます
                 </p>
               </div>
             </div>
@@ -193,15 +193,14 @@ function Home() {
               <div className={styles.typeDevDescription}>
                 <img className={styles.typeDevDescriptionIcon} src="img/communication.jpg" />
                 <p className={styles.highlightTextBlk}>
-                  Since API type definition forces the controller type and http request, the test
-                  code is not necessary for communication.
+                  API 型定義によってコントローラーと HTTP リクエストの型が強制されるので、HTTP
+                  通信のテストは必要ありません。
                 </p>
               </div>
               <div className={styles.typeDevDescription}>
                 <img className={styles.typeDevDescriptionIcon} src="img/speed.png" />
                 <p className={styles.highlightTextBlk}>
-                  Setting up a full-stack development environment is simple, so the product can be
-                  completed quickly and safely.
+                  型安全なフルスタック開発環境の構築が簡単なので、短期間で安全に製品を完成させることができます。
                 </p>
               </div>
             </div>
@@ -209,7 +208,7 @@ function Home() {
 
           <div className={clsx('text--center', styles.feature)}>
             <div className="container">
-              <h2>The fastest TypeScript framework</h2>
+              <h2>TypeScript 製で最速のフレームワーク</h2>
               {Chart && (
                 <Chart options={chartOptions} series={chartSeries} type="bar" height={280} />
               )}
@@ -219,7 +218,7 @@ function Home() {
                   className={clsx('button button--primary button--lg', styles.getStarted)}
                   to={useBaseUrl('docs/')}
                 >
-                  Get Started
+                  はじめる
                 </Link>
               </div>
               <div className="margin-top--md text--center">

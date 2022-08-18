@@ -6,7 +6,7 @@ import styles from '../pages/styles.module.css';
 const codeList = [
   {
     language: 'typescript' as const,
-    title: 'API type definition on server/api/users/index.ts',
+    title: 'API 型定義 server/api/users/index.ts',
     code: `
 export type Methods = {
   get: {
@@ -19,7 +19,7 @@ export type Methods = {
   },
   {
     language: 'typescript' as const,
-    title: 'Backend: fix type error on server/api/users/controller.ts',
+    title: 'バックエンドでエラーを修正 server/api/users/controller.ts',
     code: `
 import { defineController } from './$relay'
 
@@ -32,7 +32,7 @@ export default defineController(() => ({
   },
   {
     language: 'tsx' as const,
-    title: 'Frontend: request from pages/index.tsx',
+    title: 'ページから API リクエスト pages/index.tsx',
     code: `
 import useAspidaSWR from '@aspida/swr'
 import { apiClient } from '~/utils/apiClient'
