@@ -21,39 +21,39 @@ const filterByWindowWidth = (array: (number | string)[]) => {
 const benchmarks: { category: string; data: number; color: string }[] = [
   {
     category: 'frourio',
-    data: 36282.2,
+    data: 58455.2,
     color: '#08c6d6',
   },
   {
     category: 'fastify',
-    data: 32332.6,
+    data: 57006.4,
     color: '#999',
   },
   {
     category: 'nest-fastify',
-    data: 31348.2,
-    color: '#999',
-  },
-  {
-    category: 'express',
-    data: 7972.3,
+    data: 41200.8,
     color: '#999',
   },
   {
     category: 'frourio-express',
-    data: 8259.9,
+    data: 13666.2,
+    color: '#999',
+  },
+  {
+    category: 'express',
+    data: 13480.0,
     color: '#999',
   },
   {
     category: 'nest',
-    data: 7087.5,
+    data: 12212.2,
     color: '#999',
   },
 ].sort((a, b) => b.data - a.data);
 
 const chartSeries = [
   {
-    name: '2021-06-01',
+    name: '2022-08-01',
     data: filterByWindowWidth(benchmarks.map((val) => val.data)),
   },
 ];
