@@ -74,12 +74,16 @@ module.exports = {
               to: '/docs',
             },
             {
-              label: 'Tutorial',
-              to: '/docs/tutorials/welcome',
+              label: 'Reference',
+              to: '/docs/reference',
             },
             {
-              label: 'create-frourio-app',
-              to: '/docs/reference/cfa/gui',
+              label: 'Guide',
+              to: '/docs/guide',
+            },
+            {
+              label: 'Tutorial',
+              to: '/docs/tutorial/welcome',
             },
           ],
         },

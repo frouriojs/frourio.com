@@ -5,6 +5,7 @@ module.exports = {
       type: 'category',
       label: 'Reference',
       collapsed: false,
+      link: { type: 'doc', id: 'reference/index' },
       items: [
         {
           'create-frourio-app': ['reference/cfa/gui', 'reference/cfa/cui'],
@@ -21,6 +22,7 @@ module.exports = {
       type: 'category',
       label: 'Guide',
       collapsed: false,
+      link: { type: 'doc', id: 'guide/index' },
       items: [
         'guide/entrypoint',
         'guide/authentication',
@@ -40,11 +42,11 @@ module.exports = {
     },
   ],
   tutorial: [
-    'tutorials/welcome',
-    'tutorials/why-frourio',
-    'tutorials/preparation',
-    'tutorials/aspida',
-    'tutorials/frourio',
-    'tutorials/all-done',
+    'tutorial/welcome',
+    'tutorial/why-frourio',
+    'tutorial/preparation',
+    'tutorial/aspida',
+    'tutorial/frourio',
+    'tutorial/all-done',
   ],
 };
