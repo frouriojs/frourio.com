@@ -3,9 +3,9 @@ id: cors-helmet
 title: CORS / Helmet
 ---
 
-import Tabs from '@theme/Tabs'
-import TabItem from '@theme/TabItem'
-import PackageInstallTabs from '@site/src/components/PackageInstallTabs'
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import PackageInstallTabs from '@site/src/components/PackageInstallTabs';
 
 :::info
 Use [AdditionalRequest](/docs/reference/additionalRequest) to share data between hooks and controller.
@@ -29,19 +29,19 @@ Use [AdditionalRequest](/docs/reference/additionalRequest) to share data between
 <PackageInstallTabs before={['cd server']} deps={['@fastify/cors', '@fastify/helmet']} />
 
 ```ts title="server/service/app.ts"
-import Fastify, { FastifyServerFactory } from 'fastify'
-import helmet from '@fastify/helmet'
-import cors from '@fastify/cors'
-import { API_BASE_PATH } from '$/service/envValues'
-import server from './$server'
+import Fastify, { FastifyServerFactory } from 'fastify';
+import helmet from '@fastify/helmet';
+import cors from '@fastify/cors';
+import { API_BASE_PATH } from '$/service/envValues';
+import server from './$server';
 
 export const init = (serverFactory?: FastifyServerFactory) => {
-  const app = Fastify({ serverFactory })
-  app.register(helmet)
-  app.register(cors)
-  server(app, { basePath: API_BASE_PATH })
-  return app
-}
+  const app = Fastify({ serverFactory });
+  app.register(helmet);
+  app.register(cors);
+  server(app, { basePath: API_BASE_PATH });
+  return app;
+};
 ```
 
 </TabItem>
@@ -53,19 +53,19 @@ export const init = (serverFactory?: FastifyServerFactory) => {
 <PackageInstallTabs before={['cd server']} deps={['cors', 'helmet']} devDeps={['@types/cors']} />
 
 ```ts title="server/entrypoints/index.ts"
-import express from 'express'
-import helmet from 'helmet'
-import cors from 'cors'
-import server from '$/$server'
-import { API_BASE_PATH } from '$/service/envValues'
+import express from 'express';
+import helmet from 'helmet';
+import cors from 'cors';
+import server from '$/$server';
+import { API_BASE_PATH } from '$/service/envValues';
 
 export const init = () => {
-  const app = express()
-  app.use(helmet())
-  app.use(cors())
-  server(app, { basePath: API_BASE_PATH })
-  return app
-}
+  const app = express();
+  app.use(helmet());
+  app.use(cors());
+  server(app, { basePath: API_BASE_PATH });
+  return app;
+};
 ```
 
 </TabItem>

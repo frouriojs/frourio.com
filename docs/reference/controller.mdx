@@ -3,20 +3,20 @@ id: controller
 title: Controller
 ---
 
-import Tabs from '@theme/Tabs'
-import TabItem from '@theme/TabItem'
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 ```ts title='controller.ts'
-import { defineController } from './$relay'
+import { defineController } from './$relay';
 
 export default defineController(() => ({
   get: () => ({ status: 200, body: 'Hello' }),
   post: async ({ query: { foo }, params: { bar }, body }) => {
-    const baz = await createBaz(foo, bar, body)
-    if (!baz) return { status: 400 }
-    return { status: 201, body: baz }
+    const baz = await createBaz(foo, bar, body);
+    if (!baz) return { status: 400 };
+    return { status: 201, body: baz };
   },
-}))
+}));
 ```
 
 To define controllers, use the function `defineMethods` exported by `./$relay.ts`.
