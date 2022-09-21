@@ -3,7 +3,7 @@ module.exports = {
     'about',
     {
       type: 'category',
-      label: 'Reference',
+      label: 'リファレンス',
       collapsed: false,
       items: [
         {
@@ -19,7 +19,7 @@ module.exports = {
     },
     {
       type: 'category',
-      label: 'Guide',
+      label: 'ガイド',
       collapsed: false,
       items: [
         'guide/entrypoint',
@@ -27,9 +27,9 @@ module.exports = {
         'guide/cors-helmet',
         'guide/error-handling',
         'guide/dependency-injection',
-        { 'Typed Pages Path': ['guide/pathpida/with-nextjs', 'guide/pathpida/with-nuxtjs'] },
+        { 内部リンクへの型付与: ['guide/pathpida/with-nextjs', 'guide/pathpida/with-nuxtjs'] },
         {
-          'Deployments (CI/CD)': [
+          'デプロイ (CI/CD)': [
             'guide/deployments/ci',
             'guide/deployments/client',
             'guide/deployments/server',
