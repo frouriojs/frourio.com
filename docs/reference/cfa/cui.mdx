@@ -1,15 +1,15 @@
 ---
 id: cui
-title: Setup with CUI
+title: CUI によるセットアップ
 ---
 
-import BrowserOnly from '@docusaurus/BrowserOnly'
-import Tabs from '@theme/Tabs'
-import TabItem from '@theme/TabItem'
-import BrowserWindow from '@site/src/components/BrowserWindow'
-import CFA from '@site/src/components/CFA'
+import BrowserOnly from '@docusaurus/BrowserOnly';
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import BrowserWindow from '@site/src/components/BrowserWindow';
+import CFA from '@site/src/components/CFA';
 
-## Generate frourio project {#generate-frourio-project}
+## Frourio プロジェクトの生成 {#generate-frourio-project}
 
 <Tabs
   defaultValue="npx"
@@ -54,17 +54,17 @@ yarn create frourio-app --answers ^"{\^"dir\^":\^"my-project\^"}^"
 </TabItem>
 </Tabs>
 
-With the `--answers` option, create-frourio-app starts in CUI mode.
+`--answers` オプションを使用すると、create-frourio-app は CUI モードで起動します。
 
-The json passed to the answers option can be generated with the following [Command Generator](#command-generator).
-Refer to [the internal code](https://github.com/frouriojs/create-frourio-app/blob/main/server/common/prompts.ts) for json specifications as needed.
+オプションに渡す json は、[コマンドジェネレーター](#command-generator)で生成することができます。
+仕様を知る必要がある場合は、[内部実装](https://github.com/frouriojs/create-frourio-app/blob/main/server/common/prompts.ts)を参照してください。
 
-When generation is complete, [localhost:8000](http://localhost:8000) will be opened in your browser and the client framework you selected will be displayed.
-(If it does not open automatically, open [localhost:8000](http://localhost:8000) manually.)
+生成が完了すると、[localhost:8000](http://localhost:8000) がブラウザで開かれ、選択したクライアントフレームワークが表示されます。
+（もし自動で開かない場合は、[localhost:8000](http://localhost:8000) を手動で開いてください。）
 
 :::caution
-If another application is using port 8000, it will probably fail to start.  
-In that case, the generation is already completed, so quit the application and start frourio again manually, e.g. `npm run dev`.
+もし別のアプリケーションが 8000 番ポートを使用している場合は、おそらく起動に失敗します。
+そのような場合でも生成は完了しているので、frourio アプリケーションを終了してもう一度手動で開始してください（例: `npm run dev`）。
 :::
 
 <Tabs
@@ -92,6 +92,6 @@ In that case, the generation is already completed, so quit the application and s
   </TabItem>
 </Tabs>
 
-## Command Generator {#command-generator}
+## コマンドジェネレーター {#command-generator}
 
 <CFA />

@@ -1,60 +1,60 @@
 ---
 id: cli
-title: Command Line Interface
+title: コマンドラインインターフェース
 ---
 
 ## Frourio {#frourio}
 
 <img src="/images/logo.svg" width="144px" height="40px" alt="frourio" />
 
-### Options {#frourio-options}
+### オプション {#frourio-options}
 
 #### `[--version/-v]` {#frourio-version}
 
-Show frourio version.
+Frourio のバージョンを表示します。
 
 #### `[--watch/-w]` {#frourio-watch}
 
-Enable watch mode.
-Regenerate `$server.ts` according to the change of API files.
+ウォッチモードを有効にします。
+API ファイルの変更に伴って `$server.ts` を再生成します。
 
 #### `[--project/-p <project dir>]` {#frourio-project}
 
-Default: `.`
+デフォルト: `.`
 
-Frourio uses this path to reference **tsconfig**.
+Frourio はこのパスを用いて **tsconfig** を参照します。
 
 ## Create Frourio App {#cfa}
 
-### Arguments {#cfa-arguments}
+### 引数 {#cfa-arguments}
 
 #### `[<dir>]` {#cfa-dir}
 
-Default: `my-frourio-app`
+デフォルト: `my-frourio-app`
 
-### Options {#cfa-options}
+### オプション {#cfa-options}
 
 #### `[-v]` {#cfa-version}
 
-Show create-frourio-app version.
+create-frourio-app のバージョンを表示します。
 
 #### `[--port/-p <port>]` {#cfa-port}
 
-Default: `3000`
+デフォルト: `3000`
 
 #### `[--host <hostname>]` {#cfa-host}
 
-Default: `localhost`
+デフォルト: `localhost`
 
 #### `[--answers <answers json>]` {#cfa-answers}
 
-When this option is specified, cfa starts in CUI mode instead of GUI mode.
+このオプションが指定されると、cfa は GUI モードの代わりに CUI モードで起動します。
 
-JSON Generator: [Setup with CUI](/docs/reference/cfa/cui)
+JSON ジェネレーター: [CUI によるセットアップ](/docs/reference/cfa/cui)
 
 #### `[--help/-h]` {#cfa-help}
 
-Show help.
+ヘルプを表示します。
 
 ## Aspida {#aspida}
 
@@ -65,22 +65,22 @@ Show help.
   alt="aspida"
 />
 
-more information: [aspida/aspida](https://github.com/aspida/aspida/tree/main/packages/aspida#readme)
+詳細情報: [aspida/aspida](https://github.com/aspida/aspida/tree/main/packages/aspida#readme)
 
-### Options {#aspida-options}
+### オプション {#aspida-options}
 
 #### `[--version/-v]` {#aspida-version}
 
-Show aspida version.
+Aspida のバージョンを表示します。
 
 #### `[--watch/-w]` {#aspida-watch}
 
-Enable watch mode.
-Regenerate `$api.ts` according to the change of API files.
+ウォッチモードを有効にします。
+API ファイルの変更に伴って `$api.ts` を再生成します。
 
 #### `[--config/-c <config path>]` {#aspida-config}
 
-Default: `aspida.config.js`
+デフォルト: `aspida.config.js`
 
 ## Pathpida {#pathpida}
 
@@ -91,33 +91,33 @@ Default: `aspida.config.js`
   alt="pathpida"
 />
 
-more information: [aspida/pathpida](https://github.com/aspida/pathpida#CLI-options)
+詳細情報: [aspida/pathpida](https://github.com/aspida/pathpida#CLI-options)
 
-### Options {#pathpida-options}
+### オプション {#pathpida-options}
 
 #### `[--version/-v]` {#pathpida-version}
 
-Show pathpida version.
+Pathpida のバージョンを表示します。
 
 #### `[--watch/-w]` {#pathpida-watch}
 
-Enable watch mode.
-Regenerate `$path.ts` according to the change of pages and static files.
+ウォッチモードを有効にします。
+ページファイルや静的ファイルの変更に伴って `$path.ts` を再生成します。
 
 #### `[--enableStatic/-s]` {#pathpida-enable-static}
 
-Generate static files path in `$path.ts`.
+静的ファイルのパスを `$path.ts` に生成します。
 
 #### `[--ignorePath/-p <ignore pattern>]` {#pathpida-ignore-path}
 
-Specify the ignore pattern file path.
+無視するファイルのパターンを指定します。
 
 #### `[--output/-o <output dir>]` {#pathpida-output}
 
-Default:
+デフォルト:
 
 - Next.js: `utils` / `lib`
 - Nuxt.js: `plugins`
-- Other: `node_modules`
+- その他: `node_modules`
 
-Specify the output directory for `$path.ts`.
+`$path.ts` を出力するディレクトリを指定します。
