@@ -5,7 +5,6 @@ import useBaseUrl from '@docusaurus/useBaseUrl';
 import {PageMetadata, useThemeConfig} from '@docusaurus/theme-common';
 import {
   DEFAULT_SEARCH_TAG,
-  useAlternatePageUtils,
   keyboardFocusedClassName,
 } from '@docusaurus/theme-common/internal';
 import {useLocation} from '@docusaurus/router';
@@ -14,36 +13,27 @@ import SearchMetadata from '@theme/SearchMetadata';
 // Useful for i18n/SEO
 // See https://developers.google.com/search/docs/advanced/crawling/localized-versions
 // See https://github.com/facebook/docusaurus/issues/3317
+// ==== 2022.09.22 | Modified to add custom link hreflang tag ====
 function AlternateLangHeaders() {
-  const {
-    i18n: {defaultLocale, localeConfigs},
-  } = useDocusaurusContext();
-  const alternatePageUtils = useAlternatePageUtils();
-  // Note: it is fine to use both "x-default" and "en" to target the same url
-  // See https://www.searchviu.com/en/multiple-hreflang-tags-one-url/
   return (
     <Head>
-      {Object.entries(localeConfigs).map(([locale, {htmlLang}]) => (
-        <link
-          key={locale}
-          rel="alternate"
-          href={alternatePageUtils.createUrl({
-            locale,
-            fullyQualified: true,
-          })}
-          hrefLang={htmlLang}
-        />
-      ))}
       <link
         rel="alternate"
-        href={alternatePageUtils.createUrl({
-          locale: defaultLocale,
-          fullyQualified: true,
-        })}
+        hrefLang="en"
+        href="https://frourio.com"
+      />
+      <link
+        rel="alternate"
+        hrefLang="ja"
+        href="https://ja.frourio.com"
+      />
+      <link
+        rel="alternate"
         hrefLang="x-default"
+        href="https://frourio.com"
       />
     </Head>
-  );
+  )
 }
 // Default canonical url inferred from current page location pathname
 function useDefaultCanonicalUrl() {
