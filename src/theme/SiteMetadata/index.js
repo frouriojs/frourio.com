@@ -2,12 +2,9 @@ import React from 'react';
 import Head from '@docusaurus/Head';
 import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useBaseUrl from '@docusaurus/useBaseUrl';
-import {PageMetadata, useThemeConfig} from '@docusaurus/theme-common';
-import {
-  DEFAULT_SEARCH_TAG,
-  keyboardFocusedClassName,
-} from '@docusaurus/theme-common/internal';
-import {useLocation} from '@docusaurus/router';
+import { PageMetadata, useThemeConfig } from '@docusaurus/theme-common';
+import { DEFAULT_SEARCH_TAG, keyboardFocusedClassName } from '@docusaurus/theme-common/internal';
+import { useLocation } from '@docusaurus/router';
 import SearchMetadata from '@theme/SearchMetadata';
 // TODO move to SiteMetadataDefaults or theme-common ?
 // Useful for i18n/SEO
@@ -17,41 +14,27 @@ import SearchMetadata from '@theme/SearchMetadata';
 function AlternateLangHeaders() {
   return (
     <Head>
-      <link
-        rel="alternate"
-        hrefLang="en"
-        href="https://frourio.com"
-      />
-      <link
-        rel="alternate"
-        hrefLang="ja"
-        href="https://ja.frourio.com"
-      />
-      <link
-        rel="alternate"
-        hrefLang="x-default"
-        href="https://frourio.com"
-      />
+      <link rel="alternate" hrefLang="en" href="https://frourio.com" />
+      <link rel="alternate" hrefLang="ja" href="https://ja.frourio.com" />
+      <link rel="alternate" hrefLang="x-default" href="https://frourio.com" />
     </Head>
-  )
+  );
 }
 // Default canonical url inferred from current page location pathname
 function useDefaultCanonicalUrl() {
   const {
-    siteConfig: {url: siteUrl},
+    siteConfig: { url: siteUrl },
   } = useDocusaurusContext();
-  const {pathname} = useLocation();
+  const { pathname } = useLocation();
   return siteUrl + useBaseUrl(pathname);
 }
 // TODO move to SiteMetadataDefaults or theme-common ?
-function CanonicalUrlHeaders({permalink}) {
+function CanonicalUrlHeaders({ permalink }) {
   const {
-    siteConfig: {url: siteUrl},
+    siteConfig: { url: siteUrl },
   } = useDocusaurusContext();
   const defaultCanonicalUrl = useDefaultCanonicalUrl();
-  const canonicalUrl = permalink
-    ? `${siteUrl}${permalink}`
-    : defaultCanonicalUrl;
+  const canonicalUrl = permalink ? `${siteUrl}${permalink}` : defaultCanonicalUrl;
   return (
     <Head>
       <meta property="og:url" content={canonicalUrl} />
@@ -61,11 +44,11 @@ function CanonicalUrlHeaders({permalink}) {
 }
 export default function SiteMetadata() {
   const {
-    i18n: {currentLocale},
+    i18n: { currentLocale },
   } = useDocusaurusContext();
   // TODO maybe move these 2 themeConfig to siteConfig?
   // These seems useful for other themes as well
-  const {metadata, image: defaultImage} = useThemeConfig();
+  const { metadata, image: defaultImage } = useThemeConfig();
   return (
     <>
       <Head>
