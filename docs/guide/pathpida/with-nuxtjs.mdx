@@ -1,6 +1,6 @@
 ---
 id: with-nuxtjs
-title: Pathpida with Nuxt.js
+title: Pathpida と Nuxt.js
 ---
 
 <br />
@@ -8,7 +8,7 @@ title: Pathpida with Nuxt.js
 <img src="https://aspida.github.io/pathpida/logos/png/logo.png" alt="pathpida" title="pathpida" />
 <p align="center">TypeScript friendly internal link client for Nuxt.js.</p>
 
-import GitHubButton from 'react-github-btn'
+import GitHubButton from 'react-github-btn';
 
 <div align="center">
   <GitHubButton
@@ -22,27 +22,27 @@ import GitHubButton from 'react-github-btn'
   </GitHubButton>
 </div>
 
-## Features {#features}
+## 特徴 {#features}
 
-- **Type safety**. Automatically generate type definition files for manipulating internal links in Nuxt.js.
-- **Zero configration**. No configuration required, can be used immediately after installation.
-- **Zero runtime**. Lightweight because runtime code is not included in the bundle.
+- **型安全**。Next.js で内部リンクを取り扱うための型定義ファイルを自動生成します。
+- **設定不要**。設定を必要とせず、インストール後すぐに使用できます。
+- **実行時負荷無し**。ランタイムコードがバンドルに含まれないので軽量です。
 
-## Install {#install}
+## インストール {#install}
 
-- Using [npm](https://www.npmjs.com/):
+- [npm](https://www.npmjs.com/) を使用:
 
   ```sh
   $ npm install pathpida npm-run-all --save-dev
   ```
 
-- Using [Yarn](https://yarnpkg.com/):
+- [Yarn](https://yarnpkg.com/) を使用:
 
   ```sh
   $ yarn add pathpida npm-run-all --dev
   ```
 
-## Setup {#setup}
+## セットアップ {#setup}
 
 `package.json`
 
@@ -56,7 +56,7 @@ import GitHubButton from 'react-github-btn'
 }
 ```
 
-`nuxt.config.js` or `nuxt.config.ts`
+`nuxt.config.js` または `nuxt.config.ts`
 
 ```js
 {
@@ -68,7 +68,7 @@ import GitHubButton from 'react-github-btn'
 }
 ```
 
-## Usage {#usage}
+## 使い方 {#usage}
 
 ```
 pages/index.vue
@@ -89,32 +89,32 @@ plugins/$path.ts // Generated automatically by pathpida
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from 'vue';
 
 export default Vue.extend({
   methods: {
     onclick() {
-      this.$router.push(this.$pagesPath.post._pid(1).$url())
+      this.$router.push(this.$pagesPath.post._pid(1).$url());
     },
   },
-})
+});
 </script>
 ```
 
-## Define query {#define-query}
+## クエリの定義 {#define-query}
 
 `pages/post/create.vue`
 
 ```vue
 <script lang="ts">
-import Vue from 'vue'
+import Vue from 'vue';
 
 export type Query = {
-  userId: number
-  name?: string
-}
+  userId: number;
+  name?: string;
+};
 
-export default Vue.extend({})
+export default Vue.extend({});
 </script>
 ```
 
@@ -122,14 +122,14 @@ export default Vue.extend({})
 
 ```vue
 <script lang="ts">
-import Vue from 'vue'
+import Vue from 'vue';
 
 export type OptionalQuery = {
-  limit: number
-  label?: string
-}
+  limit: number;
+  label?: string;
+};
 
-export default Vue.extend({})
+export default Vue.extend({});
 </script>
 ```
 
@@ -144,42 +144,44 @@ export default Vue.extend({})
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from 'vue';
 
 export default Vue.extend({
   methods: {
     onclick() {
-      this.$router.push(this.$pagesPath.post._pid(1).$url())
-      this.$router.push(this.$pagesPath.post._pid(1).$url({ query: { limit: 10 }, hash: 'sample' }))
+      this.$router.push(this.$pagesPath.post._pid(1).$url());
+      this.$router.push(
+        this.$pagesPath.post._pid(1).$url({ query: { limit: 10 }, hash: 'sample' })
+      );
     },
   },
-})
+});
 </script>
 ```
 
-:warning: Query/OptionalQuery type must not contain any reference types.
+:warning: Query/OptionalQuery 型はいかなる参照型も含んではいけません。
 
-This is because due to typescript restrictions, types exported from `.vue` files cannot be imported in `plugins/$path.ts`.  
-If you want to import types from other files, please use [import types](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-9.html#import-types) with absolute paths.
+TypeScript の制限により、`.vue` ファイルから export された型を `plugins/$path.ts` で import できないことが理由です。  
+他のファイルから型を import したい場合は、[import types](https://www.typescriptlang.org/docs/handbook/release-notes/typescript-2-9.html#import-types) を絶対パスで使用してください。
 
 `types/users.ts`
 
 ```ts
-export type UserId = number
+export type UserId = number;
 ```
 
 `pages/post/create.vue`
 
 ```vue
 <script lang="ts">
-import Vue from 'vue'
+import Vue from 'vue';
 
 export type Query = {
-  userId: import('~/types/users').UserId
-  name?: string
-}
+  userId: import('~/types/users').UserId;
+  name?: string;
+};
 
-export default Vue.extend({})
+export default Vue.extend({});
 </script>
 ```
 
@@ -219,8 +221,8 @@ plugins/$path.ts // Generated automatically by pathpida
 </template>
 
 <script lang="ts">
-import Vue from 'vue'
+import Vue from 'vue';
 
-export default Vue.extend({})
+export default Vue.extend({});
 </script>
 ```

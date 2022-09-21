@@ -1,29 +1,29 @@
 ---
 id: error-handling
-title: 500 Error Handling
+title: 500 エラーハンドリング
 ---
 
-import Tabs from '@theme/Tabs'
-import TabItem from '@theme/TabItem'
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-For handling 500 errors, use the native features of Fastify / Express.
+500 エラーをハンドルするには、fastify / express 固有の機能を使用します。
 
-## Example {#example}
+## 例 {#example}
 
 ```ts title="$/api/tasks/controller.ts"
-import { defineController } from './$relay'
-import { createTask } from '$/service/tasks'
+import { defineController } from './$relay';
+import { createTask } from '$/service/tasks';
 
 export default defineController(() => ({
   post: async ({ body }) => {
     try {
-      const task = await createTask(body.label)
-      return { status: 201, body: task }
+      const task = await createTask(body.label);
+      return { status: 201, body: task };
     } catch (e) {
-      return { status: 500, body: 'Something broke!' }
+      return { status: 500, body: 'Something broke!' };
     }
   },
-}))
+}));
 ```
 
 <Tabs
@@ -39,18 +39,18 @@ export default defineController(() => ({
 - [onError Hooks - Fastify](https://www.fastify.io/docs/latest/Reference/Hooks/#onerror)
 
 ```ts title="$/service/app.ts"
-import Fastify, { FastifyServerFactory } from 'fastify'
-import { API_BASE_PATH } from '$/service/envValues'
-import server from '$/$server'
+import Fastify, { FastifyServerFactory } from 'fastify';
+import { API_BASE_PATH } from '$/service/envValues';
+import server from '$/$server';
 
 export const init = (serverFactory?: FastifyServerFactory) => {
-  const app = Fastify({ serverFactory })
+  const app = Fastify({ serverFactory });
   app.addHook('onError', (req, reply, err) => {
-    console.error(err.stack)
-  })
-  server(app, { basePath: API_BASE_PATH })
-  return app
-}
+    console.error(err.stack);
+  });
+  server(app, { basePath: API_BASE_PATH });
+  return app;
+};
 ```
 
 </TabItem>
@@ -59,19 +59,19 @@ export const init = (serverFactory?: FastifyServerFactory) => {
 - [The default error handler - Express](https://expressjs.com/en/guide/error-handling.html#the-default-error-handler)
 
 ```ts title="$/service/app.ts"
-import express from 'express'
-import server from '$/$server'
-import { API_BASE_PATH } from '$/service/envValues'
+import express from 'express';
+import server from '$/$server';
+import { API_BASE_PATH } from '$/service/envValues';
 
 export const init = () => {
-  const app = express()
+  const app = express();
   app.use((err, req, res, next) => {
-    console.error(err.stack)
-    res.status(500).send('Something broke!')
-  })
-  server(app, { basePath: API_BASE_PATH })
-  return app
-}
+    console.error(err.stack);
+    res.status(500).send('Something broke!');
+  });
+  server(app, { basePath: API_BASE_PATH });
+  return app;
+};
 ```
 
 </TabItem>
