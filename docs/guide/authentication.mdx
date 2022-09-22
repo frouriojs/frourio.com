@@ -1,17 +1,17 @@
 ---
 id: authentication
-title: Authentication
+title: 認証
 ---
 
-import Tabs from '@theme/Tabs'
-import TabItem from '@theme/TabItem'
-import PackageInstallTabs from '@site/src/components/PackageInstallTabs'
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import PackageInstallTabs from '@site/src/components/PackageInstallTabs';
 
 :::info
-Use [AdditionalRequest](/docs/reference/additionalRequest) to share data between hooks and controller.
+フックとコントローラーとの間でデータを共有するには [AdditionalRequest](/docs/reference/additionalRequest) を使用します。
 :::
 
-## Examples {#examples}
+## 例 {#examples}
 
 <Tabs
   defaultValue="fastify-jwt"
@@ -28,64 +28,64 @@ Use [AdditionalRequest](/docs/reference/additionalRequest) to share data between
 
 <PackageInstallTabs before={['cd server']} deps={['@fastify/jwt']} />
 
-<h3>Register the plugin</h3>
+<h3>プラグインの登録</h3>
 
 ```ts title="$/service/app.ts"
-import Fastify, { FastifyServerFactory } from 'fastify'
-import fastifyJwt from '@fastify/jwt'
-import { API_JWT_SECRET, API_BASE_PATH } from '$/service/envValues'
-import server from './$server'
+import Fastify, { FastifyServerFactory } from 'fastify';
+import fastifyJwt from '@fastify/jwt';
+import { API_JWT_SECRET, API_BASE_PATH } from '$/service/envValues';
+import server from './$server';
 
 export const init = (serverFactory?: FastifyServerFactory) => {
-  const app = Fastify({ serverFactory })
-  app.register(fastifyJwt, { secret: API_JWT_SECRET })
-  server(app, { basePath: API_BASE_PATH })
-  return app
-}
+  const app = Fastify({ serverFactory });
+  app.register(fastifyJwt, { secret: API_JWT_SECRET });
+  server(app, { basePath: API_BASE_PATH });
+  return app;
+};
 ```
 
-<h3>Issue tokens</h3>
+<h3>トークンの発行</h3>
 
 ```ts title="$/api/token/controller.ts"
-import { defineController } from './$relay'
-import { validateUser } from '$/service/user'
+import { defineController } from './$relay';
+import { validateUser } from '$/service/user';
 
 export default defineController((fastify) => ({
   post: ({ body }) =>
     validateUser(body.id, body.pass)
       ? { status: 201, body: { token: fastify.jwt.sign({ id: body.id }) } }
       : { status: 401 },
-}))
+}));
 ```
 
-<h3>Verify tokens</h3>
+<h3>トークンの検証</h3>
 
-Although `@fastify/jwt` extends `FastifyRequest`, it is not reflected to the controller, so you need to prepare it yourself in order to reference it in the controller.
+`@fastify/jwt` は `FastifyRequest` を拡張していますが、これはコントローラーに反映されないので、参照するには自分で用意する必要があります。
 
-_[Relaying of type extended by plugins](/docs/reference/additionalRequest#relaying-of-type-extended-by-plugins)_
+_[プラグインによる型の拡張の反映](/docs/reference/additionalRequest#relaying-of-type-extended-by-plugins)_
 
 ```ts title="$/api/user/hooks.ts"
-import { defineHooks } from './$relay'
+import { defineHooks } from './$relay';
 
 export type AdditionalRequest = {
   user: {
-    id: string
-  }
-}
+    id: string;
+  };
+};
 
 export default defineHooks(() => ({
   onRequest: (request, reply) => request.jwtVerify().catch((err) => reply.send(err)),
-}))
+}));
 ```
 
 ```ts title="$/api/user/controller.ts"
-import { defineController } from './$relay'
-import { getUserNameById } from '$/service/user'
+import { defineController } from './$relay';
+import { getUserNameById } from '$/service/user';
 
 export default defineController(() => ({
   get: async ({ user }) => ({ status: 200, body: await getUserNameById(user.id) }),
   //            ^^^^ extended by AdditionalRequest
-}))
+}));
 ```
 
 </TabItem>
@@ -95,60 +95,60 @@ export default defineController(() => ({
 
 <PackageInstallTabs before={['cd server']} deps={['@fastify/auth']} />
 
-<h3>Register the plugin</h3>
+<h3>プラグインの登録</h3>
 
 ```ts title="$/service/app.ts"
-import Fastify, { FastifyServerFactory } from 'fastify'
-import fastifyAuth from '@fastify/auth'
-import { API_JWT_SECRET, API_BASE_PATH } from '$/service/envValues'
-import server from './$server'
+import Fastify, { FastifyServerFactory } from 'fastify';
+import fastifyAuth from '@fastify/auth';
+import { API_JWT_SECRET, API_BASE_PATH } from '$/service/envValues';
+import server from './$server';
 
 export const init = (serverFactory?: FastifyServerFactory) => {
-  const app = Fastify({ serverFactory })
-  app.register(fastifyAuth)
-  server(app, { basePath: API_BASE_PATH })
-  return app
-}
+  const app = Fastify({ serverFactory });
+  app.register(fastifyAuth);
+  server(app, { basePath: API_BASE_PATH });
+  return app;
+};
 ```
 
-<h3>Verify tokens</h3>
+<h3>トークンの検証</h3>
 
 ```ts title="$/api/user/hooks.ts"
-import { defineHooks } from './$relay'
-import { getUserIdByToken } from '$/service/user'
+import { defineHooks } from './$relay';
+import { getUserIdByToken } from '$/service/user';
 
 export type AdditionalRequest = {
   user: {
-    id: string
-  }
-}
+    id: string;
+  };
+};
 
 export default defineHooks((fastify) => ({
   preHandler: fastify.auth([
     (req, _, done) => {
-      const user = typeof req.headers.token === 'string' && getUserIdByToken(req.headers.token)
+      const user = typeof req.headers.token === 'string' && getUserIdByToken(req.headers.token);
 
       if (user) {
         // eslint-disable-next-line
         // @ts-expect-error
-        req.user = user
-        done()
+        req.user = user;
+        done();
       } else {
-        done(new Error('Unauthorized'))
+        done(new Error('Unauthorized'));
       }
     },
   ]),
-}))
+}));
 ```
 
 ```ts title="$/api/user/controller.ts"
-import { defineController } from './$relay'
-import { getUserNameById } from '$/service/user'
+import { defineController } from './$relay';
+import { getUserNameById } from '$/service/user';
 
 export default defineController(() => ({
   // user was added by AdditionalRequest of ./hooks.ts
   get: async ({ user }) => ({ status: 200, body: await getUserNameById(user.id) }),
-}))
+}));
 ```
 
 </TabItem>
@@ -162,46 +162,46 @@ export default defineController(() => ({
   devDeps={['@types/express-jwt', '@types/jsonwebtoken']}
 />
 
-<h3>Issue tokens</h3>
+<h3>トークンの発行</h3>
 
 ```ts title="$/api/token/controller.ts"
-import jwt from 'jsonwebtoken'
-import { defineController } from './$relay'
-import { validateUser } from '$/service/user'
+import jwt from 'jsonwebtoken';
+import { defineController } from './$relay';
+import { validateUser } from '$/service/user';
 
 export default defineController(() => ({
   post: ({ body }) =>
     validateUser(body.id, body.pass)
       ? { status: 201, body: { token: jwt.sign({ id: body.id }, process.env.JWT_SECRET) } }
       : { status: 401 },
-}))
+}));
 ```
 
-<h3>Verify tokens</h3>
+<h3>トークンの検証</h3>
 
 ```ts title="$/api/user/hooks.ts"
-import jwt from 'express-jwt'
-import { defineHooks } from './$relay'
+import jwt from 'express-jwt';
+import { defineHooks } from './$relay';
 
 export type AdditionalRequest = {
   user: {
-    id: string
-  }
-}
+    id: string;
+  };
+};
 
 export default defineHooks(() => ({
   onRequest: jwt({ secret: process.env.JWT_SECRET, algorithms: ['HS256'] }),
-}))
+}));
 ```
 
 ```ts title="$/api/user/controller.ts"
-import { defineController } from './$relay'
-import { getUserNameById } from '$/service/user'
+import { defineController } from './$relay';
+import { getUserNameById } from '$/service/user';
 
 export default defineController(() => ({
   // user was added by AdditionalRequest of ./hooks.ts
   get: async ({ user }) => ({ status: 200, body: await getUserNameById(user.id) }),
-}))
+}));
 ```
 
 </TabItem>
@@ -216,18 +216,18 @@ export default defineController(() => ({
   devDeps={['@types/passport']}
 />
 
-<h3>Verify tokens</h3>
+<h3>トークンの検証</h3>
 
 ```ts title="$/api/user/hooks.ts"
-import passport from 'passport'
-import { defineHooks } from './$relay'
-import { getUserIdByToken } from '$/service/user'
+import passport from 'passport';
+import { defineHooks } from './$relay';
+import { getUserIdByToken } from '$/service/user';
 
 export type AdditionalRequest = {
   user: {
-    id: string
-  }
-}
+    id: string;
+  };
+};
 
 passport.use(
   // eslint-disable-next-line
@@ -235,24 +235,24 @@ passport.use(
     { headers: ['token'] },
     // eslint-disable-next-line
     (headers: { token: string }, done: Function) => {
-      done(null, getUserIdByToken(headers.token))
+      done(null, getUserIdByToken(headers.token));
     }
   )
-)
+);
 
 export default defineHooks(() => ({
   onRequest: [passport.initialize(), passport.authenticate('trusted-header', { session: false })],
-}))
+}));
 ```
 
 ```ts title="$/api/user/controller.ts"
-import { defineController } from './$relay'
-import { getUserNameById } from '$/service/user'
+import { defineController } from './$relay';
+import { getUserNameById } from '$/service/user';
 
 export default defineController(() => ({
   // user was added by AdditionalRequest of ./hooks.ts
   get: async ({ user }) => ({ status: 200, body: await getUserNameById(user.id) }),
-}))
+}));
 ```
 
 </TabItem>

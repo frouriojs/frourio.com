@@ -1,13 +1,13 @@
 ---
 id: gui
-title: Setup with GUI
+title: GUI によるセットアップ
 ---
 
-## 1. Start create-frourio-app GUI {#start-cfa-gui}
+## 1. create-frourio-app GUI の起動 {#start-cfa-gui}
 
-import Tabs from '@theme/Tabs'
-import TabItem from '@theme/TabItem'
-import BrowserWindow from '@site/src/components/BrowserWindow'
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+import BrowserWindow from '@site/src/components/BrowserWindow';
 
 <Tabs
   defaultValue="npx"
@@ -40,23 +40,23 @@ yarn create frourio-app
 </TabItem>
 </Tabs>
 
-After executing the command, create-frourio-app starts and [localhost:3000](http://localhost:3000) will be opened in your browser.
+コマンドを実行すると、create-frourio-app が開始し [localhost:3000](http://localhost:3000) がブラウザで開かれます。
 
 <BrowserWindow url="http://localhost:3000">
   <img src="/img/cfa-gui.png" />
 </BrowserWindow>
 
-## 2. Generate frourio project {#2-generate-frourio-project}
+## 2. Frourio プロジェクトの生成 {#2-generate-frourio-project}
 
-After filling in the blanks and selecting the options, press the "Create" button to start generating the frourio project.
+空欄を埋め、選択肢を選び終えたら、「Create」ボタンを押して frourio プロジェクトの生成を開始します。
 
-When generation is complete, [localhost:8000](http://localhost:8000) will be opened in your browser and the client framework you selected will be displayed.
-(If it does not open automatically, open [localhost:8000](http://localhost:8000) manually.)
+生成が完了すると、[localhost:8000](http://localhost:8000) がブラウザで開かれ、選択したクライアントフレームワークが表示されます。
+（もし自動で開かない場合は、[localhost:8000](http://localhost:8000) を手動で開いてください。）
 
 :::caution
 
-If another application is using port 8000, it will probably fail to start.  
-In that case, the generation is still complete, so quit the application and start frourio again manually, e.g. `npm run dev`.
+もし別のアプリケーションが 8000 番ポートを使用している場合は、おそらく起動に失敗します。
+そのような場合でも生成は完了しているので、frourio アプリケーションを終了してもう一度手動で開始してください（例: `npm run dev`）。
 
 :::
 

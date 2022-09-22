@@ -1,12 +1,12 @@
 ---
 id: client
-title: Client Static Hosting
+title: クライアント静的ホスティング
 ---
 
-import Tabs from '@theme/Tabs'
-import TabItem from '@theme/TabItem'
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-It is possible to deploy each client and server separately in Frourio.
+Frourio ではクライアントとサーバーを別々にデプロイすることができます。
 
 <Tabs
   defaultValue="npm"
@@ -18,46 +18,46 @@ It is possible to deploy each client and server separately in Frourio.
 }>
 <TabItem value="npm">
 
-The client is built with the following commands:
+以下のコマンドでクライアントがビルドされます:
 
 ```
 npm install
 npm run build:client
 ```
 
-It is your choice whether you want to start it with `npm run start:client` or refer to it as `out/`.
+`npm run start:client` で起動するか `out/` を参照するかはお好みでどうぞ。
 
 </TabItem>
 <TabItem value="yarn">
 
-The client is built with the following commands:
+以下のコマンドでクライアントがビルドされます:
 
 ```
 yarn install
 yarn run build:client
 ```
 
-It is your choice whether you want to start it with `yarn run start:client` or refer to it as `out/`.
+`yarn run start:client` で起動するか `out/` を参照するかはお好みでどうぞ。
 
 </TabItem>
 </Tabs>
 
 ---
 
-Below are some examples of typical static hosting services.
-Of course, you can deploy to services not listed here (including your own server), just give it a try!
+以下は、一般的な静的ホスティングサービスの例です。
+もちろん、ここに掲載されていないサービス（自分のサーバを含む）にもデプロイできますので、ぜひ試してみてください。
 
 ## GitHub Pages {#github-pages}
 
-### Step 1. add GitHub Actions Workflow {#github-pages-1}
+### Step 1. GitHub Actions Workflow を追加 {#github-pages-1}
 
 :::info
 
-If you selected **GitHub Pages** as the **Static hosting service** when you created the app, please [SKIP to Step 2](#step-2-add-secrets-to-repository)!
+プロジェクトの作成時に **Static hosting service** として **GitHub Pages** を選択していた場合は、[Step 2 に進んで](#step-2-add-secrets-to-repository)ください！
 
 :::
 
-If you did not select **GitHub Pages** when you created the app, please refer to the following workflow to add a deployment workflow.
+プロジェクト作成時に **GitHub Pages** を選択していなかった場合は、以下の workflow を参考に、デプロイ用 workflow を追加してください。
 
 <details>
 <summary><strong>.github/workflows/deploy-client.yml</strong></summary>
@@ -176,9 +176,9 @@ jobs:
 
 </details>
 
-### Step 2. add Secrets to Repository {#github-pages-2}
+### Step 2. リポジトリに Secrets を追加 {#github-pages-2}
 
-Add following secrets to your GitHub repository.
+以下の secrets を GitHub リポジトリに追加してください。
 
 - **`API_ORIGIN`**: API origin.  
   e.g. `https://api.my-frourio-app.example`
@@ -200,16 +200,16 @@ Add following secrets to your GitHub repository.
 }>
 <TabItem value="npm">
 
-1. Visit [vercel.com](https://vercel.com) and create new project.
-2. Set **`BUILD COMMAND`** to `npm run build:client`.
-3. Add environment variables **`API_BASE_PATH`** and **`API_ORIGIN`**.
+1. [vercel.com](https://vercel.com) にアクセスし、新しいプロジェクトを作成します。
+2. **`BUILD COMMAND`** に `npm run build:client` をセットします。
+3. 環境変数に **`API_BASE_PATH`** と **`API_ORIGIN`** を追加します。
 
 </TabItem>
 <TabItem value="yarn">
 
-1. Visit [vercel.com](https://vercel.com) and create new project.
-2. Set **`BUILD COMMAND`** to `yarn run build:client`.
-3. Add environment variables **`API_BASE_PATH`** and **`API_ORIGIN`**.
+1. [vercel.com](https://vercel.com) にアクセスし、新しいプロジェクトを作成します。
+2. **`BUILD COMMAND`** に `yarn run build:client` をセットします。
+3. 環境変数に **`API_BASE_PATH`** と **`API_ORIGIN`** を追加します。
 
 </TabItem>
 </Tabs>
@@ -226,24 +226,24 @@ Add following secrets to your GitHub repository.
 }>
 <TabItem value="npm">
 
-1. Visit [app.netlify.com](https://app.netlify.com) and create new project.
-2. Go to **Site Settings** > **Build & Deploy**  
-   a. Set **Repository** to your remote repository  
-   b. Set **Build command** to `npm run build:client`  
-   c. Set **Publish directory** to `out/`
-3. Go to **Site Settings** > **Build & Deploy** > **Environment**  
-   Add environment variables **`API_ORIGIN`** and **`API_BASE_PATH`**
+1. [app.netlify.com](https://app.netlify.com) にアクセスし、新しいプロジェクトを作成します。
+2. **Site Settings** > **Build & Deploy** を開き、  
+   a. **Repository** にリモートリポジトリをセットします  
+   b. **Build command** に `npm run build:client` をセットします  
+   c. **Publish directory** に `out/` をセットします
+3. **Site Settings** > **Build & Deploy** > **Environment** を開き、  
+   環境変数に **`API_BASE_PATH`** と **`API_ORIGIN`** を追加します。
 
 </TabItem>
 <TabItem value="yarn">
 
-1. Visit [app.netlify.com](https://app.netlify.com) and create new project.
-2. Go to **Site Settings** > **Build & Deploy**  
-   a. Set **Repository** to your remote repository  
-   b. Set **Build command** to `yarn run build:client`  
-   c. Set **Publish directory** to `out/`
-3. Go to **Site Settings** > **Build & Deploy** > **Environment**  
-   Add environment variables **`API_ORIGIN`** and **`API_BASE_PATH`**
+1. [app.netlify.com](https://app.netlify.com) にアクセスし、新しいプロジェクトを作成します。
+2. **Site Settings** > **Build & Deploy** を開き、  
+   a. **Repository** にリモートリポジトリをセットします  
+   b. **Build command** に `yarn run build:client` をセットします  
+   c. **Publish directory** に `out/` をセットします
+3. **Site Settings** > **Build & Deploy** > **Environment** を開き、  
+   環境変数に **`API_BASE_PATH`** と **`API_ORIGIN`** を追加します。
 
 </TabItem>
 </Tabs>

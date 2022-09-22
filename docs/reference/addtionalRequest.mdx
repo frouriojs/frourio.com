@@ -4,94 +4,94 @@ title: AdditionalRequest
 ---
 
 :::info
-The examples on this page are written with Fastify, but the same features are valid with Express.
+このページの例は Fastify で書かれていますが、Express でも同じ機能が有効です。
 
-Pull requests to add examples with Express are welcome!
+Express での例を追加するプルリクエストも歓迎しています！
 :::
 
 ---
 
 ```ts title='controller.ts / hooks.ts'
 export type AdditionalRequest = Pick<FastifyRequest, 'cookies'> & {
-  setCookie: (...args: Parameters<FastifyReply['setCookie']>) => void
-  token: string
-}
+  setCookie: (...args: Parameters<FastifyReply['setCookie']>) => void;
+  token: string;
+};
 ```
 
-Frourio extends `FastifyRequest` or `Request` type with the `AdditionalRequest` type exported from controller.ts and hooks.ts.
+Frourio は、controller.ts と hooks.ts からエクスポートされた `AdditionalRequest` 型で `FastifyRequest` または `Request` 型を拡張します。
 
-If defined in `controller.ts`, it will be reflected in the current endpoints.  
-If defined in `hooks.ts`, it will be reflected in the current _and subordinate_ endpoints.
+`controller.ts` で定義した場合、現在の階層でのみ反映されます。
+`hooks.ts` で定義した場合、現在と _配下の_ 階層に反映されます。
 
-## Bridging Hooks and Controllers {#bridging-hooks-and-controllers}
+## フックとコントローラーの橋渡し {#bridging-hooks-and-controllers}
 
-To share values between hooks and controllers, extend and set them with `AdditinalRequest`.
+フックとコントローラーとの間で値を共有するには、`AdditionalRequest` で拡張して値を格納します。
 
-### Example {#bridging-hooks-and-controllers-example}
+### 例 {#bridging-hooks-and-controllers-example}
 
 ```ts title='controller.ts'
-import { defineController, defineHooks } from './$relay'
+import { defineController, defineHooks } from './$relay';
 
 export type AdditionalRequest = {
-  foo: string
-}
+  foo: string;
+};
 
 export const hooks = defineHooks(() => ({
   preHandler: (req, reply, done) => {
-    req.foo = 'Stored in hooks!'
-    done()
+    req.foo = 'Stored in hooks!';
+    done();
   },
-}))
+}));
 
 export default defineController(() => ({
   get: (req) => {
-    return { status: 200, body: req.foo }
+    return { status: 200, body: req.foo };
   },
-}))
+}));
 ```
 
-## Relaying type extended by plugins {#relaying-type-extended-by-plugins}
+## プラグインによる型の拡張の反映 {#relaying-type-extended-by-plugins}
 
-**The first argument of the Controller method does not reflect extensions by plugins** such as `@fastify/cookie` because it is not a FastifyRequest but created by Frourio.
+**コントローラーの第一引数は** `@fastify/cookie` などの **プラグインによる型の拡張を反映しません。**これは FastifyRequest ではなく、frourio によって作られたものだからです。
 
-If you want to access extended content, you must extend it with AdditinalRequest and set the value with hooks.
+拡張された内容にアクセスしたい場合、AdditinalRequest で拡張しフックで値を格納する必要があります。
 
-### Example {#relaying-type-extended-by-plugins-example}
+### 例 {#relaying-type-extended-by-plugins-example}
 
 ```ts title='controller.ts'
-import { defineController, defineHooks } from './$relay'
-import { FastifyReply, FastifyRequest } from 'fastify'
+import { defineController, defineHooks } from './$relay';
+import { FastifyReply, FastifyRequest } from 'fastify';
 
 export type AdditionalRequest = Pick<FastifyRequest, 'cookies'> & {
-  setCookie: (...args: Parameters<FastifyReply['setCookie']>) => void
-}
+  setCookie: (...args: Parameters<FastifyReply['setCookie']>) => void;
+};
 
 export const hooks = defineHooks(() => ({
   preHandler: (req, reply, done) => {
     Object.assign(req, {
       setCookie: (...args: Parameters<FastifyReply['setCookie']>) => void reply.setCookie(...args),
-    })
-    done()
+    });
+    done();
   },
-}))
+}));
 
 export default defineController(() => ({
   post: async ({ body: { token }, setCookie }) => {
-    const expiresIn = 60 * 60 * 24 * 5 * 1000
-    const cookie = await getCookie(token, { expiresIn }) // some function that returns a cookie
+    const expiresIn = 60 * 60 * 24 * 5 * 1000;
+    const cookie = await getCookie(token, { expiresIn }); // some function that returns a cookie
     setCookie('session', cookie, {
       maxAge: expiresIn,
       httpOnly: true,
       secure: process.env.NODE_ENV !== 'development',
       path: '/',
-    })
-    return { status: 200 }
+    });
+    return { status: 200 };
   },
   delete: async ({ setCookie, cookies }) => {
-    const sessionId = cookies.session ?? ''
-    if (sessionId) await revokeSession(sessionId) // some function that revokes a session
-    setCookie('session', '', { maxAge: 0, path: '/' })
-    return { status: 200 }
+    const sessionId = cookies.session ?? '';
+    if (sessionId) await revokeSession(sessionId); // some function that revokes a session
+    setCookie('session', '', { maxAge: 0, path: '/' });
+    return { status: 200 };
   },
-}))
+}));
 ```

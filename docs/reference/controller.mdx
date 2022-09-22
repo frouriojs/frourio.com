@@ -1,35 +1,35 @@
 ---
 id: controller
-title: Controller
+title: コントローラー
 ---
 
-import Tabs from '@theme/Tabs'
-import TabItem from '@theme/TabItem'
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 ```ts title='controller.ts'
-import { defineController } from './$relay'
+import { defineController } from './$relay';
 
 export default defineController(() => ({
   get: () => ({ status: 200, body: 'Hello' }),
   post: async ({ query: { foo }, params: { bar }, body }) => {
-    const baz = await createBaz(foo, bar, body)
-    if (!baz) return { status: 400 }
-    return { status: 201, body: baz }
+    const baz = await createBaz(foo, bar, body);
+    if (!baz) return { status: 400 };
+    return { status: 201, body: baz };
   },
-}))
+}));
 ```
 
-To define controllers, use the function `defineMethods` exported by `./$relay.ts`.
+コントローラーを定義するには、`./$relay.ts` から export された `defineMethods` 関数を使用します。
 
-The type definition of defineController is automatically generated based on the aspida type definition. It must be imported from `$relay.ts` in the same directory as the controller.
+defineController の型定義は aspida の型定義に基づいて自動的に生成されます。そのため、コントローラーと同じディレクトリにある `$relay.ts` から import する必要があります。
 
-The return value of defineController must be default exported.
+defineController の戻り値は default export する必要があります。
 
-If you want to use the fastify instance in the controller, you can take it as an argument.
+コントローラーで fastify インスタンスを使用したい場合は、それを引数にとることができます。
 
-## Function `defineController` {#function-definecontroller}
+## `defineController` 関数 {#function-definecontroller}
 
-### Argument Type {#definecontoller-argument-type}
+### 引数の型 {#definecontoller-argument-type}
 
 <Tabs
   groupId='base-framework'
@@ -43,25 +43,25 @@ If you want to use the fastify instance in the controller, you can take it as an
 
 - function `(fastify: FastifyInstance) => ControllerMethods`
   - [`FastifyInstance`](https://www.fastify.io/docs/latest/Reference/TypeScript/#fastifyfastifyinstancerawserver-rawrequest-requestgeneric-logger)
-  - `ControllerMethods` : An object having the method name as keys and the controller functions as values.
+  - `ControllerMethods` : メソッド名を key とし、リクエストハンドラを value とするオブジェクト
 
 </TabItem>
 <TabItem value="express">
 
 - function `(app: Express) => ControllerMethods`
   - [`Express`](https://expressjs.com/en/4x/api.html)
-  - `ControllerMethods` : An object having the method name as keys and the controller functions as values.
+  - `ControllerMethods` : メソッド名を key とし、リクエストハンドラを value とするオブジェクト
 
 </TabItem>
 </Tabs>
 
-### Return Type {#definecontoller-return-type}
+### 戻り値の型 {#definecontoller-return-type}
 
 - object `ControllerMethods`
 
-## value of ControllerMethods {#value-of-controllermethods}
+## リクエストハンドラ {#value-of-controllermethods}
 
-### Argument Type {#controllermethods-argument-type}
+### 引数の型 {#controllermethods-argument-type}
 
 - object `RequestParams` & [`AdditinalRequest`](/docs/reference/additionalRequest)
   - `query` : `query`
@@ -69,13 +69,13 @@ If you want to use the fastify instance in the controller, you can take it as an
   - `params` : URL Params
   - `body` : `reqBody`
 
-### Return Type {#controllermethods-return-type}
+### 戻り値の型 {#controllermethods-return-type}
 
 - object `ServerResponse` | promise `Promise<ServerResponse>`
   - `status` : `status`
   - `body` : `resBody`
   - `headers` : `resHeaders`
 
-The types of `RequestParams` and `ServerResponse` are determined by API type definitions.
+`RequestParams` 型と `ServerResponse` 型は API 型定義に基づいて決定されます。
 
-Also, each request handler can be sync or async.
+また、それぞれのリクエストハンドラは同期・非同期どちらでも可能です。

@@ -1,12 +1,12 @@
 ---
 id: server
-title: API Server Hosting
+title: API サーバーホスティング
 ---
 
-import Tabs from '@theme/Tabs'
-import TabItem from '@theme/TabItem'
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-It is possible to deploy each client and server separately in Frourio.
+Frourio ではクライアントとサーバーを別々にデプロイすることができます。
 
 <Tabs
   defaultValue="npm"
@@ -18,7 +18,7 @@ It is possible to deploy each client and server separately in Frourio.
 }>
 <TabItem value="npm">
 
-The API server is started with the following commands:
+API サーバーは以下のコマンドで起動します。
 
 ```
 npm install --prefix server
@@ -29,7 +29,7 @@ npm run start:server
 </TabItem>
 <TabItem value="yarn">
 
-The API server is built with the following commands:
+API サーバーは以下のコマンドで起動します。
 
 ```
 yarn install --cwd server
@@ -42,8 +42,8 @@ yarn run start:server
 
 ---
 
-Below are some examples.
-Of course, you can deploy in ways not described here, just give it a try!
+以下はいくつかの例です。
+もちろん、ここに書かれていない方法でデプロイすることもできますので、試してみてください！
 
 ## Dockerfile {#dockerfile}
 
@@ -97,22 +97,22 @@ CMD yarn run build:server && yarn run start:server
 </TabItem>
 </Tabs>
 
-## Dedicated Server (with PM2) {#dedicated-server}
+## 専用サーバー (with PM2) {#dedicated-server}
 
 | question in create-frourio-app |        choice        |
 | :----------------------------: | :------------------: |
 |   **Daemon process manager**   |       **PM2**        |
 |     **Serverless service**     | **Dedicated server** |
 
-### Step 1. add GitHub Actions Workflow {#dedicated-server-1}
+### Step 1. GitHub Actions Workflow を追加 {#dedicated-server-1}
 
 :::info
 
-If you selected **Dedicated server** as the **Serverless service** when you created the app, please [SKIP to Step 2](#step-2-add-secrets-to-repository)!
+プロジェクトの作成時に **Serverless service** として **Dedicated server** を選択していた場合は、[Step 2 に進んで](#step-2-add-secrets-to-repository)ください！
 
 :::
 
-If you did not select **GitHub Pages** when you created the app, please refer to the following workflow to add a deployment workflow.
+プロジェクト作成時に **Dedicated server** を選択していなかった場合は、以下の workflow を参考に、デプロイ用 workflow を追加してください。
 
 <details>
 <summary><strong>.github/workflows/deploy-server.yml</strong></summary>
@@ -162,55 +162,55 @@ jobs:
 
 </details>
 
-### Step 2. add Secrets to Repository {#dedicated-server-2}
+### Step 2. リポジトリに Secrets を追加 {#dedicated-server-2}
 
-Add following secrets to your GitHub repository.
+以下の secrets を GitHub リポジトリに追加してください。
 
-- **`API_BASE_PATH`**: Your API basepath.  
-  e.g. `/api`
-- **`API_DATABASE_URL`**: Production URL for MySQL.  
-  e.g. `mysql://mysql-instance1.123456789012.us-east-1.rds.amazonaws.com:3306`
-- **`API_DEPLOY_HOST`**: Dedicated server host.  
-  e.g. `ec2-public-ipv4-address.compute-1.amazonaws.com`
-- **`API_DEPLOY_USER`**: SSH username.  
-  e.g. `ci`
-- **`API_DEPLOY_SSH_KEY`**: SSH private key that can connect to the above host.  
-  e.g.
-  1. Run `ssh-keygen -t rsa -b 4096 -m PEM -f frourio-ci.key` on your local machine.
-  2. Copy contents of `frourio-ci.key` and paste it to this secrets value.
-  3. Send `frourio-ci.key.pub` to your host machine, and append it to `~/.ssh/known_hosts` on remote host.
-- **`API_UPLOAD_DIR`**: The directory to upload user contents, for example icons.  
-  e.g. `/mnt/efs-1/upload`, `/srv/upload`
-  - In default sample, it is used to save uploaded icons.
+- **`API_BASE_PATH`**: API の basepath。  
+  例: `/api`
+- **`API_DATABASE_URL`**: MySQL の本番 URL。  
+  例: `mysql://mysql-instance1.123456789012.us-east-1.rds.amazonaws.com:3306`
+- **`API_DEPLOY_HOST`**: 専用サーバーのホスト。  
+  例: `ec2-public-ipv4-address.compute-1.amazonaws.com`
+- **`API_DEPLOY_USER`**: SSH ユーザー名。  
+  例: `ci`
+- **`API_DEPLOY_SSH_KEY`**: ホストに接続可能な SSH 秘密鍵。  
+  例:
+  1. `ssh-keygen -t rsa -b 4096 -m PEM -f frourio-ci.key` をローカルマシンで実行します。
+  2. `frourio-ci.key` の中身をコピーして secret の値として貼り付けます。
+  3. `frourio-ci.key.pub` をホストマシンに送信し、`~/.ssh/known_hosts` に追加します。
+- **`API_UPLOAD_DIR`**: ユーザーコンテンツ（アイコンなど）をアップロードするためのディレクトリ。  
+  例: `/mnt/efs-1/upload`, `/srv/upload`
+  - デフォルトのサンプルでは、アップロードされたアイコンを保存するために使用されます。
 
-## AWS Lambda (Static Hosting) {#aws-lambda}
+## AWS Lambda（静的ホスティング） {#aws-lambda}
 
 | question in create-frourio-app |     choice     |
 | :----------------------------: | :------------: |
 |     **API server hosting**     | **Serverless** |
 |     **Serverless service**     | **AWS Lambda** |
 
-This is **complicated to configure**, so you should choose the above choices in create-frourio-app to configure it automatically.
+これは **設定が複雑** なので、create-frourio-app で上記の選択肢を選んで、自動で設定するようにしましょう。
 
-The following is the description that appears when you select AWS Lambda in create-frourio-app.
+create-frourio-app で AWS Lambda を選択した際に表示される説明文の日本語訳は以下の通りです。
 
 :::caution
 
-Little difficult option for beginners. You can find more concrete example [here](https://github.com/LumaKernel/frourio-sample-1/tree/master/infra).
+初心者の方にはやや難しいオプションです。より具体的な例は[こちら](https://github.com/LumaKernel/frourio-sample-1/tree/master/infra)にあります。
 
-To develop serverless applications, you should consider how huge are the modules and bundled files.
-Please note that AWS Lambda has [the size limit](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html) **250MB**.
+サーバーレスアプリケーションを開発する際は、モジュールやバンドルされるファイルがどの程度巨大かを考慮する必要があります。
+AWS Lambda には **250MB** の [サイズ制限](https://docs.aws.amazon.com/lambda/latest/dg/gettingstarted-limits.html)があるのでご注意ください。
 
 :::
 
-At least, you should prepare following for deploying to AWS Lambda.
+AWS Lambda にデプロイするためには、最低限以下のものを用意する必要があります。
 
-- Lambda function to respond to user requests.
-  - Set this Lambda's name to GitHub Actions Secrets **`LAMBDA_FUNCTION_NAME_SERVER`**
-- Lambda function to run migrations.
-  - Set this Lambda's name to GitHub Actions Secrets **`LAMBDA_FUNCTION_NAME_MIGRATION`**
-  - NOTE: Recommended to set longer time limit.
-- Amazon S3 to upload deployment artifacts like built bundle scripts and node_modules.
-  - Set this S3's bucket name to GitHub Actions Secrets **`S3_BUCKET`**
-  - Optional: To specify the S3 key prefix, also add **`S3_PREFIX`** to secrets. e.g. `deployments/`
-  - To elaborate, the key `${S3_BUCKET}/${S3_PREFIX}deployment_server.zip` is used to store the data.
+- ユーザーからのリクエストに応答するための Lambda 関数。
+  - この Lambda の名前を GitHub Actions Secrets **`LAMBDA_FUNCTION_NAME_SERVER`** にセットします。
+- マイグレーションを実行するための Lambda 関数。
+  - この Lambda の名前を GitHub Actions Secrets **`LAMBDA_FUNCTION_NAME_MIGRATION`** にセットします。
+  - NOTE: 長めの時間制限を設定することを推奨します。
+- ビルド済みバンドルスクリプトや node_modules などのデプロイアーティファクトをアップロードするための Amazon S3。
+  - この S3 バケットの名前を GitHub Actions Secrets **`S3_BUCKET`** にセットします。
+  - オプション: S3 キーのプレフィックスを指定する場合は、secrets に **S3_PREFIX`** も追加してください。
+  - 詳しく説明すると、`${S3_BUCKET}/${S3_PREFIX}deployment_server.zip` キーがデータを保管するために使用されます。

@@ -1,41 +1,41 @@
 ---
 id: hooks
-title: Lifecycle and Hooks
+title: ライフサイクルとフック
 ---
 
-import Tabs from '@theme/Tabs'
-import TabItem from '@theme/TabItem'
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
-## Lifecycle in Frourio {#lifecycle-in-frourio}
+## Frourio におけるライフサイクル {#lifecycle-in-frourio}
 
-Both frourio and frourio-express provide hooks that take a form similar to fastify.
+Frourio と frourio-express のどちらも、fastify に似た形式のフックを提供しています。
 
-The overall lifecycle is shown in the figure below, and hooks such as `onRequest`, `preParsing`, `preValidation`, and `preHandler` can be defined.
+全体のライフサイクルは下図のようになっていて、`onRequest`, `preParsing`, `preValidation`, `preHandler` などのフックを定義できます。
 
 <div style={{ textAlign: 'center' }}>
-  <img src="/img/lifecycle.svg" alt='Lifecycle of Frourio' style={{ maxWidth: '300px' }} />
+  <img src="/img/lifecycle.svg" alt='Frourio におけるライフサイクル' style={{ maxWidth: '300px' }} />
 
 _Ref. [Lifecycle - Fastify](https://www.fastify.io/docs/latest/Reference/Lifecycle/)_
 
 </div>
 
-## Two Types of Hooks {#two-types-of-hooks}
+## 2 種類のフック {#two-types-of-hooks}
 
-Frourio provides two types of hooks: **controller-level hooks** and **directory-level hooks**.
+Frourio は、**コントローラーレベル フック** と **ディレクトリレベル フック** の 2 種類のフックを提供しています。
 
-- **Controller-level Hooks**: called at the current endpoints.
-- **Directory-level Hooks**: called at the current _and subordinate_ endpoints.
+- **コントローラーレベル フック**: 現在の階層でのみ呼ばれます
+- **ディレクトリレベル フック**: 現在と _配下の_ 階層で呼ばれます
 
-If both hooks are to be called, **Directory-level Hooks** is called first.
+もし両方の種類のフックが同時に呼ばれる場合、**ディレクトリレベル フック** が先に呼ばれます。
 
-## Define Hooks {#define-hooks}
+## フックを定義する {#define-hooks}
 
-To define hooks, use the function `defineHooks` exported by `./$relay.ts`.
+フックを定義するには、`./$relay.ts` でエクスポートされた `defineHooks` 関数を使用します。
 
-- **Controller-level Hooks**: define in `controller.ts`.
-- **Directory-level Hooks**: define in `hooks.ts` at the top of the target directory.
+- **コントローラーレベル フック**: `controller.ts` で定義します
+- **ディレクトリレベル フック**: 目的のディレクトリの `hooks.ts` で定義します
 
-### Function `defineHooks` {#function-definehooks}
+### `defineHooks` 関数 {#function-definehooks}
 
 <Tabs
   groupId='base-framework'
@@ -47,23 +47,23 @@ To define hooks, use the function `defineHooks` exported by `./$relay.ts`.
 >
 <TabItem value="fastify">
 
-#### Argument Type {#definehooks-argument-type}
+#### 引数の型 {#definehooks-argument-type}
 
 - function `(fastify: FastifyInstance) => Hooks`
-  - `Hooks` : An object having the hooks name as keys and the handler functions (or its array) as values.
+  - `Hooks` : フック名を key とし、ハンドラ関数（またはその配列）を value とするオブジェクト
 
-### Hooks Handler {#hooks-handler}
+### フックハンドラ {#hooks-handler}
 
-#### Argument Type {#hooks-handler-argument-type}
+#### 引数の型 {#hooks-handler-argument-type}
 
 - `request` : [`FastifyRequest`](https://www.fastify.io/docs/latest/Reference/TypeScript/#request) & [`AdditinalRequest`](/docs/reference/additionalRequest)
 - `reply` : [`FastifyReply`](https://www.fastify.io/docs/latest/Reference/TypeScript/#reply)
 - `done` : function `<TError extends Error = FastifyError>(err?: TError) => void`
 
-`done` is the function to continue with the lifecycle.
+`done` はライフサイクルを続行する関数です。
 
 :::caution
-The `done` callback is not available when using `async`/`await` or returning a `Promise`. If you do invoke a done callback in this situation unexpected behavior may occur, e.g. duplicate invocation of handlers.
+`async`/`await` を使用しているときや `Promise` を返しているときは `done` コールバックを使用できません。このような状況で done コールバックを呼び出すと、ハンドラを重複して呼び出すなど、予期しない動作が発生する可能性があります。
 
 _ref. [Hooks - Fastify](https://www.fastify.io/docs/latest/Reference/Hooks/)_
 :::
@@ -71,20 +71,20 @@ _ref. [Hooks - Fastify](https://www.fastify.io/docs/latest/Reference/Hooks/)_
 </TabItem>
 <TabItem value="express">
 
-#### Argument Type {#definehooks-argument-type}
+#### 引数の型 {#definehooks-argument-type}
 
 - function `(app: Express) => Hooks`
-  - `Hooks` : An object having the hooks name as keys and the handler functions (or its array) as values.
+  - `Hooks` : フック名を key とし、ハンドラ関数（またはその配列）を value とするオブジェクト
 
-### Hooks Handler {#hooks-handler}
+### フックハンドラ {#hooks-handler}
 
-#### Argument Type {#hooks-handler-argument-type}
+#### 引数の型 {#hooks-handler-argument-type}
 
 - `req` : [`Request`](https://expressjs.com/ja/api.html#req) & [`AdditinalRequest`](/docs/reference/additionalRequest)
 - `res` : [`Response`](http://expressjs.com/ja/api.html#res)
 - `next` : function `(err?: any) => void`
 
-`next` is the function to continue with the lifecycle including when using `async`/`await` or returning a `Promise`.
+`next` はライフサイクルを続行する関数です。（`async`/`await`を使用しているときや`Promise` を返しているときも含みます。）
 
 </TabItem>
 </Tabs>

@@ -40,7 +40,7 @@ module.exports = {
         {
           type: 'docSidebar',
           sidebarId: 'docs',
-          label: 'Docs',
+          label: 'ドキュメント',
           position: 'right',
         },
         {

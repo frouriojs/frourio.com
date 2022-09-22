@@ -1,25 +1,25 @@
 ---
 id: about
-title: About Frourio
+title: Frourio について
 slug: /
 ---
 
-## What is Frourio? {#what-is-frourio}
+## Frourio とは {#what-is-frourio}
 
-Frourio is a CLI tool that enables static type checking by Typescript for communication between client-side and server-side. It generates bridging files and thus it provides you type-based development.
+Frourio はクライアントとサーバーとの間で TypeScript による静的な型検査を可能とする CLI ツールです。橋渡しのためのファイルを生成することで、型駆動開発を実現します。
 
-It is easy to build with any combinations of the client side and the server side frameworks supported by Frourio.
+Frourio が対応しているクライアントとサーバーのフレームワークを自由に組み合わせて、簡単に環境を構築することができます。
 
-## Why Frourio? {#why-frourio}
+## なぜ frourio を使うのか {#why-frourio}
 
-Even though we were developing both the client-side and server-side application in TypeScript, it is hard to program the API requests between them type-safe.
+クライアントとサーバーの双方を TypeScript で開発している場合においても、両者間の API リクエストを型安全に実装することは困難でした。
 
-So we were forced to write TypeScript "twice".
-And we have spent a lot of time testing with those browsers and servers.
+言うなれば、私たちは「２つ」の TypeScript を書かざるを得なかったのです。
+そしてブラウザとサーバーを用いたテストに多くの時間を費やしてきました。
 
-![Two TypeScript](/img/TwoTS.svg)
+![２つの TypeScript](/img/TwoTS.svg)
 
-But with Frourio, they can be "connected" by type.
-Frourio improves greatly the development experience with "connected" TypeScript.
+しかし frourio を用いることで、型を通じてそれらを「接続」することができます。
+Frourio は「接続」された TypeScript で開発体験を大幅に改善します。
 
-![One TypeScript](/img/OneTS.svg)
+![１つの TypeScript](/img/OneTS.svg)

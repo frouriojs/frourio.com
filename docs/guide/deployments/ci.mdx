@@ -1,13 +1,13 @@
 ---
 id: ci
-title: Continuous Integration
+title: 継続的インテグレーション (CI)
 ---
 
-Here are the five commands you need to run for Frourio testing!
-You can run them wherever you like.
+Frourio のテストに必要なコマンドは下記の 5 つです。
+お好きな環境で実行してください。
 
-import Tabs from '@theme/Tabs'
-import TabItem from '@theme/TabItem'
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 <Tabs
   defaultValue="npm"
@@ -43,9 +43,9 @@ yarn test
 
 ## GitHub Actions Workflow {#github-actions-workflow}
 
-For reference, the following workflow will be generated in `.github/workflows/test.yml` if you select GItHub Actions in CI config when you create a project.
+参考までに、プロジェクト作成時の CI 設定で GItHub Actions を選択した場合、以下のような workflow が `.github/workflows/test.yml` に生成されます。
 
-Since the workflow will vary depending on your configuration, we recommend that you use create-frourio-app to generate a workflow that fits your configuration.
+Workflow は構成によって異なるため、create-frourio-app を使用して自分の構成に合った workflow を生成することをお勧めします。
 
 <Tabs
   defaultValue="npm"
