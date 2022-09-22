@@ -34,28 +34,28 @@ Unless there are special circumstances, **you should specify their types**.
 <h3>API Definition</h3>
 
 ```ts title="server/api/tasks/_taskId@number/index.ts"
-import { Task } from '$/types'
+import { Task } from '$/types';
 
 export type Methods = {
   get: {
-    resBody: Task
-  }
-}
+    resBody: Task;
+  };
+};
 ```
 
 <h3>Controller</h3>
 
 ```ts title="server/api/tasks/_taskId@number/controller.ts"
-import { defineController } from './$relay'
-import { findTask } from '$/service/tasks'
+import { defineController } from './$relay';
+import { findTask } from '$/service/tasks';
 
 export default defineController(() => ({
   get: async ({ params }) => {
-    const task = await findTask(params.taskId)
+    const task = await findTask(params.taskId);
 
-    return task ? { status: 200, body: task } : { status: 404 }
+    return task ? { status: 200, body: task } : { status: 404 };
   },
-}))
+}));
 ```
 
 <h3>Results</h3>
@@ -99,30 +99,30 @@ And if its key ends in square brackets (e.g. `foo[]`), frourio automatically rem
 <h3>API Definition</h3>
 
 ```ts title="server/api/tasks/index.ts"
-import { Task } from '$/types'
+import { Task } from '$/types';
 
 export type Methods = {
   get: {
     query?: {
-      limit: number
-    }
-    resBody: Task[]
-  }
-}
+      limit: number;
+    };
+    resBody: Task[];
+  };
+};
 ```
 
 <h3>Controller</h3>
 
 ```ts title="server/api/tasks/controller.ts"
-import { defineController } from './$relay'
-import { getTasks } from '$/service/tasks'
+import { defineController } from './$relay';
+import { getTasks } from '$/service/tasks';
 
 export default defineController(() => ({
   get: async ({ query }) => ({
     status: 200,
     body: (await getTasks()).slice(0, query?.limit),
   }),
-}))
+}));
 ```
 
 <h3>Results</h3>
@@ -158,40 +158,40 @@ To validate request body, request headers and URL query, specify a class with [c
 <h3>Validator</h3>
 
 ```ts title="server/validators/index.ts"
-import { MinLength, IsString } from 'class-validator'
+import { MinLength, IsString } from 'class-validator';
 
 export class LoginBody {
   @MinLength(5)
-  id: string
+  id: string;
 
   @MinLength(8)
-  pass: string
+  pass: string;
 }
 
 export class TokenHeader {
   @IsString()
   @MinLength(10)
-  token: string
+  token: string;
 }
 ```
 
 <h3>API Definition</h3>
 
 ```ts title="server/api/token/index.ts"
-import { LoginBody, TokenHeader } from '$/validators'
+import { LoginBody, TokenHeader } from '$/validators';
 
 export type Methods = {
   post: {
-    reqBody: LoginBody
+    reqBody: LoginBody;
     resBody: {
-      token: string
-    }
-  }
+      token: string;
+    };
+  };
 
   delete: {
-    reqHeaders: TokenHeader
-  }
-}
+    reqHeaders: TokenHeader;
+  };
+};
 ```
 
 <h3>Results</h3>
@@ -213,8 +213,8 @@ HTTP/1.1 401 Unauthorized
 
 [class-validator options](https://github.com/typestack/class-validator#passing-options)
 
-import Tabs from '@theme/Tabs'
-import TabItem from '@theme/TabItem'
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
 
 <Tabs
   defaultValue="fastify"
@@ -226,28 +226,28 @@ import TabItem from '@theme/TabItem'
 <TabItem value="fastify">
 
 ```ts title="server/service/app.ts"
-import Fastify, { FastifyServerFactory } from 'fastify'
-import server from '$/$server'
+import Fastify, { FastifyServerFactory } from 'fastify';
+import server from '$/$server';
 
 export const init = (serverFactory?: FastifyServerFactory) => {
-  const app = Fastify({ serverFactory })
-  server(app, { basePath: '/api', validator: { whitelist: true } })
-  return app
-}
+  const app = Fastify({ serverFactory });
+  server(app, { basePath: '/api', validator: { whitelist: true } });
+  return app;
+};
 ```
 
 </TabItem>
 <TabItem value="express">
 
 ```ts title="server/service/app.ts"
-import express from 'express'
-import server from '$/$server'
+import express from 'express';
+import server from '$/$server';
 
 export const init = () => {
-  const app = express()
-  server(app, { basePath: '/api', validator: { whitelist: true } })
-  return app
-}
+  const app = express();
+  server(app, { basePath: '/api', validator: { whitelist: true } });
+  return app;
+};
 ```
 
 </TabItem>
