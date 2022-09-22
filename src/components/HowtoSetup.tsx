@@ -3,27 +3,27 @@ import styles from '../pages/styles.module.css';
 
 const setupSteps = [
   {
-    text: 'Select Front-end Framework',
+    text: 'フロントエンドフレームワークを選択',
     icons: ['next', 'nuxt', 'sapperIcon'],
   },
   {
-    text: 'Select Back-end Framework',
+    text: 'バックエンドフレームワークを選択',
     icons: ['fastify', 'express'],
   },
   {
-    text: 'Select O/R mapper',
+    text: 'ORM を選択',
     icons: ['prisma', 'typeorm'],
   },
   {
-    text: 'Select DataBase',
+    text: 'データベースを選択',
     icons: ['mysql', 'postgres'],
   },
   {
-    text: 'Setup CI',
+    text: 'CI を選択',
     icons: ['jest', 'githubactions'],
   },
   {
-    text: 'Select Deploy Server (coming soon)',
+    text: 'デプロイ先を選択',
     icons: ['vercel', 'netlify'],
   },
 ];

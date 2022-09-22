@@ -1,13 +1,13 @@
 module.exports = {
   title: 'frourio',
-  tagline: 'Fast and type-safe full stack framework, for TypeScript',
-  url: 'https://frourio.com',
+  tagline: '高速で型安全な TypeScript のためのフレームワーク',
+  url: 'https://ja.frourio.com',
   baseUrl: '/',
   onBrokenLinks: 'ignore',
   favicon: 'img/favicon.png',
   trailingSlash: false,
   organizationName: 'frouriojs', // Usually your GitHub org/user name.
-  projectName: 'frourio.com', // Usually your repo name.
+  projectName: 'ja.frourio.com', // Usually your repo name.
   plugins: ['custom-webpack-config'],
   themeConfig: {
     image: 'img/ogp.png',
@@ -15,11 +15,11 @@ module.exports = {
       { name: 'twitter:card', content: 'summary_large_image' },
       {
         name: 'description',
-        content: 'Frourio is the full stack framework for TypeScript.',
+        content: 'Frourio は TypeScript のためのフルスタックフレームワークです。',
       },
       {
         property: 'og:description',
-        content: 'Frourio is the full stack framework for TypeScript.',
+        content: 'Frourio は TypeScript のためのフルスタックフレームワークです。',
       },
     ],
     colorMode: {
@@ -115,7 +115,7 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl: 'https://github.com/frouriojs/frourio.com/edit/master/',
+          editUrl: 'https://github.com/frouriojs/ja.frourio.com/edit/master/',
         },
         gtag: {
           trackingID: process.env.TRACKING_ID || 'G-XXXXXX',
@@ -123,7 +123,7 @@ module.exports = {
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
-          editUrl: 'https://github.com/frouriojs/frourio.com/edit/master/',
+          editUrl: 'https://github.com/frouriojs/ja.frourio.com/edit/master/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
