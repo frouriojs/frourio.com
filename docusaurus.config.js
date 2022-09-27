@@ -56,6 +56,10 @@ module.exports = {
           position: 'left',
         },
         {
+          type: 'localeDropdown',
+          position: 'right',
+        },
+        {
           href: 'https://github.com/frouriojs/frourio',
           className: 'header-github-link',
           'area-label': 'GitHub: frouriojs/frourio',
