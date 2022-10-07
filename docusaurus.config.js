@@ -87,7 +87,7 @@ module.exports = {
             },
             {
               label: 'Tutorial',
-              to: '/docs/tutorial/welcome',
+              to: '/docs/tutorial',
             },
           ],
         },
