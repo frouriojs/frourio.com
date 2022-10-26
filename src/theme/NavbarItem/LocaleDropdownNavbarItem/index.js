@@ -17,19 +17,19 @@ export default function LocaleDropdownNavbarItem({
       to: 'https://frourio.com' + location.pathname,
       target: '_self',
       autoAddBaseUrl: false,
-      className: mobile ? 'menu__link--active' : 'dropdown__link--active',
+      className: '',
     },
     {
       label: '日本語',
       to: 'https://ja.frourio.com' + location.pathname,
       target: '_self',
       autoAddBaseUrl: false,
-      className: '',
+      className: mobile ? 'menu__link--active' : 'dropdown__link--active',
     },
   ];
   const items = [...dropdownItemsBefore, ...localeItems, ...dropdownItemsAfter];
   // Mobile is handled a bit differently
-  const dropdownLabel = mobile ? 'Languages' : 'English';
+  const dropdownLabel = mobile ? 'Languages' : '日本語';
   return (
     <DropdownNavbarItem
       {...props}
