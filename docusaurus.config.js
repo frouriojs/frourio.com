@@ -41,23 +41,28 @@ module.exports = {
           type: 'docSidebar',
           sidebarId: 'docs',
           label: 'ドキュメント',
-          position: 'right',
+          position: 'left',
         },
         {
           type: 'docSidebar',
           sidebarId: 'tutorial',
           label: 'Tutorial',
-          position: 'right',
+          position: 'left',
         },
         {
           to: 'changelog',
           activeBasePath: 'changelog',
           label: 'Changelog',
+          position: 'left',
+        },
+        {
+          type: 'localeDropdown',
           position: 'right',
         },
         {
           href: 'https://github.com/frouriojs/frourio',
-          label: 'GitHub',
+          className: 'header-github-link',
+          'area-label': 'GitHub: frouriojs/frourio',
           position: 'right',
         },
       ],
@@ -69,12 +74,20 @@ module.exports = {
           title: 'Docs',
           items: [
             {
-              label: 'Why frourio?',
-              to: 'docs/',
+              label: 'About Frourio',
+              to: '/docs',
             },
             {
-              label: 'Installation',
-              to: 'docs/installation/gui',
+              label: 'Reference',
+              to: '/docs/reference',
+            },
+            {
+              label: 'Guide',
+              to: '/docs/guide',
+            },
+            {
+              label: 'Tutorial',
+              to: '/docs/tutorial',
             },
           ],
         },
