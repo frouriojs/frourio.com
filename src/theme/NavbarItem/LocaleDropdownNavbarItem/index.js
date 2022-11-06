@@ -29,7 +29,7 @@ export default function LocaleDropdownNavbarItem({
   ];
   const items = [...dropdownItemsBefore, ...localeItems, ...dropdownItemsAfter];
   // Mobile is handled a bit differently
-  const dropdownLabel = mobile ? 'Languages' : '日本語';
+  const dropdownLabel = mobile ? '言語設定' : '日本語';
   return (
     <DropdownNavbarItem
       {...props}
