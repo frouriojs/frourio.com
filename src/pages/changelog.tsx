@@ -71,11 +71,11 @@ const Changelog = () => {
   }, [setCfaReleases]);
 
   return (
-    <Layout title="Changelog" description="Changelog of frourio and create-frourio-app">
+    <Layout title="変更履歴" description="frourio と create-frourio-app の変更履歴">
       <main className={clsx('container', styles.main)}>
-        <h1 className={styles.title}>Changelog</h1>
-        <p>Release list of frourio and create-frourio-app.</p>
-        <span>See all releases on GitHub:</span>
+        <h1 className={styles.title}>変更履歴</h1>
+        <p>frourio と create-frourio-app のリリース一覧です。</p>
+        <span>GitHub で詳しくみる：</span>
         <ul>
           <li>
             <Link href="https://github.com/frouriojs/frourio/releases">frouriojs/frourio</Link>

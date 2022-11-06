@@ -52,7 +52,7 @@ module.exports = {
         {
           to: 'changelog',
           activeBasePath: 'changelog',
-          label: 'Changelog',
+          label: '変更履歴',
           position: 'left',
         },
         {
