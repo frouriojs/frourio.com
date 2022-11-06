@@ -18,7 +18,7 @@ export default function DocPaginator(props) {
             <Translate
               id="theme.docs.paginator.previous"
               description="The label used to navigate to the previous doc">
-              Previous
+              前のページ
             </Translate>
           }
         />
@@ -30,7 +30,7 @@ export default function DocPaginator(props) {
             <Translate
               id="theme.docs.paginator.next"
               description="The label used to navigate to the next doc">
-              Next
+              次のページ
             </Translate>
           }
           isNext
