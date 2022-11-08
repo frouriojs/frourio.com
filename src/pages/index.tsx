@@ -87,9 +87,15 @@ const chartOptions = {
       text: 'Request/sec',
       style: {
         fontWeight: 'bold',
+        color: '#999',
       },
     },
     categories,
+    labels: {
+      style: {
+        colors: ['#999'],
+      },
+    },
   },
   grid: {
     xaxis: {
