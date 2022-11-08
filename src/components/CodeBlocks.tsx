@@ -1,7 +1,7 @@
 import React from 'react';
 import Highlight, { defaultProps } from 'prism-react-renderer';
 import styles from '../pages/styles.module.css';
-// import theme from "prism-react-renderer/themes/nightOwl"
+import vsDark from 'prism-react-renderer/themes/vsDark';
 
 const codeList = [
   {
@@ -51,7 +51,12 @@ const CodeBlocks = () => (
     {codeList.map((data) => (
       <div key={data.title} className={styles.codeBlock}>
         <p className={styles.codeBlockTitle}>{data.title}</p>
-        <Highlight {...defaultProps} code={data.code.trim()} language={data.language}>
+        <Highlight
+          {...defaultProps}
+          theme={vsDark}
+          code={data.code.trim()}
+          language={data.language}
+        >
           {({ className, style, tokens, getLineProps, getTokenProps }) => (
             <pre className={className} style={style}>
               {tokens.map((line, i) => (
