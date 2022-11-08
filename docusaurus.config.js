@@ -29,6 +29,13 @@ module.exports = {
     },
     prism: {
       theme: require('prism-react-renderer/themes/github'),
+      darkTheme: {
+        ...require('prism-react-renderer/themes/vsDark'),
+        plain: {
+          color: '#D4D4D4',
+          backgroundColor: '#242526',
+        },
+      },
       additionalLanguages: ['docker'],
     },
     navbar: {
