@@ -34,6 +34,10 @@
   margin: 0;
   text-shadow: 1px 1px 3px #fff;
 }
+[data-theme='dark'] .heroTitle {
+  color: #fff;
+  text-shadow: 1px 1px 3px #000;
+}
 
 .heroTitleBold {
   font-weight: 700;
