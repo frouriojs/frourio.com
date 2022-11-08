@@ -116,7 +116,9 @@
 }
 
 .stepIcon {
+  width: 150px;
   height: 50px;
+  object-fit: contain;
   margin: 0 30px 25px 0;
 }
 
