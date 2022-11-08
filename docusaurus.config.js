@@ -24,7 +24,8 @@ module.exports = {
     ],
     colorMode: {
       defaultMode: 'light',
-      disableSwitch: true,
+      disableSwitch: false,
+      respectPrefersColorScheme: true,
     },
     prism: {
       theme: require('prism-react-renderer/themes/github'),
