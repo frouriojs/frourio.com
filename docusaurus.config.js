@@ -15,11 +15,13 @@ module.exports = {
       { name: 'twitter:card', content: 'summary_large_image' },
       {
         name: 'description',
-        content: 'Frourio is the full stack framework for TypeScript.',
+        content:
+          'Frourio is a CLI tool that enables static type checking by Typescript for communication between client-side and server-side.',
       },
       {
         property: 'og:description',
-        content: 'Frourio is the full stack framework for TypeScript.',
+        content:
+          'Frourio is a CLI tool that enables static type checking by Typescript for communication between client-side and server-side.',
       },
     ],
     colorMode: {

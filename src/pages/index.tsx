@@ -127,10 +127,7 @@ function Home() {
   const context = useDocusaurusContext();
   const { siteConfig } = context;
   return (
-    <Layout
-      title={siteConfig.tagline}
-      description="Description will go into a meta tag in <head />"
-    >
+    <Layout title={siteConfig.tagline}>
       <header className={styles.heroBanner}>
         <div className={styles.movingBoxes}>
           <MovingBoxes />
