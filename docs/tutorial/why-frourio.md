@@ -16,14 +16,14 @@ Even though we were developing both the client-side and server-side application 
 So we were forced to write TypeScript "twice".
 And we have spent a lot of time testing with those browsers and servers.
 
-![Two TypeScript](/img/TwoTS.svg#gh-light-mode-only)
-![Two TypeScript](/img/TwoTS-dark.svg#gh-dark-mode-only)
+![Two TypeScript](/img/docs/TwoTS.svg#gh-light-mode-only)
+![Two TypeScript](/img/docs/TwoTS-dark.svg#gh-dark-mode-only)
 
 But with Frourio, they can be "connected" by type.
 Frourio improves greatly the development experience with "connected" TypeScript.
 
-![One TypeScript](/img/OneTS.svg#gh-light-mode-only)
-![One TypeScript](/img/OneTS-dark.svg#gh-dark-mode-only)
+![One TypeScript](/img/docs/OneTS.svg#gh-light-mode-only)
+![One TypeScript](/img/docs/OneTS-dark.svg#gh-dark-mode-only)
 
 ---
 
