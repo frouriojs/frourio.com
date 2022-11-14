@@ -6,7 +6,7 @@ const CFA: React.VFC = () => {
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const CfaMain = require('create-frourio-app/lib/components/main').default;
     return (
-      <div style={{ overflowX: 'auto', paddingBottom: '16px' }}>
+      <div style={{ overflowX: 'auto', paddingBottom: '16px' }} id="cfa-wrapper">
         <CfaMain />
       </div>
     );
