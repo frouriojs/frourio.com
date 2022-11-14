@@ -30,13 +30,13 @@
   background: linear-gradient(90deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.3) 100%);
 }
 [data-theme='dark'] .shadow {
-  background: linear-gradient(
+  background: linear-gradient(90deg, rgba(0, 0, 128, 0.05) 50%, rgba(0, 0, 0, 0.9) 100%),
+    linear-gradient(
       152.5deg,
-      rgba(0, 0, 0, 1) 0%,
-      rgba(0, 0, 0, 0.8) 30%,
-      rgba(0, 0, 0, 0.3) 30.1%
-    ),
-    linear-gradient(90deg, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.6) 100%);
+      rgba(0, 0, 0, 0.75) 0%,
+      rgba(0, 0, 0, 0.75) 30%,
+      rgba(0, 0, 0, 0.2) 30.1%
+    );
 }
 
 .box {
