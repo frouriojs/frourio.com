@@ -140,16 +140,13 @@ function Home() {
           <p className={styles.heroTitle}>in one command</p>
           <p className={clsx(styles.heroTitle, styles.heroTitleBold)}>All you need is TypeScript</p>
           <div className={styles.buttons}>
-            <Link
-              className={clsx('button button--primary button--lg', styles.getStarted)}
-              to={useBaseUrl('docs/')}
-            >
+            <Link className="button button--primary button--lg" to={useBaseUrl('docs/')}>
               Get Started
             </Link>
             <Link
               className={clsx(
                 'button button--outline button--primary button--lg',
-                styles.getStarted
+                styles.startTutorial
               )}
               to={useBaseUrl('/docs/tutorial')}
             >

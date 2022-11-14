@@ -44,6 +44,20 @@
   margin: 10px 0 30px 0;
 }
 
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px;
+}
+
+[data-theme='dark'] .startTutorial {
+  background: rgba(0, 0, 0, 0.3);
+}
+[data-theme='dark'] .startTutorial:hover {
+  color: #fff;
+}
+
 /* How to setup */
 .setupWrapper {
   display: flex;
@@ -216,12 +230,6 @@
   font-weight: 400;
   line-height: 27px;
   margin: 0;
-}
-
-.buttons {
-  display: flex;
-  align-items: center;
-  gap: 8px;
 }
 
 .features {
