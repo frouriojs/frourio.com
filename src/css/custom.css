@@ -24,6 +24,13 @@
   --docusaurus-highlighted-code-line-bg: rgba(8, 198, 214, 0.05);
 }
 
+[data-theme='light'] {
+  --logotype-color: #0d0e59;
+}
+[data-theme='dark'] {
+  --logotype-color: #fff;
+}
+
 .docusaurus-highlight-code-line {
   background-color: rgb(72, 77, 91);
   display: block;
@@ -40,6 +47,10 @@ img.emoji {
   height: 1em;
   position: relative;
   top: 0.1em;
+}
+
+.navbar__title {
+  color: var(--logotype-color);
 }
 
 .header-github-link:hover {
