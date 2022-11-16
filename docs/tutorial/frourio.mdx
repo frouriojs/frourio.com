@@ -34,7 +34,7 @@ In another terminal session,
 mkdir api/hi
 ```
 
-Next, copy the API type definitions in src/api to server/api.
+Next, copy the API type definitions in `src/api` to `server/api`.
 
 ```sh title=Terminal
 cp ../src/api/index.ts api
@@ -43,7 +43,7 @@ cp ../src/api/hi/index.ts api/hi
 
 ### 1.2. Implement Controllers {#implement-controllers}
 
-By default, body is typed as string, and you can see the type error in `api/controller.ts`.
+By default, body is generated as string, and you can see the type error in `api/controller.ts`.
 
 Then, specify `{ hello: 'world' }` to the body, and the type error will be resolved.
 
@@ -60,9 +60,9 @@ Also, the body of `api/hi` should be replaced with `{ hello: 'how are you?' }`.
 
 ### 1.3. Start Frourio Server {#start-frourio-server}
 
-You can see $server.ts has been generated in the server directory.
+You can see `$server.ts` has been generated in the `server` directory.
 
-Modify index.ts to start the server using this.
+Modify `index.ts` to start the server using this.
 
 ```diff title=server/index.ts
  import Fastify from 'fastify';
