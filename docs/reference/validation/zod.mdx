@@ -21,15 +21,14 @@ Frourio uses zod for validation; see the documentation at the link above for a d
 ## Two Types of validators {#two-types-of-validators}
 
 Frourio provides two types of validators: **Controller-level Validators** and **Directory-level Validators**.
+The elements that can be validated in each are different.
 
-- **Controller-level Validators**: called at the current endpoints.
+- **Controller-level Validators**: called at the current endpoints. **`params` cannot be validated.**
+  - `query`
+  - `headers`
+  - `body`
 - **Directory-level Validators**: called at the current _and subordinate_ endpoints. **Only `params` can be validated.**
-
-:::note
-
-`params` can be defined for either, but we recommend to define it for `Directory-level`.
-
-:::
+  - `params`
 
 ## Controller-level {#controller-level}
 
@@ -103,16 +102,28 @@ export default defineValidators(() => ({
 
 #### Argument Type {#definevalidators-argument-type}
 
-- function `(fastify: FastifyInstance) => { params: z.ZodType<{ (params type) }> }`
-  - `{ (params type) }` : URL parameters type defined in `./index.ts`.
+- function `(fastify: FastifyInstance) => { params: (zod object schema) }`
+
+The actial type difinition of `(zod object schema)` is `z.ZodType<{ (params type) }>`, but there is no need to be aware of this.
+This ensures consistency with the API type difinitions.
+
+\* `{ (params type) }` : The type difinition of the URL parameter that the directory has.
+It does not include that of the upper-level directory.
+If unspecified, it will be `string`, but as noted on [Automatic Validation page](/docs/reference/validation/automatic#path-parameter), it is recommended that it be specified.
 
 </TabItem>
 <TabItem value="express">
 
 #### Argument Type {#definevalidators-argument-type}
 
-- function `(app: Express) => { params: z.ZodType<{ (params type) }> }`
-  - `{ (params type) }` : URL parameters type defined in `./index.ts`.
+- function `(app: Express) => { params: (zod object schema) }`
+
+The actial type difinition of `(zod object schema)` is `z.ZodType<{ (params type) }>`, but there is no need to be aware of this.
+This ensures consistency with the API type difinitions.
+
+\* `{ (params type) }` : The type difinition of the URL parameter that the directory has.
+It does not include that of the upper-level directory.
+If unspecified, it will be `string`, but as noted on [Automatic Validation page](/docs/reference/validation/automatic#path-parameter), it is recommended that it be specified.
 
 </TabItem>
 </Tabs>
