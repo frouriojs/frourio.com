@@ -5,6 +5,14 @@ title: class-validator
 
 To validate request body, request headers and URL query, specify a class with [class-validator](https://github.com/typestack/class-validator) instead of type for reqBody, reqHeaders and query.
 
+:::caution Deprecated after 0.30.0
+
+After `frourio` and `frourio-express` version `0.30.0`, using class-validator as a validator in Frourio is deprecated.
+
+If used, a warning will be displayed during the build. Consider migrating to [zod](/docs/reference/validation/zod).
+
+:::
+
 <details>
 <summary>Example</summary>
 
