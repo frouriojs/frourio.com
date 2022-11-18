@@ -9,119 +9,7 @@ import styles from './styles.module.css';
 import MovingBoxes from '../components/MovingBoxes';
 import HowtoSetup from '../components/HowtoSetup';
 import CodeBlocks from '../components/CodeBlocks';
-
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const Chart = 'window' in global ? require('react-apexcharts').default : null;
-
-const filterByWindowWidth = (array: (number | string)[]) => {
-  if ('window' in global && window.innerWidth >= 600) return array;
-  return array.slice(0, 3);
-};
-
-const benchmarks: { category: string; data: number; color: string }[] = [
-  {
-    category: 'frourio',
-    data: 57152.8,
-    color: '#08c6d6',
-  },
-  {
-    category: 'fastify',
-    data: 56084.8,
-    color: '#999',
-  },
-  {
-    category: 'nest-fastify',
-    data: 53035.2,
-    color: '#999',
-  },
-  {
-    category: 'frourio-express',
-    data: 13741.0,
-    color: '#999',
-  },
-  {
-    category: 'express',
-    data: 13602.0,
-    color: '#999',
-  },
-  {
-    category: 'nest',
-    data: 12212.2,
-    color: '#999',
-  },
-].sort((a, b) => b.data - a.data);
-
-const chartSeries = [
-  {
-    name: '2022-10-01',
-    data: filterByWindowWidth(benchmarks.map((val) => val.data)),
-  },
-];
-
-const colors = filterByWindowWidth(benchmarks.map((val) => val.color));
-const categories = filterByWindowWidth(benchmarks.map((val) => val.category));
-
-const chartOptions = {
-  chart: {
-    type: 'bar',
-    toolbar: {
-      show: false,
-    },
-    fontFamily: 'inherit',
-  },
-  plotOptions: {
-    bar: {
-      horizontal: true,
-      distributed: true,
-      dataLabels: {
-        position: 'top',
-      },
-    },
-  },
-  colors,
-  legend: {
-    show: false,
-  },
-  xaxis: {
-    title: {
-      text: 'Request/sec',
-      style: {
-        fontWeight: 'bold',
-        color: '#999',
-      },
-    },
-    categories,
-    labels: {
-      style: {
-        colors: ['#999'],
-      },
-    },
-  },
-  grid: {
-    xaxis: {
-      lines: {
-        show: true,
-      },
-    },
-  },
-  dataLabels: {
-    enabled: true,
-    offsetX: -8,
-    style: {
-      fontSize: '12px',
-      colors: ['#fff'],
-    },
-  },
-  yaxis: {
-    labels: {
-      style: {
-        colors,
-        fontSize: '14px',
-        fontWeight: 'bold',
-      },
-    },
-  },
-};
+import BenchmarkChart from '../components/BenchmarkChart';
 
 function Home() {
   const context = useDocusaurusContext();
@@ -228,10 +116,7 @@ function Home() {
           <div className={clsx('text--center', styles.feature)}>
             <div className="container">
               <h2>The fastest TypeScript framework</h2>
-              {Chart && (
-                <Chart options={chartOptions} series={chartSeries} type="bar" height={280} />
-              )}
-
+              <BenchmarkChart />
               <div className={clsx('text--center', styles.feature)}>
                 <Link
                   className={clsx('button button--primary button--lg', styles.getStarted)}
