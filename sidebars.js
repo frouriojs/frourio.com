@@ -14,7 +14,9 @@ module.exports = {
         'reference/controller',
         'reference/hooks',
         'reference/additionalRequest',
-        'reference/validation',
+        {
+          Validation: ['reference/validation/automatic', 'reference/validation/class-validator'],
+        },
         'reference/cli',
       ],
     },

@@ -1,0 +1,107 @@
+---
+id: class-validator
+title: class-validator
+---
+
+To validate request body, request headers and URL query, specify a class with [class-validator](https://github.com/typestack/class-validator) instead of type for reqBody, reqHeaders and query.
+
+<details>
+<summary>Example</summary>
+
+<h3>Validator</h3>
+
+```ts title="server/validators/index.ts"
+import { MinLength, IsString } from 'class-validator';
+
+export class LoginBody {
+  @MinLength(5)
+  id: string;
+
+  @MinLength(8)
+  pass: string;
+}
+
+export class TokenHeader {
+  @IsString()
+  @MinLength(10)
+  token: string;
+}
+```
+
+<h3>API Definition</h3>
+
+```ts title="server/api/token/index.ts"
+import { LoginBody, TokenHeader } from '$/validators';
+
+export type Methods = {
+  post: {
+    reqBody: LoginBody;
+    resBody: {
+      token: string;
+    };
+  };
+
+  delete: {
+    reqHeaders: TokenHeader;
+  };
+};
+```
+
+<h3>Results</h3>
+
+```sh
+$ curl -X POST -H "Content-Type: application/json" -d '{"id":"correctId","pass":"correctPass"}' http://localhost:8080/api/token
+{"token":"XXXXXXXXXX"}
+
+$ curl -X POST -H "Content-Type: application/json" -d '{"id":"abc","pass":"12345"}' http://localhost:8080/api/token -i
+HTTP/1.1 400 Bad Request
+
+$ curl -X POST -H "Content-Type: application/json" -d '{"id":"incorrectId","pass":"incorrectPass"}' http://localhost:8080/api/token -i
+HTTP/1.1 401 Unauthorized
+```
+
+</details>
+
+## Passing Validator Options {#passing-validator-options}
+
+[class-validator options](https://github.com/typestack/class-validator#passing-options)
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<Tabs
+  defaultValue="fastify"
+  values={[
+    { label: 'Fastify', value: 'fastify' },
+    { label: 'Express', value: 'express' },
+  ]
+}>
+<TabItem value="fastify">
+
+```ts title="server/service/app.ts"
+import Fastify, { FastifyServerFactory } from 'fastify';
+import server from '$/$server';
+
+export const init = (serverFactory?: FastifyServerFactory) => {
+  const app = Fastify({ serverFactory });
+  server(app, { basePath: '/api', validator: { whitelist: true } });
+  return app;
+};
+```
+
+</TabItem>
+<TabItem value="express">
+
+```ts title="server/service/app.ts"
+import express from 'express';
+import server from '$/$server';
+
+export const init = () => {
+  const app = express();
+  server(app, { basePath: '/api', validator: { whitelist: true } });
+  return app;
+};
+```
+
+</TabItem>
+</Tabs>
