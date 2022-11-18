@@ -15,7 +15,11 @@ module.exports = {
         'reference/hooks',
         'reference/additionalRequest',
         {
-          Validation: ['reference/validation/automatic', 'reference/validation/class-validator'],
+          Validation: [
+            'reference/validation/automatic',
+            'reference/validation/zod',
+            'reference/validation/class-validator',
+          ],
         },
         'reference/cli',
       ],
