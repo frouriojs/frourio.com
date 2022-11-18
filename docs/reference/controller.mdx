@@ -41,27 +41,58 @@ If you want to use the fastify instance in the controller, you can take it as an
 >
 <TabItem value="fastify">
 
-- function `(fastify: FastifyInstance) => ControllerMethods`
+- function `(fastify: FastifyInstance) => ServerMethods`
   - [`FastifyInstance`](https://www.fastify.io/docs/latest/Reference/TypeScript/#fastifyfastifyinstancerawserver-rawrequest-requestgeneric-logger)
-  - `ControllerMethods` : An object having the method name as keys and the controller functions as values.
+  - `ServerMethods` : an object whose keys are the same as `Methods` and whose values are [ServerMethodHandler](#object-servermethodhandler).
 
 </TabItem>
 <TabItem value="express">
 
 - function `(app: Express) => ControllerMethods`
   - [`Express`](https://expressjs.com/en/4x/api.html)
-  - `ControllerMethods` : An object having the method name as keys and the controller functions as values.
+  - `ServerMethods` : an object whose keys are the same as `Methods` and whose values are [ServerMethodHandler](#object-servermethodhandler).
 
 </TabItem>
 </Tabs>
 
 ### Return Type {#definecontoller-return-type}
 
-- object `ControllerMethods`
+- object `ServerMethods`
 
-## value of ControllerMethods {#value-of-controllermethods}
+## Object `ServerMethodHandler` {#object-servermethodhandler}
 
-### Argument Type {#controllermethods-argument-type}
+```ts title='$server.ts (formatted)'
+export type ServerMethodHandler<T extends AspidaMethodParams, U extends Record<string, any> = {}> =
+  | ServerHandler<T, U>
+  | ServerHandlerPromise<T, U>
+  | {
+      validators?: Partial<{ [Key in keyof RequestParams<T>]?: z.ZodType<RequestParams<T>[Key]> }>;
+      handler: ServerHandler<T, U> | ServerHandlerPromise<T, U>;
+    };
+```
+
+- [`ServerHandler`](#function-serverhandler) or
+- <code>
+    <a href="#function-serverhandler">ServerHandler</a>Promise
+  </code> or
+- <code>
+    {'{ validators?: '}
+    <a href="/docs/reference/validation/zod#controller-level">(Controller-level Validators)</a>
+    {', handler: '}
+    <a href="#function-serverhandler">ServerHandler</a>
+    {' }'}
+  </code> or
+- <code>
+    {'{ validators?: '}
+    <a href="/docs/reference/validation/zod#controller-level">(Controller-level Validators)</a>
+    {', handler: '}
+    <a href="#function-serverhandler">ServerHandler</a>Promise
+    {' }'}
+  </code>
+
+## Function `ServerHandler` {#function-serverhandler}
+
+### Argument Type {#serverhandler-argument-type}
 
 - object `RequestParams` & [`AdditinalRequest`](/docs/reference/additionalRequest)
   - `query` : `query`
@@ -78,4 +109,4 @@ If you want to use the fastify instance in the controller, you can take it as an
 
 The types of `RequestParams` and `ServerResponse` are determined by API type definitions.
 
-Also, each request handler can be sync or async.
+If this is included in a Promise using async, it becomes the <code>ServerHandler<b>Promise</b></code>.

@@ -47,7 +47,7 @@ export default defineController(() => ({
   get: () => ({ status: 200, body: 'Hello' }),
   post: {
     // highlight-start
-    validator: {
+    validators: {
       query: z.object({
         foo: z.string(),
       }),
