@@ -72,6 +72,8 @@ export default defineController(() => ({
 
 To define directory-level validators, create `validators.ts` at the top of the target directory, and use the function `defineValidators` exported by `./$relay.ts` .
 
+If there are multiple directory-level validators affecting to the endpoint, they are converted to an intersection type using `.and`.
+
 :::note
 
 Frourio automatically creates `validator.ts` when a directory with a path parameter in its name is created.
