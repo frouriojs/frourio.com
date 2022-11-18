@@ -20,6 +20,8 @@
 
   --ifm-font-family-base: -apple-system, 'BlinkMacSystemFont', 'Helvetica Neue',
     'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Segoe UI', 'Meiryo', sans-serif, 'Segoe UI Emoji';
+
+  --docusaurus-highlighted-code-line-bg: rgba(8, 198, 214, 0.05);
 }
 
 .docusaurus-highlight-code-line {
