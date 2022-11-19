@@ -39,6 +39,30 @@ The `validator` is an object whose keys are the same as `RequestParams` and whos
 Each schemas are checked for consistency with the API type definition using `z.ZodType`.
 
 ```ts title='server/api/_baz@string/index.ts'
+import { DefineMethods } from 'aspida';
+import { Fuga, Baz } from './@types';
+
+export type Methods = DefineMethods<{
+  get: {
+    resBody: string;
+  };
+  post: {
+    // highlight-start
+    reqBody: {
+      hogeString: string;
+      fugaObject: Fuga;
+      piyoBoolean?: boolean;
+    };
+    query: {
+      foo: string;
+    };
+    // highlight-end
+    resBody: Baz;
+  };
+}>;
+```
+
+```ts title='server/api/_baz@string/controller.ts'
 import { defineController } from './$relay';
 // highlight-next-line
 import { z } from 'zod';
