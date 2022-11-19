@@ -38,9 +38,9 @@ The `validator` is an object whose keys are the same as `RequestParams` and whos
 
 Each schemas are checked for consistency with the API type definition using `z.ZodType`.
 
-```ts title='server/api/_bar@string/index.ts'
+```ts title='server/api/_id@string/index.ts'
 import { DefineMethods } from 'aspida';
-import { Fuga, Baz } from '$/types';
+import { Fuga, Res } from '$/types';
 
 export type Methods = DefineMethods<{
   get: {
@@ -54,15 +54,15 @@ export type Methods = DefineMethods<{
       piyoBoolean?: boolean;
     };
     query: {
-      foo: string;
+      length?: number;
     };
     // highlight-end
-    resBody: Baz;
+    resBody: Res;
   };
 }>;
 ```
 
-```ts title='server/api/_bar@string/controller.ts'
+```ts title='server/api/_id@string/controller.ts'
 import { defineController } from './$relay';
 // highlight-next-line
 import { z } from 'zod';
@@ -73,7 +73,7 @@ export default defineController(() => ({
     // highlight-start
     validators: {
       query: z.object({
-        foo: z.string(),
+        length: z.number().optional(),
       }),
       body: z.object({
         hogeString: z.string(),
@@ -82,10 +82,10 @@ export default defineController(() => ({
       }),
     },
     // highlight-end
-    handler: async ({ query: { foo }, params: { bar }, body }) => {
-      const baz = await createBaz(foo, bar, body);
-      if (!baz) return { status: 400 };
-      return { status: 201, body: baz };
+    handler: async ({ params: { id }, body, query: { length } }) => {
+      const res = await createBaz(id, body, length);
+      if (!res) return { status: 400 };
+      return { status: 201, body: res };
     },
   },
 }));
@@ -103,12 +103,12 @@ Frourio automatically creates `validators.ts` when a directory with a path param
 
 :::
 
-```ts title='server/api/_bar@string/validators.ts'
+```ts title='server/api/_id@string/validators.ts'
 import { defineValidators } from './$relay';
 import { z } from 'zod';
 
 export default defineValidators(() => ({
-  params: z.object({ bar: z.string() }),
+  params: z.object({ id: z.string() }),
 }));
 ```
 
