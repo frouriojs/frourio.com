@@ -38,7 +38,7 @@ The `validator` is an object whose keys are the same as `RequestParams` and whos
 
 Each schemas are checked for consistency with the API type definition using `z.ZodType`.
 
-```ts title='server/api/_baz@string/index.ts'
+```ts title='server/api/_bar@string/index.ts'
 import { DefineMethods } from 'aspida';
 import { Fuga, Baz } from './@types';
 
@@ -62,7 +62,7 @@ export type Methods = DefineMethods<{
 }>;
 ```
 
-```ts title='server/api/_baz@string/controller.ts'
+```ts title='server/api/_bar@string/controller.ts'
 import { defineController } from './$relay';
 // highlight-next-line
 import { z } from 'zod';
@@ -103,12 +103,12 @@ Frourio automatically creates `validatorsts` when a directory with a path parame
 
 :::
 
-```ts title='server/api/_baz@string/validators.ts'
+```ts title='server/api/_bar@string/validators.ts'
 import { defineValidators } from './$relay';
 import { z } from 'zod';
 
 export default defineValidators(() => ({
-  params: z.object({ baz: z.string() }),
+  params: z.object({ bar: z.string() }),
 }));
 ```
 
