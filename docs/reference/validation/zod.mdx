@@ -40,7 +40,7 @@ Each schemas are checked for consistency with the API type definition using `z.Z
 
 ```ts title='server/api/_bar@string/index.ts'
 import { DefineMethods } from 'aspida';
-import { Fuga, Baz } from './@types';
+import { Fuga, Baz } from '$/types';
 
 export type Methods = DefineMethods<{
   get: {
