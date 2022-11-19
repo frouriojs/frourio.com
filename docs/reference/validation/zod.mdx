@@ -1,0 +1,161 @@
+---
+id: zod
+title: Zod
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+<div style={{display: 'flex', alignItems: 'flex-start', gap: 16 }}>
+
+<img src="https://zod.dev/logo.svg" alt="Zod logo" width="80px" />
+
+- [colinhacks/zod: TypeScript\-first schema validation with static type inference](https://github.com/colinhacks/zod)
+- [zod \- npm](https://www.npmjs.com/package/zod)
+- [Zod | Documentation](https://zod.dev/)
+
+</div>
+
+Frourio uses zod for validation; see the documentation at the link above for a definition of the zod schema.
+
+## Two Types of Validators {#two-types-of-validators}
+
+Frourio provides two types of validators: **Controller-level Validators** and **Directory-level Validators**.
+The elements that can be validated in each are different.
+
+- **Controller-level Validators**: called at the current endpoints. **`params` cannot be validated.**
+  - `query`
+  - `headers`
+  - `body`
+- **Directory-level Validators**: called at the current _and subordinate_ endpoints. **Only `params` can be validated.**
+  - `params`
+
+## Controller-level {#controller-level}
+
+**When an object** with `validator` and `handler` as keys **is passed to `defineController`** as [`ServerMethodHandler`](/docs/reference/controller#object-servermethodhandler), Frourio validates the `RequestParams` argument of the [`ServerHandler`](/docs/reference/controller#function-serverhandler).
+
+The `validator` is an object whose keys are the same as `RequestParams` and whose values are **zod object schemas** (`z.object()`).
+
+Each schemas are checked for consistency with the API type definition using `z.ZodType`.
+
+```ts title='server/api/_id@string/index.ts'
+import { DefineMethods } from 'aspida';
+import { Fuga, Res } from '$/types';
+
+export type Methods = DefineMethods<{
+  get: {
+    resBody: string;
+  };
+  post: {
+    // highlight-start
+    reqBody: {
+      hogeString: string;
+      fugaObject: Fuga;
+      piyoBoolean?: boolean;
+    };
+    query: {
+      length?: number;
+    };
+    // highlight-end
+    resBody: Res;
+  };
+}>;
+```
+
+```ts title='server/api/_id@string/controller.ts'
+import { defineController } from './$relay';
+// highlight-next-line
+import { z } from 'zod';
+
+export default defineController(() => ({
+  get: () => ({ status: 200, body: 'Hello' }),
+  post: {
+    // highlight-start
+    validators: {
+      query: z.object({
+        length: z.number().optional(),
+      }),
+      body: z.object({
+        hogeString: z.string(),
+        fugaObject: z.object({ ... }),
+        piyoBoolean: z.boolean().optional(),
+      }),
+    },
+    // highlight-end
+    handler: async ({ params: { id }, body, query: { length } }) => {
+      const res = await createBaz(id, body, length);
+      if (!res) return { status: 400 };
+      return { status: 201, body: res };
+    },
+  },
+}));
+```
+
+## Directory-level {#directory-level}
+
+To define directory-level validators, create `validators.ts` at the top of the target directory, and use the function `defineValidators` exported by `./$relay.ts` .
+
+If there are multiple directory-level validators affecting to the endpoint, they are converted to an intersection type using `.and`.
+
+:::note
+
+Frourio automatically creates `validators.ts` when a directory with a path parameter in its name is created.
+
+:::
+
+```ts title='server/api/_id@string/validators.ts'
+import { defineValidators } from './$relay';
+import { z } from 'zod';
+
+export default defineValidators(() => ({
+  params: z.object({ id: z.string() }),
+}));
+```
+
+### Function `defineValidators` {#function-definevalidators}
+
+<Tabs
+  groupId='base-framework'
+  defaultValue="fastify"
+  values={[
+    { label: 'Fastify', value: 'fastify' },
+    { label: 'Express', value: 'express' },
+  ]}
+>
+<TabItem value="fastify">
+
+#### Argument Type {#definevalidators-argument-type}
+
+- function `(fastify: FastifyInstance) => { params: (zod object schema) }`
+
+The actual type definition of `(zod object schema)` is `z.ZodType<{ (params type) }>`, but there is no need to be aware of this.
+This ensures consistency with the API type definitions.
+
+:::note `{ (params type) }`
+
+The type definition of the URL parameter that the directory has.
+It does not include that of the upper-level directory.
+If unspecified, it will be `string`, but as noted on [Automatic Validation page](/docs/reference/validation/automatic#path-parameter), it is recommended that it be specified.
+
+:::
+
+</TabItem>
+<TabItem value="express">
+
+#### Argument Type {#definevalidators-argument-type}
+
+- function `(app: Express) => { params: (zod object schema) }`
+
+The actual type definition of `(zod object schema)` is `z.ZodType<{ (params type) }>`, but there is no need to be aware of this.
+This ensures consistency with the API type definitions.
+
+:::note `{ (params type) }`
+
+The type definition of the URL parameter that the directory has.
+It does not include that of the upper-level directory.
+If unspecified, it will be `string`, but as noted on [Automatic Validation page](/docs/reference/validation/automatic#path-parameter), it is recommended that it be specified.
+
+:::
+
+</TabItem>
+</Tabs>
