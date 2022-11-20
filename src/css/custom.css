@@ -20,15 +20,15 @@
 
   --ifm-font-family-base: -apple-system, 'BlinkMacSystemFont', 'Helvetica Neue',
     'Hiragino Kaku Gothic ProN', 'Hiragino Sans', 'Segoe UI', 'Meiryo', sans-serif, 'Segoe UI Emoji';
-
-  --docusaurus-highlighted-code-line-bg: rgba(8, 198, 214, 0.05);
 }
 
 [data-theme='light'] {
   --logotype-color: #0d0e59;
+  --docusaurus-highlighted-code-line-bg: rgba(8, 198, 214, 0.05);
 }
 [data-theme='dark'] {
   --logotype-color: #fff;
+  --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.05);
 }
 
 .docusaurus-highlight-code-line {
