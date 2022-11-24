@@ -11,38 +11,38 @@ const codeList = [
 export type Methods = {
   get: {
     resBody: {
-      id: number
-      name: string
-    }
-  }
-}`,
+      id: number;
+      name: string;
+    };
+  };
+};`,
   },
   {
     language: 'typescript' as const,
     title: 'Backend: fix type error on server/api/users/controller.ts',
     code: `
-import { defineController } from './$relay'
+import { defineController } from './$relay';
 
 export default defineController(() => ({
   get: () => ({
     status: 200,
-    body: { id: 0, name: 'mario' }
-  })
-}))`,
+    body: { id: 0, name: 'mario' },
+  }),
+}));`,
   },
   {
     language: 'tsx' as const,
     title: 'Frontend: request from pages/index.tsx',
     code: `
-import useAspidaSWR from '@aspida/swr'
-import { apiClient } from '~/utils/apiClient'
+import useAspidaSWR from '@aspida/swr';
+import { apiClient } from '~/utils/apiClient';
 
 const Home = () => {
-  const { data: user } = useAspidaSWR(apiClient.users)
-  return <div>{user.name}</div>
-}
+  const { data: user } = useAspidaSWR(apiClient.users);
+  return <div>{user.name}</div>;
+};
 
-export default Home`,
+export default Home;`,
   },
 ];
 
