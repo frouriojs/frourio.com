@@ -4,7 +4,7 @@ import styles from '../pages/styles.module.css';
 const setupSteps = [
   {
     text: 'Select Front-end Framework',
-    icons: ['next', 'nuxt', 'sapperIcon'],
+    icons: ['next', 'nuxt'],
   },
   {
     text: 'Select Back-end Framework',
