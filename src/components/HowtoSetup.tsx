@@ -3,7 +3,6 @@ import styles from '../pages/styles.module.css';
 
 import NextLogo from '../assets/logos/next.svg';
 import NuxtLogo from '../assets/logos/nuxt.svg';
-import SapperLogo from '../assets/logos/sapper.svg';
 import FastifyLogo from '../assets/logos/fastify.svg';
 import ExpressLogo from '../assets/logos/express.svg';
 import PrismaLogo from '../assets/logos/prisma.svg';
@@ -18,7 +17,7 @@ import NetlifyLogo from '../assets/logos/netlify.svg';
 const setupSteps: { text: string; icons: ComponentType<SVGProps<SVGSVGElement>>[] }[] = [
   {
     text: 'Select Front-end Framework',
-    icons: [NextLogo, NuxtLogo, SapperLogo],
+    icons: [NextLogo, NuxtLogo],
   },
   {
     text: 'Select Back-end Framework',
