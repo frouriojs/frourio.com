@@ -1,5 +1,5 @@
 import React from 'react';
-import classes from './movingBoxes.module.css';
+import classes from './styles.module.css';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import clsx from 'clsx';
 
@@ -14,7 +14,7 @@ const MovingBoxes: React.FC = () => {
         />
         {getRandomIndexArray().map((r, i) => (
           <img
-            src={useBaseUrl(`/img/box${boxList[r]}.png`)}
+            src={useBaseUrl(`/img/box/${boxList[r]}.png`)}
             alt="box"
             className={clsx(classes.box)}
             key={`box${i}`}
@@ -28,16 +28,16 @@ const MovingBoxes: React.FC = () => {
 };
 
 const boxList = [
-  'Aspida',
-  'Express',
-  'Fastify',
-  'MySQL',
-  'Next',
-  'Nuxt',
-  'Open',
-  'Prisma',
-  'React',
-  'Vue',
+  'aspida',
+  'express',
+  'fastify',
+  'mysql',
+  'next',
+  'nuxt',
+  'open',
+  'prisma',
+  'react',
+  'vue',
 ];
 
 const getRandomIndexArray = () => {
