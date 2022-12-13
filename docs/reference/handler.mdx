@@ -1,0 +1,49 @@
+---
+id: handler
+title: Handler
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+```ts title='controller.ts'
+import { defineController } from './$relay';
+
+export default defineController(() => ({
+  get: () => ({ status: 200, body: 'Hello' }),
+  post: async ({ query: { foo }, params: { bar }, body }) => {
+    const baz = await createBaz(foo, bar, body);
+    if (!baz) return { status: 400 };
+    return { status: 201, body: baz };
+  },
+}));
+```
+
+To define controllers, use the function `defineMethods` exported by `./$relay.ts`.
+
+The type definition of defineController is automatically generated based on the aspida type definition. It must be imported from `$relay.ts` in the same directory as the controller.
+
+The return value of defineController must be default exported.
+
+If you want to use the fastify instance in the controller, you can take it as an argument.
+
+## Function `ServerHandler` {#serverhandler}
+
+### Argument Type {#serverhandler-argument-type}
+
+- object `RequestParams` & [`AdditinalRequest`](/docs/reference/additionalRequest)
+  - `query` : `query`
+  - `headers` : `reqHeaders`
+  - `params` : URL Params
+  - `body` : `reqBody`
+
+### Return Type {#controllermethods-return-type}
+
+- object `ServerResponse` | promise `Promise<ServerResponse>`
+  - `status` : `status`
+  - `body` : `resBody`
+  - `headers` : `resHeaders`
+
+The types of `RequestParams` and `ServerResponse` are determined by API type definitions.
+
+If this is included in a Promise using async, it becomes the <code>ServerHandler<b>Promise</b></code>.
