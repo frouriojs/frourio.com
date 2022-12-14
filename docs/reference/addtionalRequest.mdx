@@ -3,14 +3,6 @@ id: additionalRequest
 title: AdditionalRequest
 ---
 
-:::info
-The examples on this page are written with Fastify, but the same features are valid with Express.
-
-Pull requests to add examples with Express are welcome!
-:::
-
----
-
 ```ts title='controller.ts / hooks.ts'
 export type AdditionalRequest = Pick<FastifyRequest, 'cookies'> & {
   setCookie: (...args: Parameters<FastifyReply['setCookie']>) => void;
@@ -18,16 +10,25 @@ export type AdditionalRequest = Pick<FastifyRequest, 'cookies'> & {
 };
 ```
 
-Frourio extends `FastifyRequest` or `Request` type with the `AdditionalRequest` type exported from controller.ts and hooks.ts.
+Using `AdditionalRequest`, you can extend the `FastifyRequest` or `Request` types.
+This allows you to keep information between multiple Hooks and from Hooks to the Handler.
 
-If defined in `controller.ts`, it will be reflected in the current endpoints.  
-If defined in `hooks.ts`, it will be reflected in the current _and subordinate_ endpoints.
+Frourio automatically extend the arguments of the Handler and Hooks with `AdditionalRequest` defined in `controller.ts` or `hooks.ts`.
 
-## Bridging Hooks and Controllers {#bridging-hooks-and-controllers}
+- **Controller-level**: Affects only the current endpoint. Defined in `controller.ts`.
+- **Directory-level**: Affects the current endpoint **and the endpoints under it**. Defined in `hooks.ts`.
+
+:::info
+The examples on this page are written with Fastify, but the same features are valid with Express.
+
+Pull requests to add examples with Express are welcome!
+:::
+
+## Bridging Hooks and the Handler {#bridging-hooks-and-the-handler}
 
 To share values between hooks and controllers, extend and set them with `AdditinalRequest`.
 
-### Example {#bridging-hooks-and-controllers-example}
+### Example {#bridging-hooks-and-the-handler-example}
 
 ```ts title='controller.ts'
 import { defineController, defineHooks } from './$relay';
@@ -52,9 +53,9 @@ export default defineController(() => ({
 
 ## Relaying type extended by plugins {#relaying-type-extended-by-plugins}
 
-**The first argument of the Controller method does not reflect extensions by plugins** such as `@fastify/cookie` because it is not a FastifyRequest but created by Frourio.
+**The first argument of the Handler method does not reflect extensions by plugins** such as `@fastify/cookie` because it is not a `FastifyRequest` but created by Frourio.
 
-If you want to access extended content, you must extend it with AdditinalRequest and set the value with hooks.
+If you want to access extended content, you must extend it with `AdditinalRequest` and set the value with Hooks.
 
 ### Example {#relaying-type-extended-by-plugins-example}
 
