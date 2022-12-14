@@ -8,7 +8,7 @@ import TabItem from '@theme/TabItem';
 
 ## Lifecycle in Frourio {#lifecycle-in-frourio}
 
-Both frourio and frourio-express provide hooks that take a form similar to fastify.
+Both frourio and frourio-express provide Hooks that take a form similar to fastify.
 
 The overall lifecycle is shown in the figure below, and hooks such as `onRequest`, `preParsing`, `preValidation`, and `preHandler` can be defined.
 
@@ -18,6 +18,17 @@ The overall lifecycle is shown in the figure below, and hooks such as `onRequest
 _Ref. [Lifecycle - Fastify](https://www.fastify.io/docs/latest/Reference/Lifecycle/)_
 
 </div>
+
+---
+
+:::tip Looking for docs on how to define hooks?
+
+The definition of Hooks can be found on the Routing page. See the following links for a reference on `defineController()` and `defineHooks()`.
+
+- [Controller-level (`defineController()`)](/docs/reference/routing#controller-level)
+- [Directory-level (`defineHooks()`)](/docs/reference/routing#directory-level-hooks)
+
+:::
 
 ## Object `ServerHooks` {#serverhooks}
 
