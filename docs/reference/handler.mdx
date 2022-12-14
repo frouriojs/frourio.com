@@ -10,22 +10,44 @@ import TabItem from '@theme/TabItem';
 import { defineController } from './$relay';
 
 export default defineController(() => ({
+  // highlight-start
   get: () => ({ status: 200, body: 'Hello' }),
-  post: async ({ query: { foo }, params: { bar }, body }) => {
-    const baz = await createBaz(foo, bar, body);
-    if (!baz) return { status: 400 };
-    return { status: 201, body: baz };
+  // highlight-end
+  post: {
+    validators: {
+      query: z.object({ ... }),
+      body: z.object({ ... }),
+    },
+    schemas: {
+      response: { 201: { type: 'object', properties: { ... } } },
+    },
+    hooks: {
+      preValidation: [],
+      preHandler: (req, _, done) => { ...; done(); },
+    },
+    // highlight-start
+    handler: async ({ query: { foo }, params: { bar }, body }) => {
+      const baz = await createBaz(foo, bar, body);
+      if (!baz) return { status: 400 };
+      return { status: 201, body: baz };
+    },
+    // highlight-end
   },
 }));
 ```
 
-To define controllers, use the function `defineMethods` exported by `./$relay.ts`.
+A handler is a function that takes a request as an argument and returns a response as a return value.
+Handlers can only be defined at the controller-level.
 
-The type definition of defineController is automatically generated based on the aspida type definition. It must be imported from `$relay.ts` in the same directory as the controller.
+---
 
-The return value of defineController must be default exported.
+:::tip Looking for docs on how to define the handler?
 
-If you want to use the fastify instance in the controller, you can take it as an argument.
+The definition of the handler can be found on the Routing page. See the following links for a reference on `defineController()`.
+
+- [Controller-level (`defineController()`)](/docs/reference/routing#controller-level)
+
+:::
 
 ## Function `ServerHandler` {#serverhandler}
 
