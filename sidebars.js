@@ -45,7 +45,6 @@ module.exports = {
             'guide/deployments/server',
           ],
         },
-        'guide/performance',
       ],
     },
   ],
