@@ -8,34 +8,48 @@ import TabItem from '@theme/TabItem';
 
 ## Lifecycle in Frourio {#lifecycle-in-frourio}
 
-Both frourio and frourio-express provide hooks that take a form similar to fastify.
+Both frourio and frourio-express provide Hooks that take a form similar to fastify.
 
 The overall lifecycle is shown in the figure below, and hooks such as `onRequest`, `preParsing`, `preValidation`, and `preHandler` can be defined.
 
 <div style={{ textAlign: 'center' }}>
-  <img src="/img/docs/lifecycle.svg" alt='Lifecycle of Frourio' style={{ maxWidth: '300px' }} />
+  <img src="/img/docs/lifecycle.svg" alt='Lifecycle of Frourio' width='840px' height='1800px' style={{ maxWidth: '100%', maxHeight: '800px' }} />
 
 _Ref. [Lifecycle - Fastify](https://www.fastify.io/docs/latest/Reference/Lifecycle/)_
 
 </div>
 
-## Two Types of Hooks {#two-types-of-hooks}
+---
 
-Frourio provides two types of hooks: **controller-level hooks** and **directory-level hooks**.
+:::tip Looking for docs on how to define hooks?
 
-- **Controller-level Hooks**: called at the current endpoints.
-- **Directory-level Hooks**: called at the current _and subordinate_ endpoints.
+The definition of Hooks can be found on the Routing page. See the following links for a reference on `defineController()` and `defineHooks()`.
 
-If both hooks are to be called, **Directory-level Hooks** is called first.
+- [Controller-level (`defineController()`)](/docs/reference/routing#controller-level)
+- [Directory-level (`defineHooks()`)](/docs/reference/routing#directory-level-hooks)
 
-## Define Hooks {#define-hooks}
+:::
 
-To define hooks, use the function `defineHooks` exported by `./$relay.ts`.
+## Object `ServerHooks` {#serverhooks}
 
-- **Controller-level Hooks**: define in `controller.ts`.
-- **Directory-level Hooks**: define in `hooks.ts` at the top of the target directory.
+<code>
+  {'{\n  [(Hooks Name)]: '}
+  <a href="#hookshandler">HooksHandler</a>
+  {' or '}
+  <a href="#hookshandler">HooksHandler</a>[]
+  {',\n}'}
+</code>
 
-### Function `defineHooks` {#function-definehooks}
+An object whose keys are the same as the names of hooks and whose values are [`HooksHandler`](#hookshandler) or <code><a href="#hookshandler">HooksHandler</a>[]</code>.
+
+Available names of hooks:
+
+- `onRequest`
+- `preParsing`
+- `preValidation`
+- `preHandler`
+
+## Function `HooksHandler` {#hookshandler}
 
 <Tabs
   groupId='base-framework'
@@ -47,14 +61,7 @@ To define hooks, use the function `defineHooks` exported by `./$relay.ts`.
 >
 <TabItem value="fastify">
 
-#### Argument Type {#definehooks-argument-type}
-
-- function `(fastify: FastifyInstance) => Hooks`
-  - `Hooks` : An object having the hooks name as keys and the handler functions (or its array) as values.
-
-### Hooks Handler {#hooks-handler}
-
-#### Argument Type {#hooks-handler-argument-type}
+### Argument Type {#hooks-handler-argument-type}
 
 - `request` : [`FastifyRequest`](https://www.fastify.io/docs/latest/Reference/TypeScript/#request) & [`AdditinalRequest`](/docs/reference/additionalRequest)
 - `reply` : [`FastifyReply`](https://www.fastify.io/docs/latest/Reference/TypeScript/#reply)
@@ -71,14 +78,7 @@ _ref. [Hooks - Fastify](https://www.fastify.io/docs/latest/Reference/Hooks/)_
 </TabItem>
 <TabItem value="express">
 
-#### Argument Type {#definehooks-argument-type}
-
-- function `(app: Express) => Hooks`
-  - `Hooks` : An object having the hooks name as keys and the handler functions (or its array) as values.
-
-### Hooks Handler {#hooks-handler}
-
-#### Argument Type {#hooks-handler-argument-type}
+### Argument Type {#hooks-handler-argument-type}
 
 - `req` : [`Request`](https://expressjs.com/ja/api.html#req) & [`AdditinalRequest`](/docs/reference/additionalRequest)
 - `res` : [`Response`](http://expressjs.com/ja/api.html#res)

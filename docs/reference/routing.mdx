@@ -1,0 +1,169 @@
+---
+id: routing
+title: Routing
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+In frourio, controllers are defined using file-system based API routing, similar to Next.js.
+Definition methods can be broadly classified into controller-level and directory-level, depending on the scope of the effect.
+
+The level used to define each controller element is different, but some elements can be defined at both levels.
+The following table summarizes them.
+
+| Elements                                         |                                        Controller-level                                         |                              Directory-level                               |
+| ------------------------------------------------ | :---------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------: |
+| [**Handler**](/docs/reference/handler)           |                       <span class="badge badge--success">Supported</span>                       |                                    :x:                                     |
+| [**Hooks**](/docs/reference/hooks)               |                       <span class="badge badge--success">Supported</span>                       |            <span class="badge badge--success">Supported</span>             |
+| [**Validators**](/docs/reference/validation/zod) | <span class="badge badge--warning">Restricted</span> &ndash; Only `body`, `headers` and `query` | <span class="badge badge--warning">Restricted</span> &ndash; Only `params` |
+| [**Schemas**](/docs/reference/responseSchema)    |                       <span class="badge badge--success">Supported</span>                       |                                    :x:                                     |
+
+## Controller-level {#controller-level}
+
+If the element is defined at controller-level, it affects only the current endpoint.
+
+**Difinition Method** : `defineController()` in `controller.ts`
+
+:::caution
+
+`defineHooks()` and `defineResponseSchema()` are deprecated after `frourio` and `frourio-express` version `0.31.0`.
+
+:::
+
+```ts title='controller.ts'
+import { defineController } from './$relay';
+
+export default defineController(() => ({
+  get: () => ({ status: 200, body: 'Hello' }),
+  post: {
+    validators: {
+      query: z.object({ ... }),
+      body: z.object({ ... }),
+    },
+    schemas: {
+      response: { 201: { type: 'object', properties: { ... } } },
+    },
+    hooks: {
+      preValidation: [],
+      preHandler: (req, _, done) => { ...; done(); },
+    },
+    handler: ({ body }) => ({ status: 201, body: { ... } }),
+  },
+}));
+```
+
+### Function `defineController()` {#definecontroller}
+
+#### Argument Type {#definecontoller-argument-type}
+
+<Tabs
+  groupId='base-framework'
+  defaultValue="fastify"
+  values={[
+    { label: 'Fastify', value: 'fastify' },
+    { label: 'Express', value: 'express' },
+  ]}
+>
+<TabItem value="fastify">
+
+- function `(fastify: FastifyInstance) => ServerMethods`
+  - [`FastifyInstance`](https://www.fastify.io/docs/latest/Reference/TypeScript/#fastifyfastifyinstancerawserver-rawrequest-requestgeneric-logger)
+  - `ServerMethods` : an object whose keys are the same as `Methods` and whose values are [`ServerMethodHandler`](#servermethodhandler).
+
+</TabItem>
+<TabItem value="express">
+
+- function `(app: Express) => ServerMethods`
+  - [`Express`](https://expressjs.com/en/4x/api.html)
+  - `ServerMethods` : an object whose keys are the same as `Methods` and whose values are [`ServerMethodHandler`](#servermethodhandler).
+
+</TabItem>
+</Tabs>
+
+#### Return Type {#definecontoller-return-type}
+
+- object `ServerMethods`
+
+### Object `ServerMethodHandler` {#servermethodhandler}
+
+<code>
+  {'{\n  validators?: '}
+  <a href="/docs/reference/validation/zod#controller-level">(Controller-level Validators)</a>
+  {',\n  schemas?: { response?: { [(HTTP Status Code)]: '}
+  <a href="https://github.com/fastify/fast-json-stringify/blob/master/types/index.d.ts">Schema</a>
+  {' } },\n  hooks?: '}
+  <a href="/docs/reference/hooks#serverhooks">ServerHooks</a>
+  {',\n  handler: '}
+  <a href="/docs/reference/handler#serverhandler">ServerHandler</a>
+  {' or '}
+  <a href="/docs/reference/handler#serverhandler">ServerHandler</a>Promise
+  {',\n}'}
+</code>
+
+`validators`, `schemas` and `hooks` can be omitted.
+If only `handler` is defined, [`ServerHandler`](/docs/reference/handler#serverhandler) or <code><a href="/docs/reference/handler#serverhandler">ServerHandler</a>Promise</code> can be passed directly instead of the object.
+
+## Directory-level Hooks {#directory-level-hooks}
+
+If the element is defined at directory-level, it affects the current endpoint **and the endpoints under it**.
+
+**Difinition Method** : `defineHooks()` in `hooks.ts`
+
+```ts title='hooks.ts'
+import { defineHooks } from './$relay';
+
+export default defineHooks(() => ({
+  onRequest: (req, _, done) => {
+    console.log(req.url);
+    done();
+  },
+}));
+```
+
+### Function `defineHooks()` {#definehooks}
+
+<Tabs
+  groupId='base-framework'
+  defaultValue="fastify"
+  values={[
+    { label: 'Fastify', value: 'fastify' },
+    { label: 'Express', value: 'express' },
+  ]}
+>
+<TabItem value="fastify">
+
+##### Argument Type {#definehooks-argument-type}
+
+- function `(fastify: FastifyInstance) => ServerHooks`
+  - `Hooks` : An object having the hooks name as keys and the handler functions (or its array) as values.
+
+##### Return Type
+
+- object `ServerHooks`
+
+</TabItem>
+<TabItem value="express">
+
+#### Argument Type {#definehooks-argument-type}
+
+- function `(app: Express) => ServerHooks`
+  - `Hooks` : An object having the hooks name as keys and the handler functions (or its array) as values.
+
+</TabItem>
+</Tabs>
+
+## Directory-level Validators {#directory-level-validators}
+
+**Difinition Method** : `defineValidators()` in `validators.ts`
+
+```ts title='validators.ts'
+import { defineValidators } from './$relay';
+import { z } from 'zod';
+
+export default defineValidators(() => ({
+  params: z.object({ id: z.string() }),
+}));
+```
+
+See [the Zod page](/docs/reference/validation/zod#definevalidators) for more information on `defineValidators()`.

@@ -32,9 +32,15 @@ The elements that can be validated in each are different.
 
 ## Controller-level {#controller-level}
 
-**When an object** with `validator` and `handler` as keys **is passed to `defineController`** as [`ServerMethodHandler`](/docs/reference/controller#object-servermethodhandler), Frourio validates the `RequestParams` argument of the [`ServerHandler`](/docs/reference/controller#function-serverhandler).
+See the [Routing page](/docs/reference/routing#controller-level) for a reference on `defineController()`.
 
-The `validator` is an object whose keys are the same as `RequestParams` and whose values are **zod object schemas** (`z.object()`).
+```
+{
+  [(target key)]?: z.object({ ... })
+}
+```
+
+The `validator` is an object whose keys are the same as `RequestParams` (`query`, `headers` or `body`) and whose values are **zod object schemas** (`z.object()`).
 
 Each schemas are checked for consistency with the API type definition using `z.ZodType`.
 
@@ -112,7 +118,7 @@ export default defineValidators(() => ({
 }));
 ```
 
-### Function `defineValidators` {#function-definevalidators}
+### Function `defineValidators` {#definevalidators}
 
 <Tabs
   groupId='base-framework'

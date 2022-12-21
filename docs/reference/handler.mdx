@@ -1,0 +1,71 @@
+---
+id: handler
+title: Handler
+---
+
+import Tabs from '@theme/Tabs';
+import TabItem from '@theme/TabItem';
+
+```ts title='controller.ts'
+import { defineController } from './$relay';
+
+export default defineController(() => ({
+  // highlight-start
+  get: () => ({ status: 200, body: 'Hello' }),
+  // highlight-end
+  post: {
+    validators: {
+      query: z.object({ ... }),
+      body: z.object({ ... }),
+    },
+    schemas: {
+      response: { 201: { type: 'object', properties: { ... } } },
+    },
+    hooks: {
+      preValidation: [],
+      preHandler: (req, _, done) => { ...; done(); },
+    },
+    // highlight-start
+    handler: async ({ query: { foo }, params: { bar }, body }) => {
+      const baz = await createBaz(foo, bar, body);
+      if (!baz) return { status: 400 };
+      return { status: 201, body: baz };
+    },
+    // highlight-end
+  },
+}));
+```
+
+A handler is a function that takes a request as an argument and returns a response as a return value.
+Handlers can only be defined at the controller-level.
+
+---
+
+:::tip Looking for docs on how to define the handler?
+
+The definition of the handler can be found on the Routing page. See the following links for a reference on `defineController()`.
+
+- [Controller-level (`defineController()`)](/docs/reference/routing#controller-level)
+
+:::
+
+## Function `ServerHandler` {#serverhandler}
+
+### Argument Type {#serverhandler-argument-type}
+
+- object `RequestParams` & [`AdditinalRequest`](/docs/reference/additionalRequest)
+  - `query` : `query`
+  - `headers` : `reqHeaders`
+  - `params` : URL Params
+  - `body` : `reqBody`
+
+### Return Type {#controllermethods-return-type}
+
+- object `ServerResponse` | promise `Promise<ServerResponse>`
+  - `status` : `status`
+  - `body` : `resBody`
+  - `headers` : `resHeaders`
+
+The types of `RequestParams` and `ServerResponse` are determined by API type definitions.
+
+If this is included in a Promise using async, it becomes the <code>ServerHandler<b>Promise</b></code>.

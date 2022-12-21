@@ -1,0 +1,40 @@
+---
+id: responseSchema
+title: Response Schema
+---
+
+Fastify serializes responses using [`fast-json-stringfy`](https://www.npmjs.com/package/fast-json-stringify) instead of `JSON.stringfy()` when a json schema is defined.
+This schema must be [JSON Schema Draft 7](https://json-schema.org/specification-links.html#draft-7).
+
+In frourio, you can specify this as `schamas` in [`ServerMethodHandler`](/docs/reference/routing#servermethodhandler) to speed up serialization not only in Fastify (`frourio`) **but also in Express (`frourio-express`)**.
+
+See [the Fastify documentation](https://www.fastify.io/docs/latest/Reference/Validation-and-Serialization/#serialization) for response schema definitions.
+
+```ts title='controller.ts'
+import { defineController } from './$relay';
+
+export default defineController(() => ({
+  get: () => ({ status: 200, body: 'Hello' }),
+  post: {
+    validators: {
+      query: z.object({ ... }),
+      body: z.object({ ... }),
+    },
+    // highlight-start
+    schemas: {
+      response: {
+        201: {
+          type: 'object',
+          properties: { id: { type: 'number' }, port: { type: 'string' } }
+        }
+      }
+    },
+    // highlight-end
+    hooks: {
+      preValidation: [],
+      preHandler: (req, _, done) => { ...; done(); },
+    },
+    handler: ({ body }) => ({ status: 201, body: { ... } }),
+  },
+}));
+```
