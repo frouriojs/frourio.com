@@ -46,7 +46,7 @@
     "@docusaurus/module-type-aliases": "^2.0.1",
     "@tsconfig/docusaurus": "^1.0.6",
     "@types/markdown-it": "^12.2.3",
-    "@types/react": "^17.0.39",
+    "@types/react": "^18.0.26",
     "@types/react-helmet": "^6.1.5",
     "@types/react-router-dom": "^5.3.3",
     "@types/twemoji": "^13.1.2",
