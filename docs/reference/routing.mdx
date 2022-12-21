@@ -6,13 +6,13 @@ title: Routing
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 
-In frourio, controllers are defined for filesystem-based API routing such as Next.js.
+In frourio, controllers are defined using file-system based API routing, similar to Next.js.
 Definition methods can be broadly classified into controller-level and directory-level, depending on the scope of the effect.
 
-The level used for each definition is different, but some can be defined at either level.
+The level used to define each controller element is different, but some elements can be defined at both levels.
 The following table summarizes them.
 
-|                                                  |                                        Controller-level                                         |                              Directory-level                               |
+| Elements                                         |                                        Controller-level                                         |                              Directory-level                               |
 | ------------------------------------------------ | :---------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------: |
 | [**Handler**](/docs/reference/handler)           |                       <span class="badge badge--success">Supported</span>                       |                                    :x:                                     |
 | [**Hooks**](/docs/reference/hooks)               |                       <span class="badge badge--success">Supported</span>                       |            <span class="badge badge--success">Supported</span>             |
@@ -21,7 +21,7 @@ The following table summarizes them.
 
 ## Controller-level {#controller-level}
 
-If defined at controller-level, it affects only the current endpoint.
+If the element is defined at controller-level, it affects only the current endpoint.
 
 **Difinition Method** : `defineController()` in `controller.ts`
 
@@ -69,14 +69,14 @@ export default defineController(() => ({
 
 - function `(fastify: FastifyInstance) => ServerMethods`
   - [`FastifyInstance`](https://www.fastify.io/docs/latest/Reference/TypeScript/#fastifyfastifyinstancerawserver-rawrequest-requestgeneric-logger)
-  - `ServerMethods` : an object whose keys are the same as `Methods` and whose values are [`ServerMethodHandler`](#object-servermethodhandler).
+  - `ServerMethods` : an object whose keys are the same as `Methods` and whose values are [`ServerMethodHandler`](#servermethodhandler).
 
 </TabItem>
 <TabItem value="express">
 
 - function `(app: Express) => ServerMethods`
   - [`Express`](https://expressjs.com/en/4x/api.html)
-  - `ServerMethods` : an object whose keys are the same as `Methods` and whose values are [`ServerMethodHandler`](#object-servermethodhandler).
+  - `ServerMethods` : an object whose keys are the same as `Methods` and whose values are [`ServerMethodHandler`](#servermethodhandler).
 
 </TabItem>
 </Tabs>
@@ -106,7 +106,7 @@ If only `handler` is defined, [`ServerHandler`](/docs/reference/handler#serverha
 
 ## Directory-level Hooks {#directory-level-hooks}
 
-If defined at directory-level, it affects the current endpoint **and the endpoints under it**.
+If the element is defined at directory-level, it affects the current endpoint **and the endpoints under it**.
 
 **Difinition Method** : `defineHooks()` in `hooks.ts`
 
