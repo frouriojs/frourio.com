@@ -1,0 +1,38 @@
+---
+id: migration
+title: Migration Guide
+---
+
+Here are some updates that require special consideration regarding frourio and frourio-express.
+
+For changes not listed here, please refer to the [Changelog](/changelog).
+
+## v0.31.0 - Consolidate into `defineController()` {#v0.31.0-define-controller}
+
+<p>
+  <span className="badge badge--primary margin-right--sm">frourio</span>
+  <span className="badge badge--primary">frourio-express</span>
+</p>
+
+`defineHooks()` and `defineResponseSchema()` at controller-level are now deprecated.
+Please refer to the [Routing page](/docs/reference/routing) to consolidate them into `defineController()`.
+
+:::note
+
+To avoid confusion, the old "controller" has renamed to "handler".
+
+:::
+
+## v0.31.0 - Support Fastify v4 {#v0.31.0-support-fastify-v4}
+
+<p>
+  <span className="badge badge--primary margin-right--sm">frourio</span>
+  <span className="badge badge--secondary">frourio-express</span>
+</p>
+
+Fastify v4 is now supported at `frourio@0.31.0`.
+Later versions of `frourio` require `fastify@4`.
+
+`frourio-express` is not affected by this change.
+
+See also: [Fastify V4 Migration Guide - Fastify](https://www.fastify.io/docs/latest/Guides/Migration-Guide-V4/)
