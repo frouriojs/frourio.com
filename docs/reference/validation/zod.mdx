@@ -40,7 +40,7 @@ See the [Routing page](/docs/reference/routing#controller-level) for a reference
 }
 ```
 
-The `validator` is an object whose keys are the same as `RequestParams` (`query`, `headers` or `body`) and whose values are **zod object schemas** (`z.object()`).
+The `validators` is an object whose keys are the same as `RequestParams` (`query`, `headers` or `body`) and whose values are **zod object schemas** (`z.object()`).
 
 Each schemas are checked for consistency with the API type definition using `z.ZodType`.
 
