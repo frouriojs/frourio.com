@@ -1,3 +1,4 @@
+/** @type {import('@docusaurus/types').Config} */
 module.exports = {
   title: 'frourio',
   tagline: 'Fast and type-safe full stack framework, for TypeScript',
@@ -158,4 +159,14 @@ module.exports = {
       },
     ],
   ],
+  themes: [
+    [
+      require.resolve("@easyops-cn/docusaurus-search-local"),
+      /** @type {import("@easyops-cn/docusaurus-search-local").PluginOptions} */
+      ({
+        hashed: true,
+        language: ["en"],
+      }),
+    ],
+  ]
 };
