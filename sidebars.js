@@ -32,6 +32,7 @@ module.exports = {
       collapsed: false,
       link: { type: 'doc', id: 'guide/index' },
       items: [
+        'guide/migration',
         'guide/entrypoint',
         'guide/authentication',
         'guide/cors-helmet',
