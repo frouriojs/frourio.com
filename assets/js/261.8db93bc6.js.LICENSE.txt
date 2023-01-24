@@ -1,0 +1,5 @@
+/*! Copyright Twitter Inc. and other contributors. Licensed under MIT */
+
+//! moment.js
+
+//! moment.js locale configuration
