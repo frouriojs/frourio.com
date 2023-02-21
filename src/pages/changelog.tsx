@@ -3,9 +3,12 @@ import clsx from 'clsx';
 import Layout from '@theme/Layout';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
+import BrowserOnly from '@docusaurus/BrowserOnly';
 import Link from '@docusaurus/Link';
 import styles from './changelog.module.css';
-import PagenatedReleases from '../components/PaginatedReleases';
+import PagenatedReleases, {
+  Props as PagenatedReleasesProps,
+} from '../components/PaginatedReleases';
 
 const Changelog = () => (
   <Layout title="Changelog" description="Changelog of frourio and create-frourio-app">
@@ -35,17 +38,25 @@ const Changelog = () => (
         ]}
       >
         <TabItem value="frourio">
-          <PagenatedReleases repo="frouriojs/frourio" />
+          <Releases repo="frouriojs/frourio" />
         </TabItem>
         <TabItem value="create-frourio-app">
-          <PagenatedReleases repo="frouriojs/create-frourio-app" />
+          <Releases repo="frouriojs/create-frourio-app" />
         </TabItem>
         <TabItem value="aspida">
-          <PagenatedReleases repo="aspida/aspida" />
+          <Releases repo="aspida/aspida" />
         </TabItem>
       </Tabs>
     </main>
   </Layout>
+);
+
+const Releases: React.FC<PagenatedReleasesProps> = (props) => (
+  <BrowserOnly fallback={<div>Loading...</div>}>
+    {() => {
+      return <PagenatedReleases {...props} />;
+    }}
+  </BrowserOnly>
 );
 
 export default Changelog;
