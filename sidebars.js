@@ -15,6 +15,7 @@ module.exports = {
         'reference/handler',
         'reference/hooks',
         'reference/additionalRequest',
+        'reference/responseSchema',
         {
           Validation: [
             'reference/validation/automatic',
@@ -22,7 +23,6 @@ module.exports = {
             'reference/validation/class-validator',
           ],
         },
-        'reference/responseSchema',
         'reference/cli',
       ],
     },
