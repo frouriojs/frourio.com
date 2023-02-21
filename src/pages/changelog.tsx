@@ -21,6 +21,11 @@ const Changelog = () => (
           <Link href="https://github.com/frouriojs/frourio/releases">frouriojs/frourio</Link>
         </li>
         <li>
+          <Link href="https://github.com/frouriojs/frourio-express/releases">
+            frouriojs/frourio-express
+          </Link>
+        </li>
+        <li>
           <Link href="https://github.com/frouriojs/create-frourio-app/releases">
             frouriojs/create-frourio-app
           </Link>
@@ -33,12 +38,16 @@ const Changelog = () => (
         defaultValue="frourio"
         values={[
           { label: 'frourio', value: 'frourio' },
+          { label: 'frourio-express', value: 'frourio-express' },
           { label: 'create-frourio-app', value: 'create-frourio-app' },
           { label: 'aspida', value: 'aspida' },
         ]}
       >
         <TabItem value="frourio">
           <Releases repo="frouriojs/frourio" />
+        </TabItem>
+        <TabItem value="frourio-express">
+          <Releases repo="frouriojs/frourio-express" />
         </TabItem>
         <TabItem value="create-frourio-app">
           <Releases repo="frouriojs/create-frourio-app" />
