@@ -3,7 +3,7 @@ import ReactPaginate from 'react-paginate';
 import Link from '@docusaurus/Link';
 import styles from './styles.module.css';
 import axios from 'axios';
-import moment from 'moment';
+import dayjs from 'dayjs';
 import Markdown from '../../libs/markdown';
 import clsx from 'clsx';
 
@@ -92,7 +92,7 @@ const Release: React.FC<{ release: Release }> = ({ release }) => {
         <h2 className={styles.version}>
           <Link href={release.html_url}>{release.name}</Link>
         </h2>
-        <span className={styles.date}>{moment(release.created_at).format('YYYY.MM.DD')}</span>
+        <span className={styles.date}>{dayjs(release.created_at).format('YYYY.MM.DD')}</span>
       </div>
       <div
         dangerouslySetInnerHTML={{
