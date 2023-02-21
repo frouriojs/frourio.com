@@ -5,6 +5,7 @@ import styles from './styles.module.css';
 import axios from 'axios';
 import moment from 'moment';
 import Markdown from '../../libs/markdown';
+import clsx from 'clsx';
 
 type RepoKey = 'frouriojs/frourio' | 'frouriojs/create-frourio-app';
 
@@ -44,7 +45,7 @@ const PagenatedReleases: React.FC<Props> = ({ repo }) => {
           setCurrentPage(selected);
           window.scroll({ top: 250, behavior: 'smooth' });
         }}
-        containerClassName="pagination"
+        containerClassName={clsx('pagination', styles.pagenation)}
         pageClassName="pagination__item"
         activeClassName="pagination__item--active"
         previousClassName="pagination__item"
@@ -53,10 +54,11 @@ const PagenatedReleases: React.FC<Props> = ({ repo }) => {
         pageLinkClassName="pagination__link"
         previousLinkClassName="pagination__link"
         nextLinkClassName="pagination__link"
+        breakLinkClassName={styles.breakLink}
         disabledClassName="disabled"
         previousLabel="<"
         nextLabel=">"
-        className={styles.pagenation}
+        breakLabel="..."
       />
     </div>
   );

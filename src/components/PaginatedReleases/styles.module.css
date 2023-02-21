@@ -33,7 +33,12 @@
 }
 
 .pagenation {
-  text-align: center;
+  justify-content: center;
+}
+
+.breakLink {
+  color: var(--ifm-font-color-base);
+  padding: var(--ifm-pagination-padding-vertical);
 }
 
 /* smartphone */
