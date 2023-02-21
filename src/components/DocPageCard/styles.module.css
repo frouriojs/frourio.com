@@ -1,0 +1,20 @@
+.cardLink {
+  color: var(--ifm-color-emphasis-800);
+}
+
+.cardLink:hover {
+  color: var(--ifm-color-emphasis-700);
+  text-decoration: none;
+}
+
+.cardRoot {
+  border: 1px solid var(--ifm-color-emphasis-200);
+}
+
+.cardRoot:hover {
+  border-color: var(--ifm-color-primary);
+}
+
+.cardRoot p {
+  font-size: 0.9rem;
+}
