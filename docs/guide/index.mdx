@@ -4,7 +4,82 @@ title: Guide
 ---
 
 import DocCardList from '@theme/DocCardList';
+import DocPageCard from '@site/src/components/DocPageCard';
+import DocPageCardWrapper from '@site/src/components/DocPageCardWrapper';
 
-Example of practical application examples using Frourio, including those that are not functions of Frourio itself.
+Example of practical application using frourio, including those that are not functions of frourio itself.
 
-<DocCardList />
+## Migration {#migration}
+
+<DocPageCardWrapper>
+  <DocPageCard
+    title="Migration Guide"
+    href="/docs/guide/migration"
+    description="Frourio updates that require special consideration."
+  />
+</DocPageCardWrapper>
+
+## Examples {#examples}
+
+<DocPageCardWrapper>
+  <DocPageCard
+    title="Custom Entrypoint"
+    href="/docs/guide/entrypoint"
+    description="Modify the default server entry point."
+  />
+  <DocPageCard
+    title="Authentication"
+    href="/docs/guide/authentication"
+    description="Example of authentication using external modules."
+  />
+  <DocPageCard
+    title="CORS / Helmet"
+    href="/docs/guide/cors-helmet"
+    description="Example of CORS and helmet external modules."
+  />
+  <DocPageCard
+    title="500 Error Handling"
+    href="/docs/guide/error-handling"
+    description="Handling of 500 errors using fastify or express native feature."
+  />
+  <DocPageCard
+    title="Dependency Injection"
+    href="/docs/guide/dependency-injection"
+    description="Using velona in frourio."
+  />
+</DocPageCardWrapper>
+
+## Typed Pages Path {#typed-pages-path}
+
+<DocPageCardWrapper>
+  <DocPageCard
+    title="Pathpida with Next.js"
+    href="/docs/guide/pathpida/with-nextjs"
+    description="Introduce Pathpida to make path references type safety."
+  />
+  <DocPageCard
+    title="Pathpida with Nuxt.js"
+    href="/docs/guide/pathpida/with-nuxtjs"
+    description="Introduce Pathpida to make path references type safety."
+  />
+</DocPageCardWrapper>
+
+## Deployments (CI/CD) {#deployments}
+
+<DocPageCardWrapper>
+  <DocPageCard
+    title="Continuous Integration"
+    href="/docs/guide/deployments/ci"
+    description="Some commands to test frourio project and example of GitHub Actions workflow."
+  />
+  <DocPageCard
+    title="Client Static Hosting"
+    href="/docs/guide/deployments/client"
+    description="Some examples of deploying the client."
+  />
+  <DocPageCard
+    title="API Server Hosting"
+    href="/docs/guide/deployments/server"
+    description="Some examples of deploying the server."
+  />
+</DocPageCardWrapper>
