@@ -7,7 +7,7 @@ import moment from 'moment';
 import Markdown from '../../libs/markdown';
 import clsx from 'clsx';
 
-type RepoKey = 'frouriojs/frourio' | 'frouriojs/create-frourio-app';
+type RepoKey = 'frouriojs/frourio' | 'frouriojs/create-frourio-app' | 'aspida/aspida';
 
 export type Props = {
   repo: RepoKey;
