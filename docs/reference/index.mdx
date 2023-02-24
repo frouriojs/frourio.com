@@ -3,8 +3,92 @@ id: index
 title: Reference
 ---
 
-import DocCardList from '@theme/DocCardList';
+import DocPageCard from '@site/src/components/DocPageCard';
+import DocPageCardWrapper from '@site/src/components/DocPageCardWrapper';
 
-Explanation of basic mechanisms and specifications in Frourio.
+Explanation of basic mechanisms and specifications in frourio.
 
-<DocCardList />
+## create-frourio-app {#create-frourio-app}
+
+<DocPageCardWrapper>
+  <DocPageCard
+    title="Setup with GUI"
+    href="/docs/reference/cfa/gui"
+    description="The setup procedure for your frourio project using create-frourio-app on GUI."
+  />
+  <DocPageCard
+    title="Setup with CUI"
+    href="/docs/reference/cfa/cui"
+    description="About using create-frourio-app on CUI and the generator of JSON to pass as an argument."
+  />
+</DocPageCardWrapper>
+
+## Aspida {#aspida}
+
+<DocPageCardWrapper>
+  <DocPageCard
+    title="Aspida"
+    href="/docs/reference/aspida"
+    description="The role of aspida in the frourio ecosystem."
+  />
+</DocPageCardWrapper>
+
+## Controller in frourio {#controller-in-frourio}
+
+<DocPageCardWrapper>
+  <DocPageCard
+    title="Routing"
+    href="/docs/reference/routing"
+    description="The routing system in frourio."
+  />
+  <DocPageCard
+    title="Handler"
+    href="/docs/reference/handler"
+    description="A function that receives HTTP requests and actually processes them."
+  />
+  <DocPageCard
+    title="Lifecycle and Hooks"
+    href="/docs/reference/hooks"
+    description="About the lifecycle and fastify-like hooks provided by frourio."
+  />
+  <DocPageCard
+    title="AdditionalRequest"
+    href="/docs/reference/additionalRequest"
+    description="Extending FastifyRequest or Request types to keep information between hooks and handlers."
+  />
+  <DocPageCard
+    title="Response Schema"
+    href="/docs/reference/responseSchema"
+    description="A method to speed up the server by defining a JSON schema for responses."
+  />
+</DocPageCardWrapper>
+
+## Validation {#validation}
+
+<DocPageCardWrapper>
+  <DocPageCard
+    title="Automatic Validation"
+    href="/docs/reference/validation/automatic"
+    description="About the validation that frourio automatically provides for all HTTP requests."
+  />
+  <DocPageCard
+    title="Zod"
+    href="/docs/reference/validation/zod"
+    description="Using user defined validations by Zod."
+  />
+  <DocPageCard
+    title="class-validator"
+    href="/docs/reference/validation/class-validator"
+    description="[deprecated] Using user defined validations by class-validator."
+  />
+</DocPageCardWrapper>
+
+## CLI {#cli}
+
+<DocPageCardWrapper>
+  <DocPageCard
+    title="Command Line Interface"
+    href="/docs/reference/cli"
+    description="Help for frourio ecosystem CLI."
+  />
+</DocPageCardWrapper>
