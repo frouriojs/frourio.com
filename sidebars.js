@@ -58,6 +58,9 @@ module.exports = {
       items: [
         'tutorial/basic/about',
         'tutorial/basic/prepare',
+        'tutorial/basic/aspida',
+        'tutorial/basic/frourio',
+        'tutorial/basic/advanced',
       ],
     },
     'tutorial/welcome',
