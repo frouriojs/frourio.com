@@ -1,0 +1,76 @@
+---
+id: prepare
+title: Prepare Client and Server
+---
+
+import BrowserWindow from '@site/src/components/BrowserWindow';
+
+## Set up client
+
+As mentioned above, use create-vite with react-ts template.
+
+```shell title=Terminal
+npm create vite@latest -- --template react-ts
+```
+
+The project can be named anything, but in this case we will use `frourio-tutorial`.
+
+```shell
+✔ Project name: … frourio-tutorial
+```
+
+Change the directory as instructed and install dependencies.
+
+```shell title=Terminal
+cd frourio-tutorial
+npm install
+```
+
+Although it would be ideal to continue the tutorial in ESM, there are many unsupported packages and it would be complicated, so commonjs will be used in this tutorial.
+
+```diff title=package.json
+-  "type": "module",
+```
+
+Start the dev server and check that it has been set up correctly.
+
+```shell title='Terminal (Tab 1)'
+npm run dev -- --port 3000
+```
+
+<BrowserWindow url="http://localhost:3000"></BrowserWindow>
+
+## Set up server
+
+Create a single-file server in the `server/` directory using Fastify.
+
+```shell title=Terminal
+mkdir server
+cd server
+npm init -y
+npm install fastify @fastify/cors
+npm install -D typescript tsx
+```
+
+```ts title='server/index.ts'
+import Fastify from 'fastify';
+import cors from '@fastify/cors';
+
+const fastify = Fastify();
+
+fastify.register(cors, {});
+
+fastify.get('/', (req, reply) => {
+  reply.send({ hello: 'world', server: 'fastify' });
+});
+
+fastify.listen({ port: 8888, host: '0.0.0.0' });
+```
+
+Start the server and check that it has been set up correctly.
+
+```shell title='Terminal (Tab 2)'
+npx tsx watch index.ts
+```
+
+<BrowserWindow url="http://localhost:8888"></BrowserWindow>
