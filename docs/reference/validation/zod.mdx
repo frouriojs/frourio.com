@@ -165,3 +165,44 @@ If unspecified, it will be `string`, but as noted on [Automatic Validation page]
 
 </TabItem>
 </Tabs>
+
+## Operation with `z.infer<>`
+
+`z.infer<>` generates types for TypeScript from zod schema.
+
+This can be used in the API definition to avoid forgetting to define some parts in the zod schema.
+For this use case, it is recommended to export types from `validator.ts`.
+
+```ts title=validator.ts
+export const hoge = z.object({
+  hoge: z.string(),
+});
+
+export type Hoge = z.infer<typeof hoge>;
+```
+
+In addition, the `satisfies` operator in TypeScript 4.9 and later can be used to improve correctness for complex types.
+
+```ts title=validator.ts
+// highlight-start
+type HogeBase = {
+  hoge: string;
+};
+// highlight-end
+
+export const hoge = z.object({
+  hoge: z.string(),
+  // highlight-next-line
+}) satisfies z.ZodType<HogeBase>;
+
+export type Hoge = z.infer<typeof hoge>;
+```
+
+:::caution
+
+If you define and export the zod schema and the type in `controller.ts` and reference them in `index.ts`, typecheck may fail.
+Because some Fastify plugin types being `any` due to type evaluation order issues.
+
+Ref. (⚠️ Japanese): [frouriojs/frourio#276](https://github.com/frouriojs/frourio/issues/276)
+
+:::
