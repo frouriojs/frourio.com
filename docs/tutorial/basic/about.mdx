@@ -1,0 +1,46 @@
+---
+id: about
+title: About aspida and frourio
+---
+
+## What is aspida?
+
+Before we learn about fourio, we need to know about aspida.
+
+Aspida is an HTTP client wrapper for type safety.
+Let's look at the real example to see what this means.
+
+For example, if you make an API request using `fetch`, the response in the client will be `any`.
+
+![typed as any](/img/docs/fetch.png)
+
+Aspida converts it to an object of the type defined in the type definition, making it easier for the client to handle.
+
+![typed as defined](/img/docs/aspida.png)
+
+In this example, we used `@aspida/fetch`, which wraps fetch, but there are other wrappers such as axios and SWR.
+
+## Remaining problems
+
+There are still a few problems with aspida.
+
+First, there is no guarantee that the server will respond according to the type definition.
+Aspida types according to the defined type definition, so if the server breaks it, a runtime error will occur.
+There is no way to detect this as aspida has no validation capabilities.
+
+![Two TypeScript](/img/docs/TwoTS.svg#gh-light-mode-only)
+![Two TypeScript](/img/docs/TwoTS-dark.svg#gh-dark-mode-only)
+
+Second, if you are using server-generated OpenAPI, you need to convert it through `openapi2aspida` every time.
+Many server frameworks generate OpanAPI based on their implementations, but using them in aspida requires conversion through `openapi2aspida`.
+
+Frourio solves these problems by "implementing with the same type definitions in the server-side TS".
+
+![One TypeScript](/img/docs/OneTS.svg#gh-light-mode-only)
+![One TypeScript](/img/docs/OneTS-dark.svg#gh-dark-mode-only)
+
+## What is frourio?
+
+Frourio is a CLI tool that generates bridge files and enables type-driven development for static type checking with TypeScript between client and server.
+
+You can easily build projects with any combination of client and server frameworks that frourio supports.

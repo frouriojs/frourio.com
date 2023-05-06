@@ -50,6 +50,19 @@ module.exports = {
     },
   ],
   tutorial: [
+    {
+      type: 'category',
+      label: 'Basic',
+      collapsed: false,
+      link: { type: 'doc', id: 'tutorial/basic/index' },
+      items: [
+        'tutorial/basic/about',
+        'tutorial/basic/prepare',
+        'tutorial/basic/aspida',
+        'tutorial/basic/frourio',
+        'tutorial/basic/advanced',
+      ],
+    },
     'tutorial/welcome',
     'tutorial/why-frourio',
     'tutorial/preparation',
