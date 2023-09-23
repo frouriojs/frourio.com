@@ -16,9 +16,9 @@
     "lint:fix": "npm run lint:js -- --fix && prettier --write \"./**/*.{ts,tsx,js,md,mdx}\" --ignore-path .gitignore"
   },
   "dependencies": {
-    "@docusaurus/core": "^2.0.1",
-    "@docusaurus/preset-classic": "^2.0.1",
-    "@easyops-cn/docusaurus-search-local": "^0.33.6",
+    "@docusaurus/core": "^2.4.3",
+    "@docusaurus/preset-classic": "^2.4.3",
+    "@easyops-cn/docusaurus-search-local": "^0.36.0",
     "@mdx-js/react": "^1.6.22",
     "apexcharts": "^3.35.4",
     "clsx": "^1.2.1",
