@@ -1,38 +1,45 @@
 name: documentation
 
-on:
-  pull_request:
-    branches: [master]
-  push:
-    branches: [master]
+on: [push, pull_request]
 
 jobs:
   checks:
-    if: github.event_name != 'push'
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 22
           cache: yarn
+      - uses: actions/cache@v3
+        id: yarn-cache
+        with:
+          path: 'node_modules'
+          key: yarn-${{ hashFiles('yarn.lock') }}
+      - run: yarn install --frozen-lockfile
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
       - name: Test Build
         run: |
-          yarn install --frozen-lockfile
           yarn lint
           yarn typecheck
           yarn build
   gh-release:
-    if: github.event_name != 'pull_request'
+    if: github.ref_name == 'master'
     runs-on: ubuntu-latest
+    needs: checks
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
+          node-version: 22
           cache: yarn
-      - name: Install dependencies
-        run: yarn install --frozen-lockfile
+      - uses: actions/cache@v3
+        id: yarn-cache
+        with:
+          path: 'node_modules'
+          key: yarn-${{ hashFiles('yarn.lock') }}
+      - run: yarn install --frozen-lockfile
+        if: steps.yarn-cache.outputs.cache-hit != 'true'
       - name: Build website
         env:
           TRACKING_ID: ${{ secrets.TRACKING_ID }}
