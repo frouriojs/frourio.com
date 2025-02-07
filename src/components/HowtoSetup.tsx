@@ -1,15 +1,15 @@
 import React, { ComponentType, SVGProps } from 'react';
-import styles from '../pages/styles.module.css';
-import NextLogo from '../assets/logos/next.svg';
-import FastifyLogo from '../assets/logos/fastify.svg';
 import ExpressLogo from '../assets/logos/express.svg';
-import PrismaLogo from '../assets/logos/prisma.svg';
-import MysqlLogo from '../assets/logos/mysql.svg';
-import PostgresqlLogo from '../assets/logos/postgresql.svg';
-import JestLogo from '../assets/logos/jest.svg';
+import FastifyLogo from '../assets/logos/fastify.svg';
 import GithubActionsLogo from '../assets/logos/github-actions.svg';
-import VercelLogo from '../assets/logos/vercel.svg';
+import JestLogo from '../assets/logos/jest.svg';
+import MysqlLogo from '../assets/logos/mysql.svg';
 import NetlifyLogo from '../assets/logos/netlify.svg';
+import NextLogo from '../assets/logos/next.svg';
+import PostgresqlLogo from '../assets/logos/postgresql.svg';
+import PrismaLogo from '../assets/logos/prisma.svg';
+import VercelLogo from '../assets/logos/vercel.svg';
+import styles from '../pages/styles.module.css';
 
 const setupSteps: { text: string; icons: ComponentType<SVGProps<SVGSVGElement>>[] }[] = [
   {

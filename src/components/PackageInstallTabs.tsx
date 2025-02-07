@@ -1,7 +1,7 @@
-import React from 'react';
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 import CodeBlock from '@theme/CodeBlock';
+import TabItem from '@theme/TabItem';
+import Tabs from '@theme/Tabs';
+import React from 'react';
 
 export type Props = {
   deps?: string[];

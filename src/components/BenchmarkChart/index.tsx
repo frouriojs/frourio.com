@@ -1,5 +1,5 @@
-import React from 'react';
 import { useColorMode } from '@docusaurus/theme-common';
+import React from 'react';
 
 const BenchmarkChart = () => {
   const { colorMode } = useColorMode();

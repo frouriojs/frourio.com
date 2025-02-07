@@ -1,15 +1,15 @@
-import React from 'react';
-import clsx from 'clsx';
-import Layout from '@theme/Layout';
 import Link from '@docusaurus/Link';
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
 import useBaseUrl from '@docusaurus/useBaseUrl';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
+import Layout from '@theme/Layout';
+import clsx from 'clsx';
+import React from 'react';
 import GitHubButton from 'react-github-btn';
-import styles from './styles.module.css';
-import MovingBoxes from '../components/MovingBoxes';
-import HowtoSetup from '../components/HowtoSetup';
-import CodeBlocks from '../components/CodeBlocks';
 import BenchmarkChart from '../components/BenchmarkChart';
+import CodeBlocks from '../components/CodeBlocks';
+import HowtoSetup from '../components/HowtoSetup';
+import MovingBoxes from '../components/MovingBoxes';
+import styles from './styles.module.css';
 
 function Home() {
   const context = useDocusaurusContext();
@@ -31,7 +31,7 @@ function Home() {
             <Link
               className={clsx(
                 'button button--outline button--primary button--lg',
-                styles.startTutorial
+                styles.startTutorial,
               )}
               to={useBaseUrl('/docs/tutorial')}
             >

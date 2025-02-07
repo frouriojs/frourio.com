@@ -1,7 +1,7 @@
-import React from 'react';
-import classes from './styles.module.css';
 import useBaseUrl from '@docusaurus/useBaseUrl';
 import clsx from 'clsx';
+import React from 'react';
+import classes from './styles.module.css';
 
 const MovingBoxes: React.FC = () => {
   return (

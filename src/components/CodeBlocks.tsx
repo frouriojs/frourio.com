@@ -1,7 +1,7 @@
-import React from 'react';
 import Highlight, { defaultProps } from 'prism-react-renderer';
-import styles from '../pages/styles.module.css';
 import vsDark from 'prism-react-renderer/themes/vsDark';
+import React from 'react';
+import styles from '../pages/styles.module.css';
 
 const codeList = [
   {

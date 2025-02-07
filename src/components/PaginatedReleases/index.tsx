@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import ReactPaginate from 'react-paginate';
 import Link from '@docusaurus/Link';
-import styles from './styles.module.css';
 import axios from 'axios';
-import dayjs from 'dayjs';
-import Markdown from '../../libs/markdown';
 import clsx from 'clsx';
+import dayjs from 'dayjs';
+import React, { useEffect, useState } from 'react';
+import ReactPaginate from 'react-paginate';
+import Markdown from '../../libs/markdown';
+import styles from './styles.module.css';
 
 type RepoKey =
   | 'frouriojs/frourio'
@@ -26,7 +26,7 @@ const PagenatedReleases: React.FC<Props> = ({ repo }) => {
   useEffect(() => {
     const _f = async () => {
       const res = await axios.get<Release[]>(
-        `https://api.github.com/repos/${repo}/releases?per_page=50`
+        `https://api.github.com/repos/${repo}/releases?per_page=50`,
       );
       setReleases(res.data);
     };

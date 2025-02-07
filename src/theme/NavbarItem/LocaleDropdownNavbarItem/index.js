@@ -1,8 +1,8 @@
-import React from 'react';
-import DropdownNavbarItem from '@theme/NavbarItem/DropdownNavbarItem';
 import IconLanguage from '@theme/Icon/Language';
-import styles from './styles.module.css';
+import DropdownNavbarItem from '@theme/NavbarItem/DropdownNavbarItem';
+import React from 'react';
 import { useLocation } from 'react-router-dom';
+import styles from './styles.module.css';
 // ==== 2022.09.27 | Modified to add links to subdomains (not officially supported) ====
 export default function LocaleDropdownNavbarItem({
   mobile,

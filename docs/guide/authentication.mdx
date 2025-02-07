@@ -236,8 +236,8 @@ passport.use(
     // eslint-disable-next-line
     (headers: { token: string }, done: Function) => {
       done(null, getUserIdByToken(headers.token));
-    }
-  )
+    },
+  ),
 );
 
 export default defineHooks(() => ({

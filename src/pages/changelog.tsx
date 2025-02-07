@@ -1,14 +1,14 @@
-import React from 'react';
-import clsx from 'clsx';
-import Layout from '@theme/Layout';
-import Tabs from '@theme/Tabs';
-import TabItem from '@theme/TabItem';
 import BrowserOnly from '@docusaurus/BrowserOnly';
 import Link from '@docusaurus/Link';
-import styles from './changelog.module.css';
+import Layout from '@theme/Layout';
+import TabItem from '@theme/TabItem';
+import Tabs from '@theme/Tabs';
+import clsx from 'clsx';
+import React from 'react';
 import PagenatedReleases, {
   Props as PagenatedReleasesProps,
 } from '../components/PaginatedReleases';
+import styles from './changelog.module.css';
 
 const Changelog = () => (
   <Layout title="Changelog" description="Changelog of frourio and create-frourio-app">

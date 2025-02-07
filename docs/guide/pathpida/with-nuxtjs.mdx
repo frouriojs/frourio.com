@@ -160,7 +160,7 @@ export default Vue.extend({
     onclick() {
       this.$router.push(this.$pagesPath.post._pid(1).$url());
       this.$router.push(
-        this.$pagesPath.post._pid(1).$url({ query: { limit: 10 }, hash: 'sample' })
+        this.$pagesPath.post._pid(1).$url({ query: { limit: 10 }, hash: 'sample' }),
       );
     },
   },

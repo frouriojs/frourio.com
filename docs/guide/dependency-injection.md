@@ -31,8 +31,8 @@ export const getTasks = depend(
   { prisma: prisma as { task: { findMany(): Promise<Task[]> } } }, // inject prisma
   async (
     { prisma },
-    limit?: number // prisma is injected object
-  ) => (await prisma.task.findMany()).slice(0, limit)
+    limit?: number, // prisma is injected object
+  ) => (await prisma.task.findMany()).slice(0, limit),
 );
 ```
 
@@ -51,7 +51,7 @@ export default defineController(
 
       return { status: 200, body: await getTasks(query?.limit) };
     },
-  })
+  }),
 );
 ```
 
