@@ -26,39 +26,34 @@ const filterByWindowWidth = (array: (number | string)[]) => {
 const benchmarks: { category: string; data: number; color: string }[] = [
   {
     category: 'frourio',
-    data: 57152.8,
+    data: 47219.2,
     color: '#08c6d6',
   },
   {
     category: 'fastify',
-    data: 56084.8,
-    color: '#999',
-  },
-  {
-    category: 'nest-fastify',
-    data: 53035.2,
+    data: 47077.6,
     color: '#999',
   },
   {
     category: 'frourio-express',
-    data: 13741.0,
-    color: '#999',
+    data: 9934.6,
+    color: '#08c6d6',
   },
   {
     category: 'express',
-    data: 13602.0,
+    data: 10402.6,
     color: '#999',
   },
   {
-    category: 'nest',
-    data: 12212.2,
+    category: 'polka',
+    data: 48052.0,
     color: '#999',
   },
 ].sort((a, b) => b.data - a.data);
 
 const chartSeries = [
   {
-    name: '2022-10-01',
+    name: '2025-02-07',
     data: filterByWindowWidth(benchmarks.map((val) => val.data)),
   },
 ];

@@ -1,12 +1,9 @@
 import React, { ComponentType, SVGProps } from 'react';
 import styles from '../pages/styles.module.css';
-
 import NextLogo from '../assets/logos/next.svg';
-import NuxtLogo from '../assets/logos/nuxt.svg';
 import FastifyLogo from '../assets/logos/fastify.svg';
 import ExpressLogo from '../assets/logos/express.svg';
 import PrismaLogo from '../assets/logos/prisma.svg';
-import TypeormLogo from '../assets/logos/typeorm.svg';
 import MysqlLogo from '../assets/logos/mysql.svg';
 import PostgresqlLogo from '../assets/logos/postgresql.svg';
 import JestLogo from '../assets/logos/jest.svg';
@@ -16,16 +13,16 @@ import NetlifyLogo from '../assets/logos/netlify.svg';
 
 const setupSteps: { text: string; icons: ComponentType<SVGProps<SVGSVGElement>>[] }[] = [
   {
-    text: 'Select Front-end Framework',
-    icons: [NextLogo, NuxtLogo],
+    text: 'Front-end Framework',
+    icons: [NextLogo],
   },
   {
     text: 'Select Back-end Framework',
     icons: [FastifyLogo, ExpressLogo],
   },
   {
-    text: 'Select O/R mapper',
-    icons: [PrismaLogo, TypeormLogo],
+    text: 'O/R mapper',
+    icons: [PrismaLogo],
   },
   {
     text: 'Select DataBase',

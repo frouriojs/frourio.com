@@ -115,7 +115,7 @@ function Home() {
 
           <div className={clsx('text--center', styles.feature)}>
             <div className="container">
-              <h2>The fastest TypeScript framework</h2>
+              <h2>TypeScript framework benchmarks</h2>
               <BenchmarkChart />
               <div className={clsx('text--center', styles.feature)}>
                 <Link
