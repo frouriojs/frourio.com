@@ -10,7 +10,7 @@
     "deploy": "docusaurus deploy",
     "serve": "docusaurus serve",
     "typecheck": "tsc --noEmit",
-    "lint": "yarn lint:js && yarn lint:prettier",
+    "lint": "npm run lint:js && npm run lint:prettier",
     "lint:js": "eslint --ext .ts,.tsx,.js --ignore-path .gitignore .",
     "lint:prettier": "prettier --check \"./**/*.{ts,tsx,js,md,mdx}\" --ignore-path .gitignore",
     "lint:fix": "npm run lint:js -- --fix && prettier --write \"./**/*.{ts,tsx,js,md,mdx}\" --ignore-path .gitignore"
@@ -22,7 +22,6 @@
     "@mdx-js/react": "^1.6.22",
     "apexcharts": "^3.35.4",
     "clsx": "^1.2.1",
-    "create-frourio-app": "^0.36.0",
     "dayjs": "^1.11.7",
     "markdown-it": "^13.0.1",
     "react": "^17.0.2",

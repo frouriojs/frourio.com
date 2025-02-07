@@ -12,7 +12,5 @@
 
   "files.insertFinalNewline": true,
   "files.trimTrailingWhitespace": true,
-  "files.trimFinalNewlines": true,
-
-  "explorer.fileNesting.enabled": true
+  "files.trimFinalNewlines": true
 }

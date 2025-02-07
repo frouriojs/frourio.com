@@ -7,7 +7,6 @@ import BrowserOnly from '@docusaurus/BrowserOnly';
 import Tabs from '@theme/Tabs';
 import TabItem from '@theme/TabItem';
 import BrowserWindow from '@site/src/components/BrowserWindow';
-import CFA from '@site/src/components/CFA';
 
 ## Generate frourio project {#generate-frourio-project}
 
@@ -54,16 +53,13 @@ yarn create frourio-app --answers ^"{\^"dir\^":\^"my-project\^"}^"
 </TabItem>
 </Tabs>
 
-With the `--answers` option, create-frourio-app starts in CUI mode.
-
-The json passed to the answers option can be generated with the following [Command Generator](#command-generator).
-Refer to [the internal code](https://github.com/frouriojs/create-frourio-app/blob/main/server/common/prompts.ts) for json specifications as needed.
+With the `--answers` option, create-frourio-app starts in CUI mode.Refer to [the internal code](https://github.com/frouriojs/create-frourio-app/blob/main/server/common/prompts.ts) for json specifications as needed.
 
 When generation is complete, [localhost:8000](http://localhost:8000) will be opened in your browser and the client framework you selected will be displayed.
 (If it does not open automatically, open [localhost:8000](http://localhost:8000) manually.)
 
 :::caution
-If another application is using port 8000, it will probably fail to start.  
+If another application is using port 8000, it will probably fail to start.
 In that case, the generation is already completed, so quit the application and start frourio again manually, e.g. `npm run dev`.
 :::
 
@@ -85,7 +81,3 @@ In that case, the generation is already completed, so quit the application and s
     </BrowserWindow>
   </TabItem>
 </Tabs>
-
-## Command Generator {#command-generator}
-
-<CFA />
