@@ -139,7 +139,7 @@ module.exports = {
         docs: {
           sidebarPath: require.resolve('./sidebars.js'),
           // Please change this to your repo.
-          editUrl: 'https://github.com/frouriojs/frourio.com/edit/master/',
+          editUrl: 'https://github.com/frouriojs/frourio.com/edit/main/',
         },
         gtag: {
           trackingID: process.env.TRACKING_ID || 'G-XXXXXX',
@@ -147,7 +147,7 @@ module.exports = {
         blog: {
           showReadingTime: true,
           // Please change this to your repo.
-          editUrl: 'https://github.com/frouriojs/frourio.com/edit/master/',
+          editUrl: 'https://github.com/frouriojs/frourio.com/edit/main/',
         },
         theme: {
           customCss: require.resolve('./src/css/custom.css'),
